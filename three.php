@@ -143,7 +143,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-lg-7 col-md-7 col-sm-10">
+                                <div class="col-7 col-md-7 col-sm-10">
                                     <div class="form-group row ml-3">
                                         <label style="font-weight: 500;font-size: large;">Current cost of Higher Education(approx.)</label>
                                         <input type="text" style="width:60%;border:1px solid black;" class="form-control input-selector calculatehouse borderhigh s1" name="currentcost" id="current" oninput="educationone()" value="0">
@@ -155,7 +155,7 @@
 
                                 </div>
 
-                                <div class="col-lg-5 col-md-5 col-sm-12" style="border:1px solid gray;border-radius:20px;background-color:white; color:black;position:relative;"><br>
+                                <div class="col-5 col-md-5 col-sm-12" style="border:1px solid gray;border-radius:20px;background-color:white;bottom:45px; color:black;position:relative;"><br>
                                     <input type="text" style="width:80%;margin-left:20px;" class="form-control input-selector borderhigh d-none" name="ansinputs" id="set6" readonly><br>
                                     <p style="font-size: 19px;font-weight: 500;font-family: auto;margin-left: 15px;margin-top:-8px;">Provide your children the best education and as per your inputs, you will
                                         need a sum of <span id="set0" style="color: red;font-weight: 700;font-size: 22px;"></span> after
@@ -184,7 +184,7 @@
                             <img class="myimg funimg allimg" src="images\DOCTOR.png" />
 
                             <p align="center">
-                                <input type="radio" style="font-weight: 700;font-size: 17px;" class="allinput" onclick="select2Carrer(this.value)" name="carrertwo" value="doctor"> Doctor
+                                <input type="radio"  name="carrertwo" style="font-weight: 700;font-size: 17px;" class="allinput" onclick="select2Carrer(this.value)" value="doctor"> Doctor
                             </p>
                         </label>
 
@@ -193,7 +193,7 @@
                             <img class="myimg funimg allimg" src="images\engeenering.png" />
 
                             <p align="center">
-                                <input type="radio" style="font-weight: 700;font-size: 17px;" class="allinput" onclick="select2Carrer(this.value)" name="carrertwo" value="enginer"> Engineering
+                                <input type="radio" name="carrertwo" style="font-weight: 700;font-size: 17px;" class="allinput" onclick="select2Carrer(this.value)"  value="enginer"> Engineering
                             </p>
                         </label>
 
@@ -202,7 +202,7 @@
                             <img class="myimg funimg allimg" src="images\ARCHITECH.png" />
 
                             <p align="center">
-                                <input type="radio" style="font-weight: 700;font-size: 17px;" class="allinput" name="carrertwo" onclick="select2Carrer(this.value)" value="arcitect"> Architect
+                                <input type="radio" name="carrertwo" style="font-weight: 700;font-size: 17px;" class="allinput"  onclick="select2Carrer(this.value)" value="architect"> Architect
                             </p>
                         </label>
 
@@ -211,7 +211,7 @@
                             <img class="myimg funimg allimg" src="images/MBA.png" />
 
                             <p align="center">
-                                <input type="radio" style="font-weight: 700;font-size: 17px;" class="allinput" onclick="select2Carrer(this.value)" name="carrertwo" value="mba"> MBA
+                                <input type="radio"  name="carrertwo" style="font-weight: 700;font-size: 17px;" class="allinput" onclick="select2Carrer(this.value)" value="mba"> MBA
                             </p>
                         </label>
 
@@ -220,7 +220,7 @@
                             <img class="myimg funimg allimg" src="images\OTHER.png" />
 
                             <p align="center">
-                                <input type="radio" style="font-weight: 700;font-size: 17px;" class="allinput" name="carrertwo" onclick="select2Carrer(this.value)" value="other"> Other
+                                <input type="radio" name="carrertwo" style="font-weight: 700;font-size: 17px;" class="allinput"  onclick="select2Carrer(this.value)" value="other"> Other
                             </p>
                         </label>
                     </div>
@@ -229,7 +229,7 @@
                 <div class="row">
                     <div class="col-12" style="display:none;" id="sallfun">
                         <div style="display: block;">
-                            <div class="col-6 collegfortwo" style="margin-top:20px;display: none;" id="smyDIV">
+                            <div class="col-6 collegfortwo" style="margin-top:20px;display: none;" id="sdoctor">
                                 <div class="dropdown" style="display: block;margin-left:-11px;margin-bottom:-16px;" id="mbbss">
                                     <label for="college" class="labels" style="font-weight: 500;font-size: large;"> Top MBBS College's Name</label>
                                     <select name="college" class="form-control input-selector allinput" id="sMBBSCOLLEGE" style="width: 70%;">
@@ -248,7 +248,7 @@
                                 </div>
                                 <br>
                             </div>
-                            <div class="col-6 collegfortwo" style="margin-top:20px;display: none;" id="seng">
+                            <div class="col-6 collegfortwo" style="margin-top:20px;display: none;" id="senginer">
                                 <div class="dropdown" style="display: block;margin-bottom:-44px;margin-left:-11px;margin-top:30px;">
                                     <label for="college" class="labels" style="font-weight: 500;font-size: large;">Top Engineering College's Name</label>
                                     <select name="college" class="form-control input-selector allinput" id="sENGCOLLEGE" style="width: 70%;">
@@ -315,9 +315,9 @@
                             <div class="col-6 collegfortwo" style="margin-top:20px;display: none;" id="sother">
                                 <div class="form-group" style="display: block;margin-left:-11px;">
                                     <label style="font-weight: 500;font-size: large;">Your Choice of College</label>
-                                    <input type="text" style="width:73%;border:1px solid black" class="form-control input-selector calculatehouse borderhigh s1" placeholder="Type College Name">
-                                    <label style="font-weight: 500;font-size: large;margin-left:-11px;">Course Name</label><br>
-                                    <input type="text" style="width:73%;border:1px solid black;margin-left:-11px;" class="form-control input-selector calculatehouse borderhigh s1" placeholder="Add Course Name">
+                                    <input type="text" style="width:70%;border:1px solid black" class="form-control input-selector calculatehouse borderhigh s1" placeholder="Type College Name">
+                                    <label style="font-weight: 500;font-size: large;margin-left:11px;">Course Name</label><br>
+                                    <input type="text" style="width:70%;border:1px solid black;margin-left:-2px;" class="form-control input-selector calculatehouse borderhigh s1" placeholder="Add Course Name">
                                 </div>
 
                             </div>
@@ -351,36 +351,34 @@
 
     </div>
 
-
-
     <!-----------------------------House----------------------------------------------->
 
 
     <div class="goals house" data-goal="house"><br>
         <h2 align="center" style="padding-bottom:1%; padding-top:1%"> House Detail</h2>
         <div class="row">
-            <div class="col-4 col-sm-8 col-md-7">
+            <div class="col-sm-10 col-md-7">
 
                 <div class="form-group ">
                     <label for="lName" style="font-weight:600;" class="col-12 alllabel">Current Cost of House in City (approx.)</label><br>
-                    <input type="text" style="width:60%;border-radius:8px;" class="form-control mb-3 allinput input-selector calculatehouse borderhigh p-1 mb-2 three-btn" name="currentcost" id="currentcost" onchange="housecal()" value="80000">
+                    <input type="text" style="width:60%;" class="form-control mb-3 allinput input-selector calculatehouse borderhigh p-1 mb-2 three-btns" name="currentcost" id="currentcost" onchange="housecal()" value="0">
                 </div>
 
                 <div class="form-group ">
                     <label for="lName" style="font-weight:600;" class="alllabel">In What Time you want to own your House(In Years)</label><br>
-                    <input type="text" style="width:60%;border-radius:8px;" class="form-control mb-3 allinput input-selector calculatehouse borderhigh p-1 mb-2" name="futureage" id="timehorizon" onchange="housecal()" oninput="IsEmpty()" placeholder="Enter Year">
+                    <input type="text" style="width:60%;" class="form-control mb-3 allinput input-selector calculatehouse borderhigh p-1 mb-2" name="futureage" id="timehorizon" onchange="housecal()" oninput="IsEmpty()" placeholder="Enter Year">
                 </div>
                 <div class="form-group ">
                     <label for="lName" style="font-weight:600;" class="alllabel">Expected Inflation rate in Properties</label>
-                    <input type="text" style="width:60%;border-radius:8px;" class="form-control mb-3 allinput input-selector calculatehouse borderhigh p-1 mb-2" name="inflation" id="inflation" onchange="housecal()" value="7">
+                    <input type="text" style="width:60%;" class="form-control mb-3 allinput input-selector calculatehouse borderhigh p-1 mb-2" name="inflation" id="inflation" onchange="housecal()" value="7">
                 </div>
             </div>
 
-            <div class="col-4 col-sm-6 col-md-5">
-                <img src="images\HOUSEING.png" style="border-radius:20px;width:80%;" alt="">
+            <div class="col-sm-4 col-md-5">
+                <img src="images\HOUSING.png" style="border-radius:20px;width:100%;" alt="">
 
             </div>
-            <div class="col-4 col-sm-6" style="border:1px solid gray;border-radius:20px;background-color:white; color:black;"><br>
+            <div class="col-md-4 col-sm-8" style="border:1px solid gray;border-radius:20px;background-color:white; color:black;"><br>
                 <input type="text" style="width:80%;margin-left:20px;" class="form-control input-selector p-1 d-none" name="ansinputs" id="futurevalue" readonly><br>
                 <p style="font-size: 19px;font-weight: 500;font-family: auto;margin-left: 15px;margin-top:-21px;">To own your dream home, as per your inputs, you will need a sum of <span id="set8" style="color: red;font-weight: 700;font-size: 22px;"></span> after
                     <span id="house-year" style="color: green;font-weight: 700;font-size: 21px;"></span> years when the expected rate of inflation is <span id="house-infla" style="color: green;font-weight: 700;font-size: 21px;"></span> % p.a.
@@ -399,11 +397,11 @@
 
         <h2 align="center" style="padding-bottom:1%; padding-top:1%"> Retirement Detail</h2>
         <div class="row">
-            <div class="col-4 col-sm-6">
+            <div class="col-md-6 col-sm-8">
 
                 <div class="form-group row">
                     <label class="alllabel">Current Monthly Expenses</label>
-                    <input type="text" style="width:80%;" class="form-control allinput mb-2 input-selector calculatehouse borderhigh s1 three-btn" name="monthlyexp" oninput="retirementcal()" id="monthlyret" placeholder="0">
+                    <input type="text" style="width:80%;" class="form-control allinput mb-2 input-selector calculatehouse borderhigh s1 three-btns" name="monthlyexp" oninput="retirementcal()" id="monthlyret" placeholder="0">
                 </div>
                 <div class="form-group row">
                     <label class="alllabel">Inflation after Retirement</label>
@@ -412,9 +410,9 @@
                 <div class="form-group row">
                     <label class="alllabel">Rate of Return after Retirement</label>
                     <input type="text" style="width:80%;" class="form-control allinput input-selector calculatehouse borderhigh" name="rateretire" oninput="retirementcal()" id="retrate" value="12">
-                </div>
-            </div>
-            <div class="col-6 col-sm-6" style="border:1px solid gray;border-radius:20px;background-color:white; color:black;position:relative;"><br>
+                </div><br><br>
+            </div><br><br>
+            <div class="col-md-4 col-sm-6" style="border:1px solid gray;border-radius:20px;background-color:white; color:black;position:relative;"><br>
 
                 <input type="text" style="width:80%;margin-left:20px;" class="form-control input-selector p-1 d-none" name="ansinputs" id="setretire" oninput="retirementcal()" readonly><br>
                 <p style="font-size: 19px;font-weight: 500;margin-left: 15px;margin-top:-26px;">Retirement is not the end of the road. It is the beginning of new
@@ -502,7 +500,7 @@
                     <div class="col-6" style="margin-top:20px;display: none;" id="nrmlmar">
                         <div class="dropdown" style="display: block;">
                             <ul id="menu">
-                                <li class="parent"><a href="#">Top Place's for Normal marriage </a>
+                                <li class="parent"><a href="#">Choose Place's for Normal marriage </a>
                                     <ul class="child">
                                         <li class="parent marriage-place input-selector" name="tier1" value="tier1" data-fees="3000000">
                                             <a href="#" id="normal1">Tier 1<span class="expand">»</span></a>
@@ -522,7 +520,7 @@
                     <div class="col-6" style="margin-top:20px;display: none;" id="richmar">
                         <div class="dropdown" style="display: block;">
                             <ul id="menu">
-                                <li class="parent"><a href="#">Top Place's for Rich marriage </a>
+                                <li class="parent"><a href="#">Choose Place's for Rich marriage </a>
                                     <ul class="child">
                                         <li class="parent rich-tier input-selector" name="tier1" value="tier1" data-fees="5000000">
                                             <a href="#">Tier 1<span class="expand">»</span></a>
@@ -542,7 +540,7 @@
                     <div class="col-6" style="margin-top:20px;display: none;" id="luxmar">
                         <div class="dropdown" style="display: block;">
                             <ul id="menu">
-                                <li class="parent"><a href="#">Top Place's for Luxury marriage </a>
+                                <li class="parent"><a href="#">Choose Place's for Luxury marriage </a>
                                     <ul class="child">
                                         <li class="parent luxury-tier input-selector" name="tier1" value="tier1" data-fees="10000000">
                                             <a href="#">Tier 1<span class="expand">»</span></a>
@@ -553,7 +551,6 @@
                                         <li class="parent luxury-tier input-selector" name="tier3" value="tier3" data-fees="4000000">
                                             <a href="#">Tier 3<span class="expand">»</span></a>
                                         </li>
-                                        <li class="parent marriage-place" id="luxuryother" style="color:black;"> Other</li>
 
                                     </ul>
                                 </li>
@@ -564,7 +561,7 @@
                     <div class="col-6" style="margin-top:20px;display: none;" id="destmar">
                         <div class="dropdown" style="display: block;">
                             <ul id="menu">
-                                <li class="parent"><a href="#">Top Place's for Destination marriage </a>
+                                <li class="parent"><a href="#">Choose Place's for Destination marriage </a>
                                     <ul class="child">
                                         <li class="parent"><a href="#">India<span class="expand">»</span></a>
                                             <ul class="child col-5 ">
@@ -584,18 +581,11 @@
                                                 <li class="andaman input-selector" name="outofindia" value="austalia" data-fees="15000000"><a href="#" nowrap>Australia</a></li>
                                             </ul>
                                         </li>
-                                        <!-- <li class="parent marriage-place" id="destother" style="color:black;"> Other</li> -->
 
                                     </ul>
                                 </li>
                             </ul><br><br><br>
                         </div>
-                        <!-- <div class="d-none" id="otherdest-marriage">
-                            <label>Insert Place Name</label><br>
-
-                            <input type="text" class="form-control input-selector" style="width:80%" placeholder="Best Place name">
-
-                        </div> -->
                     </div>
                     <!-- </div> -->
                     <div class="col-6" style="border:1px solid gray;border-radius:20px;background-color:white; color:black;position:relative;bottom:-15px;"><br>
@@ -621,7 +611,7 @@
             <div class="col-6">
                 <div class="form-group row">
                     <label class="alllabel">Current cost of Car(approx.)</label>
-                    <input type="text" style="width:80%;" class="form-control allinput mb-2 input-selector calculatehouse borderhigh s1 three-btn" name="current" oninput="carone(),IsEmpty()" id="currentcar" value="1">
+                    <input type="text" style="width:80%;" class="form-control allinput mb-2 input-selector calculatehouse borderhigh s1 three-btns" name="current" oninput="carone(),IsEmpty()" id="currentcar" value="1">
                 </div>
                 <div class="form-group row">
                     <label class="alllabel">Expected Rate of Inflation</label>
@@ -680,7 +670,7 @@
                 <div class="col-7">
                     <div class="form-group row">
                         <label class="alllabel">Current cost of Higher Education(approx.)</label>
-                        <input type="text" style="width:80%;" class="form-control allinput mb-2 input-selector calculatehouse s1" name="current" id="currentvac" oninput="vacationone()" value="1">
+                        <input type="text" style="width:80%;" class="form-control allinput mb-2 input-selector calculatehouse s1" name="current" id="currentvac" oninput="vacationone()" onchange="vacationone()" value="1">
                     </div>
                     <div class="form-group row">
                         <label class="alllabel">Expected Rate of Inflation</label>
@@ -710,7 +700,7 @@
 
     </div>
     <!-----------------------------Tax Saving ----------------------------------------------->
-    <div class="goals taxsaving" data-goal="tax-saving">
+    <!-- <div class="goals taxsaving" data-goal="tax-saving">
         <div class="row">
             <div class="col-4">
                 <div>
@@ -729,11 +719,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-----------------------------others----------------------------------------------->
     <div class="goals others" data-goal="others">
-        <div class="goals others bady" data-goal="others">
-            <!-- <h2 align="center" style="padding-bottom:1%; padding-top:1%">Please Login for Further Planning</h2> -->
+        <!-- <div class="goals others bady" data-goal="others">
             <br>
             <div class="containers" id="containers">
                 <div class="form-containers sign-up-containers">
@@ -773,7 +762,7 @@
                 </div>
             </div>
 
-        </div>
+        </div> -->
 
     </div>
 

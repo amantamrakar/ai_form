@@ -3,13 +3,13 @@ session_start();
 if ($_SERVER["SERVER_NAME"] === "swarajfinpro.in") {
     $conn = mysqli_connect("localhost", "swarajfi_softwareuser", "Qh8c.40yBBxe", "swarajfi_software");
 } else {
-    $conn = mysqli_connect("localhost", "root", "", "user_goal");
+    $conn = mysqli_connect("localhost", "root", "", "ai_form");
 }
 echo mysqli_error($conn);
 if (!$conn) {
     die("db not connected");
 }
-// $_SESSION["goaluser"] = "amantamrakar9522@gmail.com";
+// $_SESSION["goaluser"] = "poojadhameja36@gmail.com";
 // $_SESSION["goal"] = "vacation";
 $data = array();
 $status = false;
@@ -17,7 +17,7 @@ if (!isset($_SESSION["goaluser"])) {
     echo "you are not auth";
     die();
 } else {
-    $sql = "SELECT * FROM `user_goal` WHERE `email`='{$_SESSION["goaluser"]}' AND `goal`='{$_SESSION["goal"]}'ORDER BY `client_id`  DESC";
+    $sql = "SELECT * FROM `user_goal` WHERE `email`='{$_SESSION["goaluser"]}' AND `goal`='{$_SESSION["goal"]}'ORDER BY `id`  DESC";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result)) {
         $row = mysqli_fetch_assoc($result);
@@ -494,7 +494,7 @@ if (!isset($_SESSION["goaluser"])) {
                                         <td class="text-center"><?php echo $data['goal']  ?></td>
                                         <td class="text-center"><?php echo $decode['ansinputs']  ?></td>
                                         <td class="text-center"><?php echo $decode['sipvalue']  ?></td>
-                                        <td class="text-center"><button class="btn btn-success btn-sm showing_goals" style="font-size:12px ;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id='<?php echo $data['client_id'] ?>'>Show</button></td>
+                                        <td class="text-center"><button class="btn btn-success btn-sm showing_goals" style="font-size:12px ;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id='<?php echo $data['id'] ?>'>Show</button></td>
                                     </tr>
                             <?php
                                     $k++;
@@ -542,6 +542,191 @@ if (!isset($_SESSION["goaluser"])) {
                 }
             });
         })
+
+
+        $(document).on('change', "#futureYearcar,#currentCostcar,#inflationcar", function() {
+            // alert("hii");
+            let agecar = 0;
+            let FAcar = document.getElementById("futureYearcar").value;
+            let fvacar = document.getElementById("currentCostcar").value;
+            let inflacar = document.getElementById("inflationcar").value;
+            let ratescars = 12 / 100;
+            Ncar = FAcar - agecar; // 16
+            ncar = Ncar * 12; //192
+            rcar = ratescars / 12; // 1%
+            icar = inflacar / 100; //5%
+            jcar = icar / 12; //.41
+            fvbcar = fvacar * ((1 + jcar) ** ncar);
+
+            fcar = fvbcar * rcar;
+            numcar = (((1 + rcar) ** ncar) - 1);
+            nextcar = (1 + rcar);
+            calcar = numcar * nextcar;
+            anscar = fcar / calcar;
+
+            console.log(fvbcar);
+            $("#sipValuecar").val(anscar);
+            $("#futureValuecar").val(fvbcar);
+        })
+        $(document).on('change', "#futureYearhouse,#currentCosthouse,#inflationhouse", function() {
+            // alert("hello");
+            fva = document.getElementById("currentCosthouse").value;
+            inflation = document.getElementById("inflationhouse").value,
+                timehorizon = document.getElementById("futureYearhouse").value;
+            rhouse = 12 / 100;
+            i = inflation / 100;
+            rcal = rhouse / 12;
+            l = i / 12;
+            j = (1 + l);
+            nhouse = timehorizon * 12;
+            k = Math.pow(j, nhouse);
+            m = fva * k;
+
+            fhouse = m * rcal;
+            numhouse = (((1 + rcal) ** nhouse) - 1);
+            nexthouse = (1 + rcal);
+            calhouse = numhouse * nexthouse;
+            anshouse = fhouse / calhouse;
+
+            console.log(m, anshouse);
+            $("#futureValuehouse").val(m.toFixed(0));
+            $("#sipValuehouse").val(anshouse.toFixed(0));
+        })
+        $(document).on('change', "#futureAgeEdu,#currentCostEdu,#inflationEdu,#currentAgeEdu", function() {
+
+            age = document.getElementById("currentAgeEdu").value;
+            FA = document.getElementById("futureAgeEdu").value;
+            fva = document.getElementById("currentCostEdu").value;
+            infla = document.getElementById("inflationEdu").value;
+            let rate = 12 / 100;
+
+            //  r = Rate / 100;
+            N = FA - age; // 16
+            n = N * 12; //192
+            r = rate / 12; // 1%
+            i = infla / 100; //5%
+            j = i / 12; //.41
+            fvb = fva * ((1 + j) ** n);
+
+            f = fvb * r;
+            num = (((1 + r) ** n) - 1);
+            next = (1 + r);
+            cal = num * next;
+            ans = f / cal;
+
+            $("#sipValueEdu").val(ans.toFixed(0));
+            $("#futureValueEdu").val(fvb.toFixed(0));
+
+        })
+        $(document).on('change', "#future_years,#c_cost,#in_rate", function() {
+            let agevac = 0;
+            let FAvac = document.getElementById("future_years").value;
+            let fvavac = document.getElementById("c_cost").value;
+            let inflavac = document.getElementById("in_rate").value;
+            let ratesvac = 12 / 100;
+            let Nvac = FAvac - agevac;
+            let nvac = Nvac * 12;
+            rsvac = ratesvac / 12;
+            let ivac = inflavac / 100;
+            let jvac = ivac / 12;
+            let fvbvac = fvavac * ((1 + jvac) ** nvac);
+
+            fsvac = fvbvac * rsvac;
+            numsvac = (((1 + rsvac) ** nvac) - 1);
+            nextsvac = (1 + rsvac);
+            calsvac = numsvac * nextsvac;
+            anssipvac = fsvac / calsvac;
+            // console.log(anssipvac);
+
+            $("#future_value").val(fvbvac.toFixed(0));
+            $("#sip_value").val(anssipvac.toFixed(0));
+
+        })
+        $(document).on('change', "#child_age,#future_ageMar,#current_costMar,#inflationMar", function() {
+            agemar = document.getElementById("child_age").value;
+            fa = document.getElementById("future_ageMar").value;
+            FVA = document.getElementById("current_costMar").value;
+            inflaa = document.getElementById("inflationMar").value;
+            let rates = 12 / 100;
+            M = fa - agemar;
+            m = M * 12;
+            rs = rates / 12;
+            I = inflaa / 100;
+            J = I / 12;
+            FVB = FVA * ((1 + J) ** m);
+
+            fs = FVB * rs;
+            nums = (((1 + rs) ** m) - 1);
+            nexts = (1 + rs);
+            cals = nums * nexts;
+            anssip = fs / cals;
+
+            $("#furture_valueMar").val(FVB.toFixed(0));
+            $("#sip_valueMar").val(anssip.toFixed(0));
+        })
+        $(document).on('change', "#present_age,#retirement_age,#lifeexp,#inflationRet,#monthlyexp,#rateofRet", function() {
+            let retpresent = document.getElementById("present_age").value; //Pa
+            let retretire = document.getElementById("retirement_age").value; //Ra
+            let lifeexp = document.getElementById("lifeexp").value; //Le
+            let inflatioret = document.getElementById("inflationRet").value; //I
+            let Ex = document.getElementById("monthlyexp").value; //Ex
+            let rateretire = document.getElementById("rateofRet").value;
+            let Np = retretire - retpresent; //Np
+            let r2 = (12 / (100 * 12));
+            let r1 = rateretire / 100; //r1
+            let r1ret = r1 / 12;
+            let bret = (r1 + 1); //R/100(R%)
+            let iret = inflatioret / 100; // i
+            let cret = (iret + 1); // I/100(I%)
+            let RR = ((bret / cret) - 1); //RR
+            let Nr = lifeexp - retretire //Nr
+            //  aret = Ex * (( 1 + iret) ** n )     //Er
+            let n = Np; //n
+            Er = Ex * ((1 + iret) ** n); //Er
+            rr = (RR / 12); //rr
+            dret = (1 + rr);
+            eret = (dret ** (Nr * 12));
+            fret = (1 / eret);
+            gret = ((1 - fret) * dret);
+            hret = (gret * Er);
+            iiret = hret / rr;
+            //sip amount calculated
+            let sip = (iiret * r2);
+            let csip = (1 + r2);
+            dsip = (csip ** (Np * 12));
+            esip = (dsip - 1);
+            fsip = esip * csip;
+            gsip = sip / fsip;
+
+            $("#furture_valueRet").val(iiret.toFixed(0));
+            $("#sip_valueRet").val(gsip.toFixed(0));
+
+        })
+        $(document).on('change', "#future_yearOther,#current_costOther,#inflation_other", function() {
+
+            currentage = 0;
+            Futureval = document.getElementById("future_yearOther").value;
+            currentval = document.getElementById("current_costOther").value;
+            inflaother = document.getElementById("inflation_other").value;
+            let rateother = 12 / 100;
+            Nother = Futureval - currentage; // 16
+            nother = Nother * 12; //192
+            rother = rateother / 12; // 1%
+            iother = inflaother / 100; //5%
+            jother = iother / 12; //.41
+            fvbother = currentval * ((1 + jother) ** nother);
+            // sip calculations
+            fother = fvbother * rother;
+            numother = (((1 + rother) ** nother) - 1);
+            nextother = (1 + rother);
+            calother = numother * nextother;
+            ansother = fother / calother;
+
+
+            $("#furture_valueother").val(fvbother.toFixed(0));
+            $("#sip_valueOther").val(ansother.toFixed(0));
+
+        });
     </script>
 </body>
 
