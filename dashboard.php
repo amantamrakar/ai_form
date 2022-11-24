@@ -9,8 +9,8 @@ echo mysqli_error($conn);
 if (!$conn) {
     die("db not connected");
 }
-$_SESSION["goaluser"] = "arpit@gmail.com";
-$_SESSION["goal"] = "car";
+// $_SESSION["goaluser"] = "amantamrakar9522@gmail.com";
+// $_SESSION["goal"] = "vacation";
 $data = array();
 $status = false;
 if (!isset($_SESSION["goaluser"])) {

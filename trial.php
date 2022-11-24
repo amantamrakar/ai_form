@@ -3,7 +3,7 @@ session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "ai_form";
+$dbname = "user_goal";
 if ($_SERVER["SERVER_NAME"] === "swarajfinpro.com" || $_SERVER["SERVER_NAME"] === "www.swarajfinpro.com") {
     $conn = mysqli_connect("localhost", "swaracom_appuser", "6]#oxA5cD3oX", "swaracom_appdb");
 } else {
