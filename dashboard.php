@@ -17,7 +17,7 @@ $data = array();
 //     echo "you are not auth";
 //     die();
 // } else {
-$sql = "SELECT * FROM `user_goal` WHERE `email`='{$_SESSION["goaluser"]}' AND `goal`='{$_SESSION["goal"]}'ORDER BY `client_id`  DESC";
+$sql = "SELECT * FROM `user_goal` WHERE `email`='{$_SESSION["goaluser"]}' AND `goal`='{$_SESSION["goal"]}'ORDER BY `id`  DESC";
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result)) {
     $row = mysqli_fetch_assoc($result);
@@ -497,11 +497,11 @@ if (mysqli_num_rows($result)) {
                                         <td class="text-center">100000</td>
                                         <td class="text-center"><?php echo $decode['ansinputs']  ?></td>
                                         <td class="text-center"><?php echo $decode['sipvalue']  ?></td>
-                                        <!-- <td class="text-center"><button class="btn btn-success btn-sm showing_goals" style="font-size:12px ;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id='<?php echo $data['client_id'] ?>'>Show</button></td> -->
+                                        <!-- <td class="text-center"><button class="btn btn-success btn-sm showing_goals" style="font-size:12px ;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id='<?php echo $data['id'] ?>'>Show</button></td> -->
                                         <td style="width:12%">
                                             <div class="btn-group btn-group-sm" style="padding:0;" role="group" aria-label="Basic example">
-                                                <button type="button" class="btn btn-success me-1 showing_goals style=" font-size:12px ;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id='<?php echo $data['client_id'] ?>'>Update</button>
-                                                <button type=" button" class="btn btn-danger delete_btn" id="'<?php echo $data['client_id'] ?>'">Delete</button>
+                                                <button type="button" class="btn btn-success me-1 showing_goals style=" font-size:12px ;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id='<?php echo $data['id'] ?>'>Update</button>
+                                                <button type=" button" class="btn btn-danger delete_btn" id="'<?php echo $data['id'] ?>'">Delete</button>
                                             </div>
                                         </td>
                                     </tr>
