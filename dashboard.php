@@ -10,25 +10,23 @@ echo mysqli_error($conn);
 if (!$conn) {
     die("db not connected");
 }
-// $_SESSION["goaluser"] = "poojadhameja36@gmail.com";
-// $_SESSION["goal"] = "vacation";
+$_SESSION["goaluser"] = "nikhil1@gmail.com";
+$_SESSION["goal"] = "vacation";
 $data = array();
-$status = false;
-if (!isset($_SESSION["goaluser"])) {
-    echo "you are not auth";
-    die();
+// if (!isset($_SESSION["goaluser"])) {
+//     echo "you are not auth";
+//     die();
+// } else {
+$sql = "SELECT * FROM `user_goal` WHERE `email`='{$_SESSION["goaluser"]}' AND `goal`='{$_SESSION["goal"]}'ORDER BY `client_id`  DESC";
+$result = mysqli_query($conn, $sql);
+if (mysqli_num_rows($result)) {
+    $row = mysqli_fetch_assoc($result);
+    array_push($data, $row);
 } else {
-    $sql = "SELECT * FROM `user_goal` WHERE `email`='{$_SESSION["goaluser"]}' AND `goal`='{$_SESSION["goal"]}'ORDER BY `id`  DESC";
-    $result = mysqli_query($conn, $sql);
-    if (mysqli_num_rows($result)) {
-        $row = mysqli_fetch_assoc($result);
-        array_push($data, $row);
-    } else {
-        $status = true;
-        echo "prob";
-        die();
-    }
+    $status = true;
+    // die();
 }
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -473,8 +471,9 @@ if (!isset($_SESSION["goaluser"])) {
                         <thead style="background-color:#222f3f;color:white;">
                             <tr>
                                 <th class="text-center" style="font-weight: 500;font-size:14px;">S.No</th>
-                                <th class="text-center" style="font-weight: 500;font-size:14px;">Email</th>
                                 <th class="text-center" style="font-weight: 500;font-size:14px;">Goal</th>
+                                <th class="text-center" style="font-weight: 500;font-size:14px;">Time Allocated(Yr)</th>
+                                <th class="text-center" style="font-weight: 500;font-size:14px;">Current Value</th>
                                 <th class="text-center" style="font-weight: 500;font-size:14px;">Future Value</th>
                                 <th class="text-center" style="font-weight: 500;font-size:14px;">SIP Required</th>
                                 <th class="text-center" style="font-weight: 500;font-size:14px;">Action</th>
@@ -493,11 +492,18 @@ if (!isset($_SESSION["goaluser"])) {
                             ?>
                                     <tr>
                                         <td class="text-center"><?php echo $k  ?></td>
-                                        <td class="text-center"><?php echo $data['email']  ?></td>
                                         <td class="text-center"><?php echo $data['goal']  ?></td>
+                                        <td class="text-center">10</td>
+                                        <td class="text-center">100000</td>
                                         <td class="text-center"><?php echo $decode['ansinputs']  ?></td>
                                         <td class="text-center"><?php echo $decode['sipvalue']  ?></td>
-                                        <td class="text-center"><button class="btn btn-success btn-sm showing_goals" style="font-size:12px ;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id='<?php echo $data['id'] ?>'>Show</button></td>
+                                        <!-- <td class="text-center"><button class="btn btn-success btn-sm showing_goals" style="font-size:12px ;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id='<?php echo $data['client_id'] ?>'>Show</button></td> -->
+                                        <td style="width:12%">
+                                            <div class="btn-group btn-group-sm" style="padding:0;" role="group" aria-label="Basic example">
+                                                <button type="button" class="btn btn-success me-1 showing_goals style=" font-size:12px ;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id='<?php echo $data['client_id'] ?>'>Update</button>
+                                                <button type=" button" class="btn btn-danger delete_btn" id="'<?php echo $data['client_id'] ?>'">Delete</button>
+                                            </div>
+                                        </td>
                                     </tr>
                             <?php
                                     $k++;
@@ -546,30 +552,7 @@ if (!isset($_SESSION["goaluser"])) {
             });
         })
 
-        $(document).on('change', "#currentAgeEdu,#futureAgeEdu,#currentCostEdu,#inflationEdu", function() {
-            age = document.getElementById("currentAgeEdu").value;
-            FA = document.getElementById("futureAgeEdu").value;
-            fva = document.getElementById("currentCostEdu").value;
-            infla = document.getElementById("inflationEdu").value;
-            let rate = 12 / 100;
-            N = FA - age;
-            n = N * 12; 
-            r = rate / 12; // 1%
-            i = infla / 100; //5%
-            j = i / 12; //.41
-            fvb = fva * ((1 + j) ** n);
 
-            f = fvb * r;
-            num = (((1 + r) ** n) - 1);
-            next = (1 + r);
-            cal = num * next;
-            ans = f / cal;
-
-            $("#futureValueEdu").val(fvb.toFixed(0));
-            $("#sipValueEdu").val(ans.toFixed(0));
-
-
-        })
         $(document).on('change', "#futureYearcar,#currentCostcar,#inflationcar", function() {
             // alert("hii");
             let agecar = 0;
@@ -591,8 +574,8 @@ if (!isset($_SESSION["goaluser"])) {
             anscar = fcar / calcar;
 
             console.log(fvbcar);
-            $("#sipValuecar").val(anscar);
-            $("#futureValuecar").val(fvbcar);
+            $("#sipValuecar").val(anscar.toFixed(0));
+            $("#futureValuecar").val(fvbcar.toFixed(0));
         })
         $(document).on('change', "#futureYearhouse,#currentCosthouse,#inflationhouse", function() {
             // alert("hello");
@@ -753,6 +736,133 @@ if (!isset($_SESSION["goaluser"])) {
             $("#sip_valueOther").val(ansother.toFixed(0));
 
         });
+        $(document).on('submit', '#car_form', function(e) {
+            e.preventDefault();
+            let data = $(this).serialize()
+            $.ajax({
+                type: "post",
+                url: "./single_goal_ajax.php",
+                data: {
+                    update_car: data
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response['status']) {
+                        alert(response['message'])
+                    }
+                }
+            });
+
+        })
+        $(document).on('submit', '#house_form', function(e) {
+            e.preventDefault();
+            let data = $(this).serialize()
+            $.ajax({
+                type: "post",
+                url: "./single_goal_ajax.php",
+                data: {
+                    update_house: data
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response['status']) {
+                        alert(response['message'])
+                    }
+                }
+            });
+
+        })
+        $(document).on('submit', '#vacation_form', function(e) {
+            e.preventDefault();
+            let data = $(this).serialize()
+            console.log(data);
+            $.ajax({
+                type: "post",
+                url: "./single_goal_ajax.php",
+                data: {
+                    update_vacation: data
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response['status']) {
+                        alert(response['message'])
+                    }
+                }
+            });
+
+        })
+        $(document).on('submit', '#marriage_form', function(e) {
+            e.preventDefault();
+            let data = $(this).serialize()
+            console.log(data);
+            $.ajax({
+                type: "post",
+                url: "./single_goal_ajax.php",
+                data: {
+                    update_marriage: data
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response['status']) {
+                        alert(response['message'])
+                    }
+                }
+            });
+
+        })
+        $(document).on('submit', '#others_form', function(e) {
+            e.preventDefault();
+            let data = $(this).serialize()
+            console.log(data);
+            $.ajax({
+                type: "post",
+                url: "./single_goal_ajax.php",
+                data: {
+                    update_other: data
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response['status']) {
+                        alert(response['message'])
+                    }
+                }
+            });
+        })
+        $(document).on('submit', '#retirement_form', function(e) {
+            e.preventDefault();
+            let data = $(this).serialize()
+            console.log(data);
+            $.ajax({
+                type: "post",
+                url: "./single_goal_ajax.php",
+                data: {
+                    update_retirement: data
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response['status']) {
+                        alert(response['message'])
+                    }
+                }
+            });
+
+        })
+        $(document).on("click", ".delete_btn", function() {
+            const id = $(this).attr("id");
+            $.ajax({
+                type: "post",
+                url: "./single_goal_ajax.php",
+                data: {
+                    deleteId: id
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response['status']) {
+                        alert(response['message'])
+                    }
+                }
+            });
+        })
     </script>
 </body>
 
