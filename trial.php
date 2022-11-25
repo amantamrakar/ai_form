@@ -48,7 +48,7 @@ if ($_POST["f_type"] == "register") {
         $_SESSION['data'] = $target;
     }
 
-    $datasaved = "SELECT * FROM `registered_user` WHERE email = '$email' and phone_no='$mobile'";
+    $datasaved = "SELECT * FROM `registered_user` WHERE email = '$email' or phone_no='$mobile'";
     $run = mysqli_query($conn, $datasaved);
     if (mysqli_num_rows($run) > 0) {
         $data = mysqli_fetch_array($run);
@@ -86,6 +86,8 @@ if ($_POST["f_type"] == "register") {
 if ($_POST["f_type"] == "login") {
     $email = $_POST["email"];
     $pass = $_POST["l_pass"];
+    $sgoal = json_encode($_POST["sdata"]);
+    $goal = $_POST["goal"];
 
     $sql = "SELECT * from `registered_user` WHERE email = '$email'";
     // echo $sql;
@@ -95,6 +97,10 @@ if ($_POST["f_type"] == "login") {
     if ($data != null) {
         if (password_verify($pass, $data["pws"])) {
             $_SESSION["goaluser"] = $data["email"];
+            $_SESSION["goal"] = $goal;
+            // $sgoal=json_encode($sgoal);
+            $sql = "INSERT INTO `user_goal`( `email`, `goal`, `goal_data`) VALUES ('$email','$goal','$sgoal')";
+            $result =  mysqli_query($conn, $sql);
             echo json_encode(["status" => true]);
         } else {
             echo json_encode(["status" => false, "message" => "Invalid username and Password"]);

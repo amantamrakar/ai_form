@@ -184,7 +184,7 @@
                             <img class="myimg funimg allimg" src="images\DOCTOR.png" />
 
                             <p align="center">
-                                <input type="radio"  name="carrertwo" style="font-weight: 700;font-size: 17px;" class="allinput" onclick="select2Carrer(this.value)" value="doctor"> Doctor
+                                <input type="radio" name="carrertwo" style="font-weight: 700;font-size: 17px;" class="allinput" onclick="select2Carrer(this.value)" value="doctor"> Doctor
                             </p>
                         </label>
 
@@ -193,7 +193,7 @@
                             <img class="myimg funimg allimg" src="images\engeenering.png" />
 
                             <p align="center">
-                                <input type="radio" name="carrertwo" style="font-weight: 700;font-size: 17px;" class="allinput" onclick="select2Carrer(this.value)"  value="enginer"> Engineering
+                                <input type="radio" name="carrertwo" style="font-weight: 700;font-size: 17px;" class="allinput" onclick="select2Carrer(this.value)" value="enginer"> Engineering
                             </p>
                         </label>
 
@@ -202,7 +202,7 @@
                             <img class="myimg funimg allimg" src="images\ARCHITECH.png" />
 
                             <p align="center">
-                                <input type="radio" name="carrertwo" style="font-weight: 700;font-size: 17px;" class="allinput"  onclick="select2Carrer(this.value)" value="architect"> Architect
+                                <input type="radio" name="carrertwo" style="font-weight: 700;font-size: 17px;" class="allinput" onclick="select2Carrer(this.value)" value="architect"> Architect
                             </p>
                         </label>
 
@@ -211,7 +211,7 @@
                             <img class="myimg funimg allimg" src="images/MBA.png" />
 
                             <p align="center">
-                                <input type="radio"  name="carrertwo" style="font-weight: 700;font-size: 17px;" class="allinput" onclick="select2Carrer(this.value)" value="mba"> MBA
+                                <input type="radio" name="carrertwo" style="font-weight: 700;font-size: 17px;" class="allinput" onclick="select2Carrer(this.value)" value="mba"> MBA
                             </p>
                         </label>
 
@@ -220,7 +220,7 @@
                             <img class="myimg funimg allimg" src="images\OTHER.png" />
 
                             <p align="center">
-                                <input type="radio" name="carrertwo" style="font-weight: 700;font-size: 17px;" class="allinput"  onclick="select2Carrer(this.value)" value="other"> Other
+                                <input type="radio" name="carrertwo" style="font-weight: 700;font-size: 17px;" class="allinput" onclick="select2Carrer(this.value)" value="other"> Other
                             </p>
                         </label>
                     </div>
@@ -638,14 +638,76 @@
         <h3 align="center" style="padding-bottom:1%; padding-top:1%">Select City for your Vacation</h3>
         <div class="">
             <div id="vaccity" class="row">
-                <div class="col-6 col-md-4 col-sm-6">
+                <div class="col-12" style="display:contents;text-align:center;">
+                    <!-- <div class="col-6 col-md-4 col-sm-3"> -->
+                        <label class="col-6 col-md-4 col-sm-3 mylable-goal vacacity three-btn" data-filed='3'>
+
+                            <img class="myimg funimg " src="images\01_DUBAI.png" />
+
+                            <p align="center" class="allimg">
+                                <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacone" detaset="500000" value="DUBAI">
+                            </p>
+                        </label>
+                    <!-- </div> -->
+                    <!-- <div class="col-6 col-md-4 col-sm-3"> -->
+                        <label class="mylable-goal vacacity three-btn col-6 col-md-4 col-sm-3" data-filed='3'>
+
+                            <img class="myimg funimg " src="images\02_PARIS.png" />
+
+                            <p align="center" class="allimg">
+                                <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vactwo" detaset="800000" value="PARIS">
+                            </p>
+                        </label>
+                    <!-- </div> -->
+                    <!-- <div class="col-6 col-md-4 col-sm-3"> -->
+                        <label class="mylable-goal vacacity three-btn col-6 col-md-4 col-sm-3" data-filed='3'>
+
+                            <img class="myimg funimg " src="images\03_ITALY.png" />
+
+                            <p align="center" class="allimg">
+                                <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacthree" detaset="500000" value="ITALY">
+                            </p>
+                        </label>
+                    <!-- </div> -->
+                    <!-- <div class="col-6 col-md-4 col-sm-3"> -->
+                        <label class="mylable-goal vacacity three-btn col-6 col-md-4 col-sm-3" data-filed='3'>
+
+                            <img class="myimg funimg " src="images\04_HONG KONG.png" />
+
+                            <p align="center" class="allimg">
+                                <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacfour" detaset="600000" value="HONG KONG">
+                            </p>
+                        </label>
+                    <!-- </div> -->
+                    <!-- <div class="col-6 col-md-4 col-sm-3"> -->
+                        <label class="mylable-goal vacacity three-btn col-6 col-md-4 col-sm-3"  data-filed='3'>
+
+                            <img class="myimg funimg " src="images\05_SINGAPORE.png" />
+
+                            <p align="center" class="allimg">
+                                <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacfive" detaset="500000" value="SINGAPORE">
+                            </p>
+                        </label>
+                    <!-- </div> -->
+                    <!-- <div class=""> -->
+                        <label class="mylable-goal vacacity three-btn col-6 col-md-4 col-sm-3" data-filed='3'>
+
+                            <img class="myimg funimg " src="images\06_ANDAMAN.png" />
+
+                            <p align="center" class="allimg">
+                                <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacsix" detaset="500000" value="ANDAMAN"><br><br>
+                            </p>
+                        </label>
+                    <!-- </div> -->
+                </div>
+                <!-- <div class="col-6 col-md-4 col-sm-6">
                     <label for="vacone" class="vacacity three-btn">Dubai</label>
                     <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacone" detaset="500000" value="DUBAI">
                 </div>
                 <div class="col-6 col-md-4 col-sm-6">
                     <label for="vactwo" class="vacacity three-btn">Paris</label>
                     <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vactwo" detaset="800000" value="PARIS">
-                </div>
+                </div> 
                 <div class="col-6 col-md-4 col-sm-6">
                     <label for="vacthree" class="vacacity three-btn">Italy</label>
                     <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacthree" detaset="500000" value="ITALY">
@@ -661,7 +723,7 @@
                 <div class="col-6 col-md-4 col-sm-6">
                     <label for="vacsix" class="vacacity three-btn">Andaman</label>
                     <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacsix" detaset="500000" value="ANDAMAN"><br><br>
-                </div>
+                </div>-->
             </div>
         </div>
         <div class="row">

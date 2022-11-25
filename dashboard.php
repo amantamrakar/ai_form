@@ -1,5 +1,6 @@
 <?php
 session_start();
+// var_dump($_SESSION);
 if ($_SERVER["SERVER_NAME"] === "swarajfinpro.in") {
     $conn = mysqli_connect("localhost", "swarajfi_softwareuser", "Qh8c.40yBBxe", "swarajfi_software");
 } else {
@@ -24,6 +25,7 @@ if (!isset($_SESSION["goaluser"])) {
         array_push($data, $row);
     } else {
         $status = true;
+        echo "prob";
         die();
     }
 }
@@ -486,6 +488,7 @@ if (!isset($_SESSION["goaluser"])) {
                             if (mysqli_num_rows($select_result) > 0) {
                                 $k = 1;
                                 while ($data = mysqli_fetch_assoc($select_result)) {
+                                    if($data["goal_data"] == "" || $data["goal"]=="") continue;
                                     $decode =  json_decode($data['goal_data'], true);
                             ?>
                                     <tr>
@@ -543,7 +546,30 @@ if (!isset($_SESSION["goaluser"])) {
             });
         })
 
+        $(document).on('change', "#currentAgeEdu,#futureAgeEdu,#currentCostEdu,#inflationEdu", function() {
+            age = document.getElementById("currentAgeEdu").value;
+            FA = document.getElementById("futureAgeEdu").value;
+            fva = document.getElementById("currentCostEdu").value;
+            infla = document.getElementById("inflationEdu").value;
+            let rate = 12 / 100;
+            N = FA - age;
+            n = N * 12; 
+            r = rate / 12; // 1%
+            i = infla / 100; //5%
+            j = i / 12; //.41
+            fvb = fva * ((1 + j) ** n);
 
+            f = fvb * r;
+            num = (((1 + r) ** n) - 1);
+            next = (1 + r);
+            cal = num * next;
+            ans = f / cal;
+
+            $("#futureValueEdu").val(fvb.toFixed(0));
+            $("#sipValueEdu").val(ans.toFixed(0));
+
+
+        })
         $(document).on('change', "#futureYearcar,#currentCostcar,#inflationcar", function() {
             // alert("hii");
             let agecar = 0;

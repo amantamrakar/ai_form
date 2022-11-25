@@ -314,6 +314,7 @@ if (isset($_POST['key'])) {
         </div>
       </div>
     </div>';
+    echo $markup;
     }
 
     if ($row['goal'] == 'vacation') {

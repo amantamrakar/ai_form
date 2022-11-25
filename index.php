@@ -223,7 +223,7 @@
      }
 
 
-     .vacacity {
+     /* .vacacity {
        background-color: #0d2836;
        font-size: 22px;
        border-radius: 10px;
@@ -232,13 +232,13 @@
        display: block;
        font-family: monospace;
        color: white;
-     }
+     } */
 
-     .vacacity:hover {
+     /* .vacacity:hover {
        background-color: white;
        color: black;
        border: 2px solid black;
-     }
+     } */
 
      .vacradio {
        display: none;
@@ -870,7 +870,7 @@
        document.getElementById("set2").value = FVB.toFixed(0);
        document.getElementById("set12").innerHTML = FVB.toFixed(0);
        document.getElementById("mar-year").innerHTML = M;
-       document.getElementById("mar-years").innerHTML = M;
+      //  document.getElementById("mar-years").innerHTML = M;
        document.getElementById("pooja").value = anssip.toFixed(0);
      }
 
@@ -1164,8 +1164,6 @@
 
 
 
-     var h = document.getElementById("second");
-     var imgchild = document.getElementById("imgchild");
 
 
      function select2Carrer(carrertwo) {
@@ -1271,6 +1269,10 @@
      //    }
      //  }
 
+     
+     var h = document.getElementById("second");
+     var imgchild = document.getElementById("imgchild");
+     
      function secondedu() {
        var z = document.getElementById("secondedu");
        if (z.style.display === "none") {
@@ -1284,6 +1286,23 @@
          $("#imgchild").show();
          $("#second input").removeClass("input-selector")
        }
+     }
+
+
+     var hmar = document.getElementById("secondchildmar");
+     var marriageimg = document.getElementById("marriageimg");
+    //  var zmar = document.getElementById("secondmar");
+
+     function secondmar() {
+
+      if(marriageimg.style.display === "none"){
+        hmar.style.display === "block";
+      }else
+      {
+        marriageimg.style.display === "block";
+        hmar.style.display === "none";
+      }
+
      }
 
 
@@ -1338,12 +1357,10 @@
 
 
      $('#normalother').click(function(e) {
-       console.dir(e.target);
        $('#othernormal-marriage').removeClass('d-none');
 
      })
      $('#richother').click(function(e) {
-       console.dir(e.target);
        $('#otherrich-marriage').removeClass('d-none');
 
      })
