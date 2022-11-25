@@ -305,6 +305,7 @@ if (isset($_POST['key'])) {
         </div>
       </div>
     </div>';
+      echo $markup;
     }
 
     if ($row['goal'] == 'vacation') {
@@ -360,9 +361,8 @@ if (isset($_POST['key'])) {
 </form>
        </div> 
        </div> 
-       </div> 
-      
-      ';
+       </div> ';
+      echo $markup;
     }
     if ($row['goal'] == 'marriage') {
       $markup = '
@@ -418,6 +418,7 @@ if (isset($_POST['key'])) {
        </div> 
        </div> 
        </div>';
+      echo $markup;
     }
     if ($row['goal'] == 'retirement') {
       $markup = '
@@ -481,7 +482,7 @@ if (isset($_POST['key'])) {
        </div> 
        </div> 
        </div>';
+      echo $markup;
     }
-    echo $markup;
   }
 }
