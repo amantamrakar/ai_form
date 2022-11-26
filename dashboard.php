@@ -46,7 +46,7 @@ if (mysqli_num_rows($result)) {
         <!-----------------------------Education----------------------------------------------->
         <?php
         if ($_SESSION["goal"] == 'education') {
-            $value = json_decode($data[0]['goal_data'], true);
+            // $value = json_decode($data[0]['goal_data'], true);
             // print_r($data);
         ?>
             <div class="goals" data-goal="education"><br />

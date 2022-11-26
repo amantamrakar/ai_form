@@ -32,91 +32,56 @@ if (isset($_POST['key'])) {
         <div class="card-body">
           <form class="row" id="car_form">
           <input type="hidden" name="id" value="' . $id . '">  
-          <div class="mb-3 col-6">
-              <label for="email" class="form-label">Email</label>
-              <input
-                type="text"
-                class="form-control form-control-sm"
-                id="email"
-                value="' . $row['email'] . '"
-                disabled              />
+
+            <div class="mb-3 col-6">
+              <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Email</h3>
+              <input type="text" class="form-control form-control-sm" id="email" value="' . $row['email'] . '" disabled  />
             </div>
             
             <div class="mb-3 col-6">
-            <h3 style="background-color: gray;text-align:center;color:white; border: 1px solid black;font-size:22px;">Goal</h3>
-            <input style="font-weight:bold;font-style: italic;font-size:21px;" id="goal" value="' . $row['goal'] . '" disabled  />
+              <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Goal</h3>
+              <input style="font-weight:bold;font-size:19px;text-transform: capitalize;" class="form-control form-control-sm" id="goal" value="' . $row['goal'] . '" disabled  />
             </div>
+
             <div class="mb-3 col-6">
-              <label for="carName" class="form-label">Car Name</label>
-              <input
-                type="text"
-                class="form-control form-control-sm"
-                id="carName"
-                value="' . $decode['carname'] . '"
-                disabled
-              />
+              <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Car Name</h3>
+              <input style="font-size:19px;" class="form-control form-control-sm" id="carName" value="' . $decode['carname'] . '" disabled />
             </div>
+
             <div class="mb-3 col-6">
-              <label for="futureYear" class="form-label">Future Year</label>
-              <input
-                type="number"
-                class="form-control form-control-sm"
-                id="futureYearcar"
-                value="' . $decode['futureyear'] . '"
-                name="future_car"
-              />
+              <h3 for="futureYear" class="form-label" style="background-color: gray;text-align:center;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Future Year</h3>
+              <input type="number" style="font-size:16px;" class="form-control form-control-sm" id="futureYearcar" value="' . $decode['futureyear'] . '"  />
             </div>
+
             <div class="mb-3 col-6">
-              <label for="currentCost" class="form-label">Current Cost</label>
-              <input
-                type="number"
-                class="form-control form-control-sm"
-                id="currentCostcar"
-                value="' . $decode['current'] . '"
-                name="car_current"
-              />
+              <h3 for="currentCost" class="form-label" style="background-color: gray;text-align:center;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Current Cost</h3>
+              <input type="number" style="font-size:16px;" class="form-control form-control-sm" id="currentCostcar" value="' . $decode['current'] . '"  />
             </div>
+
             <div class="mb-3 col-6">
-              <label for="inflation" class="form-label">Inflation Rate</label>
-              <input
-                type="number"
-                class="form-control form-control-sm"
-                id="inflationcar"
-                value="' . $decode['inflacar'] . '"
-                name="car_inflation"
-              />
+            <h3 for="inflation" class="form-label" style="background-color: gray;text-align:center;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Inflation Rate</h3>
+              <input  type="number" style="font-size:16px;" class="form-control form-control-sm" id="inflationcar" value="' . $decode['inflacar'] . '" />
             </div>
+
             <div class="mb-3 col-6">
-              <label for="futureValue" class="form-label">Future Value</label>
-              <input
-                type="number"
-                class="form-control form-control-sm"
-                id="futureValuecar"
-                value="' . $decode['ansinputs'] . '"
-                name="car_value"
-                readonly="true"
-              />
+            <h3 for="futureValue" class="form-label" style="background-color: gray;text-align:center;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Future Value</h3>
+              <input type="number" class="form-control form-control-sm" style="font-size:19px;" id="futureValuecar" value="' . $decode['ansinputs'] . '" disabled />
             </div>
+
             <div class="mb-3 col-6">
-              <label for="sipValue" class="form-label">Sip Value</label>
-              <input
-                type="number"
-                class="form-control form-control-sm"
-                id="sipValuecar"
-                value="' . $decode['sipvalue'] . '"
-                name="car_sip"
-                readonly="true"
-              />
+            <h3 for="futureValue" class="form-label" style="background-color: gray;text-align:center;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">SIP Required</h3>
+              <input type="number" class="form-control form-control-sm" style="font-size:19px;" id="sipValuecar" value="' . $decode['sipvalue'] . '" disabled />
             </div>
+
             <div class="mb-3 col-6">
               <button type="submit" class="btn btn-success btn-sm ">Update</button>
               <button class="btn btn-secondary btn-sm">Pdf</button>
               <button class="btn btn-danger btn-sm">Delete</button>
             </div>
           </form>
+          </div>
         </div>
-      </div>
-    </div>';
+      </div>';
       echo $markup;
     }
     if ($row['goal'] == 'house') {
@@ -126,34 +91,19 @@ if (isset($_POST['key'])) {
           <form class="row" id="house_form">
           <input type="hidden" name="id" value="' . $id . '">  
             <div class="mb-3 col-6">
-              <label for="email" class="form-label">Email</label>
-              <input
-                type="text"
-                class="form-control form-control-sm"
-                id="email"
-                value="' . $row['email'] . '"
-                disabled             
-                 />
+             <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Email</h3>
+             <input type="text" class="form-control form-control-sm" id="email" value="' . $row['email'] . '" disabled />
+            </div>
+
+            <div class="mb-3 col-6">
+               <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Goal</h3>
+              <input type="text" style="font-weight:bold;font-size:19px;text-transform: capitalize;" class="form-control form-control-sm" id="goal" value="' . $row['goal'] . '" disabled />
             </div>
             <div class="mb-3 col-6">
-              <label for="goal" class="form-label">Goal</label>
-              <input
-                type="text"
-                class="form-control form-control-sm"
-                id="goal"
-                value="' . $row['goal'] . '"
-                disabled
-              />
-            </div>
-            <div class="mb-3 col-6">
+            <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">City Name</h3>
               <label for="carName" class="form-label">City Name</label>
-              <input
-                type="text"
-                class="form-control form-control-sm"
-                id="carName"
-                value="' . $decode['city'] . '"
-                disabled
-              />
+              <input type="number" style="font-size:16px;text-transform: capitalize;" class="form-control form-control-sm" id="carName" value="' . $decode['city'] . '" disabled   />
+                
             </div>
             <div class="mb-3 col-6">
               <label for="futureYear" class="form-label">Future Age</label>
