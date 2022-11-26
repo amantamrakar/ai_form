@@ -1,6 +1,6 @@
 <?php
   session_start();
-  var_dump($_SESSION);
+  // var_dump($_SESSION);
 
   ?>
  <!DOCTYPE html>
@@ -1373,9 +1373,16 @@
        marriageone();
      })
 
-     function gotolog() {
-       if (g_id == "others")
-         $(".next")[0].click();
+     function gotolog(e) {
+       if (g_id == "others"){
+        if(e=="auth"){
+          $(".btnidprfl")[0].click();
+        }else{
+          $(".next")[0].click();
+
+        }
+       }
+
      }
 
      $('.btnidprfl').click(function(e) {

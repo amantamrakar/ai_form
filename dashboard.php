@@ -8,7 +8,7 @@ $data = array();
 //     echo "you are not auth";
 //     die();
 // } else {
-$sql = "SELECT * FROM `user_goal` WHERE `email`='{$_SESSION["goaluser"]}' AND `goal`='{$_SESSION["goal"]}'ORDER BY `id`  DESC";
+$sql = "SELECT * FROM `user_goal` WHERE `email`='{$_SESSION["goaluser"]}' AND `goal`='{$_SESSION["goal"]}' ORDER BY `id`  DESC";
 // echo $sql;
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result)) {
@@ -232,7 +232,7 @@ if (mysqli_num_rows($result)) {
         <?php
         if ($_SESSION["goal"] == 'marriage') {
             $value = json_decode($data[0]['goal_data'], true);
-            print_r($value);
+            // print_r($value);
         ?>
             <div class="goals" data-goal="marriage"><br /><br />
                 <div class="container">
