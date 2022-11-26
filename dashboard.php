@@ -1,15 +1,6 @@
 <?php
 session_start();
-// var_dump($_SESSION);
-if ($_SERVER["SERVER_NAME"] === "swarajfinpro.in" || $_SERVER["SERVER_NAME"] === "swarajfinpro.com" || $_SERVER["SERVER_NAME"] === "www.swarajfinpro.com") {
-    $conn = mysqli_connect("localhost", "swaracom_appuser", "6]#oxA5cD3oX", "swaracom_appdb");
-} else {
-    $conn = mysqli_connect("localhost", "root", "", "ai_form");
-}
-echo mysqli_error($conn);
-if (!$conn) {
-    die("db not connected");
-}
+require_once("./connect.php");
 // $_SESSION["goaluser"] = "nikhil1@gmail.com";
 // $_SESSION["goal"] = "vacation";
 $data = array();

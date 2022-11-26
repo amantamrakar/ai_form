@@ -1,19 +1,17 @@
 <?php
 session_start();
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "ai_form";
-if ($_SERVER["SERVER_NAME"] === "swarajfinpro.com" || $_SERVER["SERVER_NAME"] === "www.swarajfinpro.com") {
-    $conn = mysqli_connect("localhost", "swaracom_appuser", "6]#oxA5cD3oX", "swaracom_appdb");
-} else {
-    $conn = mysqli_connect($servername, $username, "", $dbname);
-}
-// echo mysqli_error($conn);
-if (!$conn) {
-    die(json_encode(array("error" => "server not connect please try again later", "status" => 0)));
-}
+require_once("./connect.php");
 $res = array();
+if(isset($_SESSION["goaluser"])){
+    $email=$_SESSION["goaluser"];
+    $goal = $_POST['goal'];
+    $_SESSION['goal'] = $goal;
+    $sgoal = json_encode($_POST["sdata"]);
+    $sql = "INSERT INTO `user_goal`( `email`, `goal`, `goal_data`) VALUES ('$email','$goal','$sgoal')";
+    $result =  mysqli_query($conn, $sql);
+    $res["status"] = true;
+    echo json_encode($res);
+}
 
 if (!isset($_POST["f_type"])) {
     $res["status"] = false;
