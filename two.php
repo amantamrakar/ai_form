@@ -348,23 +348,9 @@
 </div>
 
 <br><br><br>
-<?PHP
-    if(isset($_SESSION["goaluser"])){
-        ?>
-        <div style="text-align:center" class="mt-2">
-    <input type="button" name="previous" class="previous btn btn-secondary " value="Previous" />
-    <input type="button" name="next" onclick="namebtn()" class="next btn btn-primary btnidprfl" value="Next" id="btn-2" disabled />
-</div>
-        <?php
-    }else{
-        ?>
-       <div style="text-align:center" class="mt-2">
-    <input type="button" name="previous" class="previous btn btn-secondary" value="Previous" />
-    <input type="button" name="next" onclick="namebtn(),gotolog()" class="next btn btn-primary" value="Next" id="btn-2" disabled />
-</div>
-        <?php
-    }
-    
-    ?>
 
+<div style="text-align:center" class="mt-2">
+    <input type="button" name="previous" class="previous btn btn-secondary" value="Previous" />
+    <input type="button" name="next" onclick="namebtn(),gotolog(<?php (isset($_SESSION['goaluser']))?'auth' : 'go' ?>)" class="next btn btn-primary" value="Next" id="btn-2" disabled />
+</div>
 </fieldset>

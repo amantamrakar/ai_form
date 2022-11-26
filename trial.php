@@ -5,7 +5,8 @@ $res = array();
 if(isset($_SESSION["goaluser"])){
     $email=$_SESSION["goaluser"];
     $goal = $_POST['goal'];
-    $_SESSION['goal'] = $goal;
+    // $_SESSION['goal'] = $goal;
+    // $_POST["sdata"]['username']=$email;
     $sgoal = json_encode($_POST["sdata"]);
     $sql = "INSERT INTO `user_goal`( `email`, `goal`, `goal_data`) VALUES ('$email','$goal','$sgoal')";
     $result =  mysqli_query($conn, $sql);
