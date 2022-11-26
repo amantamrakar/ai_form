@@ -1,8 +1,8 @@
 <?php
 session_start();
 // var_dump($_SESSION);
-if ($_SERVER["SERVER_NAME"] === "swarajfinpro.in") {
-    $conn = mysqli_connect("localhost", "swarajfi_softwareuser", "Qh8c.40yBBxe", "swarajfi_software");
+if ($_SERVER["SERVER_NAME"] === "swarajfinpro.in" || $_SERVER["SERVER_NAME"] === "swarajfinpro.com" || $_SERVER["SERVER_NAME"] === "www.swarajfinpro.com") {
+    $conn = mysqli_connect("localhost", "swaracom_appuser", "6]#oxA5cD3oX", "swaracom_appdb");
 } else {
     $conn = mysqli_connect("localhost", "root", "", "ai_form");
 }
@@ -10,14 +10,15 @@ echo mysqli_error($conn);
 if (!$conn) {
     die("db not connected");
 }
-$_SESSION["goaluser"] = "nikhil1@gmail.com";
-$_SESSION["goal"] = "vacation";
+// $_SESSION["goaluser"] = "nikhil1@gmail.com";
+// $_SESSION["goal"] = "vacation";
 $data = array();
 // if (!isset($_SESSION["goaluser"])) {
 //     echo "you are not auth";
 //     die();
 // } else {
 $sql = "SELECT * FROM `user_goal` WHERE `email`='{$_SESSION["goaluser"]}' AND `goal`='{$_SESSION["goal"]}'ORDER BY `id`  DESC";
+// echo $sql;
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result)) {
     $row = mysqli_fetch_assoc($result);
@@ -45,7 +46,8 @@ if (mysqli_num_rows($result)) {
         <!-----------------------------Education----------------------------------------------->
         <?php
         if ($_SESSION["goal"] == 'education') {
-            print_r($data);
+            $value = json_decode($data[0]['goal_data'], true);
+            // print_r($data);
         ?>
             <div class="goals" data-goal="education"><br />
                 <div class="container">

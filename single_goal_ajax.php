@@ -11,7 +11,7 @@ echo mysqli_error($conn);
 if (!$conn) {
   die("db not connected");
 }
-// $sql = "UPDATE `user_goal` SET `goal_data` = '{\"carname\":\"dezire\",\"currentyear\":\"0\",\"futureyear\":\"10\",\"current\":\"1000000\",\"inflacar\":\"7\",\"ansinputs\":\"2009665\",\"sipvalue\":\"8650\",\"username\":\"swarajfinpro@gmail.com\",\"email\":\"arpit@gmail.com\",\"mobile\":\"9876543256\",\"passwords\":\"123\"}' WHERE `user_goal`.`client_id` = 17";
+// $sql = "UPDATE `user_goal` SET `goal_data` = '{\"carname\":\"dezire\",\"currentyear\":\"0\",\"futureyear\":\"10\",\"current\":\"1000000\",\"inflacar\":\"7\",\"ansinputs\":\"2009665\",\"sipvalue\":\"8650\",\"username\":\"swarajfinpro@gmail.com\",\"email\":\"arpit@gmail.com\",\"mobile\":\"9876543256\",\"passwords\":\"123\"}' WHERE `user_goal`.`id` = 17";
 // $result = mysqli_query($conn, $sql);
 // if ($result) {
 //   // echo "hiii";
@@ -20,7 +20,7 @@ if (!$conn) {
 
 if (isset($_POST['key'])) {
   $id = mysqli_real_escape_string($conn, $_POST['key']);
-  $sql = "SELECT * FROM `user_goal` WHERE `client_id`= '$id'";
+  $sql = "SELECT * FROM `user_goal` WHERE `id`= '$id'";
   $result = mysqli_query($conn, $sql);
   // $markup = '';
   if (mysqli_num_rows($result) > 0) {
@@ -41,15 +41,10 @@ if (isset($_POST['key'])) {
                 value="' . $row['email'] . '"
                 disabled              />
             </div>
+            
             <div class="mb-3 col-6">
-              <label for="goal" class="form-label">Goal</label>
-              <input
-                type="text"
-                class="form-control form-control-sm"
-                id="goal"
-                value="' . $row['goal'] . '"
-                disabled
-              />
+            <h3 style="background-color: gray;text-align:center;color:white; border: 1px solid black;font-size:22px;">Goal</h3>
+            <input style="font-weight:bold;font-style: italic;font-size:21px;" id="goal" value="' . $row['goal'] . '" disabled  />
             </div>
             <div class="mb-3 col-6">
               <label for="carName" class="form-label">Car Name</label>
@@ -597,7 +592,7 @@ if (isset($_POST['update_car'])) {
   $value = mysqli_real_escape_string($conn, $car_data['car_value']);
   $sip = mysqli_real_escape_string($conn, $car_data['car_sip']);
 
-  $sql = "UPDATE `user_goal` SET `goal_data` = '{\"carname\":\"$id\",\"currentyear\":\"0\",\"futureyear\":\"$year\",\"current\":\"$current\",\"inflacar\":\"$inflation\",\"ansinputs\":\"$value\",\"sipvalue\":\"$sip\",\"username\":\"swarajfinpro@gmail.com\",\"email\":\"arpit@gmail.com\",\"mobile\":\"9876543256\",\"passwords\":\"123\"}' WHERE `user_goal`.`client_id` = $id";
+  $sql = "UPDATE `user_goal` SET `goal_data` = '{\"carname\":\"$id\",\"currentyear\":\"0\",\"futureyear\":\"$year\",\"current\":\"$current\",\"inflacar\":\"$inflation\",\"ansinputs\":\"$value\",\"sipvalue\":\"$sip\",\"username\":\"swarajfinpro@gmail.com\",\"email\":\"arpit@gmail.com\",\"mobile\":\"9876543256\",\"passwords\":\"123\"}' WHERE `user_goal`.`id` = $id";
   $result = mysqli_query($conn, $sql);
   if ($result) {
     echo json_encode(array("status" => true, "message" => "updated successfully"));
@@ -614,7 +609,7 @@ if (isset($_POST['update_house'])) {
   $value = mysqli_real_escape_string($conn, $house_data['house_value']);
   $sip = mysqli_real_escape_string($conn, $house_data['house_sip']);
 
-  $sql = "UPDATE `user_goal` SET `goal_data` = '{\"city\":\"chennai\",\"currentcost\":\"$current\",\"futureage\":\"$year\",\"inflation\":\"$inflation \",\"ansinputs\":\"$value\",\"sipvalue\":\"$sip\",\"username\":\"vishal@123\",\"email\":\"ajaynema2022@gmail.com\",\"mobile\":\"admin@gmai\",\"passwords\":\"123456\"}' WHERE `user_goal`.`client_id` = $id";
+  $sql = "UPDATE `user_goal` SET `goal_data` = '{\"city\":\"chennai\",\"currentcost\":\"$current\",\"futureage\":\"$year\",\"inflation\":\"$inflation \",\"ansinputs\":\"$value\",\"sipvalue\":\"$sip\",\"username\":\"vishal@123\",\"email\":\"ajaynema2022@gmail.com\",\"mobile\":\"admin@gmai\",\"passwords\":\"123456\"}' WHERE `user_goal`.`id` = $id";
   $result = mysqli_query($conn, $sql);
   if ($result) {
     echo json_encode(array("status" => true, "message" => "updated successfully"));
@@ -631,7 +626,7 @@ if (isset($_POST['update_vacation'])) {
   $value = mysqli_real_escape_string($conn, $vacation_data['vacation_value']);
   $sip = mysqli_real_escape_string($conn, $vacation_data['vacation_sip']);
 
-  $sql = "UPDATE `user_goal` SET `goal_data` = '{\"username\":\"anku\",\"0\":\"$year\",\"current\":\"$current\",\"infla\":\"$inflation\",\"ansinputs\":\"$value\",\"anss\":\"$sip\",\"email\":\"anku@gmail.com\",\"mobile\":\"1234567890\",\"passwords\":\"dfghjk\"}' WHERE `user_goal`.`client_id` =$id";;
+  $sql = "UPDATE `user_goal` SET `goal_data` = '{\"username\":\"anku\",\"0\":\"$year\",\"current\":\"$current\",\"infla\":\"$inflation\",\"ansinputs\":\"$value\",\"anss\":\"$sip\",\"email\":\"anku@gmail.com\",\"mobile\":\"1234567890\",\"passwords\":\"dfghjk\"}' WHERE `user_goal`.`id` =$id";;
   $result = mysqli_query($conn, $sql);
   if ($result) {
     echo json_encode(array("status" => true, "message" => "updated successfully"));
@@ -649,7 +644,7 @@ if (isset($_POST['update_marriage'])) {
   $value = mysqli_real_escape_string($conn, $marriage_data['marraige_value']);
   $sip = mysqli_real_escape_string($conn, $marriage_data['marriage_sip']);
 
-  $sql = "UPDATE `user_goal` SET `goal_data` = '{\"childname\":\"akshaj\",\"currentagechild\":\"$c_a\",\"futureage\":\"$year\",\"mariage\":\"rich\",\"currentcost\":\"$current\",\"inflation\":\"$inflation\",\"ansinputs\":\"$value\",\"0\":\"$sip\",\"username\":\"nisha\",\"email\":\"nishswaraj@gmail.com\",\"mobile\":\"1234567890\"}' WHERE `user_goal`.`client_id` = $id";
+  $sql = "UPDATE `user_goal` SET `goal_data` = '{\"childname\":\"akshaj\",\"currentagechild\":\"$c_a\",\"futureage\":\"$year\",\"mariage\":\"rich\",\"currentcost\":\"$current\",\"inflation\":\"$inflation\",\"ansinputs\":\"$value\",\"0\":\"$sip\",\"username\":\"nisha\",\"email\":\"nishswaraj@gmail.com\",\"mobile\":\"1234567890\"}' WHERE `user_goal`.`id` = $id";
   $result = mysqli_query($conn, $sql);
   if ($result) {
     echo json_encode(array("status" => true, "message" => "updated successfully"));
@@ -666,7 +661,7 @@ if (isset($_POST['update_other'])) {
   $value = mysqli_real_escape_string($conn, $other_data['other_value']);
   $sip = mysqli_real_escape_string($conn, $other_data['other_sip']);
 
-  $sql = "UPDATE `user_goal` SET `goal_data` = '{\"goalname\":\"ar\",\"futureage\":\"$year\",\"currentcost\":\"$current\",\"inflation\":\"$inflation\",\"$value\":\"10576438\",\"sipvalue\":\"$sip\",\"0\":\"1234\",\"username\":\"cvzf\",\"email\":\"admin123@gmail.com\",\"mobile\":\"8762384587\"}' WHERE `user_goal`.`client_id` = $id";
+  $sql = "UPDATE `user_goal` SET `goal_data` = '{\"goalname\":\"ar\",\"futureage\":\"$year\",\"currentcost\":\"$current\",\"inflation\":\"$inflation\",\"$value\":\"10576438\",\"sipvalue\":\"$sip\",\"0\":\"1234\",\"username\":\"cvzf\",\"email\":\"admin123@gmail.com\",\"mobile\":\"8762384587\"}' WHERE `user_goal`.`id` = $id";
   $result = mysqli_query($conn, $sql);
   if ($result) {
     echo json_encode(array("status" => true, "message" => "updated successfully"));
@@ -685,7 +680,7 @@ if (isset($_POST['update_retirement'])) {
   $value = mysqli_real_escape_string($conn, $retire_data['retire_value']);
   $sip = mysqli_real_escape_string($conn, $retire_data['retire_sip']);
 
-  $sql = "UPDATE `user_goal` SET `goal_data` = '{\"currentage\":\"40\",\"retirementage\":\"$r_age\",\"lifeexp\":\"$r_exp\",\"monthlyexp\":\" $r_expense\",\"inflation\":\"$inflation\",\"rateretire\":\"$_rate\",\"ansinputs\":\"$value\",\"sipvalue\":\"$sip\",\"username\":\"mmmm\",\"email\":\"poojadhameja36@gmail.com\",\"mobile\":\"9981153638\",\"time\":\"Choose Time\"}' WHERE `user_goal`.`client_id` = $id";
+  $sql = "UPDATE `user_goal` SET `goal_data` = '{\"currentage\":\"40\",\"retirementage\":\"$r_age\",\"lifeexp\":\"$r_exp\",\"monthlyexp\":\" $r_expense\",\"inflation\":\"$inflation\",\"rateretire\":\"$_rate\",\"ansinputs\":\"$value\",\"sipvalue\":\"$sip\",\"username\":\"mmmm\",\"email\":\"poojadhameja36@gmail.com\",\"mobile\":\"9981153638\",\"time\":\"Choose Time\"}' WHERE `user_goal`.`id` = $id";
   $result = mysqli_query($conn, $sql);
   if ($result) {
     echo json_encode(array("status" => true, "message" => "updated successfully"));
@@ -695,7 +690,7 @@ if (isset($_POST['update_retirement'])) {
 }
 if (isset($_POST['deleteId'])) {
   $id =  $_POST['deleteId'];
-  $sql = "DELETE FROM `user_goal` WHERE `user_goal`.`client_id` = $id";
+  $sql = "DELETE FROM `user_goal` WHERE `user_goal`.`id` = $id";
   $result = mysqli_query($conn, $sql);
   if (mysqli_affected_rows($conn)) {
     echo json_encode(array("status" => true, "message" => "Deleted successfully"));
