@@ -13,7 +13,7 @@
                         </h1>
                         <div class="input">
                             <label for="l-mail" class="alllabel">Email</label>
-                            <input type="email" class="inputss input-selector" name="username" id="l-mail" placeholder="Email" />
+                            <input type="email" class="inputss input-selector" id="l-mail" placeholder="Email" />
                         </div>
                         <div class="input">
                             <label for="l-pass" class="alllabel">Password</label>
