@@ -827,9 +827,22 @@
         </div> -->
 
     </div>
-
-    <div style="text-align:center" class="mt-5">
-        <input type="button" name="previous" class="previous btn btn-secondary" value="Previous" />
-        <input type="button" name="next" class="next btn btn-primary" id="buttons" value="Next" disabled />
-    </div>
+    <?PHP
+    if(isset($_SESSION["goaluser"])){
+        ?>
+         <div style="text-align:center" class="mt-5">
+            <input type="button" name="previous" class="previous btn btn-secondary" value="Previous" />
+            <input type="button" name="next" class="next btn btn-primary btnidprfl" id="buttons" value="Next" disabled />
+        </div>
+        <?php
+    }else{
+        ?>
+        <div style="text-align:center" class="mt-5">
+            <input type="button" name="previous" class="previous btn btn-secondary" value="Previous" />
+            <input type="button" name="next" class="next btn btn-primary" id="buttons" value="Next" disabled />
+        </div>
+        <?php
+    }
+    
+    ?>
 </fieldset>

@@ -1,6 +1,6 @@
 <?php
-  // session_start();
-  // var_dump($_SESSION);
+  session_start();
+  var_dump($_SESSION);
 
   ?>
  <!DOCTYPE html>
@@ -495,10 +495,6 @@
      }
    </style>
 
-
-
-
-
    <title>Swaraj FinPro AI Form</title>
  </head>
 
@@ -529,7 +525,7 @@
 
        <!--   --------------------4------------------------->
        <?php
-        if (!isset($_SESSION["authuser"])) {
+        if (!isset($_SESSION["goaluser"])) {
           include("four.php");
         }
         ?>
@@ -1185,91 +1181,6 @@
        }
      })
 
-
-
-     //  function smyFunction() {
-     //    //  var x = document.getElementById("myDIV");
-     //    if (xs.style.display === "none") {
-     //      xs.style.display = "block";
-     //      ys.style.display = "none";
-     //      as.style.display = "none";
-     //      bs.style.display = "none";
-     //      cs.style.display = "none";
-     //      ds.style.display = "block";
-     //    } else {
-     //      xs.style.display = "none";
-     //    }
-     //  }
-
-     //  function seng() {
-     //    //  var y = document.getElementById("eng");
-     //    if (ys.style.display === "none") {
-     //      ys.style.display = "block";
-     //      xs.style.display = "none";
-     //      as.style.display = "none";
-     //      bs.style.display = "none";
-     //      cs.style.display = "none";
-     //      ds.style.display = "block";
-     //    } else {
-     //      ys.style.display = "none";
-     //    }
-     //  }
-
-     //  function sarchitect() {
-     //    //  var a = document.getElementById("architect");
-     //    if (as.style.display === "none") {
-     //      as.style.display = "block";
-     //      ys.style.display = "none";
-     //      xs.style.display = "none";
-     //      bs.style.display = "none";
-     //      cs.style.display = "none";
-     //      ds.style.display = "block";
-
-     //    } else {
-     //      as.style.display = "none";
-     //    }
-     //  }
-
-     //  function smasterba() {
-     //    //  var c = document.getElementById("other");
-     //    if (bs.style.display === "none") {
-     //      bs.style.display = "block";
-     //      as.style.display = "none";
-     //      ys.style.display = "none";
-     //      xs.style.display = "none";
-     //      cs.style.display = "none";
-     //      ds.style.display = "block";
-
-     //    } else {
-     //      bs.style.display = "none";
-     //    }
-     //  }
-
-     //  function sotherclg() {
-     //    //  var c = document.getElementById("other");
-     //    if (cs.style.display === "none") {
-     //      cs.style.display = "block";
-     //      as.style.display = "none";
-     //      ys.style.display = "none";
-     //      xs.style.display = "none";
-     //      bs.style.display = "none";
-     //      ds.style.display = "block";
-
-     //    } else {
-     //      cs.style.display = "none";
-     //    }
-     //    seducation();
-     //  }
-
-     //  function sallfun() {
-     //    if (d.style.display === "none") {
-     //      d.style.display = "block";
-     //    } else {
-     //      d.style.display = "none";
-     //    }
-     //  }
-
-     
      var h = document.getElementById("second");
      var imgchild = document.getElementById("imgchild");
      
