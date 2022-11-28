@@ -414,51 +414,49 @@ if (isset($_POST['key'])) {
       <div class="card">
       <div class="card-body">
 
-      <div class = row>
       <form class="row" id="others_form">
-      <div class = "col-md-6">
-      <input type="hidden" name="id" value="' . $id . '">  
-          <div class="mb-3col-6">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control form-control-sm" id="email" value= "' . $row['email'] . '" disabled readonly>
+            <input type="hidden" name="id" value="' . $id . '">  
+              <div class="mb-3 col-6">
+                <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Email</h3>
+                <input type="email" class="form-control form-control-sm" style="font-size:16px;" id="email" value= "' . $row['email'] . '" disabled readonly>
               </div>
-            <div class="mb-3">
-            <label for="goal" class="form-label">Goal</label>
-            <input type="text" class="form-control form-control-sm" id="goal" value= "' . $row['goal'] . '" disabled readonly>
-          </div>
-            <div class="mb-3">
-            <label for="current_age" class="form-label">Goal you want to Achieve</label>
-            <input type="text" class="form-control form-control-sm" id="goalname" value= "' . $decode['goalname'] . '" disabled readonly>
-          </div>
-          <div class="mb-3">
-          <label for="retirement_age" class="form-label">Future Year</label>
-          <input type="text" class="form-control form-control-sm" name="other_future" id="future_yearOther" value= "' . $decode['futureage'] . '">
-          </div>
-          </div>
-          <div class = "col-md-6">
 
-          <div class="mb-3">
-          <label for="mobile" class="form-label">Current Cost</label>
-          <input type="text" class="form-control form-control-sm" name="other_current" id="current_costOther" value= "' . $decode['currentcost'] . '" >
-        </div>
-            <div class="mb-3">
-            <label for="lifeexp"" class="form-label">Expected Inflation</label>
-            <input type="text" class="form-control form-control-sm" name="other_inflation" id="inflation_other" value= "' . $decode['inflation'] . '">
+              <div class="mb-3 col-6">
+                <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Goal</h3>
+                <input type="text" class="form-control form-control-sm" id="goal" style="font-size:16px;text-transform: capitalize;" value= "' . $row['goal'] . '" disabled readonly>
+              </div>
+
+              <div class="mb-3 col-6">
+                <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Goal you want to Achieve</h3>
+                <input type="text" class="form-control form-control-sm" style="font-size:16px;" id="goalname" value= "' . $decode['goalname'] . '" disabled readonly>
+              </div>
+
+              <div class="mb-3 col-6">
+                <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Future Year</h3>
+                <input type="text" class="form-control form-control-sm" style="font-size:16px;" name="other_future" id="future_yearOther" value= "' . $decode['futureage'] . '">
+              </div>
+
+              <div class="mb-3 col-6">
+                <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Current Cost</h3>
+                <input type="text" class="form-control form-control-sm" style="font-size:16px;" name="other_current" id="current_costOther" value= "' . $decode['currentcost'] . '" >
+              </div>
+                <div class="mb-3 col-6">
+                <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Expected Inflation</h3>
+                <input type="text" class="form-control form-control-sm" style="font-size:16px;" name="other_inflation" id="inflation_other" value= "' . $decode['inflation'] . '">
+              </div>
+              <div class="mb-3 col-6">
+                <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Future Value</h3>
+                <input type="text" class="form-control form-control-sm" style="font-size:16px;" name="other_value" id="furture_valueother" value= "' . $decode['ansinputs'] . '" disabled>
+              </div>
+              <div class="mb-3 col-6">
+                <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">SIP Value</h3>
+                <input type="text" class="form-control form-control-sm" style="font-size:16px;" name="other_sip" id="sip_valueOther" value= "' . $decode['sipvalue'] . '" disabled> 
+              </div>
+          <div class="col-md-8">
+            <button class = "mt-3 btn btn-primary btn-sm" id="updation">Update</button>
+            <button class = "mt-3 btn btn-success btn-sm" id="pdf_download">PDF</button>
+            <button class = "mt-3 btn btn-danger btn-sm" id="delete">Delete</button>
           </div>
-            <div class="mb-3">
-            <label for="furture_value" class="form-label">Future Value</label>
-            <input type="text" class="form-control form-control-sm" name="other_value" id="furture_valueother" value= "' . $decode['ansinputs'] . '" readonly="true">
-          </div>
-            <div class="mb-3">
-            <label for="sip_value" class="form-label">SIP Value</label>
-            <input type="text" class="form-control form-control-sm" name="other_sip" id="sip_valueOther" value= "' . $decode['sipvalue'] . '" readonly="true"> 
-          </div>
-          </div>
-      <div class="col-md-8">
-      <button class = "mt-3 btn btn-primary btn-sm" id="updation">Update</button>
-      <button class = "mt-3 btn btn-success btn-sm" id="pdf_download">PDF</button>
-      <button class = "mt-3 btn btn-danger btn-sm" id="delete">Delete</button>
-      </div>
       </form>
        </div> 
        </div> 

@@ -455,31 +455,6 @@
        color: black;
      }
 
-     .bottonss {
-       border-radius: 20px;
-       border: none;
-       background-color: #0E4A75;
-       color: #FFFFFF;
-       font-size: 12px;
-       font-weight: bold;
-       letter-spacing: 1px;
-       text-transform: uppercase;
-       transition: transform 80ms ease-in;
-     }
-
-     .bottonss:active {
-       transform: scale(0.95);
-     }
-
-     .bottonss:focus {
-       outline: none;
-     }
-
-     .bottonss:hover {
-       background-color: #FFFFFF;
-       color: #223C86;
-       cursor: pointer;
-     }
 
      .inputss {
        background-color: #eee;
@@ -512,10 +487,10 @@
      </div>
 
      <?php
-      if(isset($_SESSION["goaluser"]))
+      if (isset($_SESSION["goaluser"]))
       {
         echo "Hey ...";
-        
+
       }
      ?>
 

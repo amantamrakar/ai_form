@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!isset($_SESSION["goaluser"])) {
+    header("location: ./index.php");
+}
 require_once("./connect.php");
 // $_SESSION["goaluser"] = "nikhil1@gmail.com";
 // $_SESSION["goal"] = "vacation";
@@ -20,6 +23,33 @@ if (mysqli_num_rows($result)) {
 }
 // }
 ?>
+<style>
+    .bottons {
+        border-radius: 20px;
+        border: none;
+        background-color: #0E4A75;
+        padding: 10px 16px;
+        color: #FFFFFF;
+        font-size: 15px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-transform: capitalize;
+    }
+
+    .bottons:active {
+        transform: scale(0.95);
+    }
+
+    .bottons:focus {
+        outline: none;
+    }
+
+    .bottons:hover {
+        background-color: #FFFFFF;
+        color: #223C86;
+        cursor: pointer;
+    }
+</style>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,7 +63,7 @@ if (mysqli_num_rows($result)) {
 
 <body>
     <fieldset>
-
+        <a href="logout.php"><button type="text" style="font-size: 19px;background-color: antiquewhite;padding: 6px 9px;border-radius: 5px;font-weight: 500;float: right;margin-top: 12px;margin-right: 18px;">Logout</button></a>
         <!-----------------------------Education----------------------------------------------->
         <?php
         if ($_SESSION["goal"] == 'education') {
@@ -48,7 +78,7 @@ if (mysqli_num_rows($result)) {
                                 <div class="col-4" style="display:flex;">
                                     <img src="images/userprofile.png" class="" alt="Avatar" style="height: 70px;width:66px;margin-top: 11px;margin-left: 15px;">
                                     <p style="color: black;margin-left: 12px;margin-top: 40px;margin-right: 120px;font-weight: 700;">Hello </p>
-                                    <div style="color:black;margin-right:12px;margin-top:40px;margin-left:120px;font-weight:700;" href="logout.php">LogOut</div>
+
                                 </div>
                             </div>
                             <div class="col-12" style="color:black;font-size:21px;font-family: serif;">
