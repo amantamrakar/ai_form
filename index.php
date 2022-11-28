@@ -511,6 +511,14 @@
        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
      </div>
 
+     <?php
+      if(isset($_SESSION["goaluser"]))
+      {
+        echo "Hey ...";
+        
+      }
+     ?>
+
      <form id="regiration_form" action="action.php" method="post" class="d-flex ">
 
        <!--  ----------------------1----------------------->

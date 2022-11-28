@@ -48,6 +48,7 @@ if (mysqli_num_rows($result)) {
                                 <div class="col-4" style="display:flex;">
                                     <img src="images/userprofile.png" class="" alt="Avatar" style="height: 70px;width:66px;margin-top: 11px;margin-left: 15px;">
                                     <p style="color: black;margin-left: 12px;margin-top: 40px;margin-right: 120px;font-weight: 700;">Hello </p>
+                                    <div style="color:black;margin-right:12px;margin-top:40px;margin-left:120px;font-weight:700;" href="logout.php">LogOut</div>
                                 </div>
                             </div>
                             <div class="col-12" style="color:black;font-size:21px;font-family: serif;">
