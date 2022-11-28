@@ -4,6 +4,7 @@ if (!isset($_SESSION["goaluser"])) {
     header("location: ./index.php");
 }
 require_once("./connect.php");
+
 // $_SESSION["goaluser"] = "nikhil1@gmail.com";
 // $_SESSION["goal"] = "vacation";
 $data = array();
@@ -13,6 +14,12 @@ $data = array();
 // } else {
 $sql = "SELECT * FROM `user_goal` WHERE `email`='{$_SESSION["goaluser"]}' AND `goal`='{$_SESSION["goal"]}' ORDER BY `id`  DESC";
 // echo $sql;
+$resgister_sql = "SELECT `full_name` FROM `registered_user` WHERE `email`='{$_SESSION["goaluser"]}'";
+$register_result = mysqli_query($conn, $resgister_sql);
+if (mysqli_num_rows($register_result) > 0) {
+    $row = mysqli_fetch_assoc($register_result);
+    $user_name = $row['full_name'];
+}
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result)) {
     $row = mysqli_fetch_assoc($result);
@@ -146,7 +153,7 @@ if (mysqli_num_rows($result)) {
                             </div>
                             <div class="col-12" style="color:black;font-size:21px;font-family: serif;">
                                 <p class="ml-5" style="color:black;">
-                                    Dear <span id="p-name"><?php echo $value['username'] ?></span>,<br></p>
+                                    Dear <span id="p-name"><?php echo $user_name ?></span>,<br></p>
                                 <blockquote style="margin-left:50px;margin-right:30px;" align="justify"> A place that we call <b><i>HOME</b></i> is one of life's most essential <b>needs</b>. We're glad you're planning on it and you
                                     have a <b>determination</b> towards your goals, what you have to achieve and you understand the value of <b>investments.</b><br>
                                     <span style="position:relative;left:40px;"> To Achieve this Goal you need to Accumulate <span id="p-ansinput" style="color: blue;font-weight: 700;font-size: 21px;"><?php echo $value['currentcost'] ?>
@@ -214,7 +221,7 @@ if (mysqli_num_rows($result)) {
                             </div>
                             <div class="col-12" style="color:black;font-size:21px;font-family: serif;">
                                 <p class="ml-5" style="color:black;">
-                                    Dear <span id="p-name"><?php echo $value['username'] ?></span>,<br></p>
+                                    Dear <span id="p-name"><?php echo $user_name ?></span>,<br></p>
 
                                 <blockquote style="margin-left:50px;margin-right:30px;" align="justify"> <b><i> Retirement </i></b> is not the end of the road. It is the beginning of a
                                     <b> new inning.</b> We are glad to see you are <b>planning</b> on it and that you are
@@ -277,7 +284,7 @@ if (mysqli_num_rows($result)) {
                             </div>
                             <div class="col-12" style="color:black;font-size:21px;font-family: serif;">
                                 <p class="ml-5" style="color:black;">
-                                    Dear <span id="p-name"><?php echo $value['username'] ?></span>,</p>
+                                    Dear <span id="p-name"><?php echo $user_name ?></span>,</p>
                                 <blockquote style="margin-left:50px;margin-right:30px;" align="justify"> A <b><i>WEDDING</i></b> is a big day in one’s life and a
                                     <b> lifetime</b> event. We're <b> delighted</b> to see you thinking & <b>planning</b> on it and that you're committed to your goals.
                                     and we are sure, you know the importance of investments.<br>
@@ -335,7 +342,7 @@ if (mysqli_num_rows($result)) {
                             </div>
                             <div class="container" style="color:black;font-size:21px;font-family: serif;">
                                 <p class="ml-5" style="color:black;">
-                                    Dear <span id="p-name"><?php echo $value['username'] ?></span>,</p>
+                                    Dear <span id="p-name"><?php echo $user_name ?></span>,</p>
                                 <blockquote style="margin-left:50px;margin-right:30px;color:black;" align="justify">Buying a <b><i>Car</i></b> is a dream of many and for <b> a comfortable journey </b>, you must have a good car.
                                     <b>Dreams</b> are what <b>motivate</b> us,
                                     and we are thrilled to see that you want to own a car and you are planning on it. <b>Believe us, investment</b> is the best route to <b>accomplish</b> your dream.<br>
@@ -396,7 +403,7 @@ if (mysqli_num_rows($result)) {
                             <div class="col-12" style="color:black;font-size:21px;font-family: serif;">
                                 <p class="ml-5" style="color:black;">
 
-                                    Dear <span id="p-name"><?php echo $value['username'] ?></span>,</p>
+                                    Dear <span id="p-name"><?php echo $user_name ?></span>,</p>
                                 <blockquote style="margin-left:50px;margin-right:30px;" align="justify">Sometimes a <b>break</b> from regular life is essential to have fun and <b>enjoy yourself</b> and a <b><i>Vacation</i></b> is all you need .
                                     We are <b>pleased</b> that you have a <b>passion</b> towards your life goals and you know the importance of investment in <b>achieving your goals.</b><br>
                                     <span style="position:relative;left:40px;"> To Achieve this Goal you need to Accumulate <span id="p-ansinput" style="color: green;font-weight: 700;font-size: 21px;"><?php echo $value['current'] ?></span>
@@ -519,32 +526,60 @@ if (mysqli_num_rows($result)) {
                                         <?php if ($data['goal'] == "car") {
                                         ?>
                                             <td class="text-center"><?php echo $decode['futureyear']  ?></td>
+                                            <td class="text-center"><?php echo $decode['current']  ?></td>
                                         <?php
                                         } ?>
                                         <?php if ($data['goal'] == "house") {
                                         ?>
                                             <td class="text-center"><?php echo $decode['futureage']  ?></td>
+                                            <td class="text-center"><?php echo $decode['currentcost']  ?></td>
                                         <?php
                                         } ?>
                                         <?php if ($data['goal'] == "retirement") {
                                             $retire_year = $decode['retirementage'] - $decode['currentage'];
                                         ?>
                                             <td class="text-center"><?php echo $retire_year ?></td>
+                                            <td class="text-center">N/A</td>
+                                        <?php
+                                        } ?>
+                                        <?php if ($data['goal'] == "marriage") {
+                                            $marriage_year = $decode['futureage'] - $decode['currentagechild'];
+                                        ?>
+                                            <td class="text-center"><?php echo $marriage_year ?></td>
+                                            <td class="text-center"><?php echo $decode['currentcost']  ?></td>
+
                                         <?php
                                         } ?>
                                         <?php if ($data['goal'] == "vacation") {
                                         ?>
                                             <td class="text-center"><?php echo $decode['futureyear']  ?></td>
+                                            <td class="text-center"><?php echo $decode['current']  ?></td>
                                         <?php
                                         } ?>
-                                        <td class="text-center">100000</td>
+                                        <?php if ($data['goal'] == "education") {
+                                            $education_year = $decode['futureages'] - $decode['age'];
+                                        ?>
+                                            <td class="text-center"><?php echo  $education_year ?></td>
+                                            <td class="text-center"><?php echo $decode['currentcost']  ?></td>
+                                        <?php
+                                        } ?>
                                         <td class="text-center"><?php echo $decode['ansinputs']  ?></td>
                                         <td class="text-center"><?php echo $decode['sipvalue']  ?></td>
-                                        <!-- <td class="text-center"><button class="btn btn-success btn-sm showing_goals" style="font-size:12px ;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id='<?php echo $data['id'] ?>'>Show</button></td> -->
-                                        <td style="width:12%">
+                                        <td style="width:10%">
                                             <div class="btn-group btn-group-sm" style="padding:0;" role="group" aria-label="Basic example">
-                                                <button type="button" class="btn btn-success me-1 showing_goals style=" font-size:12px ;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id='<?php echo $data['id'] ?>'>Update</button>
-                                                <button type=" button" class="btn btn-danger delete_btn" id="'<?php echo $data['id'] ?>'">Delete</button>
+                                                <button type="button" class="btn btn-success me-1 showing_goals style=" font-size:12px ;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id='<?php echo $data['id'] ?>'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                    </svg></button>
+                                                <button type="button" class="btn btn-secondary me-1 show_btn" data-bs-toggle="modal" data-bs-target="#exampleModal" id="'<?php echo $data['id'] ?>'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                                                    </svg></button>
+                                                <button type="button" class="btn btn-danger delete_btn" id="'<?php echo $data['id'] ?>'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                                    </svg></button>
+
                                             </div>
                                         </td>
                                     </tr>
@@ -562,13 +597,22 @@ if (mysqli_num_rows($result)) {
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">User Goal</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" id="modal_gaol_id">
-
                     </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="val_show">
+                    </div>
                 </div>
             </div>
         </div>
@@ -577,9 +621,6 @@ if (mysqli_num_rows($result)) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
-        $(document).ready(function() {
-            $('#data_table').DataTable();
-        });
         $('.showing_goals').click(function() {
             var key = $(this).data('id');
             $.ajax({
@@ -800,6 +841,7 @@ if (mysqli_num_rows($result)) {
         $(document).on('submit', '#house_form', function(e) {
             e.preventDefault();
             let data = $(this).serialize()
+            console.log(data);
             $.ajax({
                 type: "post",
                 url: "./single_goal_ajax.php",
@@ -903,6 +945,20 @@ if (mysqli_num_rows($result)) {
                     if (response['status']) {
                         alert(response['message'])
                     }
+                }
+            });
+        })
+        $(document).on("click", ".show_btn", function() {
+            const id = $(this).attr("id");
+            $.ajax({
+                type: "post",
+                url: "./single_goal_ajax.php",
+                data: {
+                    showId: id
+                },
+                dataType: "html",
+                success: function(response) {
+                    $("#val_show").html(response);
                 }
             });
         })

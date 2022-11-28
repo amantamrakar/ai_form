@@ -2,22 +2,14 @@
 session_start();
 // echo phpinfo();
 // die();
-if ($_SERVER["SERVER_NAME"] === "swarajfinpro.in") {
-  $conn = mysqli_connect("localhost", "swarajfi_softwareuser", "Qh8c.40yBBxe", "swarajfi_software");
-} else {
-  $conn = mysqli_connect("localhost", "root", "", "ai_form");
-}
-echo mysqli_error($conn);
-if (!$conn) {
-  die("db not connected");
-}
+require_once("./connect.php");
 // $sql = "UPDATE `user_goal` SET `goal_data` = '{\"carname\":\"dezire\",\"currentyear\":\"0\",\"futureyear\":\"10\",\"current\":\"1000000\",\"inflacar\":\"7\",\"ansinputs\":\"2009665\",\"sipvalue\":\"8650\",\"username\":\"swarajfinpro@gmail.com\",\"email\":\"arpit@gmail.com\",\"mobile\":\"9876543256\",\"passwords\":\"123\"}' WHERE `user_goal`.`id` = 17";
 // $result = mysqli_query($conn, $sql);
 // if ($result) {
 //   // echo "hiii";
 //   // die();
 // }
-
+// echo "hii";
 if (isset($_POST['key'])) {
   $id = mysqli_real_escape_string($conn, $_POST['key']);
   $sql = "SELECT * FROM `user_goal` WHERE `id`= '$id'";
@@ -50,33 +42,32 @@ if (isset($_POST['key'])) {
 
             <div class="mb-3 col-6">
               <h3 for="futureYear" class="form-label" style="background-color: gray;text-align:center;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Future Year</h3>
-              <input type="number" style="font-size:16px;" class="form-control form-control-sm" id="futureYearcar" value="' . $decode['futureyear'] . '"  />
+              <input type="number" name="future_car" style="font-size:16px;" class="form-control form-control-sm" id="futureYearcar"  name="future_car" value="' . $decode['futureyear'] . '"  />
             </div>
 
             <div class="mb-3 col-6">
               <h3 for="currentCost" class="form-label" style="background-color: gray;text-align:center;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Current Cost</h3>
-              <input type="number" style="font-size:16px;" class="form-control form-control-sm" id="currentCostcar" value="' . $decode['current'] . '"  />
+              <input type="number" name="car_current" style="font-size:16px;" class="form-control form-control-sm" id="currentCostcar" name="car_current" value="' . $decode['current'] . '"  />
             </div>
 
             <div class="mb-3 col-6">
             <h3 for="inflation" class="form-label" style="background-color: gray;text-align:center;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Inflation Rate</h3>
-              <input  type="number" style="font-size:16px;" class="form-control form-control-sm" id="inflationcar" value="' . $decode['inflacar'] . '" />
+              <input  type="number" name="car_inflation" style="font-size:12px;" class="form-control form-control-sm" id="inflationcar" name="car_inflation" value="' . $decode['inflacar'] . '" />
             </div>
 
             <div class="mb-3 col-6">
             <h3 for="futureValue" class="form-label" style="background-color: gray;text-align:center;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Future Value</h3>
-              <input type="number" class="form-control form-control-sm" style="font-size:19px;" id="futureValuecar" value="' . $decode['ansinputs'] . '" disabled />
+              <input type="number" name="car_value" class="form-control form-control-sm" style="font-size:19px;" id="futureValuecar" name="car_value" value="' . $decode['ansinputs'] . '" readonly="true" />
             </div>
 
             <div class="mb-3 col-6">
             <h3 for="futureValue" class="form-label" style="background-color: gray;text-align:center;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">SIP Required</h3>
-              <input type="number" class="form-control form-control-sm" style="font-size:19px;" id="sipValuecar" value="' . $decode['sipvalue'] . '" disabled />
+              <input type="number" name="car_sip" class="form-control form-control-sm" style="font-size:19px;" name="car_sip" id="sipValuecar" value="' . $decode['sipvalue'] . '" readonly="true" />
             </div>
 
             <div class="mb-3 col-6">
               <button type="submit" class="btn btn-success btn-sm ">Update</button>
               <button class="btn btn-secondary btn-sm">Pdf</button>
-              <button class="btn btn-danger btn-sm">Delete</button>
             </div>
           </form>
           </div>
@@ -107,33 +98,32 @@ if (isset($_POST['key'])) {
 
             <div class="mb-3 col-6">
             <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Future Age<h3>
-            <input type="number" style="font-size:16px;text-transform: capitalize;" class="form-control form-control-sm" id="futureYearhouse" value="' . $decode['futureage'] . '"  />
+            <input type="number" style="font-size:16px;text-transform: capitalize;" class="form-control form-control-sm" name="house_age"id="futureYearhouse" value="' . $decode['futureage'] . '"  />
             </div> 
 
             <div class="mb-3 col-6">
             <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Current Cost<h3>
-              <input type="number" style="font-size:16px;text-transform: capitalize;" class="form-control form-control-sm" id="currentCosthouse" value="' . $decode['currentcost'] . '"  />
+              <input type="number" style="font-size:16px;text-transform: capitalize;" class="form-control form-control-sm" name="house_current" id="currentCosthouse" value="' . $decode['currentcost'] . '"  />
             </div>
 
             <div class="mb-3 col-6">
             <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Inflation Rate</h3>
-              <input type="number" style="font-size:16px;text-transform: capitalize;" class="form-control form-control-sm" id="inflationhouse" value="' . $decode['inflation'] . '" />
+              <input type="number" style="font-size:16px;text-transform: capitalize;" class="form-control form-control-sm" name="house_inflation" id="inflationhouse" value="' . $decode['inflation'] . '" />
             </div>
 
             <div class="mb-3 col-6">
             <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Future Value</h3>
-             <input type="number" class="form-control form-control-sm" style="font-size:19px;" id="futureValuehouse" value="' . $decode['ansinputs'] . '" disabled />
+             <input type="number" class="form-control form-control-sm" style="font-size:19px;" id="futureValuehouse" name="house_value" value="' . $decode['ansinputs'] . '" readonly="true" />
             </div>
 
             <div class="mb-3 col-6">
             <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">SIP Requiredd</h3>
-              <input type="number" style="font-size:19px;" class="form-control form-control-sm" id="sipValuehouse" value="' . $decode['sipvalue'] . '" disabled />
+              <input type="number" style="font-size:19px;" class="form-control form-control-sm" id="sipValuehouse" name="house_sip" value="' . $decode['sipvalue'] . '" readonly="true" />
             </div>
 
             <div class="mb-3 col-6">
               <button type="submit" class="btn btn-success btn-sm">Update</button>
               <button class="btn btn-secondary btn-sm">Pdf</button>
-              <button class="btn btn-danger btn-sm">Delete</button>
             </div>
           </form>
         </div>
@@ -189,7 +179,7 @@ if (isset($_POST['key'])) {
 
             <div class="mb-3 col-6">
             <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Future Value</h3>
-               <input type="number" style="font-size:19px;" class="form-control form-control-sm" id="futureValueEdu" value="' . $decode['ansinputs'] . '" disabled />
+               <input type="number" style="font-size:19px;" class="form-control form-control-sm" id="futureValueEdu" value="' . $decode['ansinputs'] . '" readonly="true" />
             </div>
 
             <div class="mb-3 col-6">
@@ -199,18 +189,40 @@ if (isset($_POST['key'])) {
                 class="form-control form-control-sm"
                 id="sipValueEdu"
                 value="' . $decode['sipvalue'] . '"
-                disabled
+                readonly="true"
               />
-            </div>
-            <div class="mb-3 col-12">
-              <button class="btn btn-success btn-sm">Update</button>
-              <button class="btn btn-secondary btn-sm">Pdf</button>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </div>
-          </form>
+            </div>';
+      if (array_key_exists('secondchildname', $decode) && array_key_exists('secondchildage', $decode) && array_key_exists('secondfutureage', $decode) && array_key_exists('secondcurrentcost', $decode)) {
+        $markup .= '<h4>Second</h4><div class="mb-3 col-6">
+        <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;"> Name</h3>
+           <input type="text" style="font-size:19px;" class="form-control form-control-sm" id="futureValueEdu" value="' . $decode['secondchildname'] . '" readonly="true" />
         </div>
-      </div>
-    </div>';
+        <div class="mb-3 col-6">
+        <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Age</h3>
+           <input type="number" style="font-size:19px;" class="form-control form-control-sm" id="futureValueEdu" value="' . $decode['secondchildage'] . '" readonly="true" />
+        </div>
+        <div class="mb-3 col-6">
+        <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Future Age</h3>
+           <input type="number" style="font-size:19px;" class="form-control form-control-sm" id="futureValueEdu" value="' . $decode['secondfutureage'] . '" readonly="true" />
+        </div>
+        <div class="mb-3 col-6">
+        <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Current Cost</h3>
+           <input type="number" style="font-size:19px;" class="form-control form-control-sm" id="futureValueEdu" value="' . $decode['secondcurrentcost'] . '" readonly="true" />
+        </div>
+        <div class="mb-3 col-6">
+        <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Future Value</h3>
+           <input type="number" style="font-size:19px;" class="form-control form-control-sm" id="futureValueEdu" value="' . $decode['secondchildfuturevalue'] . '" readonly="true" />
+        </div>
+        <div class="mb-3 col-12">
+          <button class="btn btn-success btn-sm">Update</button>
+          <button class="btn btn-secondary btn-sm">Pdf</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>';
+      }
+
       echo $markup;
     }
 
@@ -579,5 +591,119 @@ if (isset($_POST['deleteId'])) {
     echo json_encode(array("status" => true, "message" => "Deleted successfully"));
   } else {
     echo json_encode(array("status" => true, "message" => "Deletion Failed"));
+  }
+}
+
+if (isset($_POST['showId'])) {
+  $id = $_POST['showId'];
+  $sql = "SELECT * FROM `user_goal` WHERE `id`=$id";
+  $result = mysqli_query($conn, $sql);
+  if (mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+    $show_decode = json_decode($row['goal_data'], true);
+    if ($row['goal'] == "car") {
+      $markup = '<div class="card "><div class="card-body ">
+<h6 class="bg-secondary text-white rounded p-2">Goal</h6>
+ <p class="fs-6 ">Your Goal :- <span class="text-primary">' . $row['goal'] . '</span></p>
+ <h6 class="bg-secondary text-white rounded p-2"> Car Details</h6>
+ <p class="fs-6 ">Name Of Car :- <span class="text-primary">' . $show_decode['carname'] . '</span></p>
+ <h6 class="bg-secondary text-white rounded p-2">Valuation Details</h6>
+ <p class="fs-6 ">Current Cost of Car :- <span class="text-primary">' . $show_decode['current'] . '</span></p>
+ <p class="fs-6 ">Time Horizon (In Years) :- <span class="text-primary">' . $show_decode['futureyear'] . '</span></p>
+ <p class="fs-6 ">Inflation :- <span class="text-primary">' . $show_decode['inflacar'] . '</span></p>
+ <p class="fs-6 ">Future Value :- <span class="text-primary">' . $show_decode['ansinputs'] . '</span></p>
+ <p class="fs-6 ">Sip Value :- <span class="text-primary">' . $show_decode['sipvalue'] . '</span></p>
+ </div></div>';
+      echo $markup;
+    }
+    if ($row['goal'] == "vacation") {
+      $markup = '<div class="card"><div class="card-body ">
+<h6 class="bg-secondary text-white rounded p-2">Goal</h6>
+ <p class="fs-6 ">Your Goal :- <span class="text-primary">' . $row['goal'] . '</span></p>
+ <h6 class="bg-secondary text-white rounded p-2"> Vacation Details</h6>
+ <p class="fs-6 ">Vacation City :- <span class="text-primary">' . $show_decode['vacationplace'] . '</span></p>
+ <h6 class="bg-secondary text-white rounded p-2">Valuation Details</h6>
+ <p class="fs-6 ">Current Cost of Vacation :- <span class="text-primary">' . $show_decode['current'] . '</span></p>
+ <p class="fs-6 ">Time Horizon (In Years) :- <span class="text-primary">' . $show_decode['futureyear'] . '</span></p>
+ <p class="fs-6 ">Inflation :- <span class="text-primary">' . $show_decode['infla'] . '</span></p>
+ <p class="fs-6 ">Future Value :- <span class="text-primary">' . $show_decode['ansinputs'] . '</span></p>
+ <p class="fs-6 ">Sip Value :- <span class="text-primary">' . $show_decode['sipvalue'] . '</span></p>
+ </div></div>';
+      echo $markup;
+    }
+    if ($row['goal'] == "house") {
+      $markup = '<div class="card"><div class="card-body ">
+<h6 class="bg-secondary text-white rounded p-2">Goal</h6>
+ <p class="fs-6 ">Your Goal :- <span class="text-primary">' . $row['goal'] . '</span></p>
+ <h6 class="bg-secondary text-white rounded p-2">House Details</h6>
+ <p class="fs-6 ">House City :- <span class="text-primary">' . $show_decode['city'] . '</span></p>
+ <h6 class="bg-secondary text-white rounded p-2">Valuation Details</h6>
+ <p class="fs-6 ">Current Cost of Vacation :- <span class="text-primary">' . $show_decode['currentcost'] . '</span></p>
+ <p class="fs-6 ">Time Horizon (In Years) :- <span class="text-primary">' . $show_decode['futureage'] . '</span></p>
+ <p class="fs-6 ">Inflation :- <span class="text-primary">' . $show_decode['inflation'] . '</span></p>
+ <p class="fs-6 ">Future Value :- <span class="text-primary">' . $show_decode['ansinputs'] . '</span></p>
+ <p class="fs-6 ">Sip Value :- <span class="text-primary">' . $show_decode['sipvalue'] . '</span></p>
+ </div></div>';
+      echo $markup;
+    }
+    if ($row['goal'] == "retirement") {
+      $markup = '<div class="card"><div class="card-body ">
+<h6 class="bg-secondary text-white rounded p-2">Goal</h6>
+ <p class="fs-6 ">Your Goal :- <span class="text-primary">' . $row['goal'] . '</span></p>
+ <h6 class="bg-secondary text-white rounded p-2"> Retirement Details</h6>
+ <p class="fs-6 ">Current Age :- <span class="text-primary">' . $show_decode['currentage'] . '</span></p>
+ <p class="fs-6 ">Retirement Age :- <span class="text-primary">' . $show_decode['retirementage'] . '</span></p>
+ <p class="fs-6 ">Life Expectancy :- <span class="text-primary">' . $show_decode['lifeexp'] . '</span></p>
+ <p class="fs-6 ">Monthaly Expenses :- <span class="text-primary">' . $show_decode['monthlyexp'] . '</span></p>
+ <h6 class="bg-secondary text-white rounded p-2">Valuation Details</h6>
+ <p class="fs-6 ">Rate of Retire :- <span class="text-primary">' . $show_decode['rateretire'] . '</span></p>
+ <p class="fs-6 ">Inflation :- <span class="text-primary">' . $show_decode['inflation'] . '</span></p>
+ <p class="fs-6 ">Future Value :- <span class="text-primary">' . $show_decode['ansinputs'] . '</span></p>
+ <p class="fs-6 ">Sip Value :- <span class="text-primary">' . $show_decode['sipvalue'] . '</span></p>
+ </div></div>';
+      echo $markup;
+    }
+    if ($row['goal'] == "marriage") {
+      $markup = '<div class="card"><div class="card-body ">
+<h6 class="bg-secondary text-white rounded p-2">Goal</h6>
+ <p class="fs-6 ">Your Goal :- <span class="text-primary">' . $row['goal'] . '</span></p>
+ <h6 class="bg-secondary text-white rounded p-2"> Retirement Details</h6>
+ <p class="fs-6 ">Child Name :- <span class="text-primary">' . $show_decode['childname'] . '</span></p>
+ <p class="fs-6 ">Current Age :- <span class="text-primary">' . $show_decode['currentagechild'] . '</span></p>
+ <p class="fs-6 ">Marraige Age :- <span class="text-primary">' . $show_decode['futureage'] . '</span></p>
+ <p class="fs-6 ">Marraige Type :- <span class="text-primary">' . $show_decode['mariage'] . '</span></p>
+ <h6 class="bg-secondary text-white rounded p-2">Valuation Details</h6>
+ <p class="fs-6 ">Current Cost :- <span class="text-primary">' . $show_decode['currentcost'] . '</span></p>
+ <p class="fs-6 ">Inflation :- <span class="text-primary">' . $show_decode['inflation'] . '</span></p>
+ <p class="fs-6 ">Future Value :- <span class="text-primary">' . $show_decode['ansinputs'] . '</span></p>
+ <p class="fs-6 ">Sip Value :- <span class="text-primary">' . $show_decode['sipvalue'] . '</span></p>
+ </div></div>';
+      echo $markup;
+    }
+    if ($row['goal'] == "education") {
+      $markup = '<div class="card"><div class="card-body ">
+<h6 class="bg-secondary text-white rounded p-2">Goal</h6>
+ <p class="fs-6 ">Your Goal :- <span class="text-primary">' . $row['goal'] . '</span></p>
+ <h6 class="bg-secondary text-white rounded p-2"> Retirement Details</h6>
+ <p class="fs-6 ">Child Name :- <span class="text-primary">' . $show_decode['childname'] . '</span></p>
+ <p class="fs-6 ">Current Age :- <span class="text-primary">' . $show_decode['age'] . '</span></p>
+ <p class="fs-6 ">Future Age :- <span class="text-primary">' . $show_decode['futureages'] . '</span></p>
+ <h6 class="bg-secondary text-white rounded p-2">Valuation Details</h6>
+ <p class="fs-6 ">Current Cost :- <span class="text-primary">' . $show_decode['currentcost'] . '</span></p>
+ <p class="fs-6 ">Inflation :- <span class="text-primary">' . $show_decode['inflation'] . '</span></p>
+ <p class="fs-6 ">Future Value :- <span class="text-primary">' . $show_decode['ansinputs'] . '</span></p>
+ <p class="fs-6 ">Sip Value :- <span class="text-primary">' . $show_decode['sipvalue'] . '</span></p>
+';
+      if (array_key_exists('secondchildname', $show_decode) && array_key_exists('secondchildage', $show_decode) && array_key_exists('secondfutureage', $show_decode) && array_key_exists('secondcurrentcost', $show_decode)) {
+        $markup .= '<h6 class="bg-secondary text-white rounded p-2">Second Child Details</h6>
+        <p class="fs-6 ">Child Name :- <span class="text-primary">' . $show_decode['secondchildname'] . '</span></p>
+        <p class="fs-6 ">Current Age :- <span class="text-primary">' . $show_decode['secondchildage'] . '</span></p>
+        <p class="fs-6 ">Future Age :- <span class="text-primary">' . $show_decode['secondfutureage'] . '</span></p>
+        <p class="fs-6 ">Current Cost :- <span class="text-primary">' . $show_decode['secondcurrentcost'] . '</span></p>
+        <p class="fs-6 ">Future Value :- <span class="text-primary">' . $show_decode['secondchildfuturevalue'] . '</span></p>
+        </div></div>';
+      }
+      echo $markup;
+    }
   }
 }
