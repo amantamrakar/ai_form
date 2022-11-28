@@ -37,7 +37,7 @@ if (mysqli_num_rows($result)) {
         <!-----------------------------Education----------------------------------------------->
         <?php
         if ($_SESSION["goal"] == 'education') {
-            $value = json_decode($data[0]['goal_data'], true);
+            // $value = json_decode($data[0]['goal_data'], true);
             // print_r($data);
         ?>
             <div class="goals" data-goal="education"><br />
@@ -252,8 +252,7 @@ if (mysqli_num_rows($result)) {
                                     and we are sure, you know the importance of investments.<br>
                                     <span style="position:relative;left:40px;"> To Achieve this Goal you need to Accumulate <span id="p-ansinput" style="color: blue;font-weight: 700;font-size: 21px;"><?php echo $value['currentcost'] ?></span>
                                         within <span id="mar-years" style="color: blue;font-weight: 700;font-size: 21px;"><?php echo $value['futureage'] ?></span> Years, <span style="color:orange;"> SIP REQUIRED is</span>
-                                        <span id="p-sipans" style="color: red;font-weight: 700;font-size: 24px;"><?php echo $value['sipvalue'] ?></span> per month. </span>
-                                    Worried about the above numbers? <b> Please don’t be.</b><br>
+                                        <span id="p-sipans" style="color: red;font-weight: 700;font-size: 24px;"><?php echo $value['sipvalue'] ?></span> per month. </span>  Worried about the above numbers? <b> Please don’t be.</b><br>
                                     Feel free to contact us for further <b>financial planning </b><br>
                                     We have sent the details to you on your email Address. <b>Please do check</b>
 
