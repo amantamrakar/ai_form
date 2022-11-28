@@ -197,26 +197,31 @@
     <h2 align="center" style="padding-bottom:1%;padding-top:1%;"> Marriage Detail</h2>
 
     <div class="row">
-        <div class="col-md-6">
-            <img src="images\marriage.jpg" alt="" style="width:100%;border-radius:22px;">
+        
+        <div class="col-md-6 col-sm-4" id="marriageimg">
+            <div style="display:block;">
+                <img src="images\marriage.jpg" alt="" style="width:100%;border-radius:22px;">
+            </div>
         </div>
+
         <div class="col-md-6 col-sm-6">
             <div class="form-group row">
                 <label class="alllabel"> Name of Your Child</label>
-                <input type="text" style="width:40%;" class="form-control allinput mb-2 input-selector calculatehouse borderhigh two-btn" name="childname" id="namemar" onchange="marriageone()" placeholder="Name">
+                <input type="text" style="width:80%;" class="form-control allinput mb-2 input-selector calculatehouse borderhigh two-btn" name="childname" id="namemar" onchange="marriageone()" placeholder="Name">
             </div>
             <div class="form-group row">
                 <label class="alllabel">Current age of Child</label>
-                <input type="text" style="width:40%;" class="form-control allinput mb-2 input-selector calculatehouse borderhigh" name="currentagechild" onchange="marriageone()" id="agemar" value="1">
+                <input type="text" style="width:80%;" class="form-control allinput mb-2 input-selector calculatehouse borderhigh" name="currentagechild" onchange="marriageone()" id="agemar" value="1">
             </div>
-
             <div class="form-group row">
                 <label class="alllabel">Age at which child Get's Married</label>
-                <input type="text" style="width:40%;" class="form-control allinput mb-2 input-selector calculatehouse borderhigh" name="futureage" onchange="marriageone()" id="futureagemar" value="25">
+                <input type="text" style="width:80%;" class="form-control allinput mb-2 input-selector calculatehouse borderhigh" name="futureage" onchange="marriageone()" id="futureagemar" value="25">
             </div>
             <input type="button" value="Add Child for marriage" class="btn btn-primary" onclick="secondmar()"><br>
+            <!-- <input type="button" value="Add Child" class="btn btn-primary" onclick="secondedu()"><br> -->
             <br>
         </div>
+
         <div class="col-6 col-sm-4">
             <div class="" style="display:none" id="secondchildmar">
                 <div class="" style="display: block;">
@@ -282,7 +287,7 @@
             </div>
             <div class="form-group row mt-3"><br>
                 <label class="alllabel">After how much time you wish for your Vacation</label>
-                <input type="text" style="width:80%;" class="form-control allinput mb-2 input-selector calculatehouse borderhigh" name="futureyear" id="vfutureyear" oninput="IsEmpty(),vacationone()" placeholder="year">
+                <input type="number" style="width:80%;" class="form-control allinput mb-2 input-selector calculatehouse borderhigh" name="futureyear" id="vfutureyear" oninput="IsEmpty(),vacationone()" placeholder="year">
             </div>
         </div>
         <div class="col-md-6 col-sm-4">
@@ -343,8 +348,9 @@
 </div>
 
 <br><br><br>
+
 <div style="text-align:center" class="mt-2">
     <input type="button" name="previous" class="previous btn btn-secondary" value="Previous" />
-    <input type="button" name="next" onclick="namebtn(),gotolog()" class="next btn btn-primary" value="Next" id="btn-2" disabled />
+    <input type="button" name="next" onclick="namebtn(),gotolog(<?php (isset($_SESSION['goaluser']))?'auth' : 'go' ?>)" class="next btn btn-primary" value="Next" id="btn-2" disabled />
 </div>
 </fieldset>

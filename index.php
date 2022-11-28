@@ -1,5 +1,5 @@
 <?php
-  // session_start();
+  session_start();
   // var_dump($_SESSION);
 
   ?>
@@ -223,7 +223,7 @@
      }
 
 
-     .vacacity {
+     /* .vacacity {
        background-color: #0d2836;
        font-size: 22px;
        border-radius: 10px;
@@ -232,13 +232,13 @@
        display: block;
        font-family: monospace;
        color: white;
-     }
+     } */
 
-     .vacacity:hover {
+     /* .vacacity:hover {
        background-color: white;
        color: black;
        border: 2px solid black;
-     }
+     } */
 
      .vacradio {
        display: none;
@@ -495,10 +495,6 @@
      }
    </style>
 
-
-
-
-
    <title>Swaraj FinPro AI Form</title>
  </head>
 
@@ -529,7 +525,7 @@
 
        <!--   --------------------4------------------------->
        <?php
-        if (!isset($_SESSION["authuser"])) {
+        if (!isset($_SESSION["goaluser"])) {
           include("four.php");
         }
         ?>
@@ -870,7 +866,7 @@
        document.getElementById("set2").value = FVB.toFixed(0);
        document.getElementById("set12").innerHTML = FVB.toFixed(0);
        document.getElementById("mar-year").innerHTML = M;
-       document.getElementById("mar-years").innerHTML = M;
+      //  document.getElementById("mar-years").innerHTML = M;
        document.getElementById("pooja").value = anssip.toFixed(0);
      }
 
@@ -1164,8 +1160,6 @@
 
 
 
-     var h = document.getElementById("second");
-     var imgchild = document.getElementById("imgchild");
 
 
      function select2Carrer(carrertwo) {
@@ -1187,90 +1181,9 @@
        }
      })
 
-
-
-     //  function smyFunction() {
-     //    //  var x = document.getElementById("myDIV");
-     //    if (xs.style.display === "none") {
-     //      xs.style.display = "block";
-     //      ys.style.display = "none";
-     //      as.style.display = "none";
-     //      bs.style.display = "none";
-     //      cs.style.display = "none";
-     //      ds.style.display = "block";
-     //    } else {
-     //      xs.style.display = "none";
-     //    }
-     //  }
-
-     //  function seng() {
-     //    //  var y = document.getElementById("eng");
-     //    if (ys.style.display === "none") {
-     //      ys.style.display = "block";
-     //      xs.style.display = "none";
-     //      as.style.display = "none";
-     //      bs.style.display = "none";
-     //      cs.style.display = "none";
-     //      ds.style.display = "block";
-     //    } else {
-     //      ys.style.display = "none";
-     //    }
-     //  }
-
-     //  function sarchitect() {
-     //    //  var a = document.getElementById("architect");
-     //    if (as.style.display === "none") {
-     //      as.style.display = "block";
-     //      ys.style.display = "none";
-     //      xs.style.display = "none";
-     //      bs.style.display = "none";
-     //      cs.style.display = "none";
-     //      ds.style.display = "block";
-
-     //    } else {
-     //      as.style.display = "none";
-     //    }
-     //  }
-
-     //  function smasterba() {
-     //    //  var c = document.getElementById("other");
-     //    if (bs.style.display === "none") {
-     //      bs.style.display = "block";
-     //      as.style.display = "none";
-     //      ys.style.display = "none";
-     //      xs.style.display = "none";
-     //      cs.style.display = "none";
-     //      ds.style.display = "block";
-
-     //    } else {
-     //      bs.style.display = "none";
-     //    }
-     //  }
-
-     //  function sotherclg() {
-     //    //  var c = document.getElementById("other");
-     //    if (cs.style.display === "none") {
-     //      cs.style.display = "block";
-     //      as.style.display = "none";
-     //      ys.style.display = "none";
-     //      xs.style.display = "none";
-     //      bs.style.display = "none";
-     //      ds.style.display = "block";
-
-     //    } else {
-     //      cs.style.display = "none";
-     //    }
-     //    seducation();
-     //  }
-
-     //  function sallfun() {
-     //    if (d.style.display === "none") {
-     //      d.style.display = "block";
-     //    } else {
-     //      d.style.display = "none";
-     //    }
-     //  }
-
+     var h = document.getElementById("second");
+     var imgchild = document.getElementById("imgchild");
+     
      function secondedu() {
        var z = document.getElementById("secondedu");
        if (z.style.display === "none") {
@@ -1284,6 +1197,23 @@
          $("#imgchild").show();
          $("#second input").removeClass("input-selector")
        }
+     }
+
+
+     var hmar = document.getElementById("secondchildmar");
+     var marriageimg = document.getElementById("marriageimg");
+    //  var zmar = document.getElementById("secondmar");
+
+     function secondmar() {
+
+      if(marriageimg.style.display === "none"){
+        hmar.style.display === "block";
+      }else
+      {
+        marriageimg.style.display === "block";
+        hmar.style.display === "none";
+      }
+
      }
 
 
@@ -1338,12 +1268,10 @@
 
 
      $('#normalother').click(function(e) {
-       console.dir(e.target);
        $('#othernormal-marriage').removeClass('d-none');
 
      })
      $('#richother').click(function(e) {
-       console.dir(e.target);
        $('#otherrich-marriage').removeClass('d-none');
 
      })
@@ -1445,9 +1373,16 @@
        marriageone();
      })
 
-     function gotolog() {
-       if (g_id == "others")
-         $(".next")[0].click();
+     function gotolog(e) {
+       if (g_id == "others"){
+        if(e=="auth"){
+          $(".btnidprfl")[0].click();
+        }else{
+          $(".next")[0].click();
+
+        }
+       }
+
      }
 
      $('.btnidprfl').click(function(e) {

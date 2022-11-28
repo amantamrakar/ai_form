@@ -1,22 +1,15 @@
 <?php
 session_start();
-if ($_SERVER["SERVER_NAME"] === "swarajfinpro.in") {
-    $conn = mysqli_connect("localhost", "swarajfi_softwareuser", "Qh8c.40yBBxe", "swarajfi_software");
-} else {
-    $conn = mysqli_connect("localhost", "root", "", "ai_form");
-}
-echo mysqli_error($conn);
-if (!$conn) {
-    die("db not connected");
-}
-$_SESSION["goaluser"] = "nikhil1@gmail.com";
-$_SESSION["goal"] = "education";
+require_once("./connect.php");
+// $_SESSION["goaluser"] = "nikhil1@gmail.com";
+// $_SESSION["goal"] = "vacation";
 $data = array();
 // if (!isset($_SESSION["goaluser"])) {
 //     echo "you are not auth";
 //     die();
 // } else {
-$sql = "SELECT * FROM `user_goal` WHERE `email`='{$_SESSION["goaluser"]}' AND `goal`='{$_SESSION["goal"]}'ORDER BY `id`  DESC";
+$sql = "SELECT * FROM `user_goal` WHERE `email`='{$_SESSION["goaluser"]}' AND `goal`='{$_SESSION["goal"]}' ORDER BY `id`  DESC";
+// echo $sql;
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result)) {
     $row = mysqli_fetch_assoc($result);
@@ -44,7 +37,8 @@ if (mysqli_num_rows($result)) {
         <!-----------------------------Education----------------------------------------------->
         <?php
         if ($_SESSION["goal"] == 'education') {
-            print_r($data);
+            // $value = json_decode($data[0]['goal_data'], true);
+            // print_r($data);
         ?>
             <div class="goals" data-goal="education"><br />
                 <div class="container">
@@ -238,7 +232,7 @@ if (mysqli_num_rows($result)) {
         <?php
         if ($_SESSION["goal"] == 'marriage') {
             $value = json_decode($data[0]['goal_data'], true);
-            print_r($value);
+            // print_r($value);
         ?>
             <div class="goals" data-goal="marriage"><br /><br />
                 <div class="container">
@@ -258,8 +252,7 @@ if (mysqli_num_rows($result)) {
                                     and we are sure, you know the importance of investments.<br>
                                     <span style="position:relative;left:40px;"> To Achieve this Goal you need to Accumulate <span id="p-ansinput" style="color: blue;font-weight: 700;font-size: 21px;"><?php echo $value['currentcost'] ?></span>
                                         within <span id="mar-years" style="color: blue;font-weight: 700;font-size: 21px;"><?php echo $value['futureage'] ?></span> Years, <span style="color:orange;"> SIP REQUIRED is</span>
-                                        <span id="p-sipans" style="color: red;font-weight: 700;font-size: 24px;"><?php echo $value['sipvalue'] ?></span> per month. </span>
-                                    Worried about the above numbers? <b> Please don’t be.</b><br>
+                                        <span id="p-sipans" style="color: red;font-weight: 700;font-size: 24px;"><?php echo $value['sipvalue'] ?></span> per month. </span> Worried about the above numbers? <b> Please don’t be.</b><br>
                                     Feel free to contact us for further <b>financial planning </b><br>
                                     We have sent the details to you on your email Address. <b>Please do check</b>
 
@@ -486,6 +479,7 @@ if (mysqli_num_rows($result)) {
                             if (mysqli_num_rows($select_result) > 0) {
                                 $k = 1;
                                 while ($data = mysqli_fetch_assoc($select_result)) {
+                                    if ($data["goal_data"] == "" || $data["goal"] == "") continue;
                                     $decode =  json_decode($data['goal_data'], true);
                             ?>
                                     <tr>
@@ -515,6 +509,7 @@ if (mysqli_num_rows($result)) {
                                         <td class="text-center">100000</td>
                                         <td class="text-center"><?php echo $decode['ansinputs']  ?></td>
                                         <td class="text-center"><?php echo $decode['sipvalue']  ?></td>
+                                        <!-- <td class="text-center"><button class="btn btn-success btn-sm showing_goals" style="font-size:12px ;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id='<?php echo $data['id'] ?>'>Show</button></td> -->
                                         <td style="width:12%">
                                             <div class="btn-group btn-group-sm" style="padding:0;" role="group" aria-label="Basic example">
                                                 <button type="button" class="btn btn-success me-1 showing_goals style=" font-size:12px ;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id='<?php echo $data['id'] ?>'>Update</button>
