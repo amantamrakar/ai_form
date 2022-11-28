@@ -253,7 +253,7 @@ if (mysqli_num_rows($result)) {
                                     and we are sure, you know the importance of investments.<br>
                                     <span style="position:relative;left:40px;"> To Achieve this Goal you need to Accumulate <span id="p-ansinput" style="color: blue;font-weight: 700;font-size: 21px;"><?php echo $value['currentcost'] ?></span>
                                         within <span id="mar-years" style="color: blue;font-weight: 700;font-size: 21px;"><?php echo $value['futureage'] ?></span> Years, <span style="color:orange;"> SIP REQUIRED is</span>
-                                        <span id="p-sipans" style="color: red;font-weight: 700;font-size: 24px;"><?php echo $value['sipvalue'] ?></span> per month. </span>  Worried about the above numbers? <b> Please don’t be.</b><br>
+                                        <span id="p-sipans" style="color: red;font-weight: 700;font-size: 24px;"><?php echo $value['sipvalue'] ?></span> per month. </span> Worried about the above numbers? <b> Please don’t be.</b><br>
                                     Feel free to contact us for further <b>financial planning </b><br>
                                     We have sent the details to you on your email Address. <b>Please do check</b>
 
@@ -480,13 +480,33 @@ if (mysqli_num_rows($result)) {
                             if (mysqli_num_rows($select_result) > 0) {
                                 $k = 1;
                                 while ($data = mysqli_fetch_assoc($select_result)) {
-                                    if($data["goal_data"] == "" || $data["goal"]=="") continue;
+                                    if ($data["goal_data"] == "" || $data["goal"] == "") continue;
                                     $decode =  json_decode($data['goal_data'], true);
                             ?>
                                     <tr>
                                         <td class="text-center"><?php echo $k  ?></td>
                                         <td class="text-center"><?php echo $data['goal']  ?></td>
-                                        <td class="text-center">10</td>
+                                        <?php if ($data['goal'] == "car") {
+                                        ?>
+                                            <td class="text-center"><?php echo $decode['futureyear']  ?></td>
+                                        <?php
+                                        } ?>
+                                        <?php if ($data['goal'] == "house") {
+                                        ?>
+                                            <td class="text-center"><?php echo $decode['futureage']  ?></td>
+                                        <?php
+                                        } ?>
+                                        <?php if ($data['goal'] == "retirement") {
+                                            $retire_year = $decode['retirementage'] - $decode['currentage'];
+                                        ?>
+                                            <td class="text-center"><?php echo $retire_year ?></td>
+                                        <?php
+                                        } ?>
+                                        <?php if ($data['goal'] == "vacation") {
+                                        ?>
+                                            <td class="text-center"><?php echo $decode['futureyear']  ?></td>
+                                        <?php
+                                        } ?>
                                         <td class="text-center">100000</td>
                                         <td class="text-center"><?php echo $decode['ansinputs']  ?></td>
                                         <td class="text-center"><?php echo $decode['sipvalue']  ?></td>

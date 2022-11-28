@@ -2,10 +2,10 @@
 session_start();
 require_once("./connect.php");
 $res = array();
-if(isset($_SESSION["goaluser"])){
-    $email=$_SESSION["goaluser"];
+if (isset($_SESSION["goaluser"])) {
+    $email = $_SESSION["goaluser"];
     $goal = $_POST['goal'];
-    // $_SESSION['goal'] = $goal;
+    $_SESSION['goal'] = $goal;
     // $_POST["sdata"]['username']=$email;
     $sgoal = json_encode($_POST["sdata"]);
     $sql = "INSERT INTO `user_goal`( `email`, `goal`, `goal_data`) VALUES ('$email','$goal','$sgoal')";
@@ -20,12 +20,7 @@ if (!isset($_POST["f_type"])) {
     die(json_encode($res));
 }
 
-
-
-
-
 if ($_POST["f_type"] == "register") {
-
 
     $email = $_POST['email'];
     $goal = $_POST['goal'];
@@ -35,10 +30,6 @@ if ($_POST["f_type"] == "register") {
     $mobile = $_POST['sdata']['mobile'];
     $name = $_POST['sdata']['username'];
     unset($_POST['sdata']['password']);
-
-
-
-
 
     if (isset($_POST['sdata'])) {
 
@@ -56,7 +47,6 @@ if ($_POST["f_type"] == "register") {
         // echo 'alert("Already have")';
         echo json_encode($res);
     } else {
-       
 
         $reguser = "INSERT INTO `registered_user`(`full_name`, `email`, `pws`, `phone_no`,`status`)
                 VALUES ('$name','$email','$pwd','$mobile','active')";
@@ -74,8 +64,8 @@ if ($_POST["f_type"] == "register") {
             $res["status"] = true;
             $res["message"] = "invalid data";
             echo json_encode($res);
+        }
     }
-}
 }
 
 
