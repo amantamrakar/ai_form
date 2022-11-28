@@ -21,12 +21,7 @@ if (!isset($_POST["f_type"])) {
     die(json_encode($res));
 }
 
-
-
-
-
 if ($_POST["f_type"] == "register") {
-
 
     $email = $_POST['email'];
     $goal = $_POST['goal'];
@@ -37,17 +32,12 @@ if ($_POST["f_type"] == "register") {
     $name = $_POST['sdata']['username'];
     unset($_POST['sdata']['password']);
 
-
-
-
-
     if (isset($_POST['sdata'])) {
 
         $sgoal = json_encode($_POST['sdata']);
         $target = json_decode($sgoal, true);
         $_SESSION['data'] = $target;
     }
-
     $datasaved = "SELECT * FROM `registered_user` WHERE email = '$email' and phone_no='$mobile'";
     $run = mysqli_query($conn, $datasaved);
     if (mysqli_num_rows($run) > 0) {
@@ -57,7 +47,6 @@ if ($_POST["f_type"] == "register") {
         // echo 'alert("Already have")';
         echo json_encode($res);
     } else {
-       
 
         $reguser = "INSERT INTO `registered_user`(`full_name`, `email`, `pws`, `phone_no`,`status`)
                 VALUES ('$name','$email','$pwd','$mobile','active')";
@@ -75,8 +64,8 @@ if ($_POST["f_type"] == "register") {
             $res["status"] = true;
             $res["message"] = "invalid data";
             echo json_encode($res);
+        }
     }
-}
 }
 
 
