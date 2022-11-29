@@ -934,6 +934,7 @@ if (mysqli_num_rows($result)) {
         })
         $(document).on("click", ".delete_btn", function() {
             const id = $(this).attr("id");
+            $(this).closest('tr').remove()
             $.ajax({
                 type: "post",
                 url: "./single_goal_ajax.php",
@@ -942,9 +943,7 @@ if (mysqli_num_rows($result)) {
                 },
                 dataType: "json",
                 success: function(response) {
-                    if (response['status']) {
-                        alert(response['message'])
-                    }
+                    if (response['status']) {}
                 }
             });
         })
