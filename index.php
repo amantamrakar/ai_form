@@ -822,6 +822,37 @@
        document.getElementById("nish").value = ans.toFixed(0);
      }
 
+     function seducation() {
+       //  var name = document.getElementById("name").value;
+       let ages = document.getElementById("sage").value;
+       let FAs = document.getElementById("sfutureage").value;
+       let fvas = document.getElementById("scurrent").value;
+       // let Rate = document.getElementById("rate").value;
+       let inflas = document.getElementById("sinfla").value;
+       let rates = 12 / 100;
+
+       // let r = Rate / 100;
+       let Ns = FAs - ages;
+       let ns = Ns * 12;
+       rs = rates / 12; // 1%s
+       let is = inflas / 100;
+       let js = is / 12;
+       let fvbs = fvas * ((1 + js) ** ns);
+
+       fs = fvbs * rs;
+       nums = (((1 + rs) ** ns) - 1);
+       nexts = (1 + rs);
+       cals = nums * nexts;
+       anssecond = fs / cals;
+       //  console.log(fvb, n);
+
+       document.getElementById("set1").value = fvbs.toFixed(0);
+       document.getElementById("sipsecond").value = anssecond.toFixed(0);
+     }
+
+
+
+
      function marriageone() {
        agemar = document.getElementById("agemar").value;
        fa = document.getElementById("futureagemar").value;
@@ -852,6 +883,34 @@
       //  document.getElementById("mar-years").innerHTML = M;
        document.getElementById("pooja").value = anssip.toFixed(0);
      }
+
+     function secondmarriage() {
+       secagemar = document.getElementById("seccurrentage").value;
+       secfa = document.getElementById("secchildfutureage").value;
+       secFVA = document.getElementById("secondMarcurrent").value;
+       secinflaa = document.getElementById("secondMarinfla").value;
+
+       let secrates = 12 / 100;
+       secM = secfa - secagemar;
+       secm = secM * 12;
+       secrs = secrates / 12;
+       secI = secinflaa / 100;
+       secJ = secI / 12;
+       secFVB = secFVA * ((1 + secJ) ** secm);
+      // sip value
+       secfs = secFVB * secrs;
+       secnums = (((1 + secrs) ** secm) - 1);
+       secnexts = (1 + secrs);
+       seccals = secnums * secnexts;
+       secanssip = secfs / seccals;
+
+       console.log(secanssip);
+
+       document.getElementById("fvsecond-mar").value = secFVB.toFixed(0);
+       document.getElementById("sipsecong-mar").value = secanssip.toFixed(0);
+
+     }
+
 
      function vacationone() {
        //  var name = document.getElementById("name").value;
@@ -1006,6 +1065,12 @@
        // document.getElementById("inflaother").innerHTML = infla;
 
      }
+
+
+
+
+
+
      ///////////Education for child one////////////////////
 
      function IsEmpty() {
@@ -1098,31 +1163,8 @@
 
      //Education for child second/////////////////////////////////////
 
-     function seducation() {
-       //  var name = document.getElementById("name").value;
-       let ages = document.getElementById("sage").value;
-       let FAs = document.getElementById("sfutureage").value;
-       let fvas = document.getElementById("scurrent").value;
-       // let Rate = document.getElementById("rate").value;
-       let inflas = document.getElementById("sinfla").value;
 
-       // let r = Rate / 100;
-       let Ns = FAs - ages;
-       let ns = Ns * 12;
-       let is = inflas / 100;
-       let js = is / 12;
-       let fvbs = fvas * ((1 + js) ** ns);
-       //  console.log(fvb, n);
-
-       document.getElementById("set1").value = fvbs.toFixed(0);
-     }
-
-     //  var xs = document.getElementById("smyDIV");
-     //  var ys = document.getElementById("seng");
-     //  var as = document.getElementById("sarchitect");
-     //  var bs = document.getElementById("smba");
-     //  var cs = document.getElementById("sother");
-     //  var ds = document.getElementById("sallfun");
+   
 
      function selectCarrer(carrer) {
        $("#allfun").show()
@@ -1185,17 +1227,21 @@
 
      var hmar = document.getElementById("secondchildmar");
      var marriageimg = document.getElementById("marriageimg");
-    //  var zmar = document.getElementById("secondmar");
+     var zmar = document.getElementById("second-mar");
 
      function secondmar() {
 
-      if(marriageimg.style.display === "none"){
-        hmar.style.display === "block";
-      }else
-      {
-        marriageimg.style.display === "block";
-        hmar.style.display === "none";
-      }
+      if (zmar.style.display === "none") {
+         zmar.style.display = "block";
+         marriageimg.style.display = "none";
+         hmar.style.display = "block";
+         $("#secondchildmar input").addClass("input-selector")
+       } else {
+         zmar.style.display = "none";
+         hmar.style.display = "none";
+         $("#marriageimg").show();
+         $("#secondchildmar input").removeClass("input-selector")
+       }
 
      }
 
@@ -1240,93 +1286,90 @@
      /////////////// Marriage function//////////////////
 
 
+     function selectMarriage(mariage) {
 
-     var p = document.getElementById("nrmlmar");
-     var q = document.getElementById("richmar");
-     var r = document.getElementById("luxmar");
-     var s = document.getElementById("destmar");
-     var t = document.getElementById("dive");
+       $("#marriageplace").show()
+       $(".Marriagetypeone").hide()
+       $(`#${mariage} select`).show().prop('selectedIndex', 0);
+      //  $('.Marriagetypeone .boxes').hide()
+       $('.Marriagetypeone .labels').show()
+       $(`.Marriagetypeone#` + mariage).show();
 
-
-
-
-     $('#normalother').click(function(e) {
-       $('#othernormal-marriage').removeClass('d-none');
-
-     })
-     $('#richother').click(function(e) {
-       $('#otherrich-marriage').removeClass('d-none');
-
-     })
-     $('#luxuryother').click(function(e) {
-       console.dir(e.target);
-       $('#otherluxury-marriage').removeClass('d-none');
-
-     })
-     $('#destother').click(function(e) {
-       console.dir(e.target);
-       $('#otherdest-marriage').removeClass('d-none');
-
-     })
-
-
-
-
-     function nrmlmar() {
-       if (p.style.display === "none") {
-         p.style.display = "block";
-         r.style.display = "none";
-         s.style.display = "none";
-         q.style.display = "none";
-         t.style.display = "block";
-       } else {
-         p.style.display = "none";
-       }
      }
 
-     function richmar() {
-       if (q.style.display === "none") {
-         q.style.display = "block";
-         p.style.display = "none";
-         r.style.display = "none";
-         s.style.display = "none";
-         t.style.display = "block";
-       } else {
-         q.style.display = "none";
-       }
-     }
+    //  $(".Marriagetypeone select").change(function() {
+    //    if ($(this).val() == "twoothers") {
+    //      $('.Marriagetypeone .boxes').removeClass('d-none').show();
+    //    } else {
+    //      $('.Marriagetypeone .boxes').addClass('d-none');
+    //    }
+    //  })
 
-     function luxmar() {
-       if (r.style.display === "none") {
-         r.style.display = "block";
-         p.style.display = "none";
-         q.style.display = "none";
-         s.style.display = "none";
-         t.style.display = "block";
-       } else {
-         r.style.display = "none";
-       }
-     }
 
-     function destmar() {
-       if (s.style.display === "none") {
-         s.style.display = "block";
-         p.style.display = "none";
-         q.style.display = "none";
-         r.style.display = "none";
-         t.style.display = "block";
-       } else {
-         s.style.display = "none";
-       }
-     }
+   
 
-     function dive() {
-       if (t.style.display === "none") {
-         t.style.display = "block";
-       } else {
-         t.style.display = "none";
-       }
-     }
+    //  var p = document.getElementById("nrmlmar");
+    //  var q = document.getElementById("richmar");
+    //  var r = document.getElementById("luxmar");
+    //  var s = document.getElementById("destmar");
+    //  var t = document.getElementById("dive");
+
+
+    //  function nrmlmar() {
+    //    if (p.style.display === "none") {
+    //      p.style.display = "block";
+    //      r.style.display = "none";
+    //      s.style.display = "none";
+    //      q.style.display = "none";
+    //      t.style.display = "block";
+    //    } else {
+    //      p.style.display = "none";
+    //    }
+    //  }
+
+    //  function richmar() {
+    //    if (q.style.display === "none") {
+    //      q.style.display = "block";
+    //      p.style.display = "none";
+    //      r.style.display = "none";
+    //      s.style.display = "none";
+    //      t.style.display = "block";
+    //    } else {
+    //      q.style.display = "none";
+    //    }
+    //  }
+
+    //  function luxmar() {
+    //    if (r.style.display === "none") {
+    //      r.style.display = "block";
+    //      p.style.display = "none";
+    //      q.style.display = "none";
+    //      s.style.display = "none";
+    //      t.style.display = "block";
+    //    } else {
+    //      r.style.display = "none";
+    //    }
+    //  }
+
+    //  function destmar() {
+    //    if (s.style.display === "none") {
+    //      s.style.display = "block";
+    //      p.style.display = "none";
+    //      q.style.display = "none";
+    //      r.style.display = "none";
+    //      t.style.display = "block";
+    //    } else {
+    //      s.style.display = "none";
+    //    }
+    //  }
+
+    //  function dive() {
+    //    if (t.style.display === "none") {
+    //      t.style.display = "block";
+    //    } else {
+    //      t.style.display = "none";
+    //    }
+    //  }
 
      $('.marriage-place').click(function(e) {
        console.dir(e.target);
