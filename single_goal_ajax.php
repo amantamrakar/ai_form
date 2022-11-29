@@ -164,7 +164,7 @@ if (isset($_POST['key'])) {
 
             <div class="mb-3 col-6">
               <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Career</h3>
-              <input type="number" style="font-size:16px;" class="form-control form-control-sm" id="carrerEdu" value="' . $decode['carrer'] . '" />
+              <input type="text" style="font-size:16px;text-transform:capitalize;" class="form-control form-control-sm" id="carrerEdu" value="' . $decode['carrer'] . '" />
             </div>
 
             <div class="mb-3 col-6">
@@ -183,7 +183,7 @@ if (isset($_POST['key'])) {
             </div>
 
             <div class="mb-3 col-6">
-              <label for="sipValue" class="form-label">Sip Value</label>
+            <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">SIP Required</h3>
               <input
                 type="number"
                 class="form-control form-control-sm"
@@ -192,27 +192,36 @@ if (isset($_POST['key'])) {
                 readonly="true"
               />
             </div>';
-      if (array_key_exists('secondchildname', $decode) && array_key_exists('secondchildage', $decode) && array_key_exists('secondfutureage', $decode) && array_key_exists('secondcurrentcost', $decode)) {
+      if (array_key_exists('secondchildname', $decode) && array_key_exists('secondchildage', $decode) && array_key_exists('secondfutureage', $decode) && array_key_exists('secondcurrentcost', $decode) && array_key_exists('secondinflation', $decode)&& array_key_exists('secondchildSIP', $decode)) {
         $markup .= '<h4>Second</h4><div class="mb-3 col-6">
         <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;"> Name</h3>
-           <input type="text" style="font-size:19px;" class="form-control form-control-sm" id="futureValueEdu" value="' . $decode['secondchildname'] . '" readonly="true" />
+           <input type="text" style="font-size:19px;" class="form-control form-control-sm" id="nameEdu" value="' . $decode['secondchildname'] . '" readonly="true" />
         </div>
         <div class="mb-3 col-6">
         <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Age</h3>
-           <input type="number" style="font-size:19px;" class="form-control form-control-sm" id="futureValueEdu" value="' . $decode['secondchildage'] . '" readonly="true" />
+           <input type="number" style="font-size:19px;" class="form-control form-control-sm" id="ageEdu" value="' . $decode['secondchildage'] . '" readonly="true" />
         </div>
         <div class="mb-3 col-6">
         <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Future Age</h3>
-           <input type="number" style="font-size:19px;" class="form-control form-control-sm" id="futureValueEdu" value="' . $decode['secondfutureage'] . '" readonly="true" />
+           <input type="number" style="font-size:19px;" class="form-control form-control-sm" id="futureageEdu" value="' . $decode['secondfutureage'] . '" readonly="true" />
         </div>
         <div class="mb-3 col-6">
         <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Current Cost</h3>
-           <input type="number" style="font-size:19px;" class="form-control form-control-sm" id="futureValueEdu" value="' . $decode['secondcurrentcost'] . '" readonly="true" />
+           <input type="number" style="font-size:19px;" class="form-control form-control-sm" id="currentEdu" value="' . $decode['secondcurrentcost'] . '" readonly="true" />
         </div>
         <div class="mb-3 col-6">
         <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Future Value</h3>
-           <input type="number" style="font-size:19px;" class="form-control form-control-sm" id="futureValueEdu" value="' . $decode['secondchildfuturevalue'] . '" readonly="true" />
+           <input type="number" style="font-size:19px;" class="form-control form-control-sm" id="futurevalueEdu" value="' . $decode['secondchildfuturevalue'] . '" readonly="true" />
         </div>
+        <div class="mb-3 col-6">
+        <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Future Inflation</h3>
+           <input type="number" style="font-size:19px;" class="form-control form-control-sm" id="inflationEdu" value="' . $decode['secondinflation'] . '" readonly="true" />
+        </div>
+        <div class="mb-3 col-6">
+        <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">SIP Required</h3>
+           <input type="number" style="font-size:19px;" class="form-control form-control-sm" id="SIPsecond" value="' . $decode['secondchildSIP'] . '" readonly="true" />
+        </div>
+        
         <div class="mb-3 col-12">
           <button class="btn btn-success btn-sm">Update</button>
           <button class="btn btn-secondary btn-sm">Pdf</button>

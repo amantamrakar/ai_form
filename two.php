@@ -216,7 +216,7 @@
             <div class="form-group row">
                 <label class="alllabel">Age at which child Get's Married</label>
                 <input type="text" style="width:80%;" class="form-control allinput mb-2 input-selector calculatehouse borderhigh" name="futureage" onchange="marriageone()" id="futureagemar" value="25">
-            </div>
+            </div><br>
             <input type="button" value="Add Child for marriage" class="btn btn-primary" onclick="secondmar()"><br>
             <!-- <input type="button" value="Add Child" class="btn btn-primary" onclick="secondedu()"><br> -->
             <br>
@@ -227,18 +227,18 @@
                 <div class="" style="display: block;">
                     <div class="form-group row">
                         <label class="alllabel"> Name of Your second Child</label>
-                        <input type="text" style="width:100%;" class="form-control allinput calculatehouse borderhigh" name="secondchildname" id="sname" onchange="seducation()" placeholder="Name">
-                    </div><br>
+                        <input type="text" style="width:100%;" class="form-control mb-2 allinput calculatehouse borderhigh" name="secondchildname-mar" id="secchildname" onchange="secondmarriage()" placeholder="Name">
+                    </div>
 
                     <div class="form-group row">
                         <label class="alllabel">Current age of Child</label>
-                        <input type="number" style="width:100%;" class="form-control allinput calculatehouse borderhigh" name="secondchildage" id="sage" onchange="seducation()" value="1">
-                    </div><br>
+                        <input type="number" style="width:100%;" class="form-control mb-2 allinput calculatehouse borderhigh" name="secondchildage-mar" id="seccurrentage" onchange="secondmarriage()" value="1">
+                    </div>
 
                     <div class="form-group row">
-                        <label class="alllabel">Age at which child go to Higher Education</label>
-                        <input type="number" style="width:100%;" class="form-control allinput calculatehouse borderhigh" name="secondfutureage" id="sfutureage" onchange="seducation()" value="18">
-                    </div><br>
+                        <label class="alllabel">Age at which child Get's Married</label>
+                        <input type="number" style="width:100%;" class="form-control mb-2 allinput calculatehouse borderhigh" name="secondfutureage-mar" id="secchildfutureage" onchange="secondmarriage()" value="25">
+                    </div>
 
                 </div>
             </div>

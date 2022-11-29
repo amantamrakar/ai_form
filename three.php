@@ -184,7 +184,7 @@
                             <img class="myimg funimg allimg" src="images\DOCTOR.png" />
 
                             <p align="center">
-                                <input type="radio" name="carrertwo" style="font-weight: 700;font-size: 17px;" class="allinput" onclick="select2Carrer(this.value)" value="doctor"> Doctor
+                                <input type="radio" name="carrertwo" style="font-weight: 700;font-size: 17px;" class="input-selector" onclick="select2Carrer(this.value)" value="doctor"> Doctor
                             </p>
                         </label>
 
@@ -193,7 +193,7 @@
                             <img class="myimg funimg allimg" src="images\engeenering.png" />
 
                             <p align="center">
-                                <input type="radio" name="carrertwo" style="font-weight: 700;font-size: 17px;" class="allinput" onclick="select2Carrer(this.value)" value="enginer"> Engineering
+                                <input type="radio" name="carrertwo" style="font-weight: 700;font-size: 17px;" class="input-selector" onclick="select2Carrer(this.value)" value="enginer"> Engineering
                             </p>
                         </label>
 
@@ -202,7 +202,7 @@
                             <img class="myimg funimg allimg" src="images\ARCHITECH.png" />
 
                             <p align="center">
-                                <input type="radio" name="carrertwo" style="font-weight: 700;font-size: 17px;" class="allinput" onclick="select2Carrer(this.value)" value="architect"> Architect
+                                <input type="radio" name="carrertwo" style="font-weight: 700;font-size: 17px;" class="input-selector" onclick="select2Carrer(this.value)" value="architect"> Architect
                             </p>
                         </label>
 
@@ -211,7 +211,7 @@
                             <img class="myimg funimg allimg" src="images/MBA.png" />
 
                             <p align="center">
-                                <input type="radio" name="carrertwo" style="font-weight: 700;font-size: 17px;" class="allinput" onclick="select2Carrer(this.value)" value="mba"> MBA
+                                <input type="radio" name="carrertwo" style="font-weight: 700;font-size: 17px;" class="input-selector" onclick="select2Carrer(this.value)" value="mba"> MBA
                             </p>
                         </label>
 
@@ -220,7 +220,7 @@
                             <img class="myimg funimg allimg" src="images\OTHER.png" />
 
                             <p align="center">
-                                <input type="radio" name="carrertwo" style="font-weight: 700;font-size: 17px;" class="allinput" onclick="select2Carrer(this.value)" value="other"> Other
+                                <input type="radio" name="carrertwo" style="font-weight: 700;font-size: 17px;" class="input-selector" onclick="select2Carrer(this.value)" value="other"> Other
                             </p>
                         </label>
                     </div>
@@ -235,7 +235,7 @@
                                     <select name="college" class="form-control input-selector allinput" id="sMBBSCOLLEGE" style="width: 70%;">
                                         <option value="" class="allinput">Select College Name's </option>
                                         <option value="manipal" id="manipal" data-fee="8900000">Kasturba medical college (Manipal)</option>
-                                        <option value="noida" id="noida" data-fee="687500000">School Of Medical Science & Research (SMSR) Noida</option>
+                                        <option value="noida" id="noida" data-fee="6875000">School Of Medical Science & Research (SMSR) Noida</option>
                                         <option value="bangalore" id="bangalore" data-fee="2500000">St. John’s Medical College Bangalore</option>
                                         <option value="boston" id="boston" data-fee="11000000">Harvard medical school, Boston, Massachusetts</option>
                                         <option value="kingdom" id="kingdom" data-fee="23000000">University of Oxford , United Kingdom</option>
@@ -332,7 +332,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <label class="alllabel">Expected Rate of Inflation</label>
-                                        <input type="text" style="width:60%;" class="form-control allinput input-selector calculatehouse borderhigh" name="inflation" id="sinfla" oninput="seducation()" value="7">
+                                        <input type="text" style="width:60%;" class="form-control allinput input-selector calculatehouse borderhigh" name="secondinflation" id="sinfla" oninput="seducation()" value="7">
                                     </div>
 
                                 </div>
@@ -340,6 +340,7 @@
                                     <div class="form-group row">
                                         <label class="alllabel">Future Cost of Higher Education</label>
                                         <input type="text" style="width:80%;" class="form-control allinput input-selector borderhigh" name="secondchildfuturevalue" id="set1" readonly>
+                                        <input type="text" style="width:80%;" class="form-control allinput input-selector borderhigh" name="secondchildSIP" id="sipsecond" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -438,38 +439,34 @@
                 <div class="col-6 col-md-3">
 
                     <label class="mylable" data-filed='3'>
-
-                        <img class="myimg funimg" src="images/normal.png" onclick="nrmlmar()" />
-
-                        <!-- <p align="center"></p> -->
-                        <p align="center" class="allimg"> <input type="radio" class="nexter input-selector three-btn" name="mariage" value="normal"> Normal Marriage</p>
+                        <img class="myimg funimg" src="images/normal.png" />
+                        <p align="center" class="allimg">
+                             <input type="radio" class="nexter input-selector three-btn" name="mariage" onclick="selectMarriage(this.value)" value="Normal"> Normal Marriage</p>
                     </label>
+
                 </div>
                 <div class="col-6 col-md-3">
+
                     <label class="mylable" data-filed='3'>
-
-                        <img class="myimg funimg" src="images/rich.png" onclick="richmar()" />
-
-                        <!-- <p align="center"></p> -->
-                        <p align="center" class="allimg"> <input type="radio" class="nexter input-selector three-btn" name="mariage" value="rich"> Rich Marriage</p>
+                        <img class="myimg funimg" src="images/rich.png" />
+                        <p align="center" class="allimg">
+                             <input type="radio" class="nexter input-selector three-btn" name="mariage" onclick="selectMarriage(this.value)" value="Rich"> Rich Marriage</p>
                     </label>
+
                 </div>
                 <div class="col-6 col-md-3">
+
                     <label class="mylable" data-filed='3'>
-
-                        <img class="myimg funimg" src="images/luxury.png" onclick="luxmar()" />
-
-                        <!-- <p align="center"></p> -->
-                        <p align="center" class="allimg"> <input type="radio" class="nexter input-selector three-btn" name="mariage" value="Luxury"> Luxury Marriage</p>
+                        <img class="myimg funimg" src="images/luxury.png" />
+                        <p align="center" class="allimg"> <input type="radio" class="nexter input-selector three-btn" name="mariage" onclick="selectMarriage(this.value)" value="Luxury"> Luxury Marriage</p>
                     </label>
+
                 </div>
                 <div class="col-6 col-md-3">
+
                     <label class="mylable" data-filed='3'>
-
-                        <img class="myimg funimg" src="images/destination marriege.png" onclick="destmar()" />
-
-                        <!-- <p align="center"></p> -->
-                        <p align="center" class="allimg"> <input type="radio" class="nexter input-selector three-btn" name="mariage" value="destination"> Destination Marriage</p>
+                        <img class="myimg funimg" src="images/destination marriege.png" />
+                        <p align="center" class="allimg"> <input type="radio" class="nexter input-selector three-btn" name="mariage" onclick="selectMarriage(this.value)" value="Destination"> Destination Marriage</p>
                     </label>
 
                 </div>
@@ -478,130 +475,299 @@
 
         <div class="row">
             <div class="col-12">
-                <div class="row">
-                    <div class="col-6" id="dive">
-                        <div style="display: block;">
-                            <div class="form-group row">
-                                <labe class="alllabel">Current cost of Marriage(approx.)</label>
-                                    <input type="text" style="width:82%;" class="form-control allinput mb-2 input-selector calculatehouse s1" name="currentcost" id="currentcostly" oninput="marriageone()" value="1">
+
+                    <div class="row">
+                        <div class="col-12" style="display:none;" id="marriageplace">
+                            <div style="display: block;">
+                                <div class="col-6 Marriagetypeone" style="margin-top:20px;display: none;" id="normal">
+                                    <div class="dropdown" style="display: block;">
+                                        <ul id="menu">
+                                            <li class="parent"><a href="#">Choose Place's for Normal marriage </a>
+                                                <ul class="child">
+                                                    <li class="parent marriage-place input-selector" name="tier1" value="tier1" data-fees="3000000">
+                                                        <a href="#" id="normal1">Tier 1<span class="expand">»</span></a>
+                                                    </li>
+                                                    <li class="parent marriage-place input-selector" name="tier2" value="tier2" data-fees="2000000">
+                                                        <a href="#" id="normal2">Tier 2<span class="expand">»</span></a>
+                                                    </li>
+                                                    <li class="parent marriage-place input-selector" name="tier3" value="tier3" data-fees="1000000">
+                                                        <a href="#" id="normal3">Tier 3<span class="expand">»</span></a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul><br><br><br>
+                                    </div>
+                                </div>
+
+                                <div class="col-6 Marriagetypeone" style="margin-top:20px;display: none;" id="Rich">
+                                    <div class="dropdown" style="display: block;">
+                                        <ul id="menu">
+                                            <li class="parent"><a href="#">Choose Place's for Rich marriage </a>
+                                                <ul class="child">
+                                                    <li class="parent rich-tier input-selector" name="tier1" value="tier1" data-fees="5000000">
+                                                        <a href="#">Tier 1<span class="expand">»</span></a>
+                                                    </li>
+                                                    <li class="parent rich-tier input-selector" name="tier2" value="tier2" data-fees="3000000">
+                                                        <a href="#">Tier 2<span class="expand">»</span></a>
+                                                    </li>
+                                                    <li class="parent rich-tier input-selector" name="tier3" value="tier3" data-fees="2000000">
+                                                        <a href="#">Tier 3<span class="expand">»</span></a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul><br><br><br>
+                                    </div>
+                                </div>
+
+                                <div class="col-6 Marriagetypeone" style="margin-top:20px;display: none;" id="Luxury">
+                                    <div class="dropdown" style="display: block;">
+                                        <ul id="menu">
+                                            <li class="parent"><a href="#">Choose Place's for Luxury marriage </a>
+                                                <ul class="child">
+                                                    <li class="parent luxury-tier input-selector" name="tier1" value="tier1" data-fees="10000000">
+                                                        <a href="#">Tier 1<span class="expand">»</span></a>
+                                                    </li>
+                                                    <li class="parent luxury-tier input-selector" name="tier2" value="tier2" data-fees="7000000">
+                                                        <a href="#">Tier 2<span class="expand">»</span></a>
+                                                    </li>
+                                                    <li class="parent luxury-tier input-selector" name="tier3" value="tier3" data-fees="4000000">
+                                                        <a href="#">Tier 3<span class="expand">»</span></a>
+                                                    </li>
+
+                                                </ul>
+                                            </li>
+                                        </ul><br><br><br>
+                                    </div>
+                                </div>
+
+                                <div class="col-6 Marriagetypeone" style="margin-top:20px;display: none;" id="Destination">
+                                    <div class="dropdown" style="display: block;">
+                                        <ul id="menu">
+                                            <li class="parent"><a href="#">Choose Place's for Destination marriage </a>
+                                                <ul class="child">
+                                                    <li class="parent"><a href="#">India<span class="expand">»</span></a>
+                                                        <ul class="child col-5 ">
+                                                            <li class="andaman input-selector" name="india" value="andaman" data-fees="5000000"><a href="#" nowrap>Andaman Nikobar </a></li>
+                                                            <li class="andaman input-selector" name="india" value="pondicherry" data-fees="4000000"><a href="#" nowrap>Pondicherry</a></li>
+                                                            <li class="andaman input-selector" name="india" value="jaipur" data-fees="6000000"><a href="#" nowrap>Jaipur, Udaipur</a></li>
+                                                            <li class="andaman input-selector" name="india" value="amritsar" data-fees="6000000"><a href="#" nowrap>Jaisalmer, Amritsar</a></li>
+                                                            <li class="andaman input-selector" name="india" value="goa" data-fees="5000000"><a href="#" nowrap>Mumbai, Goa </a></li>
+                                                            <li class="andaman input-selector" name="india" value="ooty" data-fees="7000000"><a href="#" nowrap>Ooty</a></li>
+                                                            <li class="andaman input-selector" name="india" value="agra" data-fees="7500000"><a href="#" nowrap>Agra </a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="parent"><a href="#">Out of India<span class="expand">»</span></a>
+                                                        <ul class="child col-5">
+                                                            <li class="andaman input-selector" name="outofindia" value="US" data-fees="10000000"><a href="#" nowrap>US</a></li>
+                                                            <li class="andaman input-selector" name="outofindia" value="Europe" data-fees="20000000"><a href="#" nowrap>Europe</a></li>
+                                                            <li class="andaman input-selector" name="outofindia" value="austalia" data-fees="15000000"><a href="#" nowrap>Australia</a></li>
+                                                        </ul>
+                                                    </li>
+
+                                                </ul>
+                                            </li>
+                                        </ul><br><br><br>
+                                    </div>
+                                </div>
+
+                                <div class="col-6 Marriagetypeone" style="border:1px solid gray;border-radius:20px;background-color:white; color:black;position:relative;bottom:-15px;"><br>
+
+                                    <input type="text" style="width:80%;margin-left:20px;" class="form-control input-selector p-1 d-none" name="ansinputs" id="set2" readonly><br>
+                                    <p style="font-size: 19px;margin-left: 15px;margin-top:-6%;font-weight: 500;font-family: auto;">To enjoy your dream wedding you need to plan wisely & and as per your inputs, you
+                                        will need a sum of <span id="set12" style="color: red;font-weight: 700;font-size: 22px;"></span> after <span id="mar-year" style="color: green;font-weight: 700;font-size: 21px;"></span> years when the expected rate of
+                                        inflation is <span id="mar-infla" style="color: green;font-weight: 700;font-size: 21px;"></span>% p.a. LETTER </p>
+                                    <!-- inflation is <span id="pooja" style="color: green;font-weight: 700;font-size: 21px;"></span>% p.a. LETTER -->
+                                    <input type="text" style="width:80%;margin-left:20px;" class="form-control input-selector borderhigh d-none" name="sipvalue" id="pooja" readonly><br>
+
+                                </div>
+                           
+
+                                <div class="row">
+
+                                            <div class="form-group row">
+                                                <labe class="alllabel">Current cost of Marriage(approx.)</label>
+                                                    <input type="text" style="width:82%;" class="form-control allinput mb-2 input-selector calculatehouse s1" name="currentcost" id="currentcostly" oninput="marriageone()" value="1">
+                                            </div>
+                                            <div class="form-group row">
+                                                <labe class="alllabel">Expected Rate of Inflation</label>
+                                                    <input type="text" style="width:82%;" class="form-control allinput mb-2 input-selector calculatehouse s1" name="inflation" id="expinfla" oninput="marriageone()" value="7">
+                                            </div>
+
+                                </div>
                             </div>
-                            <div class="form-group row">
-                                <labe class="alllabel">Expected Rate of Inflation</label>
-                                    <input type="text" style="width:82%;" class="form-control allinput mb-2 input-selector calculatehouse s1" name="inflation" id="expinfla" oninput="marriageone()" value="7">
-                            </div>
-                            <!-- <div class="form-group row">
-                                <label class="alllabel"></label>
-                                <input type="text" style="width:80%;" class="form-control allinput mb-2 input-selector calculatehouse s1" id="" oninput="marriageone()"  value="">
-                            </div> -->
-
                         </div>
                     </div>
-                    <!-- <div id="marriageplace"> -->
-                    <div class="col-6" style="margin-top:20px;display: none;" id="nrmlmar">
-                        <div class="dropdown" style="display: block;">
-                            <ul id="menu">
-                                <li class="parent"><a href="#">Choose Place's for Normal marriage </a>
-                                    <ul class="child">
-                                        <li class="parent marriage-place input-selector" name="tier1" value="tier1" data-fees="3000000">
-                                            <a href="#" id="normal1">Tier 1<span class="expand">»</span></a>
-                                        </li>
-                                        <li class="parent marriage-place input-selector" name="tier2" value="tier2" data-fees="2000000">
-                                            <a href="#" id="normal2">Tier 2<span class="expand">»</span></a>
-                                        </li>
-                                        <li class="parent marriage-place input-selector" name="tier3" value="tier3" data-fees="1000000">
-                                            <a href="#" id="normal3">Tier 3<span class="expand">»</span></a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul><br><br><br>
-                        </div>
-                    </div>
-
-                    <div class="col-6" style="margin-top:20px;display: none;" id="richmar">
-                        <div class="dropdown" style="display: block;">
-                            <ul id="menu">
-                                <li class="parent"><a href="#">Choose Place's for Rich marriage </a>
-                                    <ul class="child">
-                                        <li class="parent rich-tier input-selector" name="tier1" value="tier1" data-fees="5000000">
-                                            <a href="#">Tier 1<span class="expand">»</span></a>
-                                        </li>
-                                        <li class="parent rich-tier input-selector" name="tier2" value="tier2" data-fees="3000000">
-                                            <a href="#">Tier 2<span class="expand">»</span></a>
-                                        </li>
-                                        <li class="parent rich-tier input-selector" name="tier3" value="tier3" data-fees="2000000">
-                                            <a href="#">Tier 3<span class="expand">»</span></a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul><br><br><br>
-                        </div>
-                    </div>
-
-                    <div class="col-6" style="margin-top:20px;display: none;" id="luxmar">
-                        <div class="dropdown" style="display: block;">
-                            <ul id="menu">
-                                <li class="parent"><a href="#">Choose Place's for Luxury marriage </a>
-                                    <ul class="child">
-                                        <li class="parent luxury-tier input-selector" name="tier1" value="tier1" data-fees="10000000">
-                                            <a href="#">Tier 1<span class="expand">»</span></a>
-                                        </li>
-                                        <li class="parent luxury-tier input-selector" name="tier2" value="tier2" data-fees="7000000">
-                                            <a href="#">Tier 2<span class="expand">»</span></a>
-                                        </li>
-                                        <li class="parent luxury-tier input-selector" name="tier3" value="tier3" data-fees="4000000">
-                                            <a href="#">Tier 3<span class="expand">»</span></a>
-                                        </li>
-
-                                    </ul>
-                                </li>
-                            </ul><br><br><br>
-                        </div>
-                    </div>
-
-                    <div class="col-6" style="margin-top:20px;display: none;" id="destmar">
-                        <div class="dropdown" style="display: block;">
-                            <ul id="menu">
-                                <li class="parent"><a href="#">Choose Place's for Destination marriage </a>
-                                    <ul class="child">
-                                        <li class="parent"><a href="#">India<span class="expand">»</span></a>
-                                            <ul class="child col-5 ">
-                                                <li class="andaman input-selector" name="india" value="andaman" data-fees="5000000"><a href="#" nowrap>Andaman Nikobar </a></li>
-                                                <li class="andaman input-selector" name="india" value="pondicherry" data-fees="4000000"><a href="#" nowrap>Pondicherry</a></li>
-                                                <li class="andaman input-selector" name="india" value="jaipur" data-fees="6000000"><a href="#" nowrap>Jaipur, Udaipur</a></li>
-                                                <li class="andaman input-selector" name="india" value="amritsar" data-fees="6000000"><a href="#" nowrap>Jaisalmer, Amritsar</a></li>
-                                                <li class="andaman input-selector" name="india" value="goa" data-fees="5000000"><a href="#" nowrap>Mumbai, Goa </a></li>
-                                                <li class="andaman input-selector" name="india" value="ooty" data-fees="7000000"><a href="#" nowrap>Ooty</a></li>
-                                                <li class="andaman input-selector" name="india" value="agra" data-fees="7500000"><a href="#" nowrap>Agra </a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="parent"><a href="#">Out of India<span class="expand">»</span></a>
-                                            <ul class="child col-5">
-                                                <li class="andaman input-selector" name="outofindia" value="US" data-fees="10000000"><a href="#" nowrap>US</a></li>
-                                                <li class="andaman input-selector" name="outofindia" value="Europe" data-fees="20000000"><a href="#" nowrap>Europe</a></li>
-                                                <li class="andaman input-selector" name="outofindia" value="austalia" data-fees="15000000"><a href="#" nowrap>Australia</a></li>
-                                            </ul>
-                                        </li>
-
-                                    </ul>
-                                </li>
-                            </ul><br><br><br>
-                        </div>
-                    </div>
-                    <!-- </div> -->
-                    <div class="col-6" style="border:1px solid gray;border-radius:20px;background-color:white; color:black;position:relative;bottom:-15px;"><br>
-
-                        <input type="text" style="width:80%;margin-left:20px;" class="form-control input-selector p-1 d-none" name="ansinputs" id="set2" readonly><br>
-                        <p style="font-size: 19px;margin-left: 15px;margin-top:-6%;font-weight: 500;font-family: auto;">To enjoy your dream wedding you need to plan wisely & and as per your inputs, you
-                            will need a sum of <span id="set12" style="color: red;font-weight: 700;font-size: 22px;"></span> after <span id="mar-year" style="color: green;font-weight: 700;font-size: 21px;"></span> years when the expected rate of
-                            inflation is <span id="mar-infla" style="color: green;font-weight: 700;font-size: 21px;"></span>% p.a. LETTER </p>
-                        <!-- inflation is <span id="pooja" style="color: green;font-weight: 700;font-size: 21px;"></span>% p.a. LETTER -->
-                        <input type="text" style="width:80%;margin-left:20px;" class="form-control input-selector borderhigh d-none" name="sipvalue" id="pooja" readonly><br>
-
-                    </div>
-                </div>
+              
             </div>
         </div>
 
+        <div class="container" id="second-mar" style="display:none">
+            <div class="" style="display: block;">
+
+                <div class="row">
+                    <div class="col-6 col-md-3">
+
+                        <label class="mylable" data-filed='3'>
+
+                            <img class="myimg funimg" src="images/normal.png" onclick="nrmlmar()" />
+
+                            <p align="center" class="allimg"> <input type="radio" class="nexter input-selector three-btn" name="mariage" value="normal"> Normal Marriage</p>
+                        </label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label class="mylable" data-filed='3'>
+
+                            <img class="myimg funimg" src="images/rich.png" onclick="richmar()" />
+
+                            <p align="center" class="allimg"> <input type="radio" class="nexter input-selector three-btn" name="mariage" value="rich"> Rich Marriage</p>
+                        </label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label class="mylable" data-filed='3'>
+
+                            <img class="myimg funimg" src="images/luxury.png" onclick="luxmar()" />
+
+                            <p align="center" class="allimg"> <input type="radio" class="nexter input-selector three-btn" name="mariage" value="Luxury"> Luxury Marriage</p>
+                        </label>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label class="mylable" data-filed='3'>
+
+                            <img class="myimg funimg" src="images/destination marriege.png" onclick="destmar()" />
+
+                            
+                            <p align="center" class="allimg"> <input type="radio" class="nexter input-selector three-btn" name="mariage" value="destination"> Destination Marriage</p>
+                        </label>
+
+                    </div>
+                </div>
+
+
+
+
+
+                <h3>Marriage second child</h3>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6" id="dive-mar">
+                                <div style="display: block;">
+                                    <div class="form-group row">
+                                        <labe class="alllabel">Current cost of Marriage(approx.)</label>
+                                            <input type="text" style="width:82%;" class="form-control allinput mb-2 input-selector calculatehouse s1" name="currentcost-mar" id="secondMarcurrent" oninput="secondmarriage()" value="1">
+                                    </div>
+                                    <div class="form-group row">
+                                        <labe class="alllabel">Expected Rate of Inflation</label>
+                                            <input type="text" style="width:82%;" class="form-control allinput mb-2 input-selector calculatehouse s1" name="inflation-mar" id="secondMarinfla" oninput="secondmarriage()" value="7">
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-6" style="margin-top:20px;display: none;" id="nrmlmar">
+                                <div class="dropdown" style="display: block;">
+                                    <ul id="menu">
+                                        <li class="parent"><a href="#">Choose Place's for Normal marriage </a>
+                                            <ul class="child">
+                                                <li class="parent marriage-place input-selector" name="tier1" value="tier1" data-fees="3000000">
+                                                    <a href="#" id="normal1">Tier 1<span class="expand">»</span></a>
+                                                </li>
+                                                <li class="parent marriage-place input-selector" name="tier2" value="tier2" data-fees="2000000">
+                                                    <a href="#" id="normal2">Tier 2<span class="expand">»</span></a>
+                                                </li>
+                                                <li class="parent marriage-place input-selector" name="tier3" value="tier3" data-fees="1000000">
+                                                    <a href="#" id="normal3">Tier 3<span class="expand">»</span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul><br><br><br>
+                                </div>
+                            </div>
+
+                            <div class="col-6" style="margin-top:20px;display: none;" id="richmar">
+                                <div class="dropdown" style="display: block;">
+                                    <ul id="menu">
+                                        <li class="parent"><a href="#">Choose Place's for Rich marriage </a>
+                                            <ul class="child">
+                                                <li class="parent rich-tier input-selector" name="tier1" value="tier1" data-fees="5000000">
+                                                    <a href="#">Tier 1<span class="expand">»</span></a>
+                                                </li>
+                                                <li class="parent rich-tier input-selector" name="tier2" value="tier2" data-fees="3000000">
+                                                    <a href="#">Tier 2<span class="expand">»</span></a>
+                                                </li>
+                                                <li class="parent rich-tier input-selector" name="tier3" value="tier3" data-fees="2000000">
+                                                    <a href="#">Tier 3<span class="expand">»</span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul><br><br><br>
+                                </div>
+                            </div>
+
+                            <div class="col-6" style="margin-top:20px;display: none;" id="luxmar">
+                                <div class="dropdown" style="display: block;">
+                                    <ul id="menu">
+                                        <li class="parent"><a href="#">Choose Place's for Luxury marriage </a>
+                                            <ul class="child">
+                                                <li class="parent luxury-tier input-selector" name="tier1" value="tier1" data-fees="10000000">
+                                                    <a href="#">Tier 1<span class="expand">»</span></a>
+                                                </li>
+                                                <li class="parent luxury-tier input-selector" name="tier2" value="tier2" data-fees="7000000">
+                                                    <a href="#">Tier 2<span class="expand">»</span></a>
+                                                </li>
+                                                <li class="parent luxury-tier input-selector" name="tier3" value="tier3" data-fees="4000000">
+                                                    <a href="#">Tier 3<span class="expand">»</span></a>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+                                    </ul><br><br><br>
+                                </div>
+                            </div>
+
+                            <div class="col-6" style="margin-top:20px;display: none;" id="destmar">
+                                <div class="dropdown" style="display: block;">
+                                    <ul id="menu">
+                                        <li class="parent"><a href="#">Choose Place's for Destination marriage </a>
+                                            <ul class="child">
+                                                <li class="parent"><a href="#">India<span class="expand">»</span></a>
+                                                    <ul class="child col-5 ">
+                                                        <li class="andaman input-selector" name="india" value="andaman" data-fees="5000000"><a href="#" nowrap>Andaman Nikobar </a></li>
+                                                        <li class="andaman input-selector" name="india" value="pondicherry" data-fees="4000000"><a href="#" nowrap>Pondicherry</a></li>
+                                                        <li class="andaman input-selector" name="india" value="jaipur" data-fees="6000000"><a href="#" nowrap>Jaipur, Udaipur</a></li>
+                                                        <li class="andaman input-selector" name="india" value="amritsar" data-fees="6000000"><a href="#" nowrap>Jaisalmer, Amritsar</a></li>
+                                                        <li class="andaman input-selector" name="india" value="goa" data-fees="5000000"><a href="#" nowrap>Mumbai, Goa </a></li>
+                                                        <li class="andaman input-selector" name="india" value="ooty" data-fees="7000000"><a href="#" nowrap>Ooty</a></li>
+                                                        <li class="andaman input-selector" name="india" value="agra" data-fees="7500000"><a href="#" nowrap>Agra </a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="parent"><a href="#">Out of India<span class="expand">»</span></a>
+                                                    <ul class="child col-5">
+                                                        <li class="andaman input-selector" name="outofindia" value="US" data-fees="10000000"><a href="#" nowrap>US</a></li>
+                                                        <li class="andaman input-selector" name="outofindia" value="Europe" data-fees="20000000"><a href="#" nowrap>Europe</a></li>
+                                                        <li class="andaman input-selector" name="outofindia" value="austalia" data-fees="15000000"><a href="#" nowrap>Australia</a></li>
+                                                    </ul>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+                                    </ul><br><br><br>
+                                </div>
+                            </div>
+                            </div> -->
+                            <!-- <div class="col-6" style="border:1px solid gray;border-radius:20px;background-color:white; color:black;position:relative;bottom:-15px;"><br>
+
+                                <input type="text" style="width:80%;margin-left:20px;" class="form-control input-selector p-1" name="ansinputsMar" id="fvsecond-mar" readonly><br>
+                                <input type="text" style="width:80%;margin-left:20px;" class="form-control input-selector borderhigh d-none" name="sipvalueMar" id="sipsecong-mar" readonly><br>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
 
     </div>
     <!-----------------------------car----------------------------------------------->
@@ -640,64 +806,64 @@
             <div id="vaccity" class="row">
                 <div class="col-12" style="display:contents;text-align:center;">
                     <!-- <div class="col-6 col-md-4 col-sm-3"> -->
-                        <label class="col-6 col-md-4 col-sm-3 mylable-goal vacacity three-btn" data-filed='3'>
+                    <label class="col-6 col-md-4 col-sm-3 mylable-goal vacacity three-btn" data-filed='3'>
 
-                            <img class="myimg funimg " src="images\01_DUBAI.png" />
+                        <img class="myimg funimg " src="images\01_DUBAI.png" />
 
-                            <p align="center" class="allimg">
-                                <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacone" detaset="500000" value="DUBAI">
-                            </p>
-                        </label>
+                        <p align="center" class="allimg">
+                            <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacone" detaset="500000" value="DUBAI">
+                        </p>
+                    </label>
                     <!-- </div> -->
                     <!-- <div class="col-6 col-md-4 col-sm-3"> -->
-                        <label class="mylable-goal vacacity three-btn col-6 col-md-4 col-sm-3" data-filed='3'>
+                    <label class="mylable-goal vacacity three-btn col-6 col-md-4 col-sm-3" data-filed='3'>
 
-                            <img class="myimg funimg " src="images\02_PARIS.png" />
+                        <img class="myimg funimg " src="images\02_PARIS.png" />
 
-                            <p align="center" class="allimg">
-                                <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vactwo" detaset="800000" value="PARIS">
-                            </p>
-                        </label>
+                        <p align="center" class="allimg">
+                            <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vactwo" detaset="800000" value="PARIS">
+                        </p>
+                    </label>
                     <!-- </div> -->
                     <!-- <div class="col-6 col-md-4 col-sm-3"> -->
-                        <label class="mylable-goal vacacity three-btn col-6 col-md-4 col-sm-3" data-filed='3'>
+                    <label class="mylable-goal vacacity three-btn col-6 col-md-4 col-sm-3" data-filed='3'>
 
-                            <img class="myimg funimg " src="images\03_ITALY.png" />
+                        <img class="myimg funimg " src="images\03_ITALY.png" />
 
-                            <p align="center" class="allimg">
-                                <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacthree" detaset="500000" value="ITALY">
-                            </p>
-                        </label>
+                        <p align="center" class="allimg">
+                            <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacthree" detaset="500000" value="ITALY">
+                        </p>
+                    </label>
                     <!-- </div> -->
                     <!-- <div class="col-6 col-md-4 col-sm-3"> -->
-                        <label class="mylable-goal vacacity three-btn col-6 col-md-4 col-sm-3" data-filed='3'>
+                    <label class="mylable-goal vacacity three-btn col-6 col-md-4 col-sm-3" data-filed='3'>
 
-                            <img class="myimg funimg " src="images\04_HONG KONG.png" />
+                        <img class="myimg funimg " src="images\04_HONG KONG.png" />
 
-                            <p align="center" class="allimg">
-                                <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacfour" detaset="600000" value="HONG KONG">
-                            </p>
-                        </label>
+                        <p align="center" class="allimg">
+                            <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacfour" detaset="600000" value="HONG KONG">
+                        </p>
+                    </label>
                     <!-- </div> -->
                     <!-- <div class="col-6 col-md-4 col-sm-3"> -->
-                        <label class="mylable-goal vacacity three-btn col-6 col-md-4 col-sm-3"  data-filed='3'>
+                    <label class="mylable-goal vacacity three-btn col-6 col-md-4 col-sm-3" data-filed='3'>
 
-                            <img class="myimg funimg " src="images\05_SINGAPORE.png" />
+                        <img class="myimg funimg " src="images\05_SINGAPORE.png" />
 
-                            <p align="center" class="allimg">
-                                <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacfive" detaset="500000" value="SINGAPORE">
-                            </p>
-                        </label>
+                        <p align="center" class="allimg">
+                            <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacfive" detaset="500000" value="SINGAPORE">
+                        </p>
+                    </label>
                     <!-- </div> -->
                     <!-- <div class=""> -->
-                        <label class="mylable-goal vacacity three-btn col-6 col-md-4 col-sm-3" data-filed='3'>
+                    <label class="mylable-goal vacacity three-btn col-6 col-md-4 col-sm-3" data-filed='3'>
 
-                            <img class="myimg funimg " src="images\06_ANDAMAN.png" />
+                        <img class="myimg funimg " src="images\06_ANDAMAN.png" />
 
-                            <p align="center" class="allimg">
-                                <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacsix" detaset="500000" value="ANDAMAN"><br><br>
-                            </p>
-                        </label>
+                        <p align="center" class="allimg">
+                            <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacsix" detaset="500000" value="ANDAMAN"><br><br>
+                        </p>
+                    </label>
                     <!-- </div> -->
                 </div>
                 <!-- <div class="col-6 col-md-4 col-sm-6">
@@ -828,21 +994,21 @@
 
     </div>
     <?PHP
-    if(isset($_SESSION["goaluser"])){
-        ?>
-         <div style="text-align:center" class="mt-5">
+    if (isset($_SESSION["goaluser"])) {
+    ?>
+        <div style="text-align:center" class="mt-5">
             <input type="button" name="previous" class="previous btn btn-secondary" value="Previous" />
             <input type="button" name="next" class="next btn btn-primary btnidprfl" id="buttons" value="Next" disabled />
         </div>
-        <?php
-    }else{
-        ?>
+    <?php
+    } else {
+    ?>
         <div style="text-align:center" class="mt-5">
             <input type="button" name="previous" class="previous btn btn-secondary" value="Previous" />
             <input type="button" name="next" class="next btn btn-primary" id="buttons" value="Next" disabled />
         </div>
-        <?php
+    <?php
     }
-    
+
     ?>
 </fieldset>

@@ -820,6 +820,32 @@ if (mysqli_num_rows($result)) {
             $("#sip_valueOther").val(ansother.toFixed(0));
 
         });
+        $(document).on('change',"#ageEdu,#futureageEdu,#currentEdu",function(){
+            let ages = document.getElementById("sage").value;
+            let FAs = document.getElementById("sfutureage").value;
+            let fvas = document.getElementById("scurrent").value;
+            // let Rate = document.getElementById("rate").value;
+            let inflas = document.getElementById("sinfla").value;
+            let rates = 12 / 100;
+
+            // let r = Rate / 100;
+            let Ns = FAs - ages;
+            let ns = Ns * 12;
+            rs = rates / 12; // 1%s
+            let is = inflas / 100;
+            let js = is / 12;
+            let fvbs = fvas * ((1 + js) ** ns);
+
+            fs = fvbs * rs;
+            nums = (((1 + rs) ** ns) - 1);
+            nexts = (1 + rs);
+            cals = nums * nexts;
+            anssecond = fs / cals;
+
+            $("#futurevalueEdu").val(fvbs.toFixed(0));
+            $("#SIPsecond").val(anssecond.toFixed(0));
+
+        })
         $(document).on('submit', '#car_form', function(e) {
             e.preventDefault();
             let data = $(this).serialize()
