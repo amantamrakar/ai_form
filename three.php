@@ -451,8 +451,7 @@
                     <label class="mylable" data-filed='3'>
                         <img class="myimg funimg" src="images/rich.png" />
                         <p align="center" class="allimg">
-                            <input type="radio" class="nexter input-selector three-btn" name="mariage" onclick="selectMarriage(this.value)" value="Rich"> Rich Marriage
-                        </p>
+                             <input type="radio" class="nexter input-selector three-btn" name="mariage" onclick="selectMarriage(this.value)" value="Rich"> Rich Marriage</p>
                     </label>
 
                 </div>
@@ -568,18 +567,34 @@
                             </ul><br><br><br>
                         </div>
                     </div>
+                                            </ul>
+                                        </li>
+                                    </ul><br><br><br>
+                                </div>
+                            </div>
 
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="form-group row">
-                                <labe class="alllabel">Current cost of Marriage(approx.)</label>
-                                    <input type="text" style="width:82%;" class="form-control allinput mb-2 input-selector calculatehouse s1" name="currentcost" id="currentcostly" oninput="marriageone()" value="1">
+                            <div class="col-6 Marriagetypeone" style="border:1px solid gray;border-radius:20px;background-color:white; color:black;position:relative;bottom:-15px;"><br>
+
+                                <input type="text" style="width:80%;margin-left:20px;" class="form-control input-selector p-1 d-none" name="ansinputs" id="set2" readonly><br>
+                                <p style="font-size: 19px;margin-left: 15px;margin-top:-6%;font-weight: 500;font-family: auto;">To enjoy your dream wedding you need to plan wisely & and as per your inputs, you
+                                    will need a sum of <span id="set12" style="color: red;font-weight: 700;font-size: 22px;"></span> after <span id="mar-year" style="color: green;font-weight: 700;font-size: 21px;"></span> years when the expected rate of
+                                    inflation is <span id="mar-infla" style="color: green;font-weight: 700;font-size: 21px;"></span>% p.a. LETTER </p>
+                                <!-- inflation is <span id="pooja" style="color: green;font-weight: 700;font-size: 21px;"></span>% p.a. LETTER -->
+                                <input type="text" style="width:80%;margin-left:20px;" class="form-control input-selector borderhigh d-none" name="sipvalue" id="pooja" readonly><br>
+
                             </div>
-                            <div class="form-group row">
-                                <labe class="alllabel">Expected Rate of Inflation</label>
-                                    <input type="text" style="width:82%;" class="form-control allinput mb-2 input-selector calculatehouse s1" name="inflation" id="expinfla" oninput="marriageone()" value="7">
-                            </div>
-                        </div>
+
+
+                            <div class="row">
+
+                                <div class="form-group row">
+                                    <labe class="alllabel">Current cost of Marriage(approx.)</label>
+                                        <input type="text" style="width:82%;" class="form-control allinput mb-2 input-selector calculatehouse s1" name="currentcost" id="currentcostly" oninput="marriageone()" value="1">
+                                </div>
+                                <div class="form-group row">
+                                    <labe class="alllabel">Expected Rate of Inflation</label>
+                                        <input type="text" style="width:82%;" class="form-control allinput mb-2 input-selector calculatehouse s1" name="inflation" id="expinfla" oninput="marriageone()" value="7">
+                                </div>
 
                         <div class="col-6" style="border:1px solid gray;border-radius:20px;background-color:white; color:black;position:relative;bottom:-15px;"><br>
 
