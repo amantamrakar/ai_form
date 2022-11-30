@@ -351,7 +351,7 @@ if (isset($_POST['key'])) {
                           <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">SIP Required</h3>
                           <input type="text" class="form-control form-control-sm" style="font-size:16px;" name="marriage_sip" id="sip_valueMar" value= "' . $decode['sipvalue'] . '" disabled>
                         </div>';
-      if (array_key_exists('secondchildage-mar', $decode) && array_key_exists('secondfutureage-mar', $decode) && array_key_exists('currentcost-mar', $decode) && array_key_exists('inflation-mar', $decode) && array_key_exists('sipvalueMar', $decode) && array_key_exists('ansinputsMar', $decode)) {
+      if (array_key_exists('secondchildage-mar', $decode) && array_key_exists('secondfutureage-mar', $decode) && array_key_exists('currentcost-mar', $decode) && array_key_exists('inflation-mar', $decode) && array_key_exists('sipvalueMar', $decode) && array_key_exists('ansinputsMar', $decode)&& array_key_exists('mariagetype', $decode)) {
         $markup .= '<h4>Second</h4><div class="mb-3 col-6">
         <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;"> Second Child Name</h3>
            <input type="text" style="font-size:19px;" class="form-control form-control-sm"  value="' . $decode['secondchildname-mar'] . '" readonly="true" />
@@ -363,6 +363,10 @@ if (isset($_POST['key'])) {
         <div class="mb-3 col-6">
         <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Future Age</h3>
            <input type="number" style="font-size:19px;" class="form-control form-control-sm" id="sec_marri_future_age" value="' . $decode['secondfutureage-mar'] . '" readonly="true" />
+        </div>
+        <div class="mb-3 col-6">
+        <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Marriage Type of second child</h3>
+           <input type="text" style="font-size:19px;text-transfrom:capitalize" class="form-control form-control-sm" id="sec_marri_martype" value="' . $decode['mariagetype'] . '" readonly="true" />
         </div>
         <div class="mb-3 col-6">
         <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Current Cost</h3>
@@ -752,6 +756,19 @@ if (isset($_POST['showId'])) {
         <p class="fs-6 ">Sip Required :- <span class="text-primary">' . $show_decode['secondchildSIP'] . '</span></p>
         </div></div>';
       }
+      echo $markup;
+    }
+    if ($row['goal'] == "others") {
+      $markup = '<div class="card"><div class="card-body ">
+<h6 class="bg-secondary text-white rounded p-2">Goal</h6>
+ <p class="fs-6 ">Your Goal :- <span class="text-primary">' . $show_decode['goalname'] . '</span></p>
+ <h6 class="bg-secondary text-white rounded p-2">Other Details</h6>
+ <p class="fs-6 ">Current Cost of your Goal :- <span class="text-primary">' . $show_decode['currentcost'] . '</span></p>
+ <p class="fs-6 ">How many time you want to achieve :- <span class="text-primary">' . $show_decode['futureage'] . '</span></p>
+ <p class="fs-6 ">Inflation :- <span class="text-primary">' . $show_decode['inflation'] . '</span></p>
+ <p class="fs-6 ">Future Value :- <span class="text-primary">' . $show_decode['ansinputs'] . '</span></p>
+ <p class="fs-6 ">Sip Value :- <span class="text-primary">' . $show_decode['sipvalue'] . '</span></p>
+ </div></div>';
       echo $markup;
     }
   }

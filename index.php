@@ -47,18 +47,9 @@ session_start();
 
 
     body {
-      /* background-color: #f8fbfc; */
-      /* color: #060404; */
-      /* color: #dfdeecb3 */
-      /* background: linear-gradient(4deg, #4E5A95, transparent); */
-      /* background: linear-gradient(177deg, #546DE7, #030213); */
-
       color: #fff;
       background: linear-gradient(185deg, #6275ce, #171c3d);
 
-
-
-      /* #242046 */
     }
 
     .funimg {
@@ -206,7 +197,6 @@ session_start();
     .form-carrier {
       height: 80%;
       width: 55%;
-      /* border: 6px solid #413f3f; */
       border-radius: 5px;
       top: 30%;
       background-color: black;
@@ -221,24 +211,6 @@ session_start();
       height: fit-content;
 
     }
-
-
-    /* .vacacity {
-       background-color: #0d2836;
-       font-size: 22px;
-       border-radius: 10px;
-       padding: 13px;
-       text-align: center;
-       display: block;
-       font-family: monospace;
-       color: white;
-     } */
-
-    /* .vacacity:hover {
-       background-color: white;
-       color: black;
-       border: 2px solid black;
-     } */
 
     .vacradio {
       display: none;
@@ -335,13 +307,7 @@ session_start();
       height: 100%;
       z-index: 9999;
       background: url('http://i.imgur.com/KUJoe.gif') 50% 50% no-repeat rgb(249, 249, 249);
-      ;
-      /* background: url('https://www.google.com/search?q=blue%20loading%20gif&tbm=isch&cs=1&hl=en&sa=X&ved=0CCwQtI8BKAJqFwoTCIiv-8eQt_sCFQAAAAAdAAAAABAH&biw=1366&bih=617&dpr=1#imgrc=S4qOLUxg8nx6uM&imgdii=N4vs4LwnGWt_JM') 50% 50% no-repeat rgb(249, 249, 249); */
-      /* width: 100px;
-       height: 100px; */
       position: fixed;
-      /* top: 50%;
-       left: 50%; */
     }
 
     .icon {
@@ -365,7 +331,6 @@ session_start();
     .auth-form {
       position: relative;
       display: flex;
-      /* height: 520px; */
       justify-content: center;
     }
 
@@ -406,42 +371,32 @@ session_start();
     .htag {
       font-weight: bold;
       margin: 0;
-      /* font-size: 140%;
-       color: black; */
       font-size: 20px;
       text-align: center;
-      /* color: black; */
     }
 
     .htag1 {
       font-weight: bold;
       margin: 0;
-      /* color: white; */
     }
 
     .betten {
       position: relative;
-      padding: 10px 20px;
-      /* border: none; */
+      padding: 4px 9px;
       cursor: pointer;
       font-family: "Source Code Pro";
-      /* font-weight: 600; */
       background-color: #0d334f;
       font-size: 21px;
       color: hsl(0deg 4% 88%);
       box-shadow: solid black 8px 16px 72px;
       border-radius: 20px;
-      /* z-index: 0; */
-      /* margin-top: -9%; */
       width: 34%;
-      /* left: 18%; */
-      /* background-color: dodgerblue; */
-      /* overflow: hidden; */
     }
 
-    /* h2 {
-            text-align: center;
-        } */
+    .betten:hover{
+      border:1px solid white;
+    }
+    
     .ptag {
       font-size: 14px;
       font-weight: 500;
@@ -1102,19 +1057,6 @@ session_start();
 
 
 
-
-
-
-
-
-    $("#mbbsother").click(function() {
-      $("#mbbss").hide();
-    });
-
-
-
-
-
     $('#MBBSCOLLEGE').change(function(e) {
       $('#current').val($('#MBBSCOLLEGE option:selected').attr('data-fee'));
       if ($('#MBBSCOLLEGE option:selected')[0].id == "mbbsother") {
@@ -1295,14 +1237,14 @@ session_start();
 
     }
 
-    function select2Marriage(mariagetwo) {
+    function select2Marriage(mariagetype) {
 
       $("#marriageplacetwo").show()
       $(".Marriagetypetwo").hide()
-      $(`#${mariagetwo} select`).show().prop('selectedIndex', 0);
+      $(`#${mariagetype} select`).show().prop('selectedIndex', 0);
       //  $('.Marriagetypetwo .boxes').hide()
       $('.Marriagetypetwo .labels').show()
-      $(`.Marriagetypetwo#` + mariagetwo).show();
+      $(`.Marriagetypetwo#` + mariagetype).show();
 
     }
 

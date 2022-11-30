@@ -846,6 +846,34 @@ if (mysqli_num_rows($result)) {
             $("#SIPsecond").val(anssecond.toFixed(0));
 
         })
+
+        
+        $(document).on('change'," #secondchildage-mar,#secondfutureage-mar,#currentcost-mar,#inflation-mar ",function(){
+            secagemar = document.getElementById("secondchildage-mar").value;
+            secfa = document.getElementById("secondfutureage-mar").value;
+            secFVA = document.getElementById("currentcost-mar").value;
+            secinflaa = document.getElementById("inflation-mar").value;
+
+            let secrates = 12 / 100;
+            secM = secfa - secagemar;
+            secm = secM * 12;
+            secrs = secrates / 12;
+            secI = secinflaa / 100;
+            secJ = secI / 12;
+            secFVB = secFVA * ((1 + secJ) ** secm);
+            // sip value
+            secfs = secFVB * secrs;
+            secnums = (((1 + secrs) ** secm) - 1);
+            secnexts = (1 + secrs);
+            seccals = secnums * secnexts;
+            secanssip = secfs / seccals;
+
+            $("#ansinputsMar").val(secFVB.toFixed(0));
+            $("#sipvalueMar").val(secanssip.toFixed(0));
+        })
+
+
+
         $(document).on('submit', '#car_form', function(e) {
             e.preventDefault();
             let data = $(this).serialize()

@@ -567,11 +567,7 @@
                             </ul><br><br><br>
                         </div>
                     </div>
-                                            </ul>
-                                        </li>
-                                    </ul><br><br><br>
-                                </div>
-                            </div>
+                                           
 
                             <div class="col-6 Marriagetypeone" style="border:1px solid gray;border-radius:20px;background-color:white; color:black;position:relative;bottom:-15px;"><br>
 
@@ -623,7 +619,7 @@
                             <img class="myimg funimg" src="images/normal.png"  />
 
                             <p align="center" class="allimg">
-                                <input type="radio" class="nexter input-selector three-btn" name="mariagetwo" onclick="select2Marriage(this.value)" value="Normaltwo"> Normal Marriage
+                                <input type="radio" class="nexter input-selector three-btn" name="mariagetype" onclick="select2Marriage(this.value)" value="NormalMar"> Normal Marriage
                             </p>
                         </label>
                     </div>
@@ -633,7 +629,7 @@
                             <img class="myimg funimg" src="images/rich.png" />
 
                             <p align="center" class="allimg">
-                                <input type="radio" class="nexter input-selector three-btn" name="mariagetwo" onclick="select2Marriage(this.value)" value="Richtwo"> Rich Marriage
+                                <input type="radio" class="nexter input-selector three-btn" name="mariagetype" onclick="select2Marriage(this.value)" value="RichMar"> Rich Marriage
                             </p>
                         </label>
                     </div>
@@ -643,7 +639,7 @@
                             <img class="myimg funimg" src="images/luxury.png"/>
 
                             <p align="center" class="allimg">
-                                <input type="radio" class="nexter input-selector three-btn" name="mariagetwo" onclick="select2Marriage(this.value)" value="Luxurytwo"> Luxury Marriage
+                                <input type="radio" class="nexter input-selector three-btn" name="mariagetype" onclick="select2Marriage(this.value)" value="LuxuryMar"> Luxury Marriage
                             </p>
                         </label>
                     </div>
@@ -654,7 +650,7 @@
 
 
                             <p align="center" class="allimg">
-                                <input type="radio" class="nexter input-selector three-btn" name="mariagetwo" onclick="select2Marriage(this.value)" value="Destinationtwo"> Destination Marriage
+                                <input type="radio" class="nexter input-selector three-btn" name="mariagetype" onclick="select2Marriage(this.value)" value="DestinationMar"> Destination Marriage
                             </p>
                         </label>
 
@@ -664,7 +660,7 @@
                 <div class="row">
                     <div class="col-12" style="display:none;" id="marriageplacetwo">
                         <div style="display: block;">
-                            <div class="col-6 Marriagetypetwo" style="margin-top:20px;display: none;" id="Normaltwo">
+                            <div class="col-6 Marriagetypetwo" style="margin-top:20px;display: none;" id="NormalMar">
                                 <div class="dropdown" style="display: block;">
                                     <ul id="menu">
                                         <li class="parent"><a href="#">Choose Place's for Normal marriage </a>
@@ -684,7 +680,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-6 Marriagetypetwo" style="margin-top:20px;display: none;" id="Richtwo">
+                            <div class="col-6 Marriagetypetwo" style="margin-top:20px;display: none;" id="RichMar">
                                 <div class="dropdown" style="display: block;">
                                     <ul id="menu">
                                         <li class="parent"><a href="#">Choose Place's for Rich marriage </a>
@@ -704,7 +700,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-6 Marriagetypetwo" style="margin-top:20px;display: none;" id="Luxurytwo">
+                            <div class="col-6 Marriagetypetwo" style="margin-top:20px;display: none;" id="LuxuryMar">
                                 <div class="dropdown" style="display: block;">
                                     <ul id="menu">
                                         <li class="parent"><a href="#">Choose Place's for Luxury marriage </a>
@@ -725,7 +721,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-6 Marriagetypetwo" style="margin-top:20px;display: none;" id="Destinationtwo">
+                            <div class="col-6 Marriagetypetwo" style="margin-top:20px;display: none;" id="DestinationMar">
                                 <div class="dropdown" style="display: block;">
                                     <ul id="menu">
                                         <li class="parent"><a href="#">Choose Place's for Destination marriage </a>
