@@ -114,8 +114,8 @@ if (isset($_POST['key'])) {
           </form>
         </div>
       </div>
-    </div>';
-      echo $markup;
+        </div>';
+          echo $markup;
     }
     if ($row['goal'] == 'education') {
       $markup = '   <div class="container">
@@ -182,10 +182,10 @@ if (isset($_POST['key'])) {
                     <input type="text" style="font-size:19px;text-align: center;" class="form-control form-control-sm" id="secfuturevalueEdu" value="' . $decode['secondchildfuturevalue'] . '" />
                   </div>
 
-                <div class="mb-3 col-5">
-                <h3 class="inputans">SIP Required</h3>
-                  <input type="text" style="font-size:19px;text-align: center;" class="form-control form-control-sm" id="SIPsecond" value="' . $decode['secondchildSIP'] . '" readonly="true" />
-                </div>';
+                  <div class="mb-3 col-5">
+                    <h3 class="inputans">SIP Required</h3>
+                    <input type="text" style="font-size:19px;text-align: center;" class="form-control form-control-sm" id="SIPsecond" value="' . $decode['secondchildSIP'] . '" readonly="true" />
+                  </div>';
               }
 
                   $markup .= '  <div class="mb-3 col-6">
@@ -198,7 +198,6 @@ if (isset($_POST['key'])) {
         </div>';
                   echo $markup;
     }
-
     if ($row['goal'] == 'vacation') {
       $markup = '
       <div class="container">
@@ -257,83 +256,83 @@ if (isset($_POST['key'])) {
                     <input type="hidden" name="id" value="' . $id . '">  
                     <ins><h2 style="text-align:center;">My Dream Marriage</h2></ins>
 
-                        <div class="mb-3 col-6">
-                          <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Goal</h3>
-                          <input type="text" class="form-control form-control-sm" style="font-size:16px;text-transform: capitalize;" id="goal" value= "' . $row['goal'] . '" disabled readonly>
-                        </div>
+                        
+                    <label class="col-5 labels">My Goal</label>
+                    <input type="text" class="col-5 mb-3 imp_disabled" id="goal" value= "' . $row['goal'] . '" disabled readonly>
+                        
 
-                        <div class="mb-3 col-6">
-                          <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Child Name</h3>
-                          <input type="text" class="form-control form-control-sm" style="font-size:16px;" id="child_name" value= "' . $decode['childname'] . '" disabled readonly>
-                        </div>
+                        
+                    <label class="col-5 labels">Child Name</label>
+                          <input type="text" class="col-5 mb-3 imp_disabled" id="child_name" value= "' . $decode['childname'] . '" disabled readonly>
+                        
 
-                        <div class="mb-3 col-6">
-                          <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Child Age</h3>
-                          <input type="text" class="form-control form-control-sm" style="font-size:16px;" name="current_age" id="child_age" value= "' . $decode['currentagechild'] . '">
-                        </div>
+                        
+                          <label class="col-5 labels">Child Age</label>
+                          <input type="text" class="col-5 mb-3 imp" name="current_age" id="child_age" value= "' . $decode['currentagechild'] . '">
+                        
                       
-                        <div class="mb-3 col-6">
-                          <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Future Age</h3>
-                          <input type="text" class="form-control form-control-sm" style="font-size:16px;" name="marraige_age" id="future_ageMar" value= "' . $decode['futureage'] . '">
-                        </div>
+                        
+                          <label class="col-5 labels">Future Age</label>
+                          <input type="text" class="col-5 mb-3 imp" name="marraige_age" id="future_ageMar" value= "' . $decode['futureage'] . '">
+                        
                       
 
-                        <div class="mb-3 col-6">
-                          <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Inflation Rate</h3>
-                          <input type="text" class="form-control form-control-sm" style="font-size:16px;" name="marriage_inflation" id="inflationMar" value= "' . $decode['inflation'] . '" >
+                        
+                        
+                          <label class="col-5 labels">Marriage Type</label>
+                          <input type="text" class="col-5 mb-3 imp" name="marrraige_type" id="marrraige_type" value= "' . $decode['mariage'] . '"readonly="true">
+                       
+
+                        
+                          <label class="col-5 labels">Current Cost</label>
+                          <input type="text" class="col-5 mb-3 imp" name="marriage_current" id="current_costMar" value= "' . $decode['currentcost'] . '">
+                       
+
+                        <label class="col-5 labels">Inflation Rate</label>
+                        <input type="text" class="col-5 mb-5 imp" name="marriage_inflation" id="inflationMar" value= "' . $decode['inflation'] . '" >
+                      
+
+                        <div class="mb-3 col-5" style="margin-left:8%;">
+                          <h3 class="inputans">Future Value</h3>
+                          <input type="text" style="font-size:19px;text-align: center;" class="form-control form-control-sm mb-3" name="marraige_value" id="furture_valueMar" value= "' . $decode['ansinputs'] . '" disabled>
                         </div>
 
-                        <div class="mb-3 col-6">
-                          <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Marriage Type</h3>
-                          <input type="text" class="form-control form-control-sm" style="font-size:16px;" name="marrraige_type" id="marrraige_type" value= "' . $decode['mariage'] . '"readonly="true">
-                        </div>
-
-                        <div class="mb-3 col-6">
-                          <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Current Cost</h3>
-                          <input type="text" class="form-control form-control-sm" style="font-size:16px;" name="marriage_current" id="current_costMar" value= "' . $decode['currentcost'] . '">
-                        </div>
-
-                        <div class="mb-3 col-6">
-                          <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Future Value</h3>
-                          <input type="text" class="form-control form-control-sm" style="font-size:16px;" name="marraige_value" id="furture_valueMar" value= "' . $decode['ansinputs'] . '" disabled>
-                        </div>
-
-                        <div class="mb-3 col-6">
-                          <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">SIP Required</h3>
-                          <input type="text" class="form-control form-control-sm" style="font-size:16px;" name="marriage_sip" id="sip_valueMar" value= "' . $decode['sipvalue'] . '" disabled>
+                        <div class="mb-3 col-5">
+                          <h3 class="inputans">SIP Required</h3>
+                          <input type="text" style="font-size:19px;text-align: center;" class="form-control form-control-sm mb-3" name="marriage_sip" id="sip_valueMar" value= "' . $decode['sipvalue'] . '" disabled>
                         </div>';
       if (array_key_exists('secondchildage-mar', $decode) && array_key_exists('secondfutureage-mar', $decode) && array_key_exists('currentcost-mar', $decode) && array_key_exists('inflation-mar', $decode) && array_key_exists('sipvalueMar', $decode) && array_key_exists('ansinputsMar', $decode) && array_key_exists('mariagetype', $decode)) {
-        $markup .= '<h4>Second</h4><div class="mb-3 col-6">
-        <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;"> Second Child Name</h3>
-           <input type="text" style="font-size:19px;" class="form-control form-control-sm"  value="' . $decode['secondchildname-mar'] . '" readonly="true" />
+        $markup .= '<ins><h4>Second Child</h4></ins><br>
+       
+           <label class="col-5 labels"> Second Child Name</label>
+           <input type="text"  class="col-5 mb-3 imp_disabled"  value="' . $decode['secondchildname-mar'] . '" readonly="true" />
+       
+       
+           <label class="col-5 labels">Second Child Age</label>
+           <input type="number" class="col-5 mb-3 imp" id="sec_marri_age" value="' . $decode['secondchildage-mar'] . '" readonly="true" />
+       
+           <label class="col-5 mb-3 labels">Marriage Type of second child</label>
+           <input type="text" class="col-5 mb-3 imp" class="form-control form-control-sm" id="sec_marri_martype" value="' . $decode['mariagetype'] . '" readonly="true" />
+       
+           <label class="col-5 labels">Future Age</label>
+           <input type="number" class="col-5 mb-3 imp" id="sec_marri_future_age" value="' . $decode['secondfutureage-mar'] . '" />
+      
+           
+        <label class="col-5 labels">Current Cost</label>
+           <input type="number" class="col-5 mb-3 imp" id="sec_marri_current" value="' . $decode['currentcost-mar'] . '" />
+       
+       
+        <label class="col-5 labels">Future Inflation</label>
+           <input type="number" class="col-5 mb-5 imp" id="sec_marri_inflation" value="' . $decode['inflation-mar'] . '" />
+       
+        <div class="mb-3 col-5" style="margin-left:8%;">
+         <h3 class="inputans">Future Value</h3>
+           <input type="text" style="font-size:19px;text-align: center;" class="form-control form-control-sm" id="sec_marri_future" value="' . $decode['ansinputsMar'] . '" readonly="true" />
         </div>
-        <div class="mb-3 col-6">
-        <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Second Child Age</h3>
-           <input type="number" style="font-size:19px;" class="form-control form-control-sm" id="sec_marri_age" value="' . $decode['secondchildage-mar'] . '" readonly="true" />
-        </div>
-        <div class="mb-3 col-6">
-        <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Future Age</h3>
-           <input type="number" style="font-size:19px;" class="form-control form-control-sm" id="sec_marri_future_age" value="' . $decode['secondfutureage-mar'] . '" readonly="true" />
-        </div>
-        <div class="mb-3 col-6">
-        <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Marriage Type of second child</h3>
-           <input type="text" style="font-size:19px;text-transfrom:capitalize" class="form-control form-control-sm" id="sec_marri_martype" value="' . $decode['mariagetype'] . '" readonly="true" />
-        </div>
-        <div class="mb-3 col-6">
-        <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Current Cost</h3>
-           <input type="number" style="font-size:19px;" class="form-control form-control-sm" id="sec_marri_current" value="' . $decode['currentcost-mar'] . '" readonly="true" />
-        </div>
-        <div class="mb-3 col-6">
-        <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Future Value</h3>
-           <input type="number" style="font-size:19px;" class="form-control form-control-sm" id="sec_marri_future" value="' . $decode['ansinputsMar'] . '" readonly="true" />
-        </div>
-        <div class="mb-3 col-6">
-        <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Future Inflation</h3>
-           <input type="number" style="font-size:19px;" class="form-control form-control-sm" id="sec_marri_inflation" value="' . $decode['inflation-mar'] . '" readonly="true" />
-        </div>
-        <div class="mb-3 col-6">
-        <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">SIP Required</h3>
-           <input type="number" style="font-size:19px;" class="form-control form-control-sm" id="sec_marri_sip" value="' . $decode['sipvalueMar'] . '" readonly="true" />
+
+        <div class="mb-3 col-5">
+         <h3 class="inputans">SIP Required</h3>
+           <input type="text" style="font-size:19px;text-align: center;" class="form-control form-control-sm" id="sec_marri_sip" value="' . $decode['sipvalueMar'] . '" readonly="true" />
         </div>';
       }
 
@@ -355,53 +354,49 @@ if (isset($_POST['key'])) {
           <div class="card-body">
               <form class="row" id="retirement_form">
                 <input type="hidden" name="id" value="' . $id . '">  
+                <ins><h2 style="text-align:center;">My Retirement</h2></ins>
+                    
+                    <label class="col-5 labels">My Goal</label>
+                      <input type="text" class="col-5 mb-3 imp_disabled" id="goal" value= "' . $row['goal'] . '" disabled readonly>
+                    
 
-                  <div class="mb-3 col-6">
-                    <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Email</h3>
-                    <input type="email" class="form-control form-control-sm"style="font-size:16px" id="email" value= "' . $row['email'] . '" disabled readonly>
-                  </div>
+                    
+                        <label class="col-5 labels">Current Age</label>
+                      <input type="text" class="col-5 mb-3 imp" id="present_age" value= "' . $decode['currentage'] . '">
+                    
 
-                    <div class="mb-3 col-6">
-                    <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Goal</h3>
-                      <input type="text" class="form-control form-control-sm" style="font-size:16px;text-transform: capitalize;" id="goal" value= "' . $row['goal'] . '" disabled readonly>
-                    </div>
-
-                    <div class="mb-3 col-6">
-                        <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Current Age</h3>
-                      <input type="text" class="form-control form-control-sm" style="font-size:16px;" id="present_age" value= "' . $decode['currentage'] . '" disabled readonly>
-                    </div>
-
-                  <div class="mb-3 col-6">
-                    <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Retirement Age</h3>
-                    <input type="text" class="form-control form-control-sm" style="font-size:16px;" name="retire_age" id="retirement_age" value= "' . $decode['retirementage'] . '">
-                  </div>
-
-                  <div class="mb-3 col-6">
-                    <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Rate of Return After Retirement</h3>
-                    <input type="text" class="form-control form-control-sm" style="font-size:16px;" name="retire_rate" id="rateofRet" value= "' . $decode['rateretire'] . '" >
-                  </div>
-
-                    <div class="mb-3 col-6">
-                      <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Life Expectancy</h3>
-                      <input type="text" class="form-control form-control-sm" style="font-size:16px;" name="retire_exp" id="lifeexp" value= "' . $decode['lifeexp'] . '">
-                    </div>
-                    <div class="mb-3 col-6">
-                      <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Monthly Expenses</h3>
-                      <input type="text" class="form-control form-control-sm" style="font-size:16px;" name="retire_expense" id="monthlyexp" value= "' . $decode['monthlyexp'] . '">
-                    </div>
                   
-                    <div class="mb-3 col-6">
-                      <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Inflation Rate</h3>
-                      <input type="text" class="form-control form-control-sm" style="font-size:16px;" name="retire_inflation" id="inflationRet" value= "' . $decode['inflation'] . '">
+                    <label class="col-5 labels">Retirement Age</label>
+                    <input type="text" class="col-5 mb-3 imp" name="retire_age" id="retirement_age" value= "' . $decode['retirementage'] . '">
+                  
+
+                  
+                    <label class="col-5 mb-3 labels">Rate of Return After Retirement</label>
+                    <input type="text" class="col-5 mb-3 imp" name="retire_rate" id="rateofRet" value= "' . $decode['rateretire'] . '" >
+                  
+
+                    
+                      <label class="col-5 labels">Life Expectancy</label>
+                      <input type="text" class="col-5 mb-3 imp" name="retire_exp" id="lifeexp" value= "' . $decode['lifeexp'] . '">
+                    
+                    
+                       <label class="col-5 labels">Monthly Expenses</label>
+                      <input type="text" class="col-5 mb-3 imp" name="retire_expense" id="monthlyexp" value= "' . $decode['monthlyexp'] . '">
+                    
+                  
+                    
+                       <label class="col-5 labels">Inflation Rate</label>
+                      <input type="text" class="col-5 mb-5 imp" name="retire_inflation" id="inflationRet" value= "' . $decode['inflation'] . '">
+                    
+
+                    <div class="mb-3 col-5" style="margin-left:8%;">
+                      <h3 class="inputans"> Future Value</h3>
+                      <input type="text" class="form-control form-control-sm" style="font-size:19px;text-align: center;" name="retire_value" id="furture_valueRet" value= "' . $decode['ansinputs'] . '" disabled>
                     </div>
 
-                    <div class="mb-3 col-6">
-                      <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">Future Value</h3>
-                      <input type="text" class="form-control form-control-sm" style="font-size:16px;" name="retire_value" id="furture_valueRet" value= "' . $decode['ansinputs'] . '" disabled>
-                    </div>
-                    <div class="mb-3 col-6">
-                      <h3 style="background-color: gray;text-align:center;padding:6px;border-radius:5px;padding:6px;border-radius:5px;color:white; border: 1px solid black;font-size:22px;">SIP Required</h3>            
-                      <input type="text" class="form-control form-control-sm" style="font-size:16px;" name="retire_sip" id="sip_valueRet" value= "' . $decode['sipvalue'] . '" disabled>
+                    <div class="mb-3 col-5">
+                      <h3 class="inputans"> SIP Required</h3>            
+                      <input type="text" class="form-control form-control-sm" style="font-size:19px;text-align: center;" name="retire_sip" id="sip_valueRet" value= "' . $decode['sipvalue'] . '" disabled>
                     </div>
                     <div class="col-md-8">
                       <button class = "mt-3 btn btn-primary btn-sm" id="updation">Update</button>
@@ -614,116 +609,148 @@ if (isset($_POST['showId'])) {
       echo $markup;
     }
     if ($row['goal'] == "vacation") {
-      $markup = '<div class="card"><div class="card-body ">
-<h6 class="bg-secondary text-white rounded p-2">Goal</h6>
- <p class="fs-6 ">Your Goal :- <span class="text-primary">' . $row['goal'] . '</span></p>
- <h6 class="bg-secondary text-white rounded p-2"> Vacation Details</h6>
- <p class="fs-6 ">Vacation City :- <span class="text-primary">' . $show_decode['vacationplace'] . '</span></p>
- <h6 class="bg-secondary text-white rounded p-2">Valuation Details</h6>
- <p class="fs-6 ">Current Cost of Vacation :- <span class="text-primary">' . $show_decode['current'] . '</span></p>
- <p class="fs-6 ">Time Horizon (In Years) :- <span class="text-primary">' . $show_decode['futureyear'] . '</span></p>
- <p class="fs-6 ">Inflation :- <span class="text-primary">' . $show_decode['infla'] . '</span></p>
- <p class="fs-6 ">Future Value :- <span class="text-primary">' . $show_decode['ansinputs'] . '</span></p>
- <p class="fs-6 ">Sip Value :- <span class="text-primary">' . $show_decode['sipvalue'] . '</span></p>
- </div></div>';
+      $markup = '<div class="card"><div class="card-body " style="border:1px solid #232366;">
+      <ins><h3 style="text-align:center;">Our Finscription</h3></ins>
+      <p class="fs-6 "><span class="text-primary">' . $_SESSION["user_full_name"] . '</span></p>
+      <h5 class="text-white rounded p-0" style="background-color: #232366;text-align: center;">Goal Details</h5>
+      <p class="fs-6 ">Goal Name :-My <span class="text-primary">' . $row['goal'] . '</span></p>
+      <p class="fs-6 ">Vacation City :- <span class="text-primary" style="text-transform:capitalize;">' . $show_decode['vacationplace'] . '</span></p>
+      <h5 class="text-white rounded p-0" style="background-color: #232366;text-align: center;"> Vacation Details</h5>
+      <p class="fs-6 ">Current Cost of Vacation :- <span class="text-primary">' . $show_decode['current'] . '</span></p>
+      <p class="fs-6 ">Years To Achieve :- <span class="text-primary">' . $show_decode['futureyear'] . '</span></p>
+      <p class="fs-6 ">Inflation :- <span class="text-primary">' . $show_decode['infla'] . '</span></p>
+      <h5 class="text-white rounded p-0" style="background-color: #232366;text-align: center;">Result</h5>
+      <p class=" " style="font-size:21px;">You need to Acumulate :- ₹<span class="text-primary">' . $show_decode['ansinputs'] . '</span></p>
+      <p class=" " style="font-size:21px;">To achieve your Goal Start SIP of :- ₹<span class="text-primary">' . $show_decode['sipvalue'] . '</span></p>
+      <p style="font-size:16px;text-align:center;">Worried About the <b>NUMBERS ?</b> <br> Please Don"t be <br>  <b>Contact Us:- 9999999999</b> </p>
+
+      </div></div>';
       echo $markup;
     }
     if ($row['goal'] == "house") {
-      $markup = '<div class="card"><div class="card-body ">
-<h6 class="bg-secondary text-white rounded p-2">Goal</h6>
- <p class="fs-6 ">Your Goal :- <span class="text-primary">' . $row['goal'] . '</span></p>
- <h6 class="bg-secondary text-white rounded p-2">House Details</h6>
- <p class="fs-6 ">House City :- <span class="text-primary">' . $show_decode['city'] . '</span></p>
- <h6 class="bg-secondary text-white rounded p-2">Valuation Details</h6>
- <p class="fs-6 ">Current Cost of Vacation :- <span class="text-primary">' . $show_decode['currentcost'] . '</span></p>
- <p class="fs-6 ">Time Horizon (In Years) :- <span class="text-primary">' . $show_decode['futureage'] . '</span></p>
- <p class="fs-6 ">Inflation :- <span class="text-primary">' . $show_decode['inflation'] . '</span></p>
- <p class="fs-6 ">Future Value :- <span class="text-primary">' . $show_decode['ansinputs'] . '</span></p>
- <p class="fs-6 ">Sip Value :- <span class="text-primary">' . $show_decode['sipvalue'] . '</span></p>
- </div></div>';
+      $markup = '<div class="card"><div class="card-body " style="border:1px solid #232366;">
+      <ins><h3 style="text-align:center;">Our Finscription</h3></ins>
+      <p class="fs-6 "><span class="text-primary">' . $_SESSION["user_full_name"] . '</span></p>
+      <h5 class="text-white rounded p-0" style="background-color: #232366;text-align: center;">Goal Details</h5>
+      <p class="fs-6 ">Goal Name:-My <span class="text-primary">' . $row['goal'] . '</span></p>
+      <p class="fs-6 ">House City :- <span class="text-primary" style="text-transform: capitalize;">' . $show_decode['city'] . '</span></p>
+      <h5 class="text-white rounded p-0" style="background-color: #232366;text-align: center;">House Details</h5>
+      <p class="fs-6 ">Current Cost of House :- <span class="text-primary">' . $show_decode['currentcost'] . '</span></p>
+      <p class="fs-6 ">Years to Achieve :- <span class="text-primary">' . $show_decode['futureage'] . '</span></p>
+      <p class="fs-6 ">Inflation :- <span class="text-primary">' . $show_decode['inflation'] . '</span></p>
+      <h5 class="text-white rounded p-0" style="background-color: #232366;text-align: center;">Result</h5>
+      <p class=" " style="font-size:21px;">You need to Acumulate :- ₹<span class="text-primary">' . $show_decode['ansinputs'] . '</span></p>
+      <p class=" " style="font-size:21px;">To achieve your Goal Start SIP of :- ₹<span class="text-primary">' . $show_decode['sipvalue'] . '</span></p>
+      <p style="font-size:16px;text-align:center;">Worried About the <b>NUMBERS ?</b> <br> Please Don"t be <br>  <b>Contact Us:- 9999999999</b> </p>
+
+      </div></div>';
       echo $markup;
     }
     if ($row['goal'] == "retirement") {
-      $markup = '<div class="card"><div class="card-body ">
-<h6 class="bg-secondary text-white rounded p-2">Goal</h6>
- <p class="fs-6 ">Your Goal :- <span class="text-primary">' . $row['goal'] . '</span></p>
- <h6 class="bg-secondary text-white rounded p-2"> Retirement Details</h6>
- <p class="fs-6 ">Current Age :- <span class="text-primary">' . $show_decode['currentage'] . '</span></p>
- <p class="fs-6 ">Retirement Age :- <span class="text-primary">' . $show_decode['retirementage'] . '</span></p>
- <p class="fs-6 ">Life Expectancy :- <span class="text-primary">' . $show_decode['lifeexp'] . '</span></p>
- <p class="fs-6 ">Monthaly Expenses :- <span class="text-primary">' . $show_decode['monthlyexp'] . '</span></p>
- <h6 class="bg-secondary text-white rounded p-2">Valuation Details</h6>
- <p class="fs-6 ">Rate of Retire :- <span class="text-primary">' . $show_decode['rateretire'] . '</span></p>
- <p class="fs-6 ">Inflation :- <span class="text-primary">' . $show_decode['inflation'] . '</span></p>
- <p class="fs-6 ">Future Value :- <span class="text-primary">' . $show_decode['ansinputs'] . '</span></p>
- <p class="fs-6 ">Sip Value :- <span class="text-primary">' . $show_decode['sipvalue'] . '</span></p>
- </div></div>';
+      $markup = '<div class="card"><div class="card-body " style="border:1px solid #232366;">
+      <ins><h3 style="text-align:center;">Our Finscription</h3></ins>
+      <p class="fs-6 "><span class="text-primary">' . $_SESSION["user_full_name"] . '</span></p>
+      <h5 class="text-white rounded p-0" style="background-color: #232366;text-align: center;">Goal Details</h5>
+      <p class="fs-6 ">Goal Name:-My <span class="text-primary">' . $row['goal'] . '</span></p>
+      <h5 class="text-white rounded p-0" style="background-color: #232366;text-align: center;">House Details</h5>
+      <p class="fs-6 ">Current Age :- <span class="text-primary">' . $show_decode['currentage'] . '</span></p>
+      <p class="fs-6 ">Retirement Age :- <span class="text-primary">' . $show_decode['retirementage'] . '</span></p>
+      <p class="fs-6 ">Life Expectancy :- <span class="text-primary">' . $show_decode['lifeexp'] . '</span></p>
+      <p class="fs-6 ">Monthaly Expenses :- <span class="text-primary">' . $show_decode['monthlyexp'] . '</span></p>
+      <p class="fs-6 ">Rate of Retire :- <span class="text-primary">' . $show_decode['rateretire'] . '</span></p>
+      <p class="fs-6 ">Inflation :- <span class="text-primary">' . $show_decode['inflation'] . '</span></p>
+      <h5 class="text-white rounded p-0" style="background-color: #232366;text-align: center;">Result</h5>
+      <p style="font-size:21px;">You need to Acumulate :- ₹<span class="text-primary">' . $show_decode['ansinputs'] . '</span></p>
+      <p class=" " style="font-size:21px;">To achieve your Goal Start SIP of :- ₹<span class="text-primary">' . $show_decode['sipvalue'] . '</span></p>
+      <p style="font-size:16px;text-align:center;">Worried About the <b>NUMBERS ?</b> <br> Please Don"t be <br>  <b>Contact Us:- 9999999999</b> </p>
+
+      </div></div>';
       echo $markup;
     }
     if ($row['goal'] == "marriage") {
-      $markup = '<div class="card"><div class="card-body ">
-<h6 class="bg-secondary text-white rounded p-2">Goal</h6>
- <p class="fs-6 ">Your Goal :- <span class="text-primary">' . $row['goal'] . '</span></p>
- <h6 class="bg-secondary text-white rounded p-2"> Marraige Details</h6>
- <p class="fs-6 ">Child Name :- <span class="text-primary">' . $show_decode['childname'] . '</span></p>
- <p class="fs-6 ">Current Age :- <span class="text-primary">' . $show_decode['currentagechild'] . '</span></p>
- <p class="fs-6 ">Marraige Age :- <span class="text-primary">' . $show_decode['futureage'] . '</span></p>
- <p class="fs-6 ">Marraige Type :- <span class="text-primary">' . $show_decode['mariage'] . '</span></p>
- <h6 class="bg-secondary text-white rounded p-2">Valuation Details</h6>
- <p class="fs-6 ">Current Cost :- <span class="text-primary">' . $show_decode['currentcost'] . '</span></p>
- <p class="fs-6 ">Inflation :- <span class="text-primary">' . $show_decode['inflation'] . '</span></p>
- <p class="fs-6 ">Future Value :- <span class="text-primary">' . $show_decode['ansinputs'] . '</span></p>
- <p class="fs-6 ">Sip Value :- <span class="text-primary">' . $show_decode['sipvalue'] . '</span></p>';
-      if (array_key_exists('secondchildage-mar', $show_decode) && array_key_exists('secondfutureage-mar', $show_decode) && array_key_exists('currentcost-mar', $show_decode) && array_key_exists('inflation-mar', $show_decode) && array_key_exists('sipvalueMar', $show_decode) && array_key_exists('ansinputsMar', $show_decode)) {
-        $markup .= '<h6 class="bg-secondary text-white rounded p-2">Second Child Details</h6>
- <p class="fs-6 "> Current Age:- <span class="text-primary">' . $show_decode['secondchildage-mar'] . '</span></p>
- <p class="fs-6 ">Marriage Age :- <span class="text-primary">' . $show_decode['econdfutureage-mar'] . '</span></p>
- <p class="fs-6 ">CurrentCost :- <span class="text-primary">' . $show_decode['currentcost-mar'] . '</span></p>
- <p class="fs-6 ">Inflation :- <span class="text-primary">' . $show_decode['inflation-mar'] . '</span></p>
- <p class="fs-6 ">Future Value :- <span class="text-primary">' . $show_decode['ansinputsMar'] . '</span></p>
- <p class="fs-6 ">Sip :- <span class="text-primary">' . $show_decode['sipvalueMar'] . '</span></p>
- </div></div>';
-      }
-      echo $markup;
+      $markup = '<div class="card"><div class="card-body" style="border:1px solid #232366;">
+      <ins><h3 style="text-align:center;">Our Finscription</h3></ins>
+      <p class="fs-6 "><span class="text-primary">' . $_SESSION["user_full_name"] . '</span></p>
+      <h5 class="text-white rounded p-0" style="background-color: #232366;text-align: center;">Goal Details</h5>
+        <p class="fs-6 ">Goal Name:- <span class="text-primary">' . $row['goal'] . '</span></p>
+        <h5 class="text-white rounded p-0" style="background-color: #232366;text-align: center;">Marriage Details</h5>
+        <p class="fs-6 ">Child Name :- <span class="text-primary">' . $show_decode['childname'] . '</span></p>
+        <p class="fs-6 ">Current Age :- <span class="text-primary">' . $show_decode['currentagechild'] . '</span></p>
+        <p class="fs-6 ">Marraige Age :- <span class="text-primary">' . $show_decode['futureage'] . '</span></p>
+        <p class="fs-6 ">Marraige Type :- <span class="text-primary">' . $show_decode['mariage'] . '</span></p>
+        <p class="fs-6 ">Current Cost :- <span class="text-primary">' . $show_decode['currentcost'] . '</span></p>
+        <p class="fs-6 ">Inflation :- <span class="text-primary">' . $show_decode['inflation'] . '</span></p>
+        <h5 class="text-white rounded p-0" style="background-color: #232366;text-align: center;">Result</h5>
+        <p style="font-size:21px;">You need to Acumulate :- ₹<span class="text-primary">' . $show_decode['ansinputs'] . '</span></p>
+        <p style="font-size:21px;">To achieve your Goal Start SIP of :- ₹<span class="text-primary">' . $show_decode['sipvalue'] . '</span></p>
+        <p style="font-size:16px;text-align:center;">Worried About the <b>NUMBERS ?</b> <br> Please Don"t be <br>  <b>Contact Us:- 9999999999</b> </p>';
+
+          if (array_key_exists('secondchildage-mar', $show_decode) && array_key_exists('secondfutureage-mar', $show_decode) && array_key_exists('currentcost-mar', $show_decode) && array_key_exists('inflation-mar', $show_decode) && array_key_exists('sipvalueMar', $show_decode) && array_key_exists('ansinputsMar', $show_decode)) {
+            $markup .= '<h5 class="bg-secondary rounded p-0" style="background-color: #232366;text-align: center;">Second Child Details</h5>
+            <h5 class="text-white rounded p-0" style="background-color: #232366;text-align: center;">Goal Details</h5>
+            <p class="fs-6 "> Current Age:- <span class="text-primary">' . $show_decode['secondchildage-mar'] . '</span></p>
+            <p class="fs-6 ">Marriage Age :- <span class="text-primary">' . $show_decode['secondfutureage-mar'] . '</span></p>
+            <p class="fs-6 ">CurrentCost :- <span class="text-primary">' . $show_decode['currentcost-mar'] . '</span></p>
+            <p class="fs-6 ">Inflation :- <span class="text-primary">' . $show_decode['inflation-mar'] . '</span></p>
+            <h5 class="text-white rounded p-0" style="background-color: #232366;text-align: center;">Result</h5>
+            <p style="font-size:21px;">You need to Acumulate :- ₹<span class="text-primary">' . $show_decode['ansinputsMar'] . '</span></p>
+            <p style="font-size:21px;">To achieve your Goal Start SIP of :- ₹<span class="text-primary">' . $show_decode['sipvalueMar'] . '</span></p>
+            <p style="font-size:16px;text-align:center;">Worried About the <b>NUMBERS ?</b> <br> Please Don"t be <br>  <b>Contact Us:- 9999999999</b> </p>
+
+            </div></div>';
+            }
+            echo $markup;
     }
     if ($row['goal'] == "education") {
-      $markup = '<div class="card"><div class="card-body ">
-<h6 class="bg-secondary text-white rounded p-2">Goal</h6>
- <p class="fs-6 ">Your Goal :- <span class="text-primary">' . $row['goal'] . '</span></p>
- <h6 class="bg-secondary text-white rounded p-2"> Retirement Details</h6>
- <p class="fs-6 ">Child Name :- <span class="text-primary">' . $show_decode['childname'] . '</span></p>
- <p class="fs-6 ">Current Age :- <span class="text-primary">' . $show_decode['age'] . '</span></p>
- <p class="fs-6 ">Future Age :- <span class="text-primary">' . $show_decode['futureages'] . '</span></p>
- <h6 class="bg-secondary text-white rounded p-2">Valuation Details</h6>
- <p class="fs-6 ">Current Cost :- <span class="text-primary">' . $show_decode['currentcost'] . '</span></p>
- <p class="fs-6 ">Inflation :- <span class="text-primary">' . $show_decode['inflation'] . '</span></p>
- <p class="fs-6 ">Future Value :- <span class="text-primary">' . $show_decode['ansinputs'] . '</span></p>
- <p class="fs-6 ">Sip Value :- <span class="text-primary">' . $show_decode['sipvalue'] . '</span></p>
-';
+      $markup = '<div class="card"><div class="card-body " style="border:1px solid #232366;">
+      <ins><h3 style="text-align:center;">Our Finscription</h3></ins>
+      <p class="fs-6 "><span class="text-primary">' . $_SESSION["user_full_name"] . '</span></p>
+      <h5 class="text-white rounded p-0" style="background-color: #232366;text-align: center;">Goal Details</h5>
+      <p class="fs-6 ">Goal Name:-My <span class="text-primary">' . $row['goal'] . '</span></p>
+     <h5 class="text-white rounded p-0" style="background-color: #232366;text-align: center;"> Retirement Details</h5>
+      <p class="fs-6 ">Child Name :- <span class="text-primary">' . $show_decode['childname'] . '</span></p>
+      <p class="fs-6 ">Current Age :- <span class="text-primary">' . $show_decode['age'] . '</span></p>
+      <p class="fs-6 ">Future Age :- <span class="text-primary">' . $show_decode['futureages'] . '</span></p>
+      <p class="fs-6 ">Current Cost :- <span class="text-primary">' . $show_decode['currentcost'] . '</span></p>
+      <p class="fs-6 ">Inflation :- <span class="text-primary">' . $show_decode['inflation'] . '</span></p>
+      <h5 class="text-white rounded p-0" style="background-color: #232366;text-align: center;">Result</h5>
+      <p style="font-size:21px;">You need to Acumulate :- ₹<span class="text-primary">' . $show_decode['ansinputs'] . '</span></p>
+      <p style="font-size:21px;">To achieve your Goal Start SIP of :- ₹<span class="text-primary">' . $show_decode['sipvalue'] . '</span></p>
+      <p style="font-size:16px;text-align:center;">Worried About the <b>NUMBERS ?</b> <br> Please Don"t be <br>  <b>Contact Us:- 9999999999</b> </p>
+
+      ';
       if (array_key_exists('secondchildname', $show_decode) && array_key_exists('secondchildage', $show_decode) && array_key_exists('secondfutureage', $show_decode) && array_key_exists('secondcurrentcost', $show_decode)) {
-        $markup .= '<h6 class="bg-secondary text-white rounded p-2">Second Child Details</h6>
+        $markup .= '<h5 class="bg-secondary rounded p-0" style="background-color: #232366;text-align: center;">Second Child Details</h5>
+        <h5 class="text-white rounded p-0" style="background-color: #232366;text-align: center;">Goal Details</h5>
         <p class="fs-6 ">Child Name :- <span class="text-primary">' . $show_decode['secondchildname'] . '</span></p>
         <p class="fs-6 ">Current Age :- <span class="text-primary">' . $show_decode['secondchildage'] . '</span></p>
         <p class="fs-6 ">Future Age :- <span class="text-primary">' . $show_decode['secondfutureage'] . '</span></p>
         <p class="fs-6 ">Current Cost :- <span class="text-primary">' . $show_decode['secondcurrentcost'] . '</span></p>
-        <p class="fs-6 ">Future Value :- <span class="text-primary">' . $show_decode['secondchildfuturevalue'] . '</span></p>
-        <p class="fs-6 ">Sip Required :- <span class="text-primary">' . $show_decode['secondchildSIP'] . '</span></p>
+        <p style="font-size:21px;">You need to Acumulate :- ₹<span class="text-primary">' . $show_decode['secondchildfuturevalue'] . '</span></p>
+        <p style="font-size:21px;">To achieve your Goal Start SIP of :- ₹<span class="text-primary">' . $show_decode['SIPsecond'] . '</span></p>
+        <p style="font-size:16px;text-align:center;">Worried About the <b>NUMBERS ?</b> <br> Please Don"t be <br>  <b>Contact Us:- 9999999999</b> </p>
+
         </div></div>';
       }
       echo $markup;
     }
     if ($row['goal'] == "others") {
-      $markup = '<div class="card"><div class="card-body ">
-<h6 class="bg-secondary text-white rounded p-2">Goal</h6>
- <p class="fs-6 ">Your Goal :- <span class="text-primary">' . $show_decode['goalname'] . '</span></p>
- <h6 class="bg-secondary text-white rounded p-2">Other Details</h6>
- <p class="fs-6 ">Current Cost of your Goal :- <span class="text-primary">' . $show_decode['currentcost'] . '</span></p>
- <p class="fs-6 ">How many time you want to achieve :- <span class="text-primary">' . $show_decode['futureage'] . '</span></p>
- <p class="fs-6 ">Inflation :- <span class="text-primary">' . $show_decode['inflation'] . '</span></p>
- <p class="fs-6 ">Future Value :- <span class="text-primary">' . $show_decode['ansinputs'] . '</span></p>
- <p class="fs-6 ">Sip Value :- <span class="text-primary">' . $show_decode['sipvalue'] . '</span></p>
- </div></div>';
-      echo $markup;
+      $markup = '<div class="card"><div class="card-body " style="border:1px solid #232366;">
+      <ins><h3 style="text-align:center;">Our Finscription</h3></ins>
+      <p class="fs-6 "><span class="text-primary">' . $_SESSION["user_full_name"] . '</span></p>
+      <h5 class="text-white rounded p-0" style="background-color: #232366;text-align: center;">Goal Details</h5>
+      <p class="fs-6 ">Goal Name:- <span class="text-primary">' . $show_decode['goalname'] . '</span></p>
+      <h5 class="text-white rounded p-0" style="background-color: #232366;text-align: center;">Other Details</h5>
+      <p class="fs-6 ">Current Cost of your Goal :- <span class="text-primary">' . $show_decode['currentcost'] . '</span></p>
+      <p class="fs-6 ">How many time you want to achieve :- <span class="text-primary">' . $show_decode['futureage'] . '</span></p>
+      <p class="fs-6 ">Inflation :- <span class="text-primary">' . $show_decode['inflation'] . '</span></p>
+      <h5 class="text-white rounded p-0" style="background-color: #232366;text-align: center;">Result</h5>
+      <p  style="font-size:21px;">You need to Acumulate :- ₹<span class="text-primary">' . $show_decode['ansinputs'] . '</span></p>
+      <p style="font-size:21px;">To achieve your Goal Start SIP of :- ₹<span class="text-primary">' . $show_decode['sipvalue'] . '</span></p>
+      <p style="font-size:16px;text-align:center;">Worried About the <b>NUMBERS ?</b> <br> Please Don"t be <br>  <b>Contact Us:- 9999999999</b> </p>
+
+      </div></div>';
+            echo $markup;
     }
   }
 }

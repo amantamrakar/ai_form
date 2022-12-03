@@ -588,6 +588,12 @@ if (mysqli_num_rows($result)) {
                                             <td class="text-center"><?php echo $decode['currentcost']  ?></td>
                                         <?php
                                         } ?>
+                                        <?php if ($data['goal'] == "others") {
+                                        ?>
+                                            <td class="text-center"><?php echo  $decode['futureage'] ?></td>
+                                            <td class="text-center"><?php echo  $decode['currentcost'] ?></td>
+                                        <?php
+                                        } ?>
                                         <td class="text-center"><?php echo $decode['ansinputs']  ?></td>
                                         <td class="text-center"><?php echo $decode['sipvalue']  ?></td>
                                         <td style="width:10%">
