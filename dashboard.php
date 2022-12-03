@@ -19,6 +19,7 @@ $register_result = mysqli_query($conn, $resgister_sql);
 if (mysqli_num_rows($register_result) > 0) {
     $row = mysqli_fetch_assoc($register_result);
     $user_name = $row['full_name'];
+    $_SESSION["user_full_name"] = $row['full_name'];
 }
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result)) {
@@ -56,6 +57,35 @@ if (mysqli_num_rows($result)) {
         color: #223C86;
         cursor: pointer;
     }
+    .labels 
+    {
+        font-size: 20px;
+        color: black;
+        text-align: center;
+        font-weight: 500;
+    }
+    .inputans {
+        background-color: #1a1b50;
+        text-align:center;
+        padding:6px;
+        border-radius:5px;
+        color:white;
+        border: 1px solid black;
+        font-size:22px;
+    }
+    .imp {
+        padding: 6px;
+        text-align: center;
+        text-transform: capitalize;
+        font-size:19px;
+    }
+    .imp_disabled{
+        padding: 6px;
+        text-align: center;
+        text-transform: capitalize;
+        font-size: 19px;
+        border:none;
+    }
 </style>
 <!DOCTYPE html>
 <html lang="en">
@@ -90,7 +120,7 @@ if (mysqli_num_rows($result)) {
                             </div>
                             <div class="col-12" style="color:black;font-size:21px;font-family: serif;">
                                 <p class="ml-5" style="color:black;">
-                                    Dear <span id="p-name"></span>,<br></p>
+                                    Dear <span id="p-name"><?php echo $user_name ?></span>,<br></p>
                                 <blockquote style="margin-left:50px;margin-right:30px;" align="justify"> Give your <b>children</b> the <b><i>Education</i></b> they deserve and do provide them a better education.
                                     We are happy to see that you are <b> passionate </b> about your life goals and understand the value of <b>investing</b> to accomplish your <b>goals.</b><br>
                                     <span style="position:relative;left:40px;"> To Achieve this Goal you need to Accumulate <span id="p-ansinput" style="color: green;font-weight: 700;font-size: 21px;"></span>
@@ -173,11 +203,6 @@ if (mysqli_num_rows($result)) {
                                     <p style="color: black;margin-top: 20px;margin-right: 80px;font-weight: 700;margin-bottom: 1px;">Thank you !!</p><br><br>
                                 </div>
                             </div>
-                            <!-- <div class="" style="margin-left:25%;">
-        <button type="button" class="bottons from-left">Plan Another Goal</button>
-        <button type="button" class="bottons from-left" id="">Schedule a meeting</button>
-        <p style="color: black;margin-top: 20px;margin-right: 80px;font-weight: 700;margin-bottom: 1px;">Thank you !!</p><br><br>
-      </div> -->
                             <div class="goals row" data-goal="house">
                                 <div align="center" class="form-group row row-cols-2 d-none" id="meetingtimehouse" style="margin-bottom:45px;display:flex;justify-content:center;">
 
@@ -595,7 +620,7 @@ if (mysqli_num_rows($result)) {
         </div>
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
-                <div class="modal-content">
+                <div class="modal-content" style="width: 50%;left: 24%;">
                     <div class="modal-header">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -658,8 +683,8 @@ if (mysqli_num_rows($result)) {
             anscar = fcar / calcar;
 
             console.log(fvbcar);
-            $("#sipValuecar").val(anscar.toFixed(0));
-            $("#futureValuecar").val(fvbcar.toFixed(0));
+            $("#sipValuecar").val(anscar.toLocaleString(0));
+            $("#futureValuecar").val(fvbcar.toLocaleString(0));
         })
         $(document).on('change', "#futureYearhouse,#currentCosthouse,#inflationhouse", function() {
             // alert("hello");
@@ -682,8 +707,8 @@ if (mysqli_num_rows($result)) {
             anshouse = fhouse / calhouse;
 
             console.log(m, anshouse);
-            $("#futureValuehouse").val(m.toFixed(0));
-            $("#sipValuehouse").val(anshouse.toFixed(0));
+            $("#futureValuehouse").val(m.toLocaleString(0));
+            $("#sipValuehouse").val(anshouse.toLocaleString(0));
         })
         $(document).on('change', "#futureAgeEdu,#currentCostEdu,#inflationEdu,#currentAgeEdu", function() {
 
@@ -707,8 +732,8 @@ if (mysqli_num_rows($result)) {
             cal = num * next;
             ans = f / cal;
 
-            $("#sipValueEdu").val(ans.toFixed(0));
-            $("#futureValueEdu").val(fvb.toFixed(0));
+            $("#sipValueEdu").val(ans.toLocaleString(0));
+            $("#futureValueEdu").val(fvb.toLocaleString(0));
 
         })
         $(document).on('change', "#future_years,#c_cost,#in_rate", function() {
@@ -731,8 +756,8 @@ if (mysqli_num_rows($result)) {
             anssipvac = fsvac / calsvac;
             // console.log(anssipvac);
 
-            $("#future_value").val(fvbvac.toFixed(0));
-            $("#sip_value").val(anssipvac.toFixed(0));
+            $("#future_value").val(fvbvac.toLocaleString(0));
+            $("#sip_value").val(anssipvac.toLocaleString(0));
 
         })
         $(document).on('change', "#child_age,#future_ageMar,#current_costMar,#inflationMar", function() {
@@ -754,8 +779,8 @@ if (mysqli_num_rows($result)) {
             cals = nums * nexts;
             anssip = fs / cals;
 
-            $("#furture_valueMar").val(FVB.toFixed(0));
-            $("#sip_valueMar").val(anssip.toFixed(0));
+            $("#furture_valueMar").val(FVB.toLocaleString(0));
+            $("#sip_valueMar").val(anssip.toLocaleString(0));
         })
         $(document).on('change', "#present_age,#retirement_age,#lifeexp,#inflationRet,#monthlyexp,#rateofRet", function() {
             let retpresent = document.getElementById("present_age").value; //Pa
@@ -791,8 +816,8 @@ if (mysqli_num_rows($result)) {
             fsip = esip * csip;
             gsip = sip / fsip;
 
-            $("#furture_valueRet").val(iiret.toFixed(0));
-            $("#sip_valueRet").val(gsip.toFixed(0));
+            $("#furture_valueRet").val(iiret.toLocaleString(0));
+            $("#sip_valueRet").val(gsip.toLocaleString(0));
 
         })
         $(document).on('change', "#future_yearOther,#current_costOther,#inflation_other", function() {
@@ -816,34 +841,33 @@ if (mysqli_num_rows($result)) {
             ansother = fother / calother;
 
 
-            $("#furture_valueother").val(fvbother.toFixed(0));
-            $("#sip_valueOther").val(ansother.toFixed(0));
+            $("#furture_valueother").val(fvbother.toLocaleString(0));
+            $("#sip_valueOther").val(ansother.toLocaleString(0));
 
         });
-        $(document).on('change',"#ageEdu,#futureageEdu,#currentEdu",function(){
-            let ages = document.getElementById("sage").value;
-            let FAs = document.getElementById("sfutureage").value;
-            let fvas = document.getElementById("scurrent").value;
-            // let Rate = document.getElementById("rate").value;
-            let inflas = document.getElementById("sinfla").value;
-            let rates = 12 / 100;
+        $(document).on('change',"#ageEdu,#secfutureageEdu,#currentEdu,#secinflationEdu",function(){
+            let secages = document.getElementById("ageEdu").value;
+            let secFAs = document.getElementById("secfutureageEdu").value;
+            let secfvas = document.getElementById("seccurrentEdu").value;
+            let secinflas = document.getElementById("secinflationEdu").value;
+            let secrates = 12 / 100;
 
             // let r = Rate / 100;
-            let Ns = FAs - ages;
-            let ns = Ns * 12;
-            rs = rates / 12; // 1%s
-            let is = inflas / 100;
-            let js = is / 12;
-            let fvbs = fvas * ((1 + js) ** ns);
+            let secNs = secFAs - secages;
+            let secns = secNs * 12;
+            secrs = secrates / 12; // 1%s
+            let secis = secinflas / 100;
+            let secjs = secis / 12;
+            let secfvbs = secfvas * ((1 + secjs) ** secns);
 
-            fs = fvbs * rs;
-            nums = (((1 + rs) ** ns) - 1);
-            nexts = (1 + rs);
-            cals = nums * nexts;
-            anssecond = fs / cals;
+            secfs = secfvbs * secrs;
+            secnums = (((1 + secrs) ** secns) - 1);
+            secnexts = (1 + secrs);
+            seccals = secnums * secnexts;
+            secanssecond = secfs / seccals;
 
-            $("#futurevalueEdu").val(fvbs.toFixed(0));
-            $("#SIPsecond").val(anssecond.toFixed(0));
+            $("#secfuturevalueEdu").val(fvbs.toLocaleString(0));
+            $("#SIPsecond").val(anssecond.toLocaleString(0));
 
         })
 
@@ -868,8 +892,8 @@ if (mysqli_num_rows($result)) {
             seccals = secnums * secnexts;
             secanssip = secfs / seccals;
 
-            $("#ansinputsMar").val(secFVB.toFixed(0));
-            $("#sipvalueMar").val(secanssip.toFixed(0));
+            $("#ansinputsMar").val(secFVB.toLocaleString(0));
+            $("#sipvalueMar").val(secanssip.toLocaleString(0));
         })
 
 

@@ -336,12 +336,26 @@
                                     </div>
 
                                 </div>
-                                <div class="col-5">
-                                    <div class="form-group row">
-                                        <label class="alllabel">Future Cost of Higher Education</label>
+                                <div class="col-5" style="border:1px solid gray;border-radius:20px;background-color:white;bottom:45px; color:black;position:relative;">
+                                    <!-- <div class="form-group row"> -->
+                                    <!-- <label class="alllabel">Future Cost of Higher Education</label>
                                         <input type="text" style="width:80%;" class="form-control allinput input-selector borderhigh" name="secondchildfuturevalue" id="set1" readonly>
-                                        <input type="text" style="width:80%;" class="form-control allinput input-selector borderhigh" name="secondchildSIP" id="sipsecond" readonly>
-                                    </div>
+                                        <input type="text" style="width:80%;" class="form-control allinput input-selector borderhigh" name="secondchildSIP" id="sipsecond" readonly> -->
+
+
+                                    <input type="text" style="width:80%;margin-left:20px;" class="form-control input-selector borderhigh d-none" name="secondchildfuturevalue" id="set1" readonly><br>
+                                    <p style="font-size: 19px;font-weight: 500;font-family: auto;margin-left: 15px;margin-top:-8px;">Provide your children the best education and as per your inputs, you will
+                                        need a sum of <span id="set1fv" style="color: red;font-weight: 700;font-size: 22px;"></span> after
+                                        <span id="set-year" style="color: green;font-weight: 700;font-size: 21px;"></span> years when the expected rate of inflation is
+                                        <span id="edutwo-infla" style="color: green;font-weight: 700;font-size: 21px;"></span>% p.a.
+                                    </p>
+                                    <input type="text" style="width:80%;margin-left:20px;" class="form-control input-selector borderhigh d-none" name="secondchildSIP" id="sipsecond" readonly><br>
+
+
+
+
+
+                                    <!-- </div> -->
                                 </div>
                             </div>
                         </div>
@@ -353,7 +367,6 @@
     </div>
 
     <!-----------------------------House----------------------------------------------->
-
 
     <div class="goals house" data-goal="house"><br>
         <h2 align="center" style="padding-bottom:1%; padding-top:1%"> House Detail</h2>
@@ -390,9 +403,7 @@
 
     </div>
 
-
     <!-----------------------------Retirement----------------------------------------------->
-
 
     <div class="goals retirement" data-goal="retirement">
 
@@ -432,7 +443,7 @@
 
     <!-----------------------------Merriage----------------------------------------------->
     <div class="goals marriage" data-goal="marriage">
-        <h2 align="center" style="padding-bottom:1%; padding-top:1%">What Kind of Marriage You Want ?</h2>
+        <h2 align="center" style="padding-bottom:1%; padding-top:1%">What Kind of Marriage You Want for <span id="childoneMAR"></span>?</h2>
 
         <div style="width:100%;display:flex;justify-content: space-around;" class="" id="marriagetype">
             <div class="row">
@@ -451,7 +462,8 @@
                     <label class="mylable" data-filed='3'>
                         <img class="myimg funimg" src="images/rich.png" />
                         <p align="center" class="allimg">
-                             <input type="radio" class="nexter input-selector three-btn" name="mariage" onclick="selectMarriage(this.value)" value="Rich"> Rich Marriage</p>
+                            <input type="radio" class="nexter input-selector three-btn" name="mariage" onclick="selectMarriage(this.value)" value="Rich"> Rich Marriage
+                        </p>
                     </label>
 
                 </div>
@@ -477,6 +489,9 @@
         <div class="row">
             <div class="col-12" style="display:none;" id="marriageplace">
                 <div style="display: block;">
+
+
+
                     <div class="col-6 Marriagetypeone" style="margin-top:20px;display: none;" id="Normal">
                         <div class="dropdown" style="display: block;">
                             <ul id="menu">
@@ -567,31 +582,19 @@
                             </ul><br><br><br>
                         </div>
                     </div>
-                                           
 
-                            <div class="col-6 Marriagetypeone" style="border:1px solid gray;border-radius:20px;background-color:white; color:black;position:relative;bottom:-15px;"><br>
 
-                                <input type="text" style="width:80%;margin-left:20px;" class="form-control input-selector p-1 d-none" name="ansinputs" id="set2" readonly><br>
-                                <p style="font-size: 19px;margin-left: 15px;margin-top:-6%;font-weight: 500;font-family: auto;">To enjoy your dream wedding you need to plan wisely & and as per your inputs, you
-                                    will need a sum of <span id="set12" style="color: red;font-weight: 700;font-size: 22px;"></span> after <span id="mar-year" style="color: green;font-weight: 700;font-size: 21px;"></span> years when the expected rate of
-                                    inflation is <span id="mar-infla" style="color: green;font-weight: 700;font-size: 21px;"></span>% p.a. LETTER </p>
-                                <!-- inflation is <span id="pooja" style="color: green;font-weight: 700;font-size: 21px;"></span>% p.a. LETTER -->
-                                <input type="text" style="width:80%;margin-left:20px;" class="form-control input-selector borderhigh d-none" name="sipvalue" id="pooja" readonly><br>
-
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group row">
+                                <labe class="alllabel">Current cost of Marriage(approx.)</label>
+                                    <input type="text" style="width:82%;" class="form-control allinput mb-2 input-selector calculatehouse s1" name="currentcost" id="currentcostly" oninput="marriageone()" value="1">
                             </div>
-
-
-                            <div class="row">
-
-                                <div class="form-group row">
-                                    <labe class="alllabel">Current cost of Marriage(approx.)</label>
-                                        <input type="text" style="width:82%;" class="form-control allinput mb-2 input-selector calculatehouse s1" name="currentcost" id="currentcostly" oninput="marriageone()" value="1">
-                                </div>
-                                <div class="form-group row">
-                                    <labe class="alllabel">Expected Rate of Inflation</label>
-                                        <input type="text" style="width:82%;" class="form-control allinput mb-2 input-selector calculatehouse s1" name="inflation" id="expinfla" oninput="marriageone()" value="7">
-                                </div>
-
+                            <div class="form-group row">
+                                <labe class="alllabel">Expected Rate of Inflation</label>
+                                    <input type="text" style="width:82%;" class="form-control allinput mb-2 input-selector calculatehouse s1" name="inflation" id="expinfla" oninput="marriageone()" value="7">
+                            </div>
+                        </div>
                         <div class="col-6" style="border:1px solid gray;border-radius:20px;background-color:white; color:black;position:relative;bottom:-15px;"><br>
 
                             <input type="text" style="width:80%;margin-left:20px;" class="form-control input-selector p-1 d-none" name="ansinputs" id="set2" readonly><br>
@@ -611,12 +614,13 @@
         <div class="container" id="second-mar" style="display:none">
             <div class="" style="display: block;margin-left:11%;">
 
+                <h2 align="center" style="padding-bottom:1%; padding-top:1%;">What Kind of Marriage You Want for <span id="childtwoMAR"></span>?</h2>
                 <div class="row">
                     <div class="col-6 col-md-3" style="display: contents;justify-content: center;">
 
                         <label class="mylable" data-filed='3'>
 
-                            <img class="myimg funimg" src="images/normal.png"  />
+                            <img class="myimg funimg" src="images/normal.png" />
 
                             <p align="center" class="allimg">
                                 <input type="radio" class="nexter input-selector three-btn" name="mariagetype" onclick="select2Marriage(this.value)" value="NormalMar"> Normal Marriage
@@ -636,7 +640,7 @@
                     <div class="col-6 col-md-3" style="display:flex;justify-content:center;">
                         <label class="mylable" data-filed='3'>
 
-                            <img class="myimg funimg" src="images/luxury.png"/>
+                            <img class="myimg funimg" src="images/luxury.png" />
 
                             <p align="center" class="allimg">
                                 <input type="radio" class="nexter input-selector three-btn" name="mariagetype" onclick="select2Marriage(this.value)" value="LuxuryMar"> Luxury Marriage
@@ -764,10 +768,13 @@
                                 </div>
 
                                 <div class="col-6" style="border:1px solid gray;border-radius:20px;background-color:white; color:black;position:relative;bottom:-15px;"><br>
-                                <labe class="alllabel">Future Value</label>
-                                    <input type="text" style="width:80%;margin-left:20px;" class="form-control input-selector p-1" name="ansinputsMar" id="fvsecond-mar" readonly><br>
-                                  
+                                    <input type="text" style="width:80%;margin-left:20px;" class="form-control input-selector p-1 d-none" name="ansinputsMar" id="fvsecond-mar" readonly><br>
+                                    <p style="font-size: 19px;margin-left: 15px;margin-top:-6%;font-weight: 500;font-family: auto;">To enjoy your dream wedding you need to plan wisely & and as per your inputs, you
+                                        will need a sum of <span id="fvsecp" style="color: red;font-weight: 700;font-size: 22px;"></span> after <span id="martwo-year" style="color: green;font-weight: 700;font-size: 21px;"></span> years when the expected rate of
+                                        inflation is <span id="martwo-infla" style="color: green;font-weight: 700;font-size: 21px;"></span>% p.a. LETTER </p>
                                     <input type="text" style="width:80%;margin-left:20px;" class="form-control input-selector borderhigh d-none" name="sipvalueMar" id="sipsecong-mar" readonly><br>
+
+
 
                                 </div>
                             </div>
@@ -811,10 +818,9 @@
 
     <div class="goals vacation" data-goal="vacation"><br>
         <h3 align="center" style="padding-bottom:1%; padding-top:1%">Select City for your Vacation</h3>
-        <div class="">
+        <!-- <div class="">
             <div id="vaccity" class="row">
                 <div class="col-12" style="display:contents;text-align:center;">
-                    <!-- <div class="col-6 col-md-4 col-sm-3"> -->
                     <label class="col-6 col-md-4 col-sm-3 mylable-goal vacacity three-btn" data-filed='3'>
 
                         <img class="myimg funimg " src="images\01_DUBAI.png" />
@@ -823,8 +829,6 @@
                             <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacone" detaset="500000" value="DUBAI">
                         </p>
                     </label>
-                    <!-- </div> -->
-                    <!-- <div class="col-6 col-md-4 col-sm-3"> -->
                     <label class="mylable-goal vacacity three-btn col-6 col-md-4 col-sm-3" data-filed='3'>
 
                         <img class="myimg funimg " src="images\02_PARIS.png" />
@@ -833,8 +837,6 @@
                             <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vactwo" detaset="800000" value="PARIS">
                         </p>
                     </label>
-                    <!-- </div> -->
-                    <!-- <div class="col-6 col-md-4 col-sm-3"> -->
                     <label class="mylable-goal vacacity three-btn col-6 col-md-4 col-sm-3" data-filed='3'>
 
                         <img class="myimg funimg " src="images\03_ITALY.png" />
@@ -843,8 +845,6 @@
                             <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacthree" detaset="500000" value="ITALY">
                         </p>
                     </label>
-                    <!-- </div> -->
-                    <!-- <div class="col-6 col-md-4 col-sm-3"> -->
                     <label class="mylable-goal vacacity three-btn col-6 col-md-4 col-sm-3" data-filed='3'>
 
                         <img class="myimg funimg " src="images\04_HONG KONG.png" />
@@ -853,8 +853,6 @@
                             <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacfour" detaset="600000" value="HONG KONG">
                         </p>
                     </label>
-                    <!-- </div> -->
-                    <!-- <div class="col-6 col-md-4 col-sm-3"> -->
                     <label class="mylable-goal vacacity three-btn col-6 col-md-4 col-sm-3" data-filed='3'>
 
                         <img class="myimg funimg " src="images\05_SINGAPORE.png" />
@@ -863,8 +861,6 @@
                             <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacfive" detaset="500000" value="SINGAPORE">
                         </p>
                     </label>
-                    <!-- </div> -->
-                    <!-- <div class=""> -->
                     <label class="mylable-goal vacacity three-btn col-6 col-md-4 col-sm-3" data-filed='3'>
 
                         <img class="myimg funimg " src="images\06_ANDAMAN.png" />
@@ -873,49 +869,54 @@
                             <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacsix" detaset="500000" value="ANDAMAN"><br><br>
                         </p>
                     </label>
-                    <!-- </div> -->
                 </div>
-                <!-- <div class="col-6 col-md-4 col-sm-6">
-                    <label for="vacone" class="vacacity three-btn">Dubai</label>
-                    <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacone" detaset="500000" value="DUBAI">
-                </div>
-                <div class="col-6 col-md-4 col-sm-6">
-                    <label for="vactwo" class="vacacity three-btn">Paris</label>
-                    <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vactwo" detaset="800000" value="PARIS">
-                </div> 
-                <div class="col-6 col-md-4 col-sm-6">
-                    <label for="vacthree" class="vacacity three-btn">Italy</label>
-                    <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacthree" detaset="500000" value="ITALY">
-                </div><br><br><br>
-                <div class="col-6 col-md-4 col-sm-6">
-                    <label for="vacfour" class="vacacity three-btn">Hong Kong</label>
-                    <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacfour" detaset="600000" value="HONG KONG">
-                </div>
-                <div class="col-6 col-md-4 col-sm-6">
-                    <label for="vacfive" class="vacacity three-btn">Singapore</label>
-                    <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacfive" detaset="500000" value="SINGAPORE">
-                </div>
-                <div class="col-6 col-md-4 col-sm-6">
-                    <label for="vacsix" class="vacacity three-btn">Andaman</label>
-                    <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacsix" detaset="500000" value="ANDAMAN"><br><br>
-                </div>-->
             </div>
-        </div>
-        <div class="row">
+        </div> -->
 
+        <!-- <div class="row">
+            <div class="col-md-6 col-sm-8"> -->
+                <!-- <div class="form-group row">
+                    <label class="alllabel">Enter your Name</label>
+                    <input type="text" style="width:80%;" class="form-control allinput mb-2 input-selector calculatehouse borderhigh two-btn" name="username" id="vname" placeholder="Name">
+                </div> -->
+                <!-- <div class="form-group row mt-3 d-none"><br>
+                    <label class="alllabel">This is your Current year </label>
+                    <input type="text" style="width:80%;" class="form-control allinput mb-2 input-selector calculatehouse borderhigh" id="vcurrentyear" value="0" onchange="vacationone()" placeholder="year" readonly>
+                </div>
+                <div class="form-group row mt-3"><br>
+                    <label class="alllabel">After how much time you wish for your Vacation</label>
+                    <input type="number" style="width:80%;" class="form-control allinput mb-2 input-selector calculatehouse borderhigh" name="futureyear" id="vfutureyear" oninput="IsEmpty(),vacationone()" placeholder="year">
+                </div>
+            </div>
+           
+        </div> -->
+        <div class="row">
             <div class="row d-none" id="vaccalculation">
                 <div class="col-7">
                     <div class="form-group row">
-                        <label class="alllabel">Current cost of Higher Education(approx.)</label>
+                        <label class="alllabel">Current cost of City you've selected</label>
                         <input type="text" style="width:80%;" class="form-control allinput mb-2 input-selector calculatehouse s1" name="current" id="currentvac" oninput="vacationone()" onchange="vacationone()" value="1">
                     </div>
                     <div class="form-group row">
                         <label class="alllabel">Expected Rate of Inflation</label>
                         <input type="text" style="width:80%;" class="form-control allinput mb-2 input-selector calculatehouse " name="infla" id="inflavac" oninput="vacationone()" value="7">
                     </div>
+                    <div class="form-group row d-none"><br>
+                        <label class="alllabel">This is your Current year </label>
+                        <input type="text" style="width:80%;" class="form-control allinput mb-2 input-selector calculatehouse borderhigh" id="vcurrentyear" value="0" onchange="vacationone()" placeholder="year" readonly>
+                    </div>
+                    <div class="form-group row"><br>
+                        <label class="alllabel">After how much time you wish for your Vacation</label>
+                        <input type="number" style="width:80%;" class="form-control allinput mb-2 input-selector calculatehouse borderhigh three-btns" name="futureyear" id="vfutureyear" oninput="IsEmpty(),vacationone()" placeholder="year">
+                    </div>
                 </div>
 
-                <div class="col-5" style="border:1px solid gray;border-radius:20px;background-color:white; color:black;margin-top:1px;"><br>
+
+                <div class="col-5">
+                    <img src="./images/vacimg.png" style="width:100%;border-radius:22px;" alt="">
+                </div>
+
+                <div class="col-md-5" style="border:1px solid gray;border-radius:20px;background-color:white; color:black;margin-top:1px;"><br>
                     <!-- <label for="lName">This is Your Future Value</label><br> -->
                     <input type="text" style="width:80%;margin-left:20px;" class="form-control input-selector d-none" name="ansinputs" oninput="vacationone()" id="set6vac" readonly>
                     <p style="font-size: 19px;font-weight: 500;font-family: auto;margin-top: -2%;margin-left: 15px;">Sometimes a vacation is all you need and to plan your
@@ -923,8 +924,10 @@
                         <span id="vacyear" style="color: green;font-weight: 700;font-size: 21px;"></span> years when the expected rate of inflation is <span id="vac-infla" style="color: green;font-weight: 700;font-size: 21px;"></span> % p.a.
                     </p>
                     <input type="text" style="width:80%;margin-left:20px;" class="form-control input-selector d-none" name="sipvalue" id="anssipvac" oninput="vacationone()">
-                </div>
+                </div><br><br>
 
+
+               
             </div>
             <!-- </div>
             </div> -->

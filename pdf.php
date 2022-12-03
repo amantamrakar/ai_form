@@ -3,7 +3,7 @@ session_start();
 
 if ($_SESSION['goal'] == "car") {
   $data = '<div class="card-body ">
-   <h3 style="background-color: gray;text-align:center;color:white; border: 1px solid black;font-size:22px;">Goal</h3>
+   <h3 style="background-color: black;text-align:center;color:white; border: 1px solid black;font-size:22px;">Goal</h3>
     <p style="font-size:18px;">Your Goal :- <span style="font-weight:bold;font-style: italic;font-size:21px;">' . $_SESSION['goal'] . '</span></p>
     <h3 style="background-color: gray;text-align:center;color:white; border: 1px solid black;font-size:22px;">Car Details</h3>
     <p style="font-size:18px;">Name of the Car you Wish :- <span style="font-weight:bold;font-style: italic;font-size:21px;">' . $_SESSION['data']['carname'] . '</span></p>

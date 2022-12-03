@@ -393,10 +393,10 @@ session_start();
       width: 34%;
     }
 
-    .betten:hover{
-      border:1px solid white;
+    .betten:hover {
+      border: 1px solid white;
     }
-    
+
     .ptag {
       font-size: 14px;
       font-weight: 500;
@@ -443,7 +443,7 @@ session_start();
 
     <?php
     if (isset($_SESSION["goaluser"])) {
-      echo "Hey ...";
+      echo "Hey " . $_SESSION['user_full_name'];
     }
     ?>
 
@@ -576,7 +576,7 @@ session_start();
       // Change progress bar action
       function setProgressBar(curStep) {
         var percent = parseFloat(100 / steps) * curStep;
-        percent = percent.toFixed();
+        percent = percent.toFixed(0);
         $(".progress-bar")
           .css("width", percent + "%")
           .html(percent + "%");
@@ -659,6 +659,9 @@ session_start();
     })
 
     $(".three-btn").click(function() {
+      $("#btn-2").removeAttr("disabled");
+    })
+    $(".three-btn").click(function() {
       $("#buttons").removeAttr("disabled");
     })
 
@@ -722,9 +725,9 @@ session_start();
       calhouse = numhouse * nexthouse;
       anshouse = fhouse / calhouse;
 
-      document.getElementById("futurevalue").value = m.toFixed(0);
-      document.getElementById("set8").innerHTML = m.toFixed(0);
-      document.getElementById("set8house").value = anshouse.toFixed(0);
+      document.getElementById("futurevalue").value = m.toLocaleString(0);
+      document.getElementById("set8").innerHTML = m.toLocaleString(0);
+      document.getElementById("set8house").value = anshouse.toLocaleString(0);
       document.getElementById("house-year").innerHTML = timehorizon;
 
       var data = $("#regiration_form").serialize();
@@ -768,11 +771,11 @@ session_start();
 
       console.log(fvb, n, ans, cal, next, num, f);
 
-      document.getElementById("set6").value = fvb.toFixed(0);
-      document.getElementById("set0").innerHTML = fvb.toFixed(0);
+      document.getElementById("set6").value = fvb.toLocaleString(0);
+      document.getElementById("set0").innerHTML = fvb.toLocaleString(0);
       document.getElementById("set11").innerHTML = N;
       //  document.getElementById("set11edu").innerHTML = N;
-      document.getElementById("nish").value = ans.toFixed(0);
+      document.getElementById("nish").value = ans.toLocaleString(0);
     }
 
     function seducation() {
@@ -783,7 +786,7 @@ session_start();
       // let Rate = document.getElementById("rate").value;
       let inflas = document.getElementById("sinfla").value;
       let rates = 12 / 100;
-
+      IsEmpty()
       // let r = Rate / 100;
       let Ns = FAs - ages;
       let ns = Ns * 12;
@@ -799,8 +802,10 @@ session_start();
       anssecond = fs / cals;
       //  console.log(fvb, n);
 
-      document.getElementById("set1").value = fvbs.toFixed(0);
-      document.getElementById("sipsecond").value = anssecond.toFixed(0);
+      document.getElementById("set1").value = fvbs.toLocaleString(0);
+      document.getElementById("sipsecond").value = anssecond.toLocaleString(0);
+      document.getElementById("set1fv").innerHTML = fvbs.toLocaleString(0);
+      document.getElementById("set-year").innerHTML = Ns;
     }
 
 
@@ -830,11 +835,11 @@ session_start();
 
       console.log(FVB, m, FVA, anssip);
 
-      document.getElementById("set2").value = FVB.toFixed(0);
-      document.getElementById("set12").innerHTML = FVB.toFixed(0);
+      document.getElementById("set2").value = FVB.toLocaleString(0);
+      document.getElementById("set12").innerHTML = FVB.toLocaleString(0);
       document.getElementById("mar-year").innerHTML = M;
       //  document.getElementById("mar-years").innerHTML = M;
-      document.getElementById("pooja").value = anssip.toFixed(0);
+      document.getElementById("pooja").value = anssip.toLocaleString(0);
     }
 
     function secondmarriage() {
@@ -842,7 +847,7 @@ session_start();
       secfa = document.getElementById("secchildfutureage").value;
       secFVA = document.getElementById("secondMarcurrent").value;
       secinflaa = document.getElementById("secondMarinfla").value;
-
+      IsEmpty()
       let secrates = 12 / 100;
       secM = secfa - secagemar;
       secm = secM * 12;
@@ -859,8 +864,11 @@ session_start();
 
       console.log(secanssip);
 
-      document.getElementById("fvsecond-mar").value = secFVB.toFixed(0);
-      document.getElementById("sipsecong-mar").value = secanssip.toFixed(0);
+      document.getElementById("fvsecond-mar").value = secFVB.toLocaleString(0);
+      document.getElementById("fvsecp").innerHTML = secFVB.toLocaleString(0);
+      document.getElementById("sipsecong-mar").value = secanssip.toLocaleString(0);
+      document.getElementById("martwo-year").innerHTML = secM;
+
 
     }
 
@@ -890,10 +898,10 @@ session_start();
       //  console.log(anssipvac);
 
 
-      document.getElementById("set6vac").value = fvbvac.toFixed(0);
-      document.getElementById("setvaca").innerHTML = fvbvac.toFixed(0);
-      document.getElementById("anssipvac").value = anssipvac.toFixed(0);
-      document.getElementById("vacyear").innerHTML = Nvac.toFixed(0);
+      document.getElementById("set6vac").value = fvbvac.toLocaleString(1);
+      document.getElementById("setvaca").innerHTML = fvbvac.toLocaleString(1);
+      document.getElementById("anssipvac").value = anssipvac.toLocaleString(1);
+      document.getElementById("vacyear").innerHTML = Nvac.toLocaleString(1);
     }
 
     function retirementcal() {
@@ -942,9 +950,9 @@ session_start();
       console.log(Er, rr);
 
 
-      document.getElementById("setretire").value = iiret.toFixed(0);
-      document.getElementById("set6ans").innerHTML = iiret.toFixed(0);
-      document.getElementById("demoretire").value = gsip.toFixed(0);
+      document.getElementById("setretire").value = iiret.toLocaleString(0);
+      document.getElementById("set6ans").innerHTML = iiret.toLocaleString(0);
+      document.getElementById("demoretire").value = gsip.toLocaleString(0);
 
       document.getElementById("set6year").innerHTML = Np;
       document.getElementById("setyearret").innerHTML = Np;
@@ -974,9 +982,9 @@ session_start();
       anscar = fcar / calcar;
 
 
-      document.getElementById("set6car").value = fvbcar.toFixed(0);
-      document.getElementById("car6").innerHTML = fvbcar.toFixed(0);
-      document.getElementById("democar").value = anscar.toFixed(0);
+      document.getElementById("set6car").value = fvbcar.toLocaleString(0);
+      document.getElementById("car6").innerHTML = fvbcar.toLocaleString(0);
+      document.getElementById("democar").value = anscar.toLocaleString(0);
       document.getElementById("caryear").innerHTML = Ncar;
     }
 
@@ -1009,12 +1017,12 @@ session_start();
       calother = numother * nextother;
       ansother = fother / calother;
 
-      document.getElementById("set6other").value = fvbother.toFixed(0);
-      document.getElementById("set0other").innerHTML = fvbother.toFixed(0);
+      document.getElementById("set6other").value = fvbother.toLocaleString(0);
+      document.getElementById("set0other").innerHTML = fvbother.toLocaleString(0);
       document.getElementById("set11other").innerHTML = Nother;
       //  document.getElementById("set11edu").innerHTML = Nother;
-      document.getElementById("anssipother").value = ansother.toFixed(0);
-      //  document.getElementById("p-sipans").value = innerHTML.toFixed(0);
+      document.getElementById("anssipother").value = ansother.toLocaleString(0);
+      //  document.getElementById("p-sipans").value = innerHTML.toLocaleString(0);
       // document.getElementById("inflaother").innerHTML = infla;
 
     }
@@ -1034,6 +1042,8 @@ session_start();
       let vacinfla = document.getElementById("inflavac").value;
       let retireinfla = document.getElementById("inflaret").value;
       let otherinfla = document.getElementById("inflaother").value;
+      let Marinflatwo = document.getElementById("secondMarinfla").value;
+      let edutwoinfla = document.getElementById("sinfla").value;
 
       document.getElementById("edu-infla").innerHTML = inflations;
       document.getElementById("house-infla").innerHTML = houseinfla;
@@ -1042,6 +1052,8 @@ session_start();
       document.getElementById("vac-infla").innerHTML = vacinfla;
       document.getElementById("ret-infla").innerHTML = retireinfla;
       document.getElementById("other-infla").innerHTML = otherinfla;
+      document.getElementById("martwo-infla").innerHTML = Marinflatwo;
+      document.getElementById("edutwo-infla").innerHTML = edutwoinfla;
     }
 
     function namebtn() {
@@ -1049,9 +1061,15 @@ session_start();
       let snames = document.getElementById("sname").value;
       let goalnames = document.getElementById("nameother").value;
 
+      let Marchildone = document.getElementById("namemar").value;
+      let Marchildtwo = document.getElementById("secchildname").value;
+
       document.getElementById("set5").innerHTML = names;
       document.getElementById("set9").innerHTML = snames;
       document.getElementById("p-other").innerHTML = goalnames;
+
+      document.getElementById("childoneMAR").innerHTML = Marchildone
+      document.getElementById("childtwoMAR").innerHTML = Marchildtwo
 
     }
 

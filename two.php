@@ -274,8 +274,63 @@
 
     <div class="goals vacation" data-goal="vacation">
         <h2 align="center" style="padding-bottom:1%; padding-top:1%;"> Vacation Detail</h2>
+        <div class="">
+            <div id="vaccity" class="row">
+                <div class="col-12" style="display:contents;text-align:center;">
+                    <label class="col-5 col-md-3 col-sm-3 mylable-goal vacacity three-btn" data-filed='2'>
 
-        <div class="row">
+                        <img class="myimg funimg " src="images\01_DUBAI.png" />
+
+                        <p align="center" class="allimg">
+                            <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacone" detaset="500000" value="DUBAI">
+                        </p>
+                    </label>
+                    <label class="mylable-goal vacacity three-btn col-5 col-md-3 col-sm-3" data-filed='2'>
+
+                        <img class="myimg funimg " src="images\02_PARIS.png" />
+
+                        <p align="center" class="allimg">
+                            <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vactwo" detaset="800000" value="PARIS">
+                        </p>
+                    </label>
+                    <label class="mylable-goal vacacity three-btn col-5 col-md-3 col-sm-3" data-filed='2'>
+
+                        <img class="myimg funimg " src="images\03_ITALY.png" />
+
+                        <p align="center" class="allimg">
+                            <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacthree" detaset="500000" value="ITALY">
+                        </p>
+                    </label>
+                    <label class="mylable-goal vacacity three-btn col-5 col-md-3 col-sm-3" data-filed='2'>
+
+                        <img class="myimg funimg " src="images\04_HONG KONG.png" />
+
+                        <p align="center" class="allimg">
+                            <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacfour" detaset="600000" value="HONG KONG">
+                        </p>
+                    </label>
+                    <label class="mylable-goal vacacity three-btn col-5 col-md-3 col-sm-3" data-filed='2'>
+
+                        <img class="myimg funimg " src="images\05_SINGAPORE.png" />
+
+                        <p align="center" class="allimg">
+                            <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacfive" detaset="500000" value="SINGAPORE">
+                        </p>
+                    </label>
+                    <label class="mylable-goal vacacity three-btn col-5 col-md-3 col-sm-3" data-filed='2'>
+
+                        <img class="myimg funimg " src="images\06_ANDAMAN.png" />
+
+                        <p align="center" class="allimg">
+                            <input type="radio" name="vacationplace" class="btn btn-success vacradio input-selector" id="vacsix" detaset="500000" value="ANDAMAN"><br><br>
+                        </p>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- <div class="row">
             <div class="col-md-6 col-sm-8">
                 <div class="form-group row">
                     <label class="alllabel">Enter your Name</label>
@@ -293,21 +348,21 @@
             <div class="col-md-6 col-sm-4">
                 <img src="./images/vacimg.png" style="width:100%;border-radius:22px;" alt="">
             </div>
-        </div>
+        </div> -->
     </div>
     <!-----------------------------Tax Saving ----------------------------------------------->
     <!-- <div class="goals taxsaving" data-goal="tax-saving">
-    <h2 align="center" style="padding-bottom:1%; padding-top:1%"> Tax-Saving Detail</h2>
-    <div class="row">
+        <h2 align="center" style="padding-bottom:1%; padding-top:1%"> Tax-Saving Detail</h2>
+        <div class="row">
 
         <div class="col-12">
             <div class="form-group row">
                 <label> Name of Your Child</label>
                 <input type="text" style="width:40%;" class="form-control input-selector calculatehouse borderhigh" id="nametax" placeholder="Name">
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</div> -->
+    </div> -->
     <!-----------------------------others----------------------------------------------->
     <div class="goals others" data-goal="others">
         <h2 align="center" style="padding-bottom:1%; padding-top:1%"> Other Detail</h2>
