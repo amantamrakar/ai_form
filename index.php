@@ -430,13 +430,13 @@ session_start();
 
 <body>
 
-  <div class="loader">
+  <div class="loader d-none" >
 
   </div>
   <div class="container overflow-hidden " style="height:auto;">
 
     <h1 style="padding-bottom:10px; border-bottom:4px solid #FC0;">Welcome back, Let's know you better to give you best!</h1></br />
-    <!-- <button class="glow-on-hover mb-4" data-bs-target="#staticBackdrop" data-bs-toggle="modal" type="button">Log In</button> -->
+    <button class="glow-on-hover mb-4" data-bs-target="#staticBackdrop" data-bs-toggle="modal" type="button">Log In</button>
     <div class="progress">
       <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
@@ -509,10 +509,11 @@ session_start();
     var current = 1;
     let g_id;
     const myselection = {};
-    $(window).load(function() {
-      $(".loader").fadeOut("slow");
-    });
+    // $(document).load(function() {
+    //   $(".loader").fadeOut("slow");
+    // });
     $(document).ready(function() {
+      // $(".loader").fadeOut("slow");
       $(".loader").fadeIn("normal");
       // $("body").show();
       housecal();

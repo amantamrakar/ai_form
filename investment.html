@@ -8,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <title>Document</title>
 </head>
 <style>
@@ -34,82 +36,153 @@
         text-align: left;
     }
 
-   
+    .li_style {
+        list-style-type: none;
+    }
+
+    .input_style {
+        border: none;
+        /* box-sizing: border-box; */
+        border-bottom: 2px solid rgb(189, 194, 194);
+        /* width: 100%; */
+        text-align: center;
+    }
+
+    @media (min-width: 576px) {
+        .modal-dialog {
+            max-width: 950px;
+        }
+    }
+
+    .style_input {
+        border: none;
+        border-bottom: 1px solid black;
+        text-align: center;
+        font-size: 15px;
+        width: 66%;
+    }
 </style>
 
 <body>
-    <div class="container-fluid mt-5 " style="text-align:end;">
+    <div class="container-fluid mt-5 ">
         <div class="card">
-            <h5 class="card-header">Your Exist Investment
-                <!-- <button class="button" href="#" onclick="show('popup')">Pop Up</button> -->
-
-                <button style="float: right;" type="button" value="add" onclick="adddp()" id="moredrop_dowp">Add
-                </button><br><br>
-
+            <h5 class="card-header" style="background-color:lightslategray;">Your Exist Investment
+                <button style="float: right;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"
+                    type="button" value="add" onclick="adddp()" id="moredrop_dowp">Add</button><br><br>
             </h5>
-            <div class="card-body">
-                <table>
-                    <tr>
-                        <th>Goal</th>
-                        <th>Duration</th>
-                        <th>Allocation</th>
-                    </tr>
-                    <tr>
-                        <td>Car</td>
-                        <td>10Year</td>
-                        <td>FD</td>
-                    </tr>
-                    <tr>
-                        <td>House</td>
-                        <td>5Year</td>
-                        <td>RD</td>
-                    </tr>
-                    <tr>
-                        <td>Education</td>
-                        <td>2Years</td>
-                        <td>Equity</td>
-                    </tr>
-                </table>
+
+
+
+            <table class="table mt-3 table-bordered " id="goal_table"
+                style=" font-size:12px;width: 80%;position: relative;left: 11%;">
+
+
+            </table>
+
+            <button type="button" class="btn btn-success" id="btn_web">Show</button>
+
+
+
+
+            <div class="container">
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog  modal-lg ">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color: darkred;color: #fff;">
+                                <button type="button" class="close" data-dismiss="modal"
+                                    style="position: fixed; ">&times;</button>
+                                <h4 class="modal-title" style="font-size: 25px;font-family: auto;">Exsiting Asset</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form action="" method="POST" id="fund_form">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label for="" class="col-2">Fixed Deposit</label>
+                                            <input type="hidden" name="fund_deposit[]" value="Fixed Deposit">
+                                            <input type="text" class="col-3 input_style" value="" name="fund_amt[]">
+                                            <input type="text" class="col-3 input_style" value="" name="duration[]">
+                                            <input type="text" class="col-3 input_style" value="" name="percent[]">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="" class="col-2">Recurring Deposit</label>
+                                            <input type="hidden" name="fund_deposit[]" value="Recurring Deposit">
+                                            <input type="text" class="col-3 input_style" value="" name="fund_amt[]">
+                                            <input type="text" class="col-3 input_style" value="" name="duration[]">
+                                            <input type="text" class="col-3 input_style" value="" name="percent[]">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="" class="col-2">Mutual Fund</label>
+                                            <input type="hidden" name="fund_deposit[]" value="mutual fund">
+                                            <input type="text" class="col-3 input_style" value="" name="fund_amt[]">
+                                            <input type="text" class="col-3 input_style" value="" name="duration[]">
+                                            <input type="text" class="col-3 input_style" value="" name="percent[]">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="" class="col-2">Equity</label>
+                                            <input type="hidden" name="fund_deposit[]" value="Equity">
+                                            <input type="text" class="col-3 input_style" value="" name="fund_amt[]">
+                                            <input type="text" class="col-3 input_style" value="" name="duration[]">
+                                            <input type="text" class="col-3 input_style" value="" name="percent[]">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="" class="col-2" c>Gold</label>
+                                            <input type="hidden" name="fund_deposit[]" value="Gold">
+                                            <input type="text" class="col-3 input_style" value="" name="fund_amt[]">
+                                            <input type="text" class="col-3 input_style" value="" name="duration[]">
+                                            <input type="text" class="col-3 input_style" value="" name="percent[]">
+                                        </div>
+                                    </div>
+
+
+                                    <!-- <button type="button" id="remove" onclick="removeel(this)">Remove</button> -->
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary" id="submit_funddata">Save and
+                                    Contine</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
+
+
         </div>
-
-        <div class="popup mt-4" id="popup">
-            <div class="dropdown" id="investment_list" style="text-align:center;">
-
-            </div>
-        </div>
-
-<div class="text" id="submit_funddata">Next</div>
-
-
     </div>
-    <!-- https://codepen.io/marine-fraysse/pen/eYmBEvQ -->
+
+
 
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script>
 
     function adddp() {
         const markup = `  <div type="text" id="myDropdown"> Your Investment's
                             
                          
-                        <select name="college" >
-                                <option value=""></option>
-                                <option value="fd" class="invest" name ="fund_name">FD</option>
-                                <option value="rd" class="invest" name ="fund_name">RD</option>
-                                <option value="nps" class="invest" name ="fund_name">NPS</option>
-                                <option value="p2p" class="invest" name ="fund_name">P2P</option>
-                                <option value="mf" class="invest" name ="fund_name">MF</option>
-                                <option value="equity" class="invest" name ="fund_name">Equity</option>
-                                <option value="gold" class="invest" name ="fund_name">Gold</option>
-                            </select>
-                          
-                                <label>Duration</label>
-                                <input type="text" namee="Duration">
-                                <label>Intrest of return (%)</label>
-                                <input type="text" name="percent">
-                                <button type="button" id="remove" onclick="removeel(this)">Remove</button>
-                                </div>`
+                            <select name="fundsname[]" >
+                                    <option value=""></option>
+                                    <option value="fd" class="invest" >FD</option>
+                                    <option value="rd" class="invest"  >RD</option>
+                                    <option value="nps" class="invest" >NPS</option>
+                                    <option value="p2p" class="invest" >P2P</option>
+                                    <option value="mf" class="invest" >MF</option>
+                                    <option value="equity" class="invest" >Equity</option>
+                                    <option value="gold" class="invest" >Gold</option>
+                                </select>
+                              
+                                    <label>Duration</label>
+                                    <input type="text" name="duration[]">
+                                    <label>Intrest of return (%)</label>
+                                    <input type="text" name="percent[]">
+                                    <button type="button" id="remove" onclick="removeel(this)">Remove</button>
+                                    </div>  `
 
         // var el = document.getElementById("addmoredp");
         document.getElementById("investment_list").innerHTML += markup;
@@ -121,19 +194,48 @@
 
     }
 
-    $('#submit_funddata').click(function(e) {
-      $.ajax({
-        method: "post",
-        url: "./fund.php", 
-        data: {
-          "fund_name": fund_name
-        },
-        // dataType: "json",
-        success: function(data) {
-        }
+    $(function () {
+        $('form').bind('submit', function () {
+            $.ajax({
+                type: 'post',
+                url: './UserData.php',
+                data: { add_user_fund: $('form').serialize() },
+                success: function () {
+                    alert('form was submitted');
+                }
+            });
+            return false;
+        });
     });
-});
-    
+
+
+
+    $("document").ready(function () {
+        $.ajax({
+            method: "post",
+            url: "./UserData.php",
+            data: {
+                // id: update_note
+                get_user_data: "all"
+            },
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                let markup = '<thead><tr><th class="col-2" style="background-color: #6d6865;color:white;font-size: 14px;text-align: center;">Goal Name</th><th class="col-2" style="background-color: #6d6865;color:white;font-size: 14px;text-align: center;">Future Age</th>  <th colspan="2" style="width:30%;background-color: #6d6865;color:white;font-size: 14px;text-align: center;">AMOUNT REQUIRED</th> <th colspan="2" style="width:40%;background-color: #6d6865;color:white;font-size: 14px;text-align: center;">PLAN THE AMOUNT YOU CAN INVEST</th></tr> <tr><th></th><th></th> <th class="col-md-2" style="background-color: #bababa;text-align: center;">MONTHLY </th><th class="col-md-2" style="background-color: #bababa;text-align: center;">LUMPSUM</th><th class="col-md-2" style="background-color: #bababa;text-align: center;">MONTHLY </th><th class="col-md-2" style="background-color: #bababa;text-align: center;">LUMPSUM</th></tr> </thead>';
+                data.forEach(el => {
+
+                    if (el["goal"] || el["goal_data"]["futureage"] || (el["goal_data"]["ansinputs"]) || (el["goal_data"]["sipvalue"])) markup += `<tr> <td> ${el["goal"]}</td><td> ${el["goal_data"]["futureage"]}</td><td><i class="fa fa-rupee-sign"></i><input class="style_input" disabled type="text" value=" ${el["goal_data"]["sipvalue"]}" </td><td><i class="fa fa-rupee-sign"></i><input class="style_input" type="text" disabled value=" ${el["goal_data"]["ansinputs"]}" </td><td><i class="fa fa-rupee-sign"></i><input class="style_input" type="number"></td><td><i class="fa fa-rupee-sign"></i><input class="style_input" type="number"></td></tr>`
+                    // if () markup += `<tr> ${el["goal_data"]["futureage"]}</td></tr>`
+                    // if(el["goal_data"]["inflation"])markup+=`<tr><td>inflation</td> <td> ${el["goal_data"]["inflation"]}</td></tr>`
+                    // if(el["goal_data"]["ansinputs"])markup+=`<tr><td>investment value</td> <td> ${el["goal_data"]["ansinputs"]}</td></tr>`
+                    // if(el["goal_data"]["sipvalue"])markup+=`<tr><td>sip value</td> <td> ${el["goal_data"]["sipvalue"]}</td></tr>`
+                });
+                $("#goal_table").html(markup);
+            }
+        });
+
+    })
+
 </script>
 
 </html>
