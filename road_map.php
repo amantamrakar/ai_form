@@ -21,47 +21,62 @@ var_dump($_SESSION);
 </svg>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
+//    const data=[{
+//          date:2000,
+//          goal:"education"
+//       },{
+//          date:2002,
+//          goal:"marriage"
+//       },{
+//          date:2004,
+//          goal:"vacation"
+//       },{
+//          date:2005,
+//          goal:"other"
+//       },{
+//          date:2050,
+//          goal:"retirement"
+//       },
+// ]
+const data=[]
+const date=new Date()
    $(document).ready(function () {
       $.ajax({
         method: "post",
         url: "./UserData.php",
-        data: {"get_user_data":""},
+        data: {"get_user_data":"all"},
         dataType: "json",
-        success: function(data) {
-          console.log(data);
+        success: function(res) {
+          console.log(res);
+          let toYear=date.getFullYear();
+          res.forEach(el=>{
+             let year=toYear+ (+el["goal_data"]["futureage"] || +el["goal_data"]["rateretire"])
+             data.push({date:year,goal:el["goal"]})
+
+          })
+          data.sort((a,b)=>a.date-b.date);
+          init()
+          window.requestAnimationFrame(step);
         }
       })
    });
-   let data=[{
-      date:2000,
-      goal:"education"
-   },{
-      date:2002,
-      goal:"marriage"
-   },{
-      date:2004,
-      goal:"vacation"
-   },{
-      date:2005,
-      goal:"other"
-   },{
-      date:2050,
-      goal:"retirement"
-   },
-]
-// data.sort((a,b)=>a.date-b.date);
-   const goal=document.querySelector("#g-path");
-   const g_path=document.querySelector("#g-path .a");
+   
+const goal=document.querySelector("#g-path");
+const g_path=document.querySelector("#g-path .a");
+const p_length=g_path.getTotalLength();
+let steps;
+function init(){
    document.querySelector("#g-path .back-a").setAttribute("d",g_path.getAttribute("d"));
+   steps =g_path.getTotalLength()/data.length;
+   g_path.style["strokeDasharray"]=p_length
+
+}
    // console.dir(g_path);
    let start, previousTimeStamp;
    let done = false
-   const p_length=g_path.getTotalLength();
-   let mid=g_path.getPointAtLength(p_length);
-   let steps=g_path.getTotalLength()/data.length;
+   // let mid=g_path.getPointAtLength(p_length);
    // console.log(mid);
    let i=0;
-   g_path.style["strokeDasharray"]=p_length
    let g_con=0
    function myLoop() {
       document.querySelector("#g-path .a").style["strokeDashoffset"]=p_length-i;
@@ -69,18 +84,18 @@ var_dump($_SESSION);
          a=g_path.getPointAtLength(i);
          set_goal(a.x,a.y,`${data[g_con++].date}`);
       }
-      if(i%100==0 && data.length-1 > g_con && g_con !=0){
+      if(i%100==0 && data.length > g_con && g_con !=0){
          // a=g_path.getPointAtLength(i);
          // set_goal(a.x,a.y,`${data[g_con++].date}`);
-         a=g_path.getPointAtLength(steps);
-         steps+=steps;
+         a=g_path.getPointAtLength(steps*g_con);
+         // steps+=steps;
          set_goal(a.x,a.y,`${data[g_con++].date}`);
-         
+         console.log(steps);
       }
-      if(p_length-100<i && data.length-1 == g_con){
-         a=g_path.getPointAtLength(i);
-         set_goal(a.x,a.y,`${data[g_con++].date}`);
-      }
+      // if(p_length-100<i && data.length-1 == g_con){
+      //    a=g_path.getPointAtLength(i);
+      //    set_goal(a.x,a.y,`${data[g_con++].date}`);
+      // }
       
          
       if(p_length<i){
@@ -109,7 +124,7 @@ function step(timestamp) {
     }
 //   }
 }
-window.requestAnimationFrame(step);
+
 
    function set_goal(x,y,label){
       let c_m=`<circle id="s_goal" cx="${x}" cy="${y}" r="5" stroke="black" stroke-width="3" fill="red" />`;

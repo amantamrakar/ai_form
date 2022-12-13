@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="s_line.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.45522587"
+     inkscape:cx="853.4225"
+     inkscape:cy="380.03113"
+     inkscape:window-width="1366"
+     inkscape:window-height="697"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid42" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 26.458333,26.458333 V 110.53554"
+       id="path44" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 26.458333,63.499999 H 74.083332"
+       id="path159" />
+    <rect
+       style="fill:none;stroke-width:0.264583;stroke:#000000;stroke-opacity:1"
+       id="rect263"
+       width="74.083336"
+       height="31.75"
+       x="74.083336"
+       y="47.625"
+       ry="6.3933463" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#970000;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-opacity:1"
+       x="96.169441"
+       y="58.850292"
+       id="text4798"><tspan
+         sodipodi:role="line"
+         id="tspan4796"
+         style="stroke-width:0.264583;stroke:none;stroke-opacity:1;fill:#970000;fill-opacity:1"
+         x="96.169441"
+         y="58.850292">2022</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="98.806259"
+       y="71.489235"
+       id="text10148"><tspan
+         sodipodi:role="line"
+         id="tspan10146"
+         style="stroke-width:0.264583"
+         x="98.806259"
+         y="71.489235">goal</tspan></text>
+  </g>
+</svg>
