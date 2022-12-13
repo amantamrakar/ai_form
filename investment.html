@@ -10,6 +10,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <style>
@@ -61,6 +62,17 @@
         font-size: 15px;
         width: 66%;
     }
+    .goals_table table thead tr th{
+        border: 3px solid #ffffff;
+    border-radius: 12px;
+    padding: 10px;
+    }
+    .th_style{
+        vertical-align: middle;
+    text-align: center;
+    font-size: 19px;
+    text-transform: capitalize;
+    }
 </style>
 
 <body>
@@ -72,13 +84,10 @@
             </h5>
 
 
+            <div class="goals_table">
+               
 
-            <table class="table mt-3 table-bordered " id="goal_table"
-                style=" font-size:12px;width: 80%;position: relative;left: 11%;">
-
-
-            </table>
-
+            </div>
             <button type="button" class="btn btn-success" id="btn_web">Show</button>
 
 
@@ -221,16 +230,18 @@
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                let markup = '<thead><tr><th class="col-2" style="background-color: #6d6865;color:white;font-size: 14px;text-align: center;">Goal Name</th><th class="col-2" style="background-color: #6d6865;color:white;font-size: 14px;text-align: center;">Future Age</th>  <th colspan="2" style="width:30%;background-color: #6d6865;color:white;font-size: 14px;text-align: center;">AMOUNT REQUIRED</th> <th colspan="2" style="width:40%;background-color: #6d6865;color:white;font-size: 14px;text-align: center;">PLAN THE AMOUNT YOU CAN INVEST</th></tr> <tr><th></th><th></th> <th class="col-md-2" style="background-color: #bababa;text-align: center;">MONTHLY </th><th class="col-md-2" style="background-color: #bababa;text-align: center;">LUMPSUM</th><th class="col-md-2" style="background-color: #bababa;text-align: center;">MONTHLY </th><th class="col-md-2" style="background-color: #bababa;text-align: center;">LUMPSUM</th></tr> </thead>';
+                let markup = '';
                 data.forEach(el => {
+                    markup += ' <table class="table mt-3 table-bordered " style=" font-size:12px;width: 80%;position: relative;left: 11%;"><thead><tr class="'+el["goal"]+'"><th class="col-2 " style="color:white;font-size: 14px;text-align: center;">Goal Name</th><th class="col-2" style="color:white;font-size: 14px;text-align: center;">Future Age</th>  <th colspan="2" style="width:30%;color:white;font-size: 14px;text-align: center;">AMOUNT REQUIRED</th> <th colspan="2" style="width:40%;color:white;font-size: 14px;text-align: center;">PLAN THE AMOUNT YOU CAN INVEST</th></tr> </thead>   ';
 
-                    if (el["goal"] || el["goal_data"]["futureage"] || (el["goal_data"]["ansinputs"]) || (el["goal_data"]["sipvalue"])) markup += `<tr> <td> ${el["goal"]}</td><td> ${el["goal_data"]["futureage"]}</td><td><i class="fa fa-rupee-sign"></i><input class="style_input" disabled type="text" value=" ${el["goal_data"]["sipvalue"]}" </td><td><i class="fa fa-rupee-sign"></i><input class="style_input" type="text" disabled value=" ${el["goal_data"]["ansinputs"]}" </td><td><i class="fa fa-rupee-sign"></i><input class="style_input" type="number"></td><td><i class="fa fa-rupee-sign"></i><input class="style_input" type="number"></td></tr>`
+                    if (el["goal"] || el["goal_data"]["futureage"] || (el["goal_data"]["ansinputs"]) || (el["goal_data"]["sipvalue"])) markup += `<tr ><th rowspan="2" class="th_style">${el["goal"]}</th ><th rowspan="2" class="th_style">${el["goal_data"]["futureage"]}</th><th class="col-md-2" style="background-color: #bababa;text-align: center;">MONTHLY </th><th class="col-md-2" style="background-color: #bababa;text-align: center;">LUMPSUM</th><th class="col-md-2" style="background-color: #bababa;text-align: center;">MONTHLY </th><th class="col-md-2" style="background-color: #bababa;text-align: center;">LUMPSUM</th></tr><tr><td><i class="fa fa-rupee-sign"></i><input class="style_input" disabled type="text" value=" ${el["goal_data"]["sipvalue"]}" </td><td><i class="fa fa-rupee-sign"></i><input class="style_input" type="text" disabled value=" ${el["goal_data"]["ansinputs"]}" </td><td><i class="fa fa-rupee-sign"></i><input class="style_input" type="number"></td><td><i class="fa fa-rupee-sign"></i><input class="style_input" type="number"></td></tr>`
+                    markup += "</table>";
                     // if () markup += `<tr> ${el["goal_data"]["futureage"]}</td></tr>`
                     // if(el["goal_data"]["inflation"])markup+=`<tr><td>inflation</td> <td> ${el["goal_data"]["inflation"]}</td></tr>`
                     // if(el["goal_data"]["ansinputs"])markup+=`<tr><td>investment value</td> <td> ${el["goal_data"]["ansinputs"]}</td></tr>`
                     // if(el["goal_data"]["sipvalue"])markup+=`<tr><td>sip value</td> <td> ${el["goal_data"]["sipvalue"]}</td></tr>`
                 });
-                $("#goal_table").html(markup);
+                $(".goals_table").html(markup);
             }
         });
 
