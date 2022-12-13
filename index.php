@@ -509,13 +509,8 @@ session_start();
     var current = 1;
     let g_id;
     const myselection = {};
-    // $(document).load(function() {
-    //   $(".loader").fadeOut("slow");
-    // });
-    $(document).ready(function() {
-      // $(".loader").fadeOut("slow");
-      $(".loader").fadeIn("normal");
-      // $("body").show();
+      $(document).ready(function() {
+      $(".loader").delay(200).fadeOut("slow");
       housecal();
       var current_step, next_step, steps;
       steps = $("fieldset").length;

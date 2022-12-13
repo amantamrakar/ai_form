@@ -1,0 +1,84 @@
+<svg id="g-path" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" style="margin-top: -1458.5px; height: 3672px;">
+          
+            <g id="goals"><path d="M 250,25 V 3672" id="h-line" style="stroke-dasharray: 3647; stroke-dashoffset: -3;"></path></g>
+        <g id="goal-4" class="goal-box"><path d="M 250,55 H 324" class="v-line"></path>
+                <rect x="324" y="35" ry="6.3933463" height="50"></rect>
+               
+
+                <text>
+                <tspan x="344" y="48">2024</tspan>
+                <tspan x="344" y="59">house</tspan>
+                <tspan x="344" y="71">₹39.00</tspan>
+                </text>
+                </g><g id="goal-5" class="goal-box"><path d="M 250,85 H 176" class="v-line"></path>
+                <rect x="96" y="65" ry="6.3933463" height="50"></rect>
+               
+
+                <text>
+                <tspan x="116" y="78">2024</tspan>
+                <tspan x="116" y="89">others</tspan>
+                <tspan x="116" y="101">₹52.00</tspan>
+                </text>
+                </g><g id="goal-12" class="goal-box"><path d="M 250,115 H 324" class="v-line"></path>
+                <rect x="324" y="95" ry="6.3933463" height="50"></rect>
+               
+
+                <text>
+                <tspan x="344" y="108">2024</tspan>
+                <tspan x="344" y="119">others</tspan>
+                <tspan x="344" y="131">₹1,264.79</tspan>
+                </text>
+                </g><g id="goal-3" class="goal-box"><path d="M 250,184 H 176" class="v-line"></path>
+                <rect x="96" y="164" ry="6.3933463" height="50"></rect>
+              
+
+                <text>
+                <tspan x="116" y="177">2025</tspan>
+                <tspan x="116" y="188">others</tspan>
+                <tspan x="116" y="200">₹187.00</tspan>
+                </text>
+                </g><g id="goal-13" class="goal-box"><path d="M 250,253 H 324" class="v-line"></path>
+                <rect x="324" y="233" ry="6.3933463" height="50"></rect>
+           
+
+                <text>
+                <tspan x="344" y="246">2026</tspan>
+                <tspan x="344" y="257">others</tspan>
+                <tspan x="344" y="269">₹74.04</tspan>
+                </text>
+                </g><g id="goal-1" class="goal-box"><path d="M 250,385 H 176" class="v-line"></path>
+                <rect x="96" y="365" ry="6.3933463" height="50"></rect>
+                
+
+                <text>
+                <tspan x="116" y="378">2034</tspan>
+                <tspan x="116" y="389">others</tspan>
+                <tspan x="116" y="401">₹1,618.00</tspan>
+                </text>
+                </g><g id="goal-2" class="goal-box"><path d="M 250,544 H 324" class="v-line"></path>
+                <rect x="324" y="524" ry="6.3933463" height="50"></rect>
+                
+
+                <text>
+                <tspan x="344" y="537">2045</tspan>
+                <tspan x="344" y="548">others</tspan>
+                <tspan x="344" y="560">₹34,856.00</tspan>
+                </text>
+                </g><g id="goal-7" class="goal-box"><path d="M 250,622 H 176" class="v-line"></path>
+                <rect x="96" y="602" ry="6.3933463" height="50"></rect>
+               
+
+                <text>
+                <tspan x="116" y="615">2047</tspan>
+                <tspan x="116" y="626">marriage</tspan>
+                <tspan x="116" y="638">₹5.00</tspan>
+                </text>
+                </g><g id="goal-11" class="goal-box"><path d="M 250,943 H 324" class="v-line"></path>
+                <rect x="324" y="923" ry="6.3933463" height="50"></rect>
+            
+                <text>
+                <tspan x="344" y="936">2076</tspan>
+                <tspan x="344" y="947">house</tspan>
+                <tspan x="344" y="959">₹20,195.26</tspan>
+                </text>
+                </g></svg>
