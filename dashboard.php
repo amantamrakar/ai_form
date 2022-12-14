@@ -123,7 +123,7 @@ if (mysqli_num_rows($result)) {
                                     Dear <span id="p-name"><?php echo $user_name ?></span>,<br></p>
                                 <blockquote style="margin-left:50px;margin-right:30px;" align="justify"> Give your <b>children</b> the <b><i>Education</i></b> they deserve and do provide them a better education.
                                     We are happy to see that you are <b> passionate </b> about your life goals and understand the value of <b>investing</b> to accomplish your <b>goals.</b><br>
-                                    <span style="position:relative;left:40px;"> To Achieve this Goal you need to Accumulate <span id="p-ansinput" style="color: green;font-weight: 700;font-size: 21px;"></span>
+                                    <span style="position:relative;left:40px;"> To Achieve this Goal you need to Accumulate <span id="p-ansinput" style="color: green;font-weight: 700;font-size: 21px;"><?php echo $value['current'] ?></span>
                                         within <span id="set11edu" style="color: green;font-weight: 700;font-size: 21px;"></span> Years,
                                         <span style="color:orange;"> SIP REQUIRED </span> is ₹ <span id="p-sipans" style="color: red;font-weight: 700;font-size: 22px;"></span> per month.</span><br>
                                     Worried about the above numbers? <b>Please don’t be.</b><br>

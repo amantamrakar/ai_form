@@ -23,12 +23,12 @@
 
                 <div class="form-group row">
                     <label class="alllabel">Current age of Child</label>
-                    <input type="number" style="width:70%;" class="form-control allinput input-selector calculatehouse borderhigh currentagechild" name="age" id="age" value="1" required>
+                    <input type="number" style="width:70%;" class="form-control allinput input-selector calculatehouse borderhigh currentagechild" name="age" id="age" value="1" >
                 </div><br>
 
                 <div class="form-group row">
                     <label class="alllabel">Age at which child go to Higher Education</label>
-                    <input type="number" style="width:70%;" class="form-control allinput input-selector calculatehouse borderhigh futureagechild" name="futureages" id="futureage" value="18" required>
+                    <input type="number" style="width:70%;" class="form-control allinput input-selector calculatehouse borderhigh futureagechild" name="futureages" id="futureage" value="18" >
                 </div><br>
                 <input type="button" value="Add Child" class="btn btn-primary" onclick="secondedu()"><br>
             </div>
