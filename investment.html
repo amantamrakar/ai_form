@@ -62,16 +62,23 @@
         font-size: 15px;
         width: 66%;
     }
-    .goals_table table thead tr th{
+
+    .goals_table table thead tr th {
         border: 3px solid #ffffff;
-    border-radius: 12px;
-    padding: 10px;
+        border-radius: 10px;
+        padding: 10px;
     }
-    .th_style{
+
+    .goals_table table tbody tr th {
+        border: 2px solid #fff;
+        border-radius: 12px;
+    }
+
+    .th_style {
         vertical-align: middle;
-    text-align: center;
-    font-size: 19px;
-    text-transform: capitalize;
+        text-align: center;
+        font-size: 19px;
+        text-transform: capitalize;
     }
 </style>
 
@@ -85,9 +92,10 @@
 
 
             <div class="goals_table">
-               
+
 
             </div>
+
             <button type="button" class="btn btn-success" id="btn_web">Show</button>
 
 
@@ -198,10 +206,11 @@
 
 
     }
+       
     function removeel(value) {
-        console.dir(value.parentElement.remove());
+            console.dir(value.parentElement.remove());
 
-    }
+        }
 
     $(function () {
         $('form').bind('submit', function () {
@@ -217,6 +226,13 @@
         });
     });
 
+    function cal_lumpsum(amount, year) {
+        let fv = amount
+        let a = ((1 + (12 / 100)) ** year);
+        let b = fv / a;
+        let c = b.toFixed(0);
+        return c
+    }
 
 
     $("document").ready(function () {
@@ -231,16 +247,28 @@
             success: function (data) {
                 console.log(data);
                 let markup = '';
+                let total_sip = 0;
+                let total_lumpsum = 0;
                 data.forEach(el => {
-                    markup += ' <table class="table mt-3 table-bordered " style=" font-size:12px;width: 80%;position: relative;left: 11%;"><thead><tr class="'+el["goal"]+'"><th class="col-2 " style="color:white;font-size: 14px;text-align: center;">Goal Name</th><th class="col-2" style="color:white;font-size: 14px;text-align: center;">Future Age</th>  <th colspan="2" style="width:30%;color:white;font-size: 14px;text-align: center;">AMOUNT REQUIRED</th> <th colspan="2" style="width:40%;color:white;font-size: 14px;text-align: center;">PLAN THE AMOUNT YOU CAN INVEST</th></tr> </thead>   ';
+                    markup += ' <table class="table mt-3 table-responsive " style=" font-size:12px;width: 80%;position: relative;left: 11%;"><thead><tr class="' + el["goal"] + '"><th class="col-2 " style="color:white;font-size: 14px;text-align: center;">Goal Name</th><th class="col-2" style="color:white;font-size: 14px;text-align: center;">Future Age</th>  <th colspan="2" style="width:30%;color:white;font-size: 14px;text-align: center;">AMOUNT REQUIRED</th> <th colspan="2" style="width:40%;color:white;font-size: 14px;text-align: center;">PLAN THE AMOUNT YOU CAN INVEST</th></tr> </thead>   ';
 
-                    if (el["goal"] || el["goal_data"]["futureage"] || (el["goal_data"]["ansinputs"]) || (el["goal_data"]["sipvalue"])) markup += `<tr ><th rowspan="2" class="th_style">${el["goal"]}</th ><th rowspan="2" class="th_style">${el["goal_data"]["futureage"]}</th><th class="col-md-2" style="background-color: #bababa;text-align: center;">MONTHLY </th><th class="col-md-2" style="background-color: #bababa;text-align: center;">LUMPSUM</th><th class="col-md-2" style="background-color: #bababa;text-align: center;">MONTHLY </th><th class="col-md-2" style="background-color: #bababa;text-align: center;">LUMPSUM</th></tr><tr><td><i class="fa fa-rupee-sign"></i><input class="style_input" disabled type="text" value=" ${el["goal_data"]["sipvalue"]}" </td><td><i class="fa fa-rupee-sign"></i><input class="style_input" type="text" disabled value=" ${el["goal_data"]["ansinputs"]}" </td><td><i class="fa fa-rupee-sign"></i><input class="style_input" type="number"></td><td><i class="fa fa-rupee-sign"></i><input class="style_input" type="number"></td></tr>`
+                    if (el["goal"] || el["goal_data"]["futureage"] || (el["goal_data"]["ansinputs"]) || (el["goal_data"]["sipvalue"])) {
+                        let temp = +el["goal_data"]["ansinputs"].replaceAll(",", "")
+                        markup += `<tr ><th rowspan="2" class="th_style">${el["goal"]}</th ><th rowspan="2" class="th_style">${el["goal_data"]["futureage"]}</th><th class="col-md-2" style="background-color: #bababa;text-align: center;">MONTHLY </th><th class="col-md-2" style="background-color: #bababa;text-align: center;">LUMPSUM</th><th class="col-md-2" style="background-color: #bababa;text-align: center;">MONTHLY </th><th class="col-md-2" style="background-color: #bababa;text-align: center;">LUMPSUM</th></tr><tr><td><i class="fa fa-rupee-sign"></i><input class="style_input" disabled type="text" value=" ${el["goal_data"]["sipvalue"]}" </td><td><i class="fa fa-rupee-sign"></i><input class="style_input" type="text"  value=" ${cal_lumpsum(temp, el["goal_data"]["futureage"])}" </td><td><i class="fa fa-rupee-sign"></i><input class="style_input" type="number" id="mothly_sip"></td><td><i class="fa fa-rupee-sign"></i><input class="style_input" type="number" id="lumpsum_sip"></td></tr>`
+                        total_sip += +el["goal_data"]["sipvalue"].replaceAll(",", "")
+                        total_lumpsum += temp
+                    }
                     markup += "</table>";
                     // if () markup += `<tr> ${el["goal_data"]["futureage"]}</td></tr>`
                     // if(el["goal_data"]["inflation"])markup+=`<tr><td>inflation</td> <td> ${el["goal_data"]["inflation"]}</td></tr>`
                     // if(el["goal_data"]["ansinputs"])markup+=`<tr><td>investment value</td> <td> ${el["goal_data"]["ansinputs"]}</td></tr>`
                     // if(el["goal_data"]["sipvalue"])markup+=`<tr><td>sip value</td> <td> ${el["goal_data"]["sipvalue"]}</td></tr>`
                 });
+                markup += `<table class="table mt-3 table-bordered " style=" font-size:12px;width: 80%;position: relative;left: 11%;"><thead><tr><th class="col-2" style="font-size: 14px;text-align: center;">Total Monthly SIP Required</th><th class="col-2" style="font-size: 14px;text-align: center;">Total Lumsup SIP Required</th></tr></thead><tbody><tr><th class="col-2 " style="font-size: 14px;text-align: center;">${total_sip}</th><th class="col-2 " style="font-size: 14px;text-align: center;">${total_lumpsum}</th></tr></tbody></table>`
+
+
+
+
                 $(".goals_table").html(markup);
             }
         });

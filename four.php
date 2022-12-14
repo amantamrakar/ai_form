@@ -29,7 +29,7 @@
                         <h1 class="htag">For Further Planning <br> Sign Up</h1>
                         <!-- <span class="spans">or use your email for registration</span><br> -->
                         <div class="input">
-                            <label for="mar-name" class="alllabel">Name</label>
+                            <label for="mar-name" class="alllabel">Your Name</label>
                             <input type="text" class="inputss allinput ttip input-selector" placeholder="Name" name="username" id="mar-name" required="" />
                         </div>
                         <div class="input">

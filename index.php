@@ -430,7 +430,7 @@ session_start();
 
 <body>
 
-  <div class="loader d-none" >
+  <div class="loader" >
 
   </div>
   <div class="container overflow-hidden " style="height:auto;">
