@@ -6,15 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
     <title>road map</title>
     <style>
+        body{
+            overflow-x: hidden;
+        }
         .road-map {
             display: flex;
             justify-content: center;
         }
 
         #g-path {
-            min-width: 945px;
+            min-width: 900px;
         }
 
         .goal-box {
@@ -72,7 +76,7 @@
             font-size: 10.5833px;
             line-height: 1.25;
             font-family: sans-serif;
-            fill: #970000;
+            fill: #ffffff;
             fill-opacity: 1;
             stroke: none;
             stroke-width: 0.264583;
@@ -132,7 +136,8 @@
             </g>
         </svg>
     </div>
-    <button type="button">Next</button>
+    <div class="text-center"><a class="btn btn-primary m-2 p-2 btn-lg" href="investment.html">Next</a></div>
+    
     <div class="modal fade" id="show-goal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -221,7 +226,7 @@
                     data[k].py = data[k - 1].py + 60 + ((data[k].year-data[k-1].year)*data.length);
                 }
             }
-            putHeight=data[data.length-1].py*4;
+            putHeight=data[data.length-1].py*3;
             if(putHeight <=gh) putHeight=gh;
             
          //   goal.style.marginTop = (gh - putHeight) / 2 + "px"
@@ -320,7 +325,7 @@
             }
 
             c_m += `<path d="M ${mid},${y} H ${mid+(74*ls)}" class="v-line" />
-                <rect  x="${py}" y="${y-20}" ry="6.3933463" height="50"/>
+                <rect  x="${py}" y="${y-20}" style="fill:var(--${text.goal})" ry="6.3933463" height="50"/>
                 <foreignObject x="${py-4}" y="${y-24}" class="box-action" height="50">
 
                 <body xmlns="http://www.w3.org/1999/xhtml">

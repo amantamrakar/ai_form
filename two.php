@@ -406,6 +406,6 @@
 
     <div style="text-align:center" class="mt-2">
         <input type="button" name="previous" class="previous btn btn-secondary" value="Previous" />
-        <input type="button" name="next" onclick="namebtn(),gotolog(<?php (isset($_SESSION['goaluser'])) ? 'auth' : 'go' ?>)" class="next btn btn-primary" value="Next" id="btn-2" disabled />
+        <input type="button" name="next" onclick="namebtn(),gotolog('<?php echo (isset($_SESSION['goaluser'])) ? 'auth' : 'go' ?>')" class="next btn btn-primary" value="Next" id="btn-2" disabled />
     </div>
 </fieldset>

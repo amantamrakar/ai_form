@@ -1,25 +1,34 @@
+:root{
+    --education: #1e2477;
+    --vacation: #2f7c32;
+    --retirement: #669999;
+    --car: #dbaf00;
+    --others: #6666ff;
+    --marriage: #ea0000;
+    --house: #f7941d;
+}
 .education{
-background-color: #1e2477;
+background-color: var(--education);
 }
 .vacation{
-background-color:#2f7c32;
+background-color:var(--vacation);
 }
 .retirement{
-background-color: #669999;
+background-color: var(--retirement);
 }
 .car
 {
-background-color: #dbaf00;
+background-color: var(--car);
 }
 .others
 {
-background-color: #6666ff;
+background-color: var(--others);
 }
 .marriage
 {
-background-color:  #ea0000;
+background-color:  var(--marriage);
 }
 .house
 {
-    background-color: #f7941d;
+    background-color: var(--house);
 }

@@ -1313,7 +1313,6 @@ session_start();
 
         }
       }
-
     }
 
     $('.btnidprfl').click(function(e) {
