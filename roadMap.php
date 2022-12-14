@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="style.css">
     <title>road map</title>
     <style>
+        body{
+            overflow-x: hidden;
+        }
         .road-map {
             display: flex;
             justify-content: center;
