@@ -430,7 +430,7 @@ session_start();
 
 <body>
 
-  <div class="loader" >
+  <div class="loader">
 
   </div>
   <div class="container overflow-hidden " style="height:auto;">
@@ -509,7 +509,7 @@ session_start();
     var current = 1;
     let g_id;
     const myselection = {};
-      $(document).ready(function() {
+    $(document).ready(function() {
       $(".loader").delay(200).fadeOut("slow");
       housecal();
       var current_step, next_step, steps;
@@ -557,6 +557,7 @@ session_start();
         next_step = $(this).parent().parent().next();
         next_step.show();
         //  current_step.hide();
+        window.scrollTo(0, 0);
         setProgressBar(++current);
       });
 
@@ -705,8 +706,8 @@ session_start();
       fva = document.getElementById("currentcost").value;
       inflation = document.getElementById("inflation").value,
         timehorizon = document.getElementById("timehorizon").value;
-      IsEmpty()
-      rhouse = 12 / 100;
+      // timehorizon = '';
+      rhouse = get_rate(timehorizon);
       i = inflation / 100;
       rcal = rhouse / 12;
       l = i / 12;
@@ -741,6 +742,16 @@ session_start();
       }
     }
 
+    function get_rate(N) {
+      let rate = 12 / 100;
+      if (N <= 3 && N > 1) {
+        rate = 10 / 100;
+      } else if (N == 1) {
+        rate = 8 / 100;
+      }
+      return rate;
+    }
+
     function educationone() {
       //  var name = document.getElementById("name").value;
       age = document.getElementById("age").value;
@@ -749,10 +760,14 @@ session_start();
       //  Rate = document.getElementById("rate").value;
       infla = document.getElementById("infla").value;
       IsEmpty()
-      let rate = 12 / 100;
-
-      //  r = Rate / 100;
       N = FA - age; // 16
+      let rate = get_rate(N)
+      // if (N <= 3 && N > 1) {
+      //   rate = 10 / 100;
+      // } else if (N == 1) {
+      //   rate = 8 / 100;
+      // }
+      //  r = Rate / 100;
       n = N * 12; //192
       r = rate / 12; // 1%
       i = infla / 100; //5%
@@ -781,10 +796,10 @@ session_start();
       let fvas = document.getElementById("scurrent").value;
       // let Rate = document.getElementById("rate").value;
       let inflas = document.getElementById("sinfla").value;
-      let rates = 12 / 100;
+      let Ns = FAs - ages;
+      let rates = get_rate(Ns)
       IsEmpty()
       // let r = Rate / 100;
-      let Ns = FAs - ages;
       let ns = Ns * 12;
       rs = rates / 12; // 1%s
       let is = inflas / 100;
@@ -804,18 +819,15 @@ session_start();
       document.getElementById("set-year").innerHTML = Ns;
     }
 
-
-
-
     function marriageone() {
       agemar = document.getElementById("agemar").value;
       fa = document.getElementById("futureagemar").value;
       FVA = document.getElementById("currentcostly").value;
       inflaa = document.getElementById("expinfla").value;
       IsEmpty()
-      let rates = 12 / 100;
-      //  r = Rate / 100;
       M = fa - agemar;
+      let rates = get_rate(M);
+      //  r = Rate / 100;
       m = M * 12;
       rs = rates / 12;
       I = inflaa / 100;
@@ -829,7 +841,7 @@ session_start();
       anssip = fs / cals;
 
 
-      console.log(FVB, m, FVA, anssip);
+      // console.log(FVB, m, FVA, anssip);
 
       document.getElementById("set2").value = FVB.toLocaleString(0);
       document.getElementById("set12").innerHTML = FVB.toLocaleString(0);
@@ -844,8 +856,8 @@ session_start();
       secFVA = document.getElementById("secondMarcurrent").value;
       secinflaa = document.getElementById("secondMarinfla").value;
       IsEmpty()
-      let secrates = 12 / 100;
       secM = secfa - secagemar;
+      let secrates = get_rate(secM);
       secm = secM * 12;
       secrs = secrates / 12;
       secI = secinflaa / 100;
@@ -858,7 +870,7 @@ session_start();
       seccals = secnums * secnexts;
       secanssip = secfs / seccals;
 
-      console.log(secanssip);
+      // console.log(secanssip);
 
       document.getElementById("fvsecond-mar").value = secFVB.toLocaleString(0);
       document.getElementById("fvsecp").innerHTML = secFVB.toLocaleString(0);
@@ -868,7 +880,6 @@ session_start();
 
     }
 
-
     function vacationone() {
       //  var name = document.getElementById("name").value;
       let agevac = document.getElementById("vcurrentyear").value;
@@ -876,10 +887,10 @@ session_start();
       let fvavac = document.getElementById("currentvac").value;
       let inflavac = document.getElementById("inflavac").value;
       IsEmpty()
-      let ratesvac = 12 / 100;
+      let Nvac = FAvac - agevac;
+      let ratesvac =  get_rate(Nvac);
 
       // let r = Rate / 100;
-      let Nvac = FAvac - agevac;
       let nvac = Nvac * 12;
       rsvac = ratesvac / 12;
       let ivac = inflavac / 100;
@@ -909,7 +920,6 @@ session_start();
       let rateretire = document.getElementById("retrate").value;
       IsEmpty()
       let Np = retretire - retpresent; //Np
-      console.log(Np);
       let r2 = (12 / (100 * 12));
       let r1 = rateretire / 100; //r1
       let r1ret = r1 / 12;
@@ -929,22 +939,14 @@ session_start();
       gret = ((1 - fret) * dret);
       hret = (gret * Er);
       iiret = hret / rr;
-
+      
       //sip required
-
       let sip = (iiret * r2);
       let csip = (1 + r2);
       dsip = (csip ** (Np * 12));
       esip = (dsip - 1);
       fsip = esip * csip;
       gsip = sip / fsip;
-
-
-
-
-
-      console.log(Er, rr);
-
 
       document.getElementById("setretire").value = iiret.toLocaleString(0);
       document.getElementById("set6ans").innerHTML = iiret.toLocaleString(0);
@@ -962,9 +964,9 @@ session_start();
       let FAcar = document.getElementById("futureyearcar").value;
       let fvacar = document.getElementById("currentcar").value;
       let inflacar = document.getElementById("inflacar").value;
-      let ratescars = 12 / 100;
       IsEmpty()
       Ncar = FAcar - agecar; // 16
+      let ratescars = get_rate(Ncar);
       ncar = Ncar * 12; //192
       rcar = ratescars / 12; // 1%
       icar = inflacar / 100; //5%
@@ -997,10 +999,10 @@ session_start();
       currentval = document.getElementById("currentvalue").value;
       //  Rate = document.getElementById("rate").value;
       inflaother = document.getElementById("inflaother").value;
-      let rateother = 12 / 100;
+      Nother = Futureval - currentage; // 16
+      let rateother = get_rate(Nother);
 
       //  r = Rate / 100;
-      Nother = Futureval - currentage; // 16
       nother = Nother * 12; //192
       rother = rateother / 12; // 1%
       iother = inflaother / 100; //5%

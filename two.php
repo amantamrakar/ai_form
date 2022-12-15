@@ -200,7 +200,7 @@
 
             <div class="col-md-6 col-sm-4" id="marriageimg">
                 <div style="display:block;">
-                    <img src="images\marriage.jpg" alt="" style="width:100%;border-radius:22px;">
+                    <img src="images\marriageimg.jpg" alt="" style="width:100%;border-radius:22px;">
                 </div>
             </div>
 
