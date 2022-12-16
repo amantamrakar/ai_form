@@ -4,14 +4,16 @@ require_once("./connect.php");
 $res = array();
 if (isset($_SESSION["goaluser"])) {
     $email = $_SESSION["goaluser"];
-    $goal = $_POST['goal'];
-    $_SESSION['goal'] = $goal;
     // $_POST["sdata"]['username']=$email;
-    $sgoal = json_encode($_POST["sdata"]);
-    $sql = "INSERT INTO `user_goal`( `email`, `goal`, `goal_data`) VALUES ('$email','$goal','$sgoal')";
-    $result =  mysqli_query($conn, $sql);
+    if(isset($_POST["sdata"])){
+        $goal = $_POST['goal'];
+        $_SESSION['goal'] = $goal;
+        $sgoal = json_encode($_POST["sdata"]);
+        $sql = "INSERT INTO `user_goal`( `email`, `goal`, `goal_data`) VALUES ('$email','$goal','$sgoal')";
+        $result =  mysqli_query($conn, $sql);
+    }
     $res["status"] = true;
-    echo json_encode($res);
+    die(json_encode($res));
 }
 
 if (!isset($_POST["f_type"])) {
@@ -75,8 +77,7 @@ if ($_POST["f_type"] == "register") {
 if ($_POST["f_type"] == "login") {
     $email = $_POST["email"];
     $pass = $_POST["l_pass"];
-    $sgoal = json_encode($_POST["sdata"]);
-    $goal = $_POST["goal"];
+    
 
     $sql = "SELECT * from `registered_user` WHERE email = '$email'";
     // echo $sql;
@@ -86,10 +87,15 @@ if ($_POST["f_type"] == "login") {
     if ($data != null) {
         if (password_verify($pass, $data["pws"])) {
             $_SESSION["goaluser"] = $data["email"];
-            $_SESSION["goal"] = $goal;
             // $sgoal=json_encode($sgoal);
-            $sql = "INSERT INTO `user_goal`( `email`, `goal`, `goal_data`) VALUES ('$email','$goal','$sgoal')";
-            $result =  mysqli_query($conn, $sql);
+            if(isset($_POST["sdata"])){
+                $goal = $_POST["goal"];
+                $_SESSION["goal"] = $goal;
+
+                $sgoal = json_encode($_POST["sdata"]);
+                $sql = "INSERT INTO `user_goal`( `email`, `goal`, `goal_data`) VALUES ('$email','$goal','$sgoal')";
+                $result =  mysqli_query($conn, $sql);
+            }
             echo json_encode(["status" => true]);
         } else {
             echo json_encode(["status" => false, "message" => "Invalid username and Password"]);

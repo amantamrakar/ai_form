@@ -207,9 +207,7 @@ session_start();
     .container {
       display: block;
       margin: auto;
-
       height: fit-content;
-
     }
 
     .vacradio {
@@ -230,75 +228,7 @@ session_start();
       font-size: 17px;
     }
 
-    .glow-on-hover {
-      width: 130px;
-      height: 50px;
-      border: none;
-      outline: none;
-      color: #fff;
-      background: #111;
-      cursor: pointer;
-      position: relative;
-      z-index: 0;
-      border-radius: 10px;
-    }
-
-    .glow-on-hover:before {
-      content: '';
-      background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      background-size: 400%;
-      z-index: -1;
-      filter: blur(5px);
-      width: calc(100% + 4px);
-      height: calc(100% + 4px);
-      animation: glowing 20s linear infinite;
-      opacity: 0;
-      transition: opacity .3s ease-in-out;
-      border-radius: 10px;
-    }
-
-    .glow-on-hover:active {
-      color: #000
-    }
-
-    .glow-on-hover:active:after {
-      background: transparent;
-    }
-
-    .glow-on-hover:hover:before {
-      opacity: 1;
-    }
-
-    .glow-on-hover:after {
-      z-index: -1;
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: #969696;
-      left: 0;
-      color: black;
-      top: 0;
-      border-radius: 10px;
-    }
-
-    @keyframes glowing {
-      0% {
-        background-position: 0 0;
-      }
-
-      50% {
-        background-position: 400% 0;
-      }
-
-      100% {
-        background-position: 0 0;
-      }
-    }
-
+   
     .loader {
       /* position: fixed; */
       left: 0px;
@@ -356,7 +286,13 @@ session_start();
       transform-origin: 0%;
 
     }
-
+    button.login-btn{
+      border-radius: 6px;
+    font-weight: bold;
+    background-color: #fff;
+    color: #5262af;
+    border: 1px solid #6073ca;
+    }
     .log-in-containers {
       background-color: #c8e9f3;
       position: absolute;
@@ -436,7 +372,13 @@ session_start();
   <div class="container overflow-hidden " style="height:auto;">
 
     <h1 style="padding-bottom:10px; border-bottom:4px solid #FC0;">Welcome back, Let's know you better to give you best!</h1></br />
-    <button class="glow-on-hover mb-4" data-bs-target="#staticBackdrop" data-bs-toggle="modal" type="button">Log In</button>
+    <?php
+    if (isset($_SESSION["goaluser"])) {
+      echo '<a href="dashboard.php"><button class="mb-2 login-btn">Dashboard</button></a>';
+    }else{
+    echo '<button class="mb-2 login-btn" data-bs-target="#staticBackdrop" data-bs-toggle="modal" type="button">Log In</button>';
+  }
+  ?>
     <div class="progress">
       <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
@@ -489,11 +431,25 @@ session_start();
       <div class="modal-dialog modal-xl">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="staticBackdropLabel">User Goal</h1>
+            <h1 class="modal-title fs-5 text-dark" >Log In</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" id="modal_gaol_id">
-
+                <form method="post" id="pop-log-in-form">
+                
+                        <div class="form-group m-2">
+                          <label for="pop-l-mail" class="text-dark">Email</label>
+                            <input type="text" class="form-control" id="pop-l-mail" placeholder="Your Email *" value="" />
+                        </div>
+                        <div class="form-group m-2">
+                        <label for="pop-l-pass" class="text-dark">Password</label>
+                            <input type="password" class="form-control" id="pop-l-pass" placeholder="Your Password *" value="" />
+                        </div>
+                        <div class="form-group m-2">
+                        <button type="submit" id="pop-log-in" class="btn btn-primary">Log In</button>
+                            <!-- <a href="#" class="ForgetPwd">Forget Password?</a> -->
+                        </div>
+                </form>
 
           </div>
 
@@ -503,9 +459,31 @@ session_start();
   </div>
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+  <script src="./bootstrap.min.js"></script>
   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
 
   <script type="text/javascript">
+$("#pop-log-in-form").submit(e=>{
+  e.preventDefault();
+  $.ajax({
+        method: "post",
+        url: "./trial.php",
+        data: {
+          "email": $("#pop-l-mail").val(),
+          "l_pass": $("#pop-l-pass").val(),
+          "f_type":"login"
+        },
+        dataType: "json",
+        success: function(data) {
+          if (data.status) {
+            window.location.href = "./dashboard.php"
+          } else {
+            // $(".message").html(data.message)
+            alert(data.message)
+          }
+        }
+      });
+})
     var current = 1;
     let g_id;
     const myselection = {};

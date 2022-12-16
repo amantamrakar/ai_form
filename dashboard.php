@@ -12,6 +12,9 @@ $data = array();
 //     echo "you are not auth";
 //     die();
 // } else {
+if (!isset($_SESSION["goal"])) {
+    $_SESSION["goal"] = "pass"; //?to pass all the letter or notation
+}
 $sql = "SELECT * FROM `user_goal` WHERE `email`='{$_SESSION["goaluser"]}' AND `goal`='{$_SESSION["goal"]}' ORDER BY `id`  DESC";
 // echo $sql;
 $resgister_sql = "SELECT `full_name` FROM `registered_user` WHERE `email`='{$_SESSION["goaluser"]}'";
@@ -57,34 +60,156 @@ if (mysqli_num_rows($result)) {
         color: #223C86;
         cursor: pointer;
     }
-    .labels 
-    {
+
+    .labels {
         font-size: 20px;
         color: black;
         text-align: center;
         font-weight: 500;
     }
+
     .inputans {
         background-color: #1a1b50;
-        text-align:center;
-        padding:6px;
-        border-radius:5px;
-        color:white;
+        text-align: center;
+        padding: 6px;
+        border-radius: 5px;
+        color: white;
         border: 1px solid black;
-        font-size:22px;
+        font-size: 22px;
     }
+
     .imp {
         padding: 6px;
         text-align: center;
         text-transform: capitalize;
-        font-size:19px;
+        font-size: 19px;
     }
-    .imp_disabled{
+
+    .imp_disabled {
         padding: 6px;
         text-align: center;
         text-transform: capitalize;
         font-size: 19px;
-        border:none;
+        border: none;
+    }
+
+    /* for road map */
+    body {
+        overflow-x: hidden;
+    }
+
+    .road-map {
+        display: flex;
+        justify-content: center;
+    }
+
+    #g-path {
+        min-width: 900px;
+    }
+
+    .goal-box {
+        cursor: pointer;
+        position: relative;
+        transform-origin: center;
+        animation: box 1s ease-in 1;
+    }
+
+    @keyframes box {
+        0% {
+            transform: scaleX(0);
+        }
+
+        100% {
+            transform: scaleX(1);
+        }
+    }
+
+    #g-path rect {
+        fill: transparent;
+        stroke-width: 2;
+        stroke: #4949ff;
+        stroke-opacity: 1;
+        width: 80px;
+        height: 42px;
+    }
+
+    #g-path rect:hover {
+        stroke-width: 3;
+        fill: #eeeeff;
+    }
+
+    #g-path #h-line {
+        fill: none;
+        stroke: #000000;
+        stroke-width: 2.5;
+        stroke-linecap: butt;
+        stroke-linejoin: miter;
+        stroke-opacity: 1;
+        stroke-miterlimit: 4;
+    }
+
+    #g-path .v-line {
+        fill: none;
+        stroke: #000000;
+        stroke-width: 2.5;
+        stroke-linecap: butt;
+        stroke-linejoin: miter;
+        stroke-opacity: 1;
+        stroke-miterlimit: 4;
+        stroke-dasharray: none
+    }
+
+    #g-path text {
+        pointer-events: none;
+        text-transform: capitalize;
+        font-size: 8px;
+        line-height: 1.25;
+        font-family: sans-serif;
+        fill: #ffffff;
+        fill-opacity: 1;
+        stroke: none;
+        stroke-width: 0.264583;
+        stroke-opacity: 1
+    }
+
+    #cybox {
+        width: 100%;
+        height: 50px;
+        text-align: center;
+    }
+
+    #cybox #current-year {
+        color: #ffffff;
+        background-color: #6868ff;
+    }
+
+    .box-action {
+        width: 20px;
+    }
+
+    .a-btn {
+        display: flex;
+        flex-wrap: nowrap;
+        height: 100%;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .box-action img {
+        box-sizing: content-box;
+        vertical-align: baseline;
+        width: 10px;
+        height: 10px;
+        background-color: white;
+        border: 2px solid #4949ff;
+        border-radius: 25px;
+        padding: 10%;
+    }
+    #g-path text.goal-text{
+        
+}
+    .box-action img:hover {
+        background-color: pink;
     }
 </style>
 <!DOCTYPE html>
@@ -96,6 +221,16 @@ if (mysqli_num_rows($result)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #show-goal-table {
+            display: none
+        }
+        .road-year{
+            fill: red;
+            text-anchor: middle;
+        }
+    </style>
 </head>
 
 <body>
@@ -515,115 +650,11 @@ if (mysqli_num_rows($result)) {
             </div>
         <?php  }
         ?>
-        <div style="text-align:center" class="mt-2">
+        <!-- <div style="text-align:center" class="mt-2">
             <input type="button" name="previous" class="previous btn btn-secondary" value="Previous" />
             <input type="submit" name="submit" class="submit btn btn-success" value="Submit" onclick="location.href='six.php'" id="submit_data" />
-        </div>
-        <div class="container mt-3">
-            <div class="card">
-                <div class="card-body">
-                    <table class="table table-bordered" style="width:100%;padding:0;" id="data_table" cellspacing="0">
-                        <thead style="background-color:#222f3f;color:white;">
-                            <tr>
-                                <th class="text-center" style="font-weight: 500;font-size:14px;">S.No</th>
-                                <th class="text-center" style="font-weight: 500;font-size:14px;">Goal</th>
-                                <th class="text-center" style="font-weight: 500;font-size:14px;">Time Allocated(Yr)</th>
-                                <th class="text-center" style="font-weight: 500;font-size:14px;">Current Value</th>
-                                <th class="text-center" style="font-weight: 500;font-size:14px;">Future Value</th>
-                                <th class="text-center" style="font-weight: 500;font-size:14px;">SIP Required</th>
-                                <th class="text-center" style="font-weight: 500;font-size:14px;">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody style="font-size:13.5px;">
-                            <?php
-                            $select = "SELECT * FROM `user_goal` WHERE `email` = '{$_SESSION['goaluser']}'";
-                            // echo $select;
-                            $select_result = mysqli_query($conn, $select);
-                            if (mysqli_num_rows($select_result) > 0) {
-                                $k = 1;
-                                while ($data = mysqli_fetch_assoc($select_result)) {
-                                    if ($data["goal_data"] == "" || $data["goal"] == "") continue;
-                                    $decode =  json_decode($data['goal_data'], true);
-                            ?>
-                                    <tr>
-                                        <td class="text-center"><?php echo $k  ?></td>
-                                        <td class="text-center"><?php echo $data['goal']  ?></td>
-                                        <?php if ($data['goal'] == "car") {
-                                        ?>
-                                            <td class="text-center"><?php echo $decode['futureyear']  ?></td>
-                                            <td class="text-center"><?php echo $decode['current']  ?></td>
-                                        <?php
-                                        } ?>
-                                        <?php if ($data['goal'] == "house") {
-                                        ?>
-                                            <td class="text-center"><?php echo $decode['futureage']  ?></td>
-                                            <td class="text-center"><?php echo $decode['currentcost']  ?></td>
-                                        <?php
-                                        } ?>
-                                        <?php if ($data['goal'] == "retirement") {
-                                            $retire_year = $decode['retirementage'] - $decode['currentage'];
-                                        ?>
-                                            <td class="text-center"><?php echo $retire_year ?></td>
-                                            <td class="text-center">N/A</td>
-                                        <?php
-                                        } ?>
-                                        <?php if ($data['goal'] == "marriage") {
-                                            $marriage_year = $decode['futureage'] - $decode['currentagechild'];
-                                        ?>
-                                            <td class="text-center"><?php echo $marriage_year ?></td>
-                                            <td class="text-center"><?php echo $decode['currentcost']  ?></td>
+        </div> -->
 
-                                        <?php
-                                        } ?>
-                                        <?php if ($data['goal'] == "vacation") {
-                                        ?>
-                                            <td class="text-center"><?php echo $decode['futureyear']  ?></td>
-                                            <td class="text-center"><?php echo $decode['current']  ?></td>
-                                        <?php
-                                        } ?>
-                                        <?php if ($data['goal'] == "education") {
-                                            $education_year = $decode['futureages'] - $decode['age'];
-                                        ?>
-                                            <td class="text-center"><?php echo  $education_year ?></td>
-                                            <td class="text-center"><?php echo $decode['currentcost']  ?></td>
-                                        <?php
-                                        } ?>
-                                        <?php if ($data['goal'] == "others") {
-                                        ?>
-                                            <td class="text-center"><?php echo  $decode['futureage'] ?></td>
-                                            <td class="text-center"><?php echo  $decode['currentcost'] ?></td>
-                                        <?php
-                                        } ?>
-                                        <td class="text-center"><?php echo $decode['ansinputs']  ?></td>
-                                        <td class="text-center"><?php echo $decode['sipvalue']  ?></td>
-                                        <td style="width:10%">
-                                            <div class="btn-group btn-group-sm" style="padding:0;" role="group" aria-label="Basic example">
-                                                <button type="button" class="btn btn-success me-1 showing_goals style=" font-size:12px ;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id='<?php echo $data['id'] ?>'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                                                    </svg></button>
-                                                <button type="button" class="btn btn-secondary me-1 show_btn" data-bs-toggle="modal" data-bs-target="#exampleModal" id="'<?php echo $data['id'] ?>'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
-                                                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
-                                                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
-                                                    </svg></button>
-                                                <button type="button" class="btn btn-danger delete_btn" id="'<?php echo $data['id'] ?>'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-                                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-                                                    </svg></button>
-
-                                            </div>
-                                        </td>
-                                    </tr>
-                            <?php
-                                    $k++;
-                                }
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content" style="width: 50%;left: 24%;">
@@ -647,12 +678,159 @@ if (mysqli_num_rows($result)) {
                 </div>
             </div>
         </div>
-        <div class="text-center"><a class="btn btn-primary m-2 p-2 btn-lg" href="roadMap.php">Road Map</a></div>
+
     </fieldset>
+    <button id="toggle-sgoal" class="btn btn-primary m-2 p-1">show in table</button>
+    <div class="container mt-3" id="show-goal-table">
+        <div class="card">
+            <div class="card-body table-responsive">
+                <table class="table table-bordered" style="width:100%;padding:0;" id="data_table" cellspacing="0">
+                    <thead style="background-color:#222f3f;color:white;">
+                        <tr>
+                            <th class="text-center" style="font-weight: 500;font-size:14px;">S.No</th>
+                            <th class="text-center" style="font-weight: 500;font-size:14px;">Goal</th>
+                            <th class="text-center" style="font-weight: 500;font-size:14px;">Time Allocated(Yr)</th>
+                            <th class="text-center" style="font-weight: 500;font-size:14px;">Current Value</th>
+                            <th class="text-center" style="font-weight: 500;font-size:14px;">Future Value</th>
+                            <th class="text-center" style="font-weight: 500;font-size:14px;">SIP Required</th>
+                            <th class="text-center" style="font-weight: 500;font-size:14px;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size:13.5px;">
+                        <?php
+                        $select = "SELECT * FROM `user_goal` WHERE `email` = '{$_SESSION['goaluser']}'";
+                        // echo $select;
+                        $select_result = mysqli_query($conn, $select);
+                        if (mysqli_num_rows($select_result) > 0) {
+                            $k = 1;
+                            while ($data = mysqli_fetch_assoc($select_result)) {
+                                if ($data["goal_data"] == "" || $data["goal"] == "") continue;
+                                $decode =  json_decode($data['goal_data'], true);
+                        ?>
+                                <tr>
+                                    <td class="text-center"><?php echo $k  ?></td>
+                                    <td class="text-center"><?php echo $data['goal']  ?></td>
+                                    <?php if ($data['goal'] == "car") {
+                                    ?>
+                                        <td class="text-center"><?php echo $decode['futureyear']  ?></td>
+                                        <td class="text-center"><?php echo $decode['current']  ?></td>
+                                    <?php
+                                    } ?>
+                                    <?php if ($data['goal'] == "house") {
+                                    ?>
+                                        <td class="text-center"><?php echo $decode['futureage']  ?></td>
+                                        <td class="text-center"><?php echo $decode['currentcost']  ?></td>
+                                    <?php
+                                    } ?>
+                                    <?php if ($data['goal'] == "retirement") {
+                                        $retire_year = $decode['retirementage'] - $decode['currentage'];
+                                    ?>
+                                        <td class="text-center"><?php echo $retire_year ?></td>
+                                        <td class="text-center">N/A</td>
+                                    <?php
+                                    } ?>
+                                    <?php if ($data['goal'] == "marriage") {
+                                        $marriage_year = $decode['futureage'] - $decode['currentagechild'];
+                                    ?>
+                                        <td class="text-center"><?php echo $marriage_year ?></td>
+                                        <td class="text-center"><?php echo $decode['currentcost']  ?></td>
+
+                                    <?php
+                                    } ?>
+                                    <?php if ($data['goal'] == "vacation") {
+                                    ?>
+                                        <td class="text-center"><?php echo $decode['futureyear']  ?></td>
+                                        <td class="text-center"><?php echo $decode['current']  ?></td>
+                                    <?php
+                                    } ?>
+                                    <?php if ($data['goal'] == "education") {
+                                        $education_year = $decode['futureages'] - $decode['age'];
+                                    ?>
+                                        <td class="text-center"><?php echo  $education_year ?></td>
+                                        <td class="text-center"><?php echo $decode['currentcost']  ?></td>
+                                    <?php
+                                    } ?>
+                                    <?php if ($data['goal'] == "others") {
+                                    ?>
+                                        <td class="text-center"><?php echo  $decode['futureage'] ?></td>
+                                        <td class="text-center"><?php echo  $decode['currentcost'] ?></td>
+                                    <?php
+                                    } ?>
+                                    <td class="text-center"><?php echo $decode['ansinputs']  ?></td>
+                                    <td class="text-center"><?php echo $decode['sipvalue']  ?></td>
+                                    <td style="width:10%">
+                                        <div class="btn-group btn-group-sm" style="padding:0;" role="group" aria-label="Basic example">
+                                            <button type="button" class="btn btn-success me-1 showing_goals style=" font-size:12px ;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id='<?php echo $data['id'] ?>'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                </svg></button>
+                                            <button type="button" class="btn btn-secondary me-1 show_btn" data-bs-toggle="modal" data-bs-target="#exampleModal" id="'<?php echo $data['id'] ?>'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                                                </svg></button>
+                                            <button type="button" class="btn btn-danger delete_btn" data-gid="'<?php echo $data['id'] ?>'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                                </svg></button>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                        <?php
+                                $k++;
+                            }
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- <div class="text-center"><a class="btn btn-primary m-2 p-2 btn-lg" href="roadMap.php">Road Map</a></div> -->
+    </div>
+    <div class="road-map">
+        <svg id="g-path" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" preserveAspectRatio="xMidYMin meet">
+            <foreignObject id="cybox">
+
+                <div href='#' id="current-year"></div>
+            </foreignObject>
+            <g id="goals">
+                <path d="M 26,26 V 500" id="h-line" />
+
+            </g>
+        </svg>
+    </div>
+    <div class="text-center"><a class="btn btn-primary m-2 p-2 btn-lg" href="investment.html">Next</a></div>
+
+    <div class="modal fade" id="show-goal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+    <script src="./road_map.js"></script>
     <script>
+        $("#toggle-sgoal").click(function(e) {
+            $("#show-goal-table").toggle(1000)
+            $(".road-map").toggle(1000)
+            if ($(this).html() == "show in table") {
+                $(this).html("show in map")
+            } else {
+                $(this).html("show in table")
+                init();
+            }
+        })
         $('.showing_goals').click(function() {
             var key = $(this).data('id');
             $.ajax({
@@ -852,7 +1030,7 @@ if (mysqli_num_rows($result)) {
             $("#sip_valueOther").val(ansother.toLocaleString(0));
 
         });
-        $(document).on('change',"#ageEdu,#secfutureageEdu,#currentEdu,#secinflationEdu",function(){
+        $(document).on('change', "#ageEdu,#secfutureageEdu,#currentEdu,#secinflationEdu", function() {
             let secages = document.getElementById("ageEdu").value;
             let secFAs = document.getElementById("secfutureageEdu").value;
             let secfvas = document.getElementById("seccurrentEdu").value;
@@ -878,8 +1056,8 @@ if (mysqli_num_rows($result)) {
 
         })
 
-        
-        $(document).on('change'," #secondchildage-mar,#secondfutureage-mar,#currentcost-mar,#inflation-mar ",function(){
+
+        $(document).on('change', " #secondchildage-mar,#secondfutureage-mar,#currentcost-mar,#inflation-mar ", function() {
             secagemar = document.getElementById("secondchildage-mar").value;
             secfa = document.getElementById("secondfutureage-mar").value;
             secFVA = document.getElementById("currentcost-mar").value;
@@ -1018,19 +1196,26 @@ if (mysqli_num_rows($result)) {
 
         })
         $(document).on("click", ".delete_btn", function() {
-            const id = $(this).attr("id");
-            $(this).closest('tr').remove()
-            $.ajax({
-                type: "post",
-                url: "./single_goal_ajax.php",
-                data: {
-                    deleteId: id
-                },
-                dataType: "json",
-                success: function(response) {
-                    if (response['status']) {}
+            const id = $(this).attr("data-gid");
+            if (confirm("Confirm to delete your goal")) {
+                if($(this).attr("data-callback")){
+                    deleteGoal(id);
+                }else{
+                    $(this).closest('tr').remove()
                 }
-            });
+                $.ajax({
+                    type: "post",
+                    url: "./single_goal_ajax.php",
+                    data: {
+                        deleteId: id
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        if (response['status']) {}
+
+                    }
+                });
+            }
         })
         $(document).on("click", ".show_btn", function() {
             const id = $(this).attr("id");
@@ -1050,3 +1235,8 @@ if (mysqli_num_rows($result)) {
 </body>
 
 </html>
+<?php
+if (isset($_SESSION["goal"])) {
+    unset($_SESSION["goal"]);
+}
+?>
