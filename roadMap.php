@@ -244,20 +244,12 @@
 
         function myLoop() {
             document.querySelector("#g-path #h-line").style["strokeDashoffset"] = p_length - i;
-            // if (i == 10) {
-            //     a = g_path.getPointAtLength(i);
-            //     set_goal(a.y, data[g_con++]);
-            // }
             if (i % 100 == 0 && data.length > g_con) {
                 a = g_path.getPointAtLength(data[g_con].py);
                 // console.log(a.y,data[g_con].py);
                 set_goal(a.y, data[g_con]);
-                // document.querySelector(`#g-path .goal-box#goal-${data[g_con].id}`).classList.add("active");
-                // setInterval(()=>{
-                // },1000)
                 g_con++;
             }
-            // $(`.goal-box`).css(`transform:scaleX(0.${g_con})`);
             if (p_length-6 <= i) {
                 
                 done = true;
@@ -286,11 +278,7 @@
 
         function viewGoal(g) {
             let gd=allRes[g];
-            // console.log(g,gd);
             let markup="<table style='width: 100%;'>"
-            // for(let el in gd["goal_data"]){
-            //     markup+=`<tr><td>${el}</td> <td> ${gd["goal_data"][el]}</td></tr>`
-            // }
             if(gd["goal_data"]["currentcost"])markup+=`<tr><td>current cost</td> <td> ${gd["goal_data"]["currentcost"]}</td></tr>`
             if(gd["goal_data"]["goalname"])markup+=`<tr><td>goal name</td> <td> ${gd["goal_data"]["goalname"]}</td></tr>`
             if(gd["goal_data"]["futureage"])markup+=`<tr><td>future age</td> <td> ${gd["goal_data"]["futureage"]}</td></tr>`
@@ -316,12 +304,10 @@
         function set_goal(y, text) {
             let c_m =`<g id="goal-${text.id}" class="goal-box">`;
             if (ls > 0 ){
-                // c_m +=``
                 py = mid + (74 * ls);
             }
             else{
                 py = mid + (74 * ls) - 80;
-                // c_m +=`<g id="goal-${text.id}" class="goal-box actol">`
             }
 
             c_m += `<path d="M ${mid},${y} H ${mid+(74*ls)}" class="v-line" />
@@ -342,15 +328,12 @@
                 <tspan x="${py+20}" y="${y+16}" >${(+allRes[text.id].goal_data.ansinputs.replace(/,/g,'')).toLocaleString("en-IN", {style:"currency", currency:"INR"})}</tspan>
                 </text>
                 </g>`;
-                // <tspan x="${py+40}" y="${y-6}" text-anchor="middle">${text.year}</tspan>
-            //    c_m +=`<text x="${x}" y="${y}" fill="red">${label}</text>`;
             goal.insertAdjacentHTML("beforeend",c_m)
-            // goal.innerHTML += c_m;
             if(innerWidth>700){
                 ls = -ls;
             }
         }
-        window.addEventListener("resize",init)
+        //?window.addEventListener("resize",init)
     </script>
 
 </body>
