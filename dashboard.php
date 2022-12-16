@@ -239,8 +239,8 @@ if (mysqli_num_rows($result)) {
         <!-----------------------------Education----------------------------------------------->
         <?php
         if ($_SESSION["goal"] == 'education') {
-            // $value = json_decode($data[0]['goal_data'], true);
-            // print_r($data);
+            $value = json_decode($data[0]['goal_data'], true);
+            $age = $value['futureages'] - $value['age'];
         ?>
             <div class="goals" data-goal="education"><br />
                 <div class="container">
@@ -258,9 +258,9 @@ if (mysqli_num_rows($result)) {
                                     Dear <span id="p-name"><?php echo $user_name ?></span>,<br></p>
                                 <blockquote style="margin-left:50px;margin-right:30px;" align="justify"> Give your <b>children</b> the <b><i>Education</i></b> they deserve and do provide them a better education.
                                     We are happy to see that you are <b> passionate </b> about your life goals and understand the value of <b>investing</b> to accomplish your <b>goals.</b><br>
-                                    <span style="position:relative;left:40px;"> To Achieve this Goal you need to Accumulate <span id="p-ansinput" style="color: green;font-weight: 700;font-size: 21px;"></span>
-                                        within <span id="set11edu" style="color: green;font-weight: 700;font-size: 21px;"></span> Years,
-                                        <span style="color:orange;"> SIP REQUIRED </span> is ₹ <span id="p-sipans" style="color: red;font-weight: 700;font-size: 22px;"></span> per month.</span><br>
+                                    <span style="position:relative;left:40px;"> To Achieve this Goal you need to Accumulate <span id="p-ansinput" style="color: green;font-weight: 700;font-size: 21px;"><?php echo $value['ansinputs'] ?></span>
+                                        within <span id="set11edu" style="color: green;font-weight: 700;font-size: 21px;"><?php echo $age ?></span> Years,
+                                        <span style="color:orange;"> SIP REQUIRED </span> is ₹ <span id="p-sipans" style="color: red;font-weight: 700;font-size: 22px;"><?php echo $value['sipvalue'] ?></span> per month.</span><br>
                                     Worried about the above numbers? <b>Please don’t be.</b><br>
                                     Feel free to contact us for further <b>financial planning</b><br>
                                     We have sent the details to you on your email Address. <b> Please do check </b>
@@ -321,7 +321,7 @@ if (mysqli_num_rows($result)) {
                                     Dear <span id="p-name"><?php echo $user_name ?></span>,<br></p>
                                 <blockquote style="margin-left:50px;margin-right:30px;" align="justify"> A place that we call <b><i>HOME</b></i> is one of life's most essential <b>needs</b>. We're glad you're planning on it and you
                                     have a <b>determination</b> towards your goals, what you have to achieve and you understand the value of <b>investments.</b><br>
-                                    <span style="position:relative;left:40px;"> To Achieve this Goal you need to Accumulate <span id="p-ansinput" style="color: blue;font-weight: 700;font-size: 21px;"><?php echo $value['currentcost'] ?>
+                                    <span style="position:relative;left:40px;"> To Achieve this Goal you need to Accumulate <span id="p-ansinput" style="color: blue;font-weight: 700;font-size: 21px;"><?php echo $value['ansinputs'] ?>
                                             within </span> <span id="house-sipyear" style="color: blue;font-weight: 700;font-size: 21px;"><?php echo $value['futureage'] ?></span>
                                         Years,<span style="color:orange;"> SIP REQUIRED </span> is <span id="p-sipans" style="color: red;font-weight: 900;font-size: 24px;"><?php echo $value['sipvalue'] ?></span> per month.<br></span>
                                     Worried about the above numbers? <b>Please don’t be.</b><br>
@@ -368,6 +368,9 @@ if (mysqli_num_rows($result)) {
         <?php
         if ($_SESSION["goal"] == 'retirement') {
             $value = json_decode($data[0]['goal_data'], true);
+            // $values = json_decode($data[0]['lifeexp']) - json_decode($data[0]['retirementage']);
+            // var_dump($value);
+            $age = $value['lifeexp'] -$value['retirementage'] ;
         ?>
             <div class="goals" data-goal="retirement"><br>
                 <div class="container">
@@ -387,8 +390,8 @@ if (mysqli_num_rows($result)) {
                                     <b> new inning.</b> We are glad to see you are <b>planning</b> on it and that you are
                                     <b>committed</b> to your life goals. Believe us, to lead a comfortable and
                                     joyful retirement life early investment is the best planning.
-                                    To Achieve this Goal you need to Accumulate <span id="p-ansinput" style="color: green;font-weight: 700;font-size: 21px;"><?php echo $value['monthlyexp'] ?></span>
-                                    within <span id="setyearret" style="color: green;font-weight: 700;font-size: 21px;"><?php echo $value['lifeexp'] ?></span> Years, SIP ₹
+                                    To Achieve this Goal you need to Accumulate <span id="p-ansinput" style="color: green;font-weight: 700;font-size: 21px;"><?php echo $value['ansinputs'] ?></span>
+                                    within <span id="setyearret" style="color: green;font-weight: 700;font-size: 21px;"><?php echo $age ?></span> Years, SIP ₹
                                     REQUIRED is <span id="p-sipans" style="color: red;font-weight: 700;font-size: 22px;"><?php echo $value['sipvalue'] ?></span> per month.₹
                                     Worried about the above numbers? Please don’t be.
                                     Feel free to contact us for further financial planning
@@ -448,7 +451,7 @@ if (mysqli_num_rows($result)) {
                                 <blockquote style="margin-left:50px;margin-right:30px;" align="justify"> A <b><i>WEDDING</i></b> is a big day in one’s life and a
                                     <b> lifetime</b> event. We're <b> delighted</b> to see you thinking & <b>planning</b> on it and that you're committed to your goals.
                                     and we are sure, you know the importance of investments.<br>
-                                    <span style="position:relative;left:40px;"> To Achieve this Goal you need to Accumulate <span id="p-ansinput" style="color: blue;font-weight: 700;font-size: 21px;"><?php echo $value['currentcost'] ?></span>
+                                    <span style="position:relative;left:40px;"> To Achieve this Goal you need to Accumulate <span id="p-ansinput" style="color: blue;font-weight: 700;font-size: 21px;"><?php echo $value['ansinputs'] ?></span>
                                         within <span id="mar-years" style="color: blue;font-weight: 700;font-size: 21px;"><?php echo $value['futureage'] ?></span> Years, <span style="color:orange;"> SIP REQUIRED is</span>
                                         <span id="p-sipans" style="color: red;font-weight: 700;font-size: 24px;"><?php echo $value['sipvalue'] ?></span> per month. </span> Worried about the above numbers? <b> Please don’t be.</b><br>
                                     Feel free to contact us for further <b>financial planning </b><br>
@@ -506,7 +509,7 @@ if (mysqli_num_rows($result)) {
                                 <blockquote style="margin-left:50px;margin-right:30px;color:black;" align="justify">Buying a <b><i>Car</i></b> is a dream of many and for <b> a comfortable journey </b>, you must have a good car.
                                     <b>Dreams</b> are what <b>motivate</b> us,
                                     and we are thrilled to see that you want to own a car and you are planning on it. <b>Believe us, investment</b> is the best route to <b>accomplish</b> your dream.<br>
-                                    <span style="position:relative;left:40px;"> To Achieve this Goal you need to Accumulate <span id="p-ansinput" style="color: blue;font-weight: 700;font-size: 21px;"><?php echo $value['current'] ?></span>
+                                    <span style="position:relative;left:40px;"> To Achieve this Goal you need to Accumulate <span id="p-ansinput" style="color: blue;font-weight: 700;font-size: 21px;"><?php echo $value['ansinputs'] ?></span>
                                         within <span id="car-year" style="color: blue;font-weight: 700;font-size: 21px;"><?php echo $value['futureyear'] ?></span> Years, <span style="color:orange;"> SIP REQUIRED </span> is <span id="p-sipans" style="color: red;font-weight: 700;font-size: 22px;"><?php echo $value['sipvalue'] ?></span> per month.</span><br>
                                     Worried about the above numbers? <b>Please don’t be. </b><br>
                                     Feel free to contact us for further <b> financial planning </b> <br>
@@ -566,7 +569,7 @@ if (mysqli_num_rows($result)) {
                                     Dear <span id="p-name"><?php echo $user_name ?></span>,</p>
                                 <blockquote style="margin-left:50px;margin-right:30px;" align="justify">Sometimes a <b>break</b> from regular life is essential to have fun and <b>enjoy yourself</b> and a <b><i>Vacation</i></b> is all you need .
                                     We are <b>pleased</b> that you have a <b>passion</b> towards your life goals and you know the importance of investment in <b>achieving your goals.</b><br>
-                                    <span style="position:relative;left:40px;"> To Achieve this Goal you need to Accumulate <span id="p-ansinput" style="color: green;font-weight: 700;font-size: 21px;"><?php echo $value['current'] ?></span>
+                                    <span style="position:relative;left:40px;"> To Achieve this Goal you need to Accumulate <span id="p-ansinput" style="color: green;font-weight: 700;font-size: 21px;"><?php echo $value['ansinputs'] ?></span>
                                         within <span id="vac-year" style="color: green;font-weight: 700;font-size: 21px;"><?php echo $value['0'] ?></span> Years, <span style="color:orange;"> SIP REQUIRED is</span> <span id="p-sipans" style="color: red;font-weight: 700;font-size: 22px;"><?php echo $value['sipvalue'] ?></span> per month.</span><br>
                                     Worried about the above numbers? <b> Please don’t be. </b><br>
                                     Feel free to contact us for further <b>financial planning</b><br>

@@ -380,7 +380,7 @@
 
                 <div class="form-group ">
                     <label for="lName" style="font-weight:600;" class="alllabel">In What Time you want to own your House(In Years)</label><br>
-                    <input type="text" style="width:60%;" class="form-control mb-3 allinput input-selector calculatehouse borderhigh p-1 mb-2" name="futureage" id="timehorizon" onchange="housecal()" oninput="IsEmpty()" placeholder="Enter Year">
+                    <input type="text" style="width:60%;" class="form-control mb-3 allinput input-selector calculatehouse borderhigh p-1 mb-2" name="futureage" id="timehorizon" oninput="housecal()" placeholder="Enter Year">
                 </div>
                 <div class="form-group ">
                     <label for="lName" style="font-weight:600;" class="alllabel">Expected Inflation rate in Properties</label>
