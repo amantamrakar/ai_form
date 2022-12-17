@@ -684,6 +684,7 @@ $("#pop-log-in-form").submit(e=>{
       fva = document.getElementById("currentcost").value;
       inflation = document.getElementById("inflation").value,
         timehorizon = document.getElementById("timehorizon").value;
+        IsEmpty()
       // timehorizon = '';
       rhouse = get_rate(timehorizon);
       i = inflation / 100;

@@ -390,7 +390,6 @@
 
             <div class="col-sm-4 col-md-5">
                 <img src="images\HOUSING.png" style="border-radius:20px;width:100%;" alt="">
-
             </div>
             <div class="col-md-4 col-sm-8" style="border:1px solid gray;border-radius:20px;background-color:white; color:black;"><br>
                 <input type="text" style="width:80%;margin-left:20px;" class="form-control input-selector p-1 d-none" name="ansinputs" id="futurevalue" readonly><br>
