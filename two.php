@@ -266,7 +266,7 @@
                 </div>
             </div>
             <div class="col-md-6 col-sm-4">
-                <img src="./images/carimage.png" style="width:100%;border-radius:22px; " alt="">
+                <img src="./images/carimage.jpg" style="width:100%;border-radius:22px; " alt="">
             </div>
         </div>
     </div>

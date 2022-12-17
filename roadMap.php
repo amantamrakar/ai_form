@@ -137,7 +137,7 @@
         </svg>
     </div>
     <div class="text-center"><a class="btn btn-primary m-2 p-2 btn-lg" href="investment.html">Next</a></div>
-    
+
     <div class="modal fade" id="show-goal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

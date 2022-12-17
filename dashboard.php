@@ -205,9 +205,9 @@ if (mysqli_num_rows($result)) {
         border-radius: 25px;
         padding: 10%;
     }
-    #g-path text.goal-text{
+    /* #g-path text.goal-text{
         
-}
+} */
     .box-action img:hover {
         background-color: pink;
     }
@@ -433,6 +433,7 @@ if (mysqli_num_rows($result)) {
         <?php
         if ($_SESSION["goal"] == 'marriage') {
             $value = json_decode($data[0]['goal_data'], true);
+            $age = $value['futureage'] - $value['currentagechild'];
             // print_r($value);
         ?>
             <div class="goals" data-goal="marriage"><br /><br />
@@ -452,7 +453,7 @@ if (mysqli_num_rows($result)) {
                                     <b> lifetime</b> event. We're <b> delighted</b> to see you thinking & <b>planning</b> on it and that you're committed to your goals.
                                     and we are sure, you know the importance of investments.<br>
                                     <span style="position:relative;left:40px;"> To Achieve this Goal you need to Accumulate <span id="p-ansinput" style="color: blue;font-weight: 700;font-size: 21px;"><?php echo $value['ansinputs'] ?></span>
-                                        within <span id="mar-years" style="color: blue;font-weight: 700;font-size: 21px;"><?php echo $value['futureage'] ?></span> Years, <span style="color:orange;"> SIP REQUIRED is</span>
+                                        within <span id="mar-years" style="color: blue;font-weight: 700;font-size: 21px;"><?php echo $age ?></span> Years, <span style="color:orange;"> SIP REQUIRED is</span>
                                         <span id="p-sipans" style="color: red;font-weight: 700;font-size: 24px;"><?php echo $value['sipvalue'] ?></span> per month. </span> Worried about the above numbers? <b> Please don’t be.</b><br>
                                     Feel free to contact us for further <b>financial planning </b><br>
                                     We have sent the details to you on your email Address. <b>Please do check</b>
@@ -570,7 +571,7 @@ if (mysqli_num_rows($result)) {
                                 <blockquote style="margin-left:50px;margin-right:30px;" align="justify">Sometimes a <b>break</b> from regular life is essential to have fun and <b>enjoy yourself</b> and a <b><i>Vacation</i></b> is all you need .
                                     We are <b>pleased</b> that you have a <b>passion</b> towards your life goals and you know the importance of investment in <b>achieving your goals.</b><br>
                                     <span style="position:relative;left:40px;"> To Achieve this Goal you need to Accumulate <span id="p-ansinput" style="color: green;font-weight: 700;font-size: 21px;"><?php echo $value['ansinputs'] ?></span>
-                                        within <span id="vac-year" style="color: green;font-weight: 700;font-size: 21px;"><?php echo $value['0'] ?></span> Years, <span style="color:orange;"> SIP REQUIRED is</span> <span id="p-sipans" style="color: red;font-weight: 700;font-size: 22px;"><?php echo $value['sipvalue'] ?></span> per month.</span><br>
+                                        within <span id="vac-year" style="color: green;font-weight: 700;font-size: 21px;"><?php echo $value['futureyear'] ?></span> Years, <span style="color:orange;"> SIP REQUIRED is</span> <span id="p-sipans" style="color: red;font-weight: 700;font-size: 22px;"><?php echo $value['sipvalue'] ?></span> per month.</span><br>
                                     Worried about the above numbers? <b> Please don’t be. </b><br>
                                     Feel free to contact us for further <b>financial planning</b><br>
                                     We have sent the details to you on your email Address. <b>Please do check</b>
@@ -802,7 +803,9 @@ if (mysqli_num_rows($result)) {
             </g>
         </svg>
     </div>
-    <div class="text-center"><a class="btn btn-primary m-2 p-2 btn-lg" href="investment.html">Next</a></div>
+    <div class="text-center"><a class="btn btn-primary m-2 p-2 btn-lg" href="investment.php">Next</a></div>
+    <div class="text-center"><a class="btn btn-primary m-2 p-2 btn-lg" href="index.php">Plan Another Goal</a></div>
+
 
     <div class="modal fade" id="show-goal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
