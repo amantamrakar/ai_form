@@ -28,8 +28,6 @@ $(document).ready(function() {
             })
             data.sort((a, b) => a.year - b.year);
             init()
-           
-
         }
     });
 });
@@ -73,7 +71,7 @@ function init() {
     if(putHeight <=gh) putHeight=gh;
     
  //   goal.style.marginTop = (gh - putHeight) / 2 + "px"
-    goal.style.height = putHeight  +"px"
+    goal.style.height = putHeight +20 +"px"
     const hLine = `<path d="M ${mid},25 V ${putHeight}" id="h-line" />`
     document.querySelector("#goals").innerHTML = hLine;
     g_path =document.querySelector("#g-path #h-line")
@@ -119,19 +117,19 @@ function step(timestamp) {
 }
 
 
-function viewGoal(g) {
-    let gd=allRes[g];
-    let markup="<table style='width: 100%;'>"
-    if(gd["goal_data"]["currentcost"])markup+=`<tr><td>current cost</td> <td> ${gd["goal_data"]["currentcost"]}</td></tr>`
-    if(gd["goal_data"]["goalname"])markup+=`<tr><td>goal name</td> <td> ${gd["goal_data"]["goalname"]}</td></tr>`
-    if(gd["goal_data"]["futureage"])markup+=`<tr><td>future age</td> <td> ${gd["goal_data"]["futureage"]}</td></tr>`
-    if(gd["goal_data"]["inflation"])markup+=`<tr><td>inflation</td> <td> ${gd["goal_data"]["inflation"]}</td></tr>`
-    if(gd["goal_data"]["ansinputs"])markup+=`<tr><td>investment value</td> <td> ${gd["goal_data"]["ansinputs"]}</td></tr>`
-    if(gd["goal_data"]["sipvalue"])markup+=`<tr><td>sip value</td> <td> ${gd["goal_data"]["sipvalue"]}</td></tr>`
-    markup+="</table>"
-    $("#show-goal .modal-body").html(markup);
-    $("#show-goal").modal("show");
-}
+// function viewGoal(g) {
+//     let gd=allRes[g];
+//     let markup="<table style='width: 100%;'>"
+//     if(gd["goal_data"]["currentcost"])markup+=`<tr><td>current cost</td> <td> ${gd["goal_data"]["currentcost"]}</td></tr>`
+//     if(gd["goal_data"]["goalname"])markup+=`<tr><td>goal name</td> <td> ${gd["goal_data"]["goalname"]}</td></tr>`
+//     if(gd["goal_data"]["futureage"])markup+=`<tr><td>future age</td> <td> ${gd["goal_data"]["futureage"]}</td></tr>`
+//     if(gd["goal_data"]["inflation"])markup+=`<tr><td>inflation</td> <td> ${gd["goal_data"]["inflation"]}</td></tr>`
+//     if(gd["goal_data"]["ansinputs"])markup+=`<tr><td>investment value</td> <td> ${gd["goal_data"]["ansinputs"]}</td></tr>`
+//     if(gd["goal_data"]["sipvalue"])markup+=`<tr><td>sip value</td> <td> ${gd["goal_data"]["sipvalue"]}</td></tr>`
+//     markup+="</table>"
+//     $("#show-goal .modal-body").html(markup);
+//     $("#show-goal").modal("show");
+// }
 
 function editGoal(g) {
 
@@ -154,12 +152,12 @@ function set_goal(y, text) {
     }
 
     c_m += `<path d="M ${mid},${y} H ${mid+(74*ls)}" class="v-line" />
-        <rect  x="${py}" y="${y-20}" style="fill:var(--${text.goal})" ry="6.3933463" height="50"/>
+        <rect  x="${py}" y="${y-20}" style="fill:var(--${text.goal})" ry="6.3933463" height="50" class="show_btn" data-bs-toggle="modal" data-bs-target="#show-gloal-data" data-gid="${text.id}"/>
         <foreignObject x="${py-4}" y="${y-24}" class="box-action" height="50">
 
         <body xmlns="http://www.w3.org/1999/xhtml">
         <div class="a-btn">
-        <img src="eye-solid.svg" alt="" onclick="viewGoal('${text.id}')">
+        <img src="pen-to-square-solid.svg" alt="" class="update_goal" data-bs-toggle="modal" data-bs-target="#show_update_goal" data-gid="${text.id}">
         <img src="xmark-solid.svg" alt="" class="delete_btn" data-gid="${text.id}" data-callback="deleteGoal">
         </div>
         </body>
