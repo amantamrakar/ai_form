@@ -3,6 +3,7 @@ session_start();
 if (!isset($_SESSION["goaluser"])) {
     header("location: ./index.php");
 }
+require_once("./header.php");
 require_once("./connect.php");
 
 // $_SESSION["goaluser"] = "nikhil1@gmail.com";

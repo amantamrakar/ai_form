@@ -3,13 +3,18 @@ session_start();
 // var_dump($_SESSION);
 
 ?>
+<?php require_once("./header.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
 
 
   <style type="text/css">
@@ -228,7 +233,7 @@ session_start();
       font-size: 17px;
     }
 
-   
+
     .loader {
       /* position: fixed; */
       left: 0px;
@@ -267,7 +272,7 @@ session_start();
     .form-containers {
       width: 380px;
       color: #fff;
-      height: 520px;
+      height: auto;
       transform: scaleX(0);
       transition: all .5s ease;
       box-shadow: 1px 6px 8px 0px #0227544f;
@@ -286,13 +291,15 @@ session_start();
       transform-origin: 0%;
 
     }
-    button.login-btn{
+
+    button.login-btn {
       border-radius: 6px;
-    font-weight: bold;
-    background-color: #fff;
-    color: #5262af;
-    border: 1px solid #6073ca;
+      font-weight: bold;
+      background-color: #fff;
+      color: #5262af;
+      border: 1px solid #6073ca;
     }
+
     .log-in-containers {
       background-color: #c8e9f3;
       position: absolute;
@@ -359,6 +366,12 @@ session_start();
     .inputss:focus {
       border: 2px solid black;
     }
+
+    .a_style {
+      font-size: 18px;
+      color: black;
+      font-weight: 500;
+    }
   </style>
 
   <title>Swaraj FinPro AI Form</title>
@@ -369,25 +382,32 @@ session_start();
   <div class="loader">
 
   </div>
+
+
   <div class="container overflow-hidden " style="height:auto;">
 
     <h1 style="padding-bottom:10px; border-bottom:4px solid #FC0;">Welcome back, Let's know you better to give you best!</h1></br />
     <?php
-    if (isset($_SESSION["goaluser"])) {
-      echo '<a href="dashboard.php"><button class="mb-2 login-btn">Dashboard</button></a>';
-    }else{
-    echo '<button class="mb-2 login-btn" data-bs-target="#staticBackdrop" data-bs-toggle="modal" type="button">Log In</button>';
-  }
-  ?>
+    // if (isset($_SESSION["goaluser"])) {
+    //   echo '<a href="dashboard.php"><button class="mb-2 login-btn">Dashboard</button></a>';
+    // } else {
+    //   echo '<button class="mb-2 login-btn" data-bs-target="#staticBackdrop" data-bs-toggle="modal" type="button">Log In</button>';
+    // }
+    ?>
+    <?php
+    // if (isset($_SESSION["goaluser"])) {
+    //   echo "Hey " . $_SESSION['user_full_name'];
+    // }
+    ?>
+
+  
+    
+
     <div class="progress">
       <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
 
-    <?php
-    if (isset($_SESSION["goaluser"])) {
-      echo "Hey " . $_SESSION['user_full_name'];
-    }
-    ?>
+
 
     <form id="regiration_form" action="action.php" method="post" class="d-flex ">
 
@@ -428,28 +448,28 @@ session_start();
 
 
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog modal-xl">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5 text-dark" >Log In</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h1 class="modal-title fs-5 text-dark">Log In</h1>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body" id="modal_gaol_id">
-                <form method="post" id="pop-log-in-form">
-                
-                        <div class="form-group m-2">
-                          <label for="pop-l-mail" class="text-dark">Email</label>
-                            <input type="text" class="form-control" id="pop-l-mail" placeholder="Your Email *" value="" />
-                        </div>
-                        <div class="form-group m-2">
-                        <label for="pop-l-pass" class="text-dark">Password</label>
-                            <input type="password" class="form-control" id="pop-l-pass" placeholder="Your Password *" value="" />
-                        </div>
-                        <div class="form-group m-2">
-                        <button type="submit" id="pop-log-in" class="btn btn-primary">Log In</button>
-                            <!-- <a href="#" class="ForgetPwd">Forget Password?</a> -->
-                        </div>
-                </form>
+            <form method="post" id="pop-log-in-form">
+
+              <div class="form-group m-2">
+                <label for="pop-l-mail" class="text-dark">Email</label>
+                <input type="text" class="form-control" id="pop-l-mail" placeholder="Your Email *" value="" />
+              </div>
+              <div class="form-group m-2">
+                <label for="pop-l-pass" class="text-dark">Password</label>
+                <input type="password" class="form-control" id="pop-l-pass" placeholder="Your Password *" value="" />
+              </div>
+              <div class="form-group m-2">
+                <button type="submit" id="pop-log-in" class="btn btn-primary">Log In</button>
+                <!-- <a href="#" class="ForgetPwd">Forget Password?</a> -->
+              </div>
+            </form>
 
           </div>
 
@@ -463,15 +483,15 @@ session_start();
   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
 
   <script type="text/javascript">
-$("#pop-log-in-form").submit(e=>{
-  e.preventDefault();
-  $.ajax({
+    $("#pop-log-in-form").submit(e => {
+      e.preventDefault();
+      $.ajax({
         method: "post",
         url: "./trial.php",
         data: {
           "email": $("#pop-l-mail").val(),
           "l_pass": $("#pop-l-pass").val(),
-          "f_type":"login"
+          "f_type": "login"
         },
         dataType: "json",
         success: function(data) {
@@ -483,7 +503,7 @@ $("#pop-log-in-form").submit(e=>{
           }
         }
       });
-})
+    })
     var current = 1;
     let g_id;
     const myselection = {};
@@ -684,7 +704,7 @@ $("#pop-log-in-form").submit(e=>{
       fva = document.getElementById("currentcost").value;
       inflation = document.getElementById("inflation").value,
         timehorizon = document.getElementById("timehorizon").value;
-        IsEmpty()
+      IsEmpty()
       // timehorizon = '';
       rhouse = get_rate(timehorizon);
       i = inflation / 100;
@@ -867,7 +887,7 @@ $("#pop-log-in-form").submit(e=>{
       let inflavac = document.getElementById("inflavac").value;
       IsEmpty()
       let Nvac = FAvac - agevac;
-      let ratesvac =  get_rate(Nvac);
+      let ratesvac = get_rate(Nvac);
 
       // let r = Rate / 100;
       let nvac = Nvac * 12;
@@ -918,7 +938,7 @@ $("#pop-log-in-form").submit(e=>{
       gret = ((1 - fret) * dret);
       hret = (gret * Er);
       iiret = hret / rr;
-      
+
       //sip required
       let sip = (iiret * r2);
       let csip = (1 + r2);
