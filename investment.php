@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./assets/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/style.css">
     <title>Document</title>
 
     <style>
@@ -212,7 +211,7 @@
         <div class="card">
 
             <div class="declare-container hidden-sm hidden-xs">
-                <a type="button" class="btn1 btn-default1 declear_existing_investment" data-toggle="modal" data-target="#myModal" value="add" id="moredrop_dowp" style="float:right" ;>
+                <a type="button" class="btn1 btn-default1 declear_existing_investment" data-bs-toggle="modal" data-bs-target="#myModal" value="add" id="moredrop_dowp" style="float:right" ;>
                     <i class="fa fa-plus-circle fa-3x"></i>
                     <p>DECLARE<br>EXISTING<br>ASSETS</p>
                 </a>
@@ -228,156 +227,95 @@
 
 
 
-            <div class="container">
-                <div class="modal fade" id="myModal" role="dialog">
-                    <div class="modal-dialog  modal-lg ">
-                        <div class="modal-content">
-                            <div class="modal-header" style="background-color: darkred;color: #fff;">
-                                <button type="button" class="close" data-dismiss="modal" style="position: fixed; ">&times;</button>
-                                <h4 class="modal-title" style="font-size: 25px;font-family: auto;">Exsiting Asset</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form action="" method="POST" id="fund_form">
-                                    <div class="row">
-                                        <div class="form-group">
-                                            <label for="" class="col-2">Fixed Deposit</label>
-                                            <input type="hidden" name="fund_deposit[]" value="Fixed Deposit">
-                                            <input type="text" class="col-3 input_style pre_value" id="pre_value" value="" name="fund_amt[]" placeholder="₹ Enter Value">
-                                            <input type="text" class="col-3 input_style dur_per" value="" id="dur_per" placeholder="Duration (No. of Year)" name="duration[]">
-                                            <input type="text" class="col-3 input_style rate_per" id="rate_per" value="" placeholder="Intreset %" name="percent[]">
-                                            <input type="text" class="fd_fv_value">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="" class="col-2">Recurring Deposit</label>
-                                            <input type="hidden" name="fund_deposit[]" value="Recurring Deposit">
-                                            <input type="text" class="col-3 input_style pre_value" value="" id="pre_value" placeholder="₹ Enter Value" name="fund_amt[]">
-                                            <input type="text" class="col-3 input_style dur_per" value="" id="dur_per" placeholder="Duration (No. of Year)" name="duration[]">
-                                            <input type="text" class="col-3 input_style rate_per" id="rate_per" value="" placeholder="Intreset %" name="percent[]">
-                                            <input type="text" class="fd_fv_value">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="" class="col-2">Mutual Fund</label>
-                                            <input type="hidden" name="fund_deposit[]" value="mutual fund">
-                                            <input type="text" class="col-3 input_style pre_value" value="" placeholder="₹ Enter Value" name="fund_amt[]">
-                                            <input type="text" class="col-3 input_style dur_per" value="" placeholder="Duration (No. of Year)" name="duration[]">
-                                            <input type="text" class="col-3 input_style rate_per" value="" placeholder="Intreset %" name="percent[]">
-                                            <input type="text" class="fd_fv_value">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="" class="col-2">Equity</label>
-                                            <input type="hidden" name="fund_deposit[]" value="Equity">
-                                            <input type="text" class="col-3 input_style pre_value" value="" placeholder="₹ Enter Value" name="fund_amt[]">
-                                            <input type="text" class="col-3 input_style dur_pre" value="" placeholder="Duration (No. of Year)" name="duration[]">
-                                            <input type="text" class="col-3 input_style rate_per" value="" placeholder="Intreset %" name="percent[]">
-                                            <input type="text" class="fd_fv_value">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="" class="col-2" c>Gold</label>
-                                            <input type="hidden" name="fund_deposit[]" value="Gold">
-                                            <input type="text" class="col-3 input_style pre_value" value="" placeholder="₹ Enter Value" name="fund_amt[]">
-                                            <input type="text" class="col-3 input_style dur_pre" value="" placeholder="Duration (No. of Year)" name="duration[]">
-                                            <input type="text" class="col-3 input_style rate_per" value="" placeholder="Intreset %" name="percent[]">
-                                            <input type="text" class="fd_fv_value">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1" onclick="fetchval()" onchange="valuefetch()">Save and
-                                    Contine</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container">
-                <div class="modal fade" id="myModal1" role="dialog">
-                    <div class="modal-dialog" style="width:69%;">
-                        <div class="modal-content">
-                            <div class="modal-header" style="background-color: gray;color: #fff;">
-                                <button type="button" class="close" data-dismiss="modal" style="position: fixed; ">&times;</button>
-                                <h4 class="modal-title" style="font-size: 25px;font-family: auto;">ALLOCATE EXISTING ASSETS</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form action="#" method="post">
-                                    <div class="row">
-                                        <div class="col-md-12" style="text-align:center;">
-                                            <div class="topup_note">
-                                                <p>You may allocate your existing assets to your goals below. <br> Your total Top-up SIP will be updated as you allocate the funds. Currently,</p>
-                                                <h3>Total Top-up SIP Required:<br><i class="fa fa-inr"></i><span id="mothly-plan" style="color:black;" class="totalTopUpSip" data-totaltopup=""></span></h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12 col-sm-12 col-xs-12" id="investment_list">
-
-
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
 
         </div>
     </div>
 
-
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-    <script>
-
-        function fetchval() {
-            const markup = `<div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Accordion Item #1
-                   
-                </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog  modal-lg ">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: darkred;color: #fff;">
+                    <button type="button" class="close" data-bs-dismiss="modal" style="position: fixed; ">&times;</button>
+                    <h4 class="modal-title" style="font-size: 25px;font-family: auto;">Exsiting Asset</h4>
                 </div>
+                <div class="modal-body">
+                    <form action="" method="POST" id="fund_form">
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="" class="col-2">Fixed Deposit</label>
+                                <input type="hidden" name="fund_deposit[]" value="Fixed Deposit">
+                                <input type="text" class="col-3 input_style pre_value" id="pre_value" value="" name="fund_amt[]" placeholder="₹ Enter Value">
+                                <input type="text" class="col-3 input_style dur_per" value="" id="dur_per" placeholder="Duration (No. of Year)" name="duration[]">
+                                <input type="text" class="col-3 input_style rate_per" id="rate_per" value="" placeholder="Intreset %" name="percent[]">
+                                <input type="text" class="fd_fv_value">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-2">Recurring Deposit</label>
+                                <input type="hidden" name="fund_deposit[]" value="Recurring Deposit">
+                                <input type="text" class="col-3 input_style pre_value" value="" id="pre_value" placeholder="₹ Enter Value" name="fund_amt[]">
+                                <input type="text" class="col-3 input_style dur_per" value="" id="dur_per" placeholder="Duration (No. of Year)" name="duration[]">
+                                <input type="text" class="col-3 input_style rate_per" id="rate_per" value="" placeholder="Intreset %" name="percent[]">
+                                <input type="text" class="fd_fv_value">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-2">Mutual Fund</label>
+                                <input type="hidden" name="fund_deposit[]" value="mutual fund">
+                                <input type="text" class="col-3 input_style pre_value" value="" placeholder="₹ Enter Value" name="fund_amt[]">
+                                <input type="text" class="col-3 input_style dur_per" value="" placeholder="Duration (No. of Year)" name="duration[]">
+                                <input type="text" class="col-3 input_style rate_per" value="" placeholder="Intreset %" name="percent[]">
+                                <input type="text" class="fd_fv_value">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-2">Equity</label>
+                                <input type="hidden" name="fund_deposit[]" value="Equity">
+                                <input type="text" class="col-3 input_style pre_value" value="" placeholder="₹ Enter Value" name="fund_amt[]">
+                                <input type="text" class="col-3 input_style dur_pre" value="" placeholder="Duration (No. of Year)" name="duration[]">
+                                <input type="text" class="col-3 input_style rate_per" value="" placeholder="Intreset %" name="percent[]">
+                                <input type="text" class="fd_fv_value">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-2" c>Gold</label>
+                                <input type="hidden" name="fund_deposit[]" value="Gold">
+                                <input type="text" class="col-3 input_style pre_value" value="" placeholder="₹ Enter Value" name="fund_amt[]">
+                                <input type="text" class="col-3 input_style dur_pre" value="" placeholder="Duration (No. of Year)" name="duration[]">
+                                <input type="text" class="col-3 input_style rate_per" value="" placeholder="Intreset %" name="percent[]">
+                                <input type="text" class="fd_fv_value">
+                            </div>
+                        </div>
+
+
+                        <!-- <button type="button" id="remove" onclick="removeel(this)">Remove</button> -->
+
                 </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="submit_funddata">Save and
+                        Contine</button>
+                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+                </div>
+                </form>
+                
             </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Accordion Item #2
-                </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    Accordion Item #3
-                </button>
-                </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                </div>
-                </div>
-            </div>
-            </div>`
+            
+        </div>
+    </div>
+    <div class="declare-container hidden-sm hidden-xs">
+        <a type="button" class="btn1 btn-default1 declear_existing_investment" data-bs-toggle="modal" data-bs-target="#myModal" value="add" id="moredrop_dowp" style="float:right";>
+            <i class="fa fa-plus-circle fa-3x"></i>
+            <p>DECLARE<br>EXISTING<br>ASSETS</p>
+        </a>
+    </div>
+
+
+
+</body>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="./assets/bootstrap.min.js"></script>
+<script>
+    // function adddp() {
+    //     const markup = `  <div type="text" id="myDropdown"> Your Investment's
+
 
             document.getElementById("investment_list").innerHTML += markup;
         }

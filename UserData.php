@@ -20,7 +20,7 @@ if(isset($_POST["get_user_data"])){
         }
     
     }
-
+    echo mysqli_error($conn);
     echo json_encode($data);
 }
 

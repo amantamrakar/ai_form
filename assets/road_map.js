@@ -28,8 +28,6 @@ $(document).ready(function() {
             })
             data.sort((a, b) => a.year - b.year);
             init()
-           
-
         }
     });
 });
@@ -73,7 +71,7 @@ function init() {
     if(putHeight <=gh) putHeight=gh;
     
  //   goal.style.marginTop = (gh - putHeight) / 2 + "px"
-    goal.style.height = putHeight  +"px"
+    goal.style.height = putHeight +20 +"px"
     const hLine = `<path d="M ${mid},25 V ${putHeight}" id="h-line" />`
     document.querySelector("#goals").innerHTML = hLine;
     g_path =document.querySelector("#g-path #h-line")
@@ -119,19 +117,19 @@ function step(timestamp) {
 }
 
 
-function viewGoal(g) {
-    let gd=allRes[g];
-    let markup="<table style='width: 100%;'>"
-    if(gd["goal_data"]["currentcost"])markup+=`<tr><td>current cost</td> <td> ${gd["goal_data"]["currentcost"]}</td></tr>`
-    if(gd["goal_data"]["goalname"])markup+=`<tr><td>goal name</td> <td> ${gd["goal_data"]["goalname"]}</td></tr>`
-    if(gd["goal_data"]["futureage"])markup+=`<tr><td>future age</td> <td> ${gd["goal_data"]["futureage"]}</td></tr>`
-    if(gd["goal_data"]["inflation"])markup+=`<tr><td>inflation</td> <td> ${gd["goal_data"]["inflation"]}</td></tr>`
-    if(gd["goal_data"]["ansinputs"])markup+=`<tr><td>investment value</td> <td> ${gd["goal_data"]["ansinputs"]}</td></tr>`
-    if(gd["goal_data"]["sipvalue"])markup+=`<tr><td>sip value</td> <td> ${gd["goal_data"]["sipvalue"]}</td></tr>`
-    markup+="</table>"
-    $("#show-goal .modal-body").html(markup);
-    $("#show-goal").modal("show");
-}
+// function viewGoal(g) {
+//     let gd=allRes[g];
+//     let markup="<table style='width: 100%;'>"
+//     if(gd["goal_data"]["currentcost"])markup+=`<tr><td>current cost</td> <td> ${gd["goal_data"]["currentcost"]}</td></tr>`
+//     if(gd["goal_data"]["goalname"])markup+=`<tr><td>goal name</td> <td> ${gd["goal_data"]["goalname"]}</td></tr>`
+//     if(gd["goal_data"]["futureage"])markup+=`<tr><td>future age</td> <td> ${gd["goal_data"]["futureage"]}</td></tr>`
+//     if(gd["goal_data"]["inflation"])markup+=`<tr><td>inflation</td> <td> ${gd["goal_data"]["inflation"]}</td></tr>`
+//     if(gd["goal_data"]["ansinputs"])markup+=`<tr><td>investment value</td> <td> ${gd["goal_data"]["ansinputs"]}</td></tr>`
+//     if(gd["goal_data"]["sipvalue"])markup+=`<tr><td>sip value</td> <td> ${gd["goal_data"]["sipvalue"]}</td></tr>`
+//     markup+="</table>"
+//     $("#show-goal .modal-body").html(markup);
+//     $("#show-goal").modal("show");
+// }
 
 function editGoal(g) {
 
@@ -145,6 +143,8 @@ function deleteGoal(g) {
 }
 
 function set_goal(y, text) {
+    const width= 80;
+    const height=42;
     let c_m =`<g id="goal-${text.id}" class="goal-box">`;
     if (ls > 0 ){
         py = mid + (74 * ls);
@@ -154,21 +154,21 @@ function set_goal(y, text) {
     }
 
     c_m += `<path d="M ${mid},${y} H ${mid+(74*ls)}" class="v-line" />
-        <rect  x="${py}" y="${y-20}" style="fill:var(--${text.goal})" ry="6.3933463" height="50"/>
+        <rect  x="${py}" y="${y-20}" style="fill:var(--${text.goal})" ry="6" height="${height}" width="${width}" class="g-box show_btn" data-bs-toggle="modal" data-bs-target="#show-gloal-data" data-gid="${text.id}"/>
+        <rect x="${py}" y="${y-20}" ry="6" height="14" width="${width}" class="g-label"></rect>
+        <image href="./images/${text.goal}_b.svg" x="${py+width-20}" y="${y-20}" height="14" width="14" />
         <foreignObject x="${py-4}" y="${y-24}" class="box-action" height="50">
 
-        <body xmlns="http://www.w3.org/1999/xhtml">
         <div class="a-btn">
-        <img src="eye-solid.svg" alt="" onclick="viewGoal('${text.id}')">
+        <img src="pen-to-square-solid.svg" alt="" class="update_goal" data-bs-toggle="modal" data-bs-target="#show_update_goal" data-gid="${text.id}">
         <img src="xmark-solid.svg" alt="" class="delete_btn" data-gid="${text.id}" data-callback="deleteGoal">
         </div>
-        </body>
     </foreignObject>
 
-        <text class="goal-text">
-        <tspan class="road-year" x="${mid + (35*ls)}" y="${y-2}" >${text.year}</tspan>
-        <tspan x="${py+20}" y="${y-4}" >${text.goal}</tspan>
-        <tspan x="${py+20}" y="${y+8}" >${(+allRes[text.id].goal_data.ansinputs.replace(/,/g,'')).toLocaleString("en-IN", {style:"currency", currency:"INR"})}</tspan>
+    <text class="goal-text">
+    <tspan class="road-year" x="${mid + (35*ls)}" y="${y-2}" >${text.year}</tspan>
+        <tspan x="${py+20}" style="fill:var(--${text.goal})" y="${y-10}" >${text.goal}</tspan>
+        <tspan x="${py+20}" y="${y+8}" style="font-size:6px;">${(+allRes[text.id].goal_data.ansinputs.replace(/,/g,'')).toLocaleString("en-IN", {style:"currency", currency:"INR"})}</tspan>
         </text>
         </g>`;
     goal.insertAdjacentHTML("beforeend",c_m)
