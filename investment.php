@@ -210,12 +210,12 @@
     <div class="container-fluid mt-5 ">
         <div class="card">
 
-            <div class="declare-container hidden-sm hidden-xs">
+            <!-- <div class="declare-container hidden-sm hidden-xs">
                 <a type="button" class="btn1 btn-default1 declear_existing_investment" data-bs-toggle="modal" data-bs-target="#myModal" value="add" id="moredrop_dowp" style="float:right" ;>
                     <i class="fa fa-plus-circle fa-3x"></i>
                     <p>DECLARE<br>EXISTING<br>ASSETS</p>
                 </a>
-            </div>
+            </div> -->
             <div class="goals_table">
 
             </div>
@@ -236,8 +236,8 @@
         <div class="modal-dialog  modal-lg ">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: darkred;color: #fff;">
-                    <button type="button" class="close" data-bs-dismiss="modal" style="position: fixed; ">&times;</button>
                     <h4 class="modal-title" style="font-size: 25px;font-family: auto;">Exsiting Asset</h4>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form action="" method="POST" id="fund_form">
@@ -291,7 +291,7 @@
                 <div class="modal-footer">
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal1" onclick="fetchval()" onchange="valuefetch()">Save and
                         Contine</button>
-                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                 </div>
                 </form>
 
@@ -310,8 +310,8 @@
         <div class="modal-dialog" style="width:69%;">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: gray;color: #fff;">
-                    <button type="button" class="close" data-dismiss="modal" style="position: fixed; ">&times;</button>
                     <h4 class="modal-title" style="font-size: 25px;font-family: auto;">ALLOCATE EXISTING ASSETS</h4>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form action="#" method="post">
@@ -332,7 +332,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -348,6 +348,7 @@
 
 
     function fetchval() {
+
         const markup = `<div class="accordion" id="accordionExample">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
@@ -382,8 +383,7 @@
                 </h2>
                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                </div>
+                    <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.</div>
                 </div>
             </div>
             </div>`
@@ -462,17 +462,17 @@
         fv = $(`#goal-id-${id}`).closest("div").find("span").attr("data-fv") - total_asset;
         console.log(ans, answer, fv);
 
-        let G = (10 / 100 ); 
-        console.log(G);
-        let R = 12;
-        let R1 = (R / 100);
-        let ar = ((1 + R1) ** (1 / 12) - 1 );
-        let r1 = ar * 12;
-        let r = r1 / 12;
-        let C = fv * (R1 - G);
-        let c = ((1 + R1) ** n );
-        let cr = ((1 + G) ** n );
-        let crr = (c - cr);
+        // let G = (10 / 100 ); 
+        // console.log(G);
+        // let R = 12;
+        // let R1 = (R / 100);
+        // let ar = ((1 + R1) ** (1 / 12) - 1 );
+        // let r1 = ar * 12;
+        // let r = r1 / 12;
+        // let C = fv * (R1 - G);
+        // let c = ((1 + R1) ** n );
+        // let cr = ((1 + G) ** n );
+        // let crr = (c - cr);
 
         // let fv_val = fv
         // let rate = document.getElementById("rate").value;
