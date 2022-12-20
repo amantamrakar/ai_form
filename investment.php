@@ -5,11 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./assets/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/style.css">
     <title>Document</title>
 </head>
 <style>
@@ -128,7 +126,7 @@
         <div class="card">
 
             <div class="declare-container hidden-sm hidden-xs">
-                <a type="button" class="btn1 btn-default1 declear_existing_investment" data-toggle="modal" data-target="#myModal" value="add" id="moredrop_dowp" style="float:right" ;>
+                <a type="button" class="btn1 btn-default1 declear_existing_investment" data-bs-toggle="modal" data-bs-target="#myModal" value="add" id="moredrop_dowp" style="float:right" ;>
                     <i class="fa fa-plus-circle fa-3x"></i>
                     <p>DECLARE<br>EXISTING<br>ASSETS</p>
                 </a>
@@ -144,85 +142,83 @@
 
 
 
-            <div class="container">
-                <div class="modal fade" id="myModal" role="dialog">
-                    <div class="modal-dialog  modal-lg ">
-                        <div class="modal-content">
-                            <div class="modal-header" style="background-color: darkred;color: #fff;">
-                                <button type="button" class="close" data-dismiss="modal" style="position: fixed; ">&times;</button>
-                                <h4 class="modal-title" style="font-size: 25px;font-family: auto;">Exsiting Asset</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form action="" method="POST" id="fund_form">
-                                    <div class="row">
-                                        <div class="form-group">
-                                            <label for="" class="col-2">Fixed Deposit</label>
-                                            <input type="hidden" name="fund_deposit[]" value="Fixed Deposit">
-                                            <input type="text" class="col-3 input_style pre_value" id="pre_value" value="" name="fund_amt[]" placeholder="₹ Enter Value">
-                                            <input type="text" class="col-3 input_style dur_per" value="" id="dur_per" placeholder="Duration (No. of Year)" name="duration[]">
-                                            <input type="text" class="col-3 input_style rate_per" id="rate_per" value="" placeholder="Intreset %" name="percent[]">
-                                            <input type="text" class="fd_fv_value">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="" class="col-2">Recurring Deposit</label>
-                                            <input type="hidden" name="fund_deposit[]" value="Recurring Deposit">
-                                            <input type="text" class="col-3 input_style pre_value" value="" id="pre_value" placeholder="₹ Enter Value" name="fund_amt[]">
-                                            <input type="text" class="col-3 input_style dur_per" value="" id="dur_per" placeholder="Duration (No. of Year)" name="duration[]">
-                                            <input type="text" class="col-3 input_style rate_per" id="rate_per" value="" placeholder="Intreset %" name="percent[]">
-                                            <input type="text" class="fd_fv_value">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="" class="col-2">Mutual Fund</label>
-                                            <input type="hidden" name="fund_deposit[]" value="mutual fund">
-                                            <input type="text" class="col-3 input_style pre_value" value="" placeholder="₹ Enter Value" name="fund_amt[]">
-                                            <input type="text" class="col-3 input_style dur_per" value="" placeholder="Duration (No. of Year)" name="duration[]">
-                                            <input type="text" class="col-3 input_style rate_per" value="" placeholder="Intreset %" name="percent[]">
-                                            <input type="text" class="fd_fv_value">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="" class="col-2">Equity</label>
-                                            <input type="hidden" name="fund_deposit[]" value="Equity">
-                                            <input type="text" class="col-3 input_style pre_value" value="" placeholder="₹ Enter Value" name="fund_amt[]">
-                                            <input type="text" class="col-3 input_style dur_pre" value="" placeholder="Duration (No. of Year)" name="duration[]">
-                                            <input type="text" class="col-3 input_style rate_per" value="" placeholder="Intreset %" name="percent[]">
-                                            <input type="text" class="fd_fv_value">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="" class="col-2" c>Gold</label>
-                                            <input type="hidden" name="fund_deposit[]" value="Gold">
-                                            <input type="text" class="col-3 input_style pre_value" value="" placeholder="₹ Enter Value" name="fund_amt[]">
-                                            <input type="text" class="col-3 input_style dur_pre" value="" placeholder="Duration (No. of Year)" name="duration[]">
-                                            <input type="text" class="col-3 input_style rate_per" value="" placeholder="Intreset %" name="percent[]">
-                                            <input type="text" class="fd_fv_value">
-                                        </div>
-                                    </div>
-
-
-                                    <!-- <button type="button" id="remove" onclick="removeel(this)">Remove</button> -->
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary" id="submit_funddata">Save and
-                                    Contine</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-
-                            <div class="declare-container hidden-sm hidden-xs">
-                                <a type="button" class="btn1 btn-default1 declear_existing_investment" data-toggle="modal" data-target="#myModal" value="add" id="moredrop_dowp" style="float:right" ;>
-                                    <i class="fa fa-plus-circle fa-3x"></i>
-                                    <p>DECLARE<br>EXISTING<br>ASSETS</p>
-                                </a>
-                            </div>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
 
 
         </div>
+    </div>
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog  modal-lg ">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: darkred;color: #fff;">
+                    <button type="button" class="close" data-bs-dismiss="modal" style="position: fixed; ">&times;</button>
+                    <h4 class="modal-title" style="font-size: 25px;font-family: auto;">Exsiting Asset</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="POST" id="fund_form">
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="" class="col-2">Fixed Deposit</label>
+                                <input type="hidden" name="fund_deposit[]" value="Fixed Deposit">
+                                <input type="text" class="col-3 input_style pre_value" id="pre_value" value="" name="fund_amt[]" placeholder="₹ Enter Value">
+                                <input type="text" class="col-3 input_style dur_per" value="" id="dur_per" placeholder="Duration (No. of Year)" name="duration[]">
+                                <input type="text" class="col-3 input_style rate_per" id="rate_per" value="" placeholder="Intreset %" name="percent[]">
+                                <input type="text" class="fd_fv_value">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-2">Recurring Deposit</label>
+                                <input type="hidden" name="fund_deposit[]" value="Recurring Deposit">
+                                <input type="text" class="col-3 input_style pre_value" value="" id="pre_value" placeholder="₹ Enter Value" name="fund_amt[]">
+                                <input type="text" class="col-3 input_style dur_per" value="" id="dur_per" placeholder="Duration (No. of Year)" name="duration[]">
+                                <input type="text" class="col-3 input_style rate_per" id="rate_per" value="" placeholder="Intreset %" name="percent[]">
+                                <input type="text" class="fd_fv_value">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-2">Mutual Fund</label>
+                                <input type="hidden" name="fund_deposit[]" value="mutual fund">
+                                <input type="text" class="col-3 input_style pre_value" value="" placeholder="₹ Enter Value" name="fund_amt[]">
+                                <input type="text" class="col-3 input_style dur_per" value="" placeholder="Duration (No. of Year)" name="duration[]">
+                                <input type="text" class="col-3 input_style rate_per" value="" placeholder="Intreset %" name="percent[]">
+                                <input type="text" class="fd_fv_value">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-2">Equity</label>
+                                <input type="hidden" name="fund_deposit[]" value="Equity">
+                                <input type="text" class="col-3 input_style pre_value" value="" placeholder="₹ Enter Value" name="fund_amt[]">
+                                <input type="text" class="col-3 input_style dur_pre" value="" placeholder="Duration (No. of Year)" name="duration[]">
+                                <input type="text" class="col-3 input_style rate_per" value="" placeholder="Intreset %" name="percent[]">
+                                <input type="text" class="fd_fv_value">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-2" c>Gold</label>
+                                <input type="hidden" name="fund_deposit[]" value="Gold">
+                                <input type="text" class="col-3 input_style pre_value" value="" placeholder="₹ Enter Value" name="fund_amt[]">
+                                <input type="text" class="col-3 input_style dur_pre" value="" placeholder="Duration (No. of Year)" name="duration[]">
+                                <input type="text" class="col-3 input_style rate_per" value="" placeholder="Intreset %" name="percent[]">
+                                <input type="text" class="fd_fv_value">
+                            </div>
+                        </div>
+
+
+                        <!-- <button type="button" id="remove" onclick="removeel(this)">Remove</button> -->
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="submit_funddata">Save and
+                        Contine</button>
+                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+                </div>
+                </form>
+                
+            </div>
+            
+        </div>
+    </div>
+    <div class="declare-container hidden-sm hidden-xs">
+        <a type="button" class="btn1 btn-default1 declear_existing_investment" data-bs-toggle="modal" data-bs-target="#myModal" value="add" id="moredrop_dowp" style="float:right";>
+            <i class="fa fa-plus-circle fa-3x"></i>
+            <p>DECLARE<br>EXISTING<br>ASSETS</p>
+        </a>
     </div>
 
 
@@ -230,7 +226,7 @@
 </body>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="./assets/bootstrap.min.js"></script>
 <script>
     // function adddp() {
     //     const markup = `  <div type="text" id="myDropdown"> Your Investment's
@@ -421,6 +417,10 @@
         });
 
     })
+
+    function ds(s, t) {
+        console.log(arguments)
+    }
 </script>
 
 </html>
