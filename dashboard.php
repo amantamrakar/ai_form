@@ -34,184 +34,7 @@ if (mysqli_num_rows($result)) {
 }
 // }
 ?>
-<style>
-    .bottons {
-        border-radius: 20px;
-        border: none;
-        background-color: #0E4A75;
-        padding: 10px 16px;
-        color: #FFFFFF;
-        font-size: 15px;
-        font-weight: bold;
-        letter-spacing: 1px;
-        text-transform: capitalize;
-    }
 
-    .bottons:active {
-        transform: scale(0.95);
-    }
-
-    .bottons:focus {
-        outline: none;
-    }
-
-    .bottons:hover {
-        background-color: #FFFFFF;
-        color: #223C86;
-        cursor: pointer;
-    }
-
-    .labels {
-        font-size: 20px;
-        color: black;
-        text-align: center;
-        font-weight: 500;
-    }
-
-    .inputans {
-        background-color: #1a1b50;
-        text-align: center;
-        padding: 6px;
-        border-radius: 5px;
-        color: white;
-        border: 1px solid black;
-        font-size: 22px;
-    }
-
-    .imp {
-        padding: 6px;
-        text-align: center;
-        text-transform: capitalize;
-        font-size: 19px;
-    }
-
-    .imp_disabled {
-        padding: 6px;
-        text-align: center;
-        text-transform: capitalize;
-        font-size: 19px;
-        border: none;
-    }
-
-    /* for road map */
-    body {
-        overflow-x: hidden;
-    }
-
-    .road-map {
-        display: flex;
-        justify-content: center;
-    }
-
-    #g-path {
-        min-width: 900px;
-    }
-
-    .goal-box {
-        cursor: pointer;
-        position: relative;
-        transform-origin: center;
-        animation: box 1s ease-in 1;
-    }
-
-    @keyframes box {
-        0% {
-            transform: scaleX(0);
-        }
-
-        100% {
-            transform: scaleX(1);
-        }
-    }
-
-    #g-path rect {
-        fill: transparent;
-        stroke-width: 2;
-        stroke: #4949ff;
-        stroke-opacity: 1;
-        width: 80px;
-        height: 42px;
-    }
-
-    #g-path rect:hover {
-        stroke-width: 3;
-        fill: #eeeeff;
-    }
-
-    #g-path #h-line {
-        fill: none;
-        stroke: #000000;
-        stroke-width: 2.5;
-        stroke-linecap: butt;
-        stroke-linejoin: miter;
-        stroke-opacity: 1;
-        stroke-miterlimit: 4;
-    }
-
-    #g-path .v-line {
-        fill: none;
-        stroke: #000000;
-        stroke-width: 2.5;
-        stroke-linecap: butt;
-        stroke-linejoin: miter;
-        stroke-opacity: 1;
-        stroke-miterlimit: 4;
-        stroke-dasharray: none
-    }
-
-    #g-path text {
-        pointer-events: none;
-        text-transform: capitalize;
-        font-size: 8px;
-        line-height: 1.25;
-        font-family: sans-serif;
-        fill: #ffffff;
-        fill-opacity: 1;
-        stroke: none;
-        stroke-width: 0.264583;
-        stroke-opacity: 1
-    }
-
-    #cybox {
-        width: 100%;
-        height: 50px;
-        text-align: center;
-    }
-
-    #cybox #current-year {
-        color: #ffffff;
-        background-color: #6868ff;
-    }
-
-    .box-action {
-        width: 20px;
-    }
-
-    .a-btn {
-        display: flex;
-        flex-wrap: nowrap;
-        height: 100%;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    .box-action img {
-        box-sizing: content-box;
-        vertical-align: baseline;
-        width: 10px;
-        height: 10px;
-        background-color: white;
-        border: 2px solid #4949ff;
-        border-radius: 25px;
-        padding: 10%;
-    }
-
-    #g-path text.goal-text {}
-
-    .box-action img:hover {
-        background-color: pink;
-    }
-</style>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -220,16 +43,18 @@ if (mysqli_num_rows($result)) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link href="./assets/bootstrap.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="./assets/style.css">
     <style>
         #show-goal-table {
             display: none
         }
+
         .road-year {
             fill: red;
             text-anchor: middle;
         }
+
         #toggle-sgoal {
             border: 1px solid #0000ffb5;
             padding: 10px;
@@ -239,8 +64,191 @@ if (mysqli_num_rows($result)) {
             right: 20px;
             box-shadow: 1px 1px 7px #0d88c3;
         }
+
         #toggle-sgoal img {
             width: 32px;
+        }
+
+        .bottons {
+            border-radius: 20px;
+            border: none;
+            background-color: #0E4A75;
+            padding: 10px 16px;
+            color: #FFFFFF;
+            font-size: 15px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: capitalize;
+        }
+
+        .bottons:active {
+            transform: scale(0.95);
+        }
+
+        .bottons:focus {
+            outline: none;
+        }
+
+        .bottons:hover {
+            background-color: #FFFFFF;
+            color: #223C86;
+            cursor: pointer;
+        }
+
+        .labels {
+            font-size: 20px;
+            color: black;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .inputans {
+            background-color: #1a1b50;
+            text-align: center;
+            padding: 6px;
+            border-radius: 5px;
+            color: white;
+            border: 1px solid black;
+            font-size: 22px;
+        }
+
+        .imp {
+            padding: 6px;
+            text-align: center;
+            text-transform: capitalize;
+            font-size: 19px;
+        }
+
+        .imp_disabled {
+            padding: 6px;
+            text-align: center;
+            text-transform: capitalize;
+            font-size: 19px;
+            border: none;
+        }
+
+        /* for road map */
+        body {
+            overflow-x: hidden;
+        }
+
+        .road-map {
+            display: flex;
+            justify-content: center;
+            
+        }
+
+        #g-path {
+            min-width: 900px;
+            background-image:url("./images/road.svg");
+            background-size: 100% 100%;
+        }
+
+        .goal-box {
+            cursor: pointer;
+            position: relative;
+            transform-origin: center;
+            animation: box 1s ease-in 1;
+        }
+
+        @keyframes box {
+            0% {
+                transform: scaleX(0);
+            }
+
+            100% {
+                transform: scaleX(1);
+            }
+        }
+
+        #g-path .g-box {
+            fill: transparent;
+            stroke-width: 2;
+            stroke: #4949ff;
+            stroke-opacity: 1;
+            /* width: 80px;
+            height: 42px; */
+        }
+        #g-path .g-label{
+            fill:#fff;pointer-events: none;
+        }
+        #g-path .g-box:hover {
+            stroke-width: 3;
+            fill: #eeeeff;
+        }
+
+        #g-path #h-line {
+            fill: none;
+            stroke: #000000;
+            stroke-width: 2.5;
+            stroke-linecap: butt;
+            stroke-linejoin: miter;
+            stroke-opacity: 1;
+            stroke-miterlimit: 4;
+        }
+
+        #g-path .v-line {
+            fill: none;
+            stroke: #000000;
+            stroke-width: 2.5;
+            stroke-linecap: butt;
+            stroke-linejoin: miter;
+            stroke-opacity: 1;
+            stroke-miterlimit: 4;
+            stroke-dasharray: none
+        }
+
+        #g-path text {
+            pointer-events: none;
+            text-transform: capitalize;
+            font-size: 8px;
+            line-height: 1.25;
+            font-family: sans-serif;
+            fill: #ffffff;
+            fill-opacity: 1;
+            stroke: none;
+            stroke-width: 0.264583;
+            stroke-opacity: 1
+        }
+
+        #cybox {
+            width: 100%;
+            height: 50px;
+            text-align: center;
+        }
+
+        #cybox #current-year {
+            color: #ffffff;
+            background-color: #6868ff;
+        }
+
+        .box-action {
+            width: 20px;
+        }
+
+        .a-btn {
+            display: flex;
+            flex-wrap: nowrap;
+            height: 100%;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .box-action img {
+            box-sizing: content-box;
+            vertical-align: baseline;
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border: 2px solid #4949ff;
+            border-radius: 25px;
+            padding: 10%;
+        }
+
+        #g-path text.goal-text {}
+
+        .box-action img:hover {
+            background-color: pink;
         }
     </style>
 </head>
@@ -726,7 +734,7 @@ if (mysqli_num_rows($result)) {
                                 if ($data["goal_data"] == "" || $data["goal"] == "") continue;
                                 $decode =  json_decode($data['goal_data'], true);
                         ?>
-                                <tr >
+                                <tr>
                                     <td class="text-center"><?php echo $k  ?></td>
                                     <td class="text-center"><?php echo $data['goal']  ?></td>
                                     <?php if ($data['goal'] == "car") {
@@ -838,9 +846,9 @@ if (mysqli_num_rows($result)) {
             </div>
         </div>
     </div> -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="./assets/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="./road_map.js"></script>
+    <script src="./assets/road_map.js"></script>
     <script>
         $("#toggle-sgoal").click(function(e) {
             $("#show-goal-table").toggle(1000)
@@ -848,7 +856,7 @@ if (mysqli_num_rows($result)) {
             $("#gs-map").toggle()
             $("#gs-table").toggle()
         })
-        $(document).on("click",".update_goal",function() {
+        $(document).on("click", ".update_goal", function() {
             var key = $(this).data('gid');
             $.ajax({
                 type: "post",
@@ -1213,22 +1221,22 @@ if (mysqli_num_rows($result)) {
                 if ($(this).attr("data-callback")) {
                     deleteGoal(id);
                     $(`button.delete_btn[data-gid='${id}']`).closest('tr').remove()
-                }else{
+                } else {
                     $(this).closest('tr').remove()
                 }
-                
-                // $.ajax({
-                //     type: "post",
-                //     url: "./single_goal_ajax.php",
-                //     data: {
-                //         deleteId: id
-                //     },
-                //     dataType: "json",
-                //     success: function(response) {
-                //         if (response['status']) {}
 
-                //     }
-                // });
+                $.ajax({
+                    type: "post",
+                    url: "./single_goal_ajax.php",
+                    data: {
+                        deleteId: id
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        if (response['status']) {}
+
+                    }
+                });
             }
         })
         $(document).on("click", ".show_btn", function() {
