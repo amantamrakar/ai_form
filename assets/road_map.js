@@ -33,7 +33,7 @@ $(document).ready(function() {
 });
 
 let steps;
-const gh=400;
+const gh=600;
 let start, previousTimeStamp;
 let done = false;
 let i = 0;
@@ -48,7 +48,7 @@ function init() {
     // let putHeight = data.length * 180
     
     $(".goal-box").remove();
-    document.querySelector("#current-year").innerHTML = `<tspan x="${mid}" y="14"  text-anchor="middle">${date.getFullYear()}</tspan>`;
+    document.querySelector("#current-year").innerHTML = `<span x="${mid}" y="14"  text-anchor="middle">${date.getFullYear()}</span>`;
     // g_path.getTotalLength()
     if(innerWidth<700){
         mid=150;
@@ -62,10 +62,8 @@ function init() {
         if (data[k].year == data[k - 1].year) {
             data[k].py = data[k - 1].py + goalGap;
         } else {
-            console.log(data[k].year-data[k-1].year);
             data[k].py = data[k - 1].py + 60 + ((data[k].year-data[k-1].year)*data.length);
         }
-        console.log(data[k].py);
     }
     putHeight=data[data.length-1].py*3;
     if(putHeight <=gh) putHeight=gh;
@@ -160,13 +158,13 @@ function set_goal(y, text) {
         <foreignObject x="${py-4}" y="${y-24}" class="box-action" height="50">
 
         <div class="a-btn">
-        <img src="pen-to-square-solid.svg" alt="" class="update_goal" data-bs-toggle="modal" data-bs-target="#show_update_goal" data-gid="${text.id}">
-        <img src="xmark-solid.svg" alt="" class="delete_btn" data-gid="${text.id}" data-callback="deleteGoal">
+        <img src="./images/pen-to-square-solid.svg" alt="" class="update_goal" data-bs-toggle="modal" data-bs-target="#show_update_goal" data-gid="${text.id}">
+        <img src="./images/xmark-solid.svg" alt="" class="delete_btn" data-gid="${text.id}" data-callback="deleteGoal">
         </div>
     </foreignObject>
 
     <text class="goal-text">
-    <tspan class="road-year" x="${mid + (35*ls)}" y="${y-2}" >${text.year}</tspan>
+    <tspan class="road-year" x="${mid + (35*ls)}" y="${y+3}" >${text.year}</tspan>
         <tspan x="${py+20}" style="fill:var(--${text.goal})" y="${y-10}" >${text.goal}</tspan>
         <tspan x="${py+20}" y="${y+8}" style="font-size:6px;">${(+allRes[text.id].goal_data.ansinputs.replace(/,/g,'')).toLocaleString("en-IN", {style:"currency", currency:"INR"})}</tspan>
         </text>

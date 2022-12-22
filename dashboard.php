@@ -3,7 +3,7 @@ session_start();
 if (!isset($_SESSION["goaluser"])) {
     header("location: ./index.php");
 }
-require_once("./header.php");
+
 require_once("./connect.php");
 
 // $_SESSION["goaluser"] = "nikhil1@gmail.com";
@@ -136,13 +136,14 @@ if (mysqli_num_rows($result)) {
         .road-map {
             display: flex;
             justify-content: center;
-            
         }
 
         #g-path {
-            min-width: 900px;
+            min-width: 100%;
             background-image:url("./images/road.svg");
-            background-size: 100% 100%;
+            background-size: 80%;
+            background-repeat-x: no-repeat;
+            background-position: center;
         }
 
         .goal-box {
@@ -177,11 +178,12 @@ if (mysqli_num_rows($result)) {
             stroke-width: 3;
             fill: #eeeeff;
         }
-
+        #g-path path {
+            stroke-width: 7.5px;
+            stroke:#b5b5b5;
+        }
         #g-path #h-line {
             fill: none;
-            stroke: #000000;
-            stroke-width: 2.5;
             stroke-linecap: butt;
             stroke-linejoin: miter;
             stroke-opacity: 1;
@@ -190,8 +192,6 @@ if (mysqli_num_rows($result)) {
 
         #g-path .v-line {
             fill: none;
-            stroke: #000000;
-            stroke-width: 2.5;
             stroke-linecap: butt;
             stroke-linejoin: miter;
             stroke-opacity: 1;
@@ -218,8 +218,9 @@ if (mysqli_num_rows($result)) {
             text-align: center;
         }
 
-        #cybox #current-year {
+        #cybox #current-year span {
             color: #ffffff;
+            padding: 2px 5px;
             background-color: #6868ff;
         }
 
@@ -243,7 +244,7 @@ if (mysqli_num_rows($result)) {
             background-color: white;
             border: 2px solid #4949ff;
             border-radius: 25px;
-            padding: 10%;
+            padding: 3px;
         }
 
         /* #g-path text.goal-text { */
@@ -255,8 +256,12 @@ if (mysqli_num_rows($result)) {
 </head>
 
 <body>
+    <?php 
+    require_once("./header.php");
+    
+    ?>
     <fieldset>
-        <a href="logout.php"><button type="text" style="font-size: 19px;background-color: antiquewhite;padding: 6px 9px;border-radius: 5px;font-weight: 500;float: right;margin-top: 12px;margin-right: 18px;">Logout</button></a>
+        <!-- <a href="logout.php"><button type="text" style="font-size: 19px;background-color: antiquewhite;padding: 6px 9px;border-radius: 5px;font-weight: 500;float: right;margin-top: 12px;margin-right: 18px;">Logout</button></a> -->
         <!-----------------------------Education----------------------------------------------->
         <?php
         if ($_SESSION["goal"] == 'education') {
@@ -847,7 +852,7 @@ if (mysqli_num_rows($result)) {
             </div>
         </div>
     </div> -->
-    <script src="./assets/bootstrap.min.js"></script>
+    <script src="./assets/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="./assets/road_map.js"></script>
     <script>

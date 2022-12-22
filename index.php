@@ -145,7 +145,7 @@ session_start();
       color: #000000;
     }
 
-    ul {
+    /* ul {
       list-style: none;
       margin: 0;
       padding: 0px;
@@ -156,11 +156,7 @@ session_start();
       left: 100%;
       top: 0;
       margin-left: 1px;
-    }
-
-    li:hover {
-      background-color: #95B4CA;
-    }
+    } */
 
     .parent li:hover {
       background-color: #F0F0F0;
@@ -361,11 +357,7 @@ session_start();
       border: 2px solid black;
     }
 
-    .a_style {
-      font-size: 18px;
-      color: black;
-      font-weight: 500;
-    }
+    
   </style>
 
   <title>Swaraj FinPro AI Form</title>
@@ -446,7 +438,7 @@ session_start();
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5 text-dark">Log In</h1>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
           <div class="modal-body" id="modal_gaol_id">
             <form method="post" id="pop-log-in-form">
@@ -473,7 +465,7 @@ session_start();
   </div>
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-  <script src="./assets/bootstrap.min.js"></script>
+  <script src="./assets/bootstrap.bundle.min.js"></script>
   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
 
   <script type="text/javascript">

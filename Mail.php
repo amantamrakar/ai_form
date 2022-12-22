@@ -1,5 +1,5 @@
 <?php
-require_once('mail/vendor/autoload.php');
+require_once('./vendor/autoload.php');
 
 use PHPMailer\PHPMailer\PHPMailer;
 
@@ -13,10 +13,10 @@ $mail->Mailer = "smtp";
 $mail->SMTPAuth = true;
 // GMAIL username
 // $mail->Username = "wishky955@gmail.com";
-$mail->Username = "customercare@swarajfinpro.com";
+$mail->Username = "help.swarajfinpro@gmail.com";
 // GMAIL password
 // $mail->Password = "Mycustomer@123";
-$mail->Password = "tasspkncpojppqgj";
+$mail->Password = "yuqbuycngtugrnfl";
 $mail->SMTPSecure = "tls";
 // $mail->SMTPSecure = "STARTTLS";
 // sets GMAIL as the SMTP server
@@ -25,9 +25,9 @@ $mail->Host = "smtp.gmail.com";
 // set the SMTP port for the GMAIL server
 $mail->Port = 587;
 // $mail->From = 'wishky955@gmail.com';
-$mail->From = 'customercare@swarajfinpro.com';
+$mail->From = 'arpit@swarajfinpro.com';
 // $mail->FromName = 'your_name';
-$mail->AddAddress("nikhilp1099@gmail.com", "Swaraj Finpro");
+$mail->AddAddress("arpit@swarajfinpro.com", "Swaraj Finpro");
 $mail->Subject =  'Reset Password';
 $mail->IsHTML(true);
 $mail->Body = 'This is it i am breakup with you';
