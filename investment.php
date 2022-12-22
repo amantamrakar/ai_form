@@ -228,7 +228,7 @@ if (!isset($_SESSION["goaluser"])) {
 
             <div class="mt-5 mb-4" style="text-align:center;">
                 <a class="btn btn-primary" href="dashboard.php">Previous</a>
-                <button type="button" class="btn btn-success" id="btn_web" style="width:14%;" onclick="topup_cal()">View Recommandation</button>
+                <button type="button" class="btn btn-success" id="btn_web" style="width:14%;" onclick="topupsip()">View Recommandation</button>
             </div>
 
 
@@ -246,14 +246,14 @@ if (!isset($_SESSION["goaluser"])) {
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="POST" id="fund_form">
-                        <div class="row">
+                    <!-- <form action="" method="POST" id="fund_form"> -->
+                    <div class="row" class="fund_data">
                             <div class="form-group">
                                 <label for="" class="col-2">Fixed Deposit</label>
                                 <input type="hidden" name="fund_deposit[]" value="Fixed Deposit">
-                                <input type="text" class="col-3 input_style pre_value" id="pre_value" value="" name="fund_amt[]" placeholder="₹ Enter Value">
-                                <input type="text" class="col-3 input_style dur_per" value="" id="dur_per" placeholder="Duration (No. of Year)" name="duration[]">
-                                <input type="text" class="col-3 input_style rate_per" id="rate_per" value="" placeholder="Intreset %" name="percent[]">
+                                <input type="text" class="col-3 input_style pre_value" id="pre_value"  name="fund_amt[]" placeholder="₹ Enter Value">
+                                <input type="text" class="col-3 input_style dur_per" id="dur_per" placeholder="Duration (No. of Year)" name="duration[]" >
+                                <input type="text" class="col-3 input_style rate_per" id="rate_per" placeholder="Intreset %" name="percent[]">
                                 <input type="text" class="fd_fv_value">
                             </div>
                             <div class="form-group">
@@ -290,16 +290,16 @@ if (!isset($_SESSION["goaluser"])) {
                             </div>
                         </div>
 
-
                         <!-- <button type="button" id="remove" onclick="removeel(this)">Remove</button> -->
 
                 </div>
                 <div class="modal-footer">
+                    <button class="btn btn-primary" onclick="fetch_data()"> Show Value</button>
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal1" onclick="fetchval()" onchange="valuefetch()">Save and
                         Contine</button>
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                 </div>
-                </form>
+                <!-- </form> -->
 
             </div>
 
@@ -440,14 +440,14 @@ if (!isset($_SESSION["goaluser"])) {
         let P = $(`#goal-id-${id} #mothly_sip`).val();
         let rate = 12;
         let years = $(`#goal-id-${id} .f-age`).html();
-        let R = ((rate / 100) / 12);
+        let Rss = ((rate / 100) / 12);
         let Y = years * 12;
-        let d = P * (((1 + R) ** Y) - 1);
-        let e = 1 + R;
+        let d = P * (((1 + Rss) ** Y) - 1);
+        let e = 1 + Rss;
         let f = d * e;
-        let ans = f / R;
+        let ans = f / Rss;
         $(`#goal-id-${id} #sip-answer`).val(ans.toFixed(0));
-
+        // console.log(ans);
 
 
         // fv_of_lumpsum
@@ -455,9 +455,10 @@ if (!isset($_SESSION["goaluser"])) {
         let rates = 12;
         let Rs = (rates / 100);
         let n = $(`#goal-id-${id} .f-age`).html();
-        let r = (1 + Rs) ** n;
-        let answer = pv * r;
+        let rs = (1 + Rs) ** n;
+        let answer = pv * rs;
         $(`#goal-id-${id} #lumpsum-answer`).val(answer.toFixed(0));
+        // console.log(answer);
 
         // top_up_sip_required        
         sip = ans;
@@ -466,70 +467,46 @@ if (!isset($_SESSION["goaluser"])) {
         asset = 100000;
         total_asset = (total_planinv + asset);
         fv = $(`#goal-id-${id}`).closest("div").find("span").attr("data-fv") - total_asset;
-        console.log(ans, answer, fv);
+        // console.log( fv,total_asset);
 
-        // let G = (10 / 100 ); 
-        // console.log(G);
-        // let R = 12;
-        // let R1 = (R / 100);
-        // let ar = ((1 + R1) ** (1 / 12) - 1 );
-        // let r1 = ar * 12;
-        // let r = r1 / 12;
-        // let C = fv * (R1 - G);
-        // let c = ((1 + R1) ** n );
-        // let cr = ((1 + G) ** n );
-        // let crr = (c - cr);
+        // let fv = 100000;
+        // let rate  = 12 ;
+        let G = (10 / 100);
+        let G1 = G + 0.00001;
+        // let n = 15 ;
+        let R = rate / 100;
+        let a = ((1 + R) ** (1 / 12) - 1);
+        let r1 = (a * 12);
+        let r = r1 / 12;
 
-        // let fv_val = fv
-        // let rate = document.getElementById("rate").value;
-        // let years = document.getElementById("year").value;
-        // let growth = document.getElementById("growth").value;
-        // let g = growth / 100;
-        // let G1 = g + 0.00001;
+        if (R == G) {
+            c = fv * (R - G1);
+            z = ((1 + R) ** (n));
+            y = ((1 + G1) ** (n));
+            x = z - y;
+            X = c / x;
+            ans = X;
 
-        // let R = rate / 100;
+        } else {
+            c = fv * (R - G);
+            z = ((1 + R) ** (n));
+            y = ((1 + G) ** (n));
+            x = z - y;
+            X = c / x;
+            ans = X;
+        }
 
-        // let N = years * 12;
-        // let a = ((1 + R) ** (1 / 12) - 1);
-        // let r1 = a * 12;
-        // let r = r1 / 12; // r declared 
-        // let d = fv * (((1 + r) ** 12) - 1);
-        // let e = 1 + r;
-        // let f = d * e;
-        // let c = f / r; // C declared  
-        // let c1 = c.toFixed(0);
-        // let age = parseInt(c1);
-
-        // if (R == g) {
-
-        //     z = ((1 + R) ** (years));
-        //     y = ((1 + G1) ** (years));
-        //     x = z - y;
-        //     X = x * c;
-        //     w = (R - G1);
-        //     v = X / w;
-        //      ans = v;
-        // } else {
-
-        //     z = ((1 + R) ** (years));
-        //     y = ((1 + g) ** (years));
-        //     x = z - y;
-        //     X = x * c;
-        //     w = (R - g);
-        //     v = X / w;
-        //      ans = v;
-        // }
-
-        // let invest = (fv * 12 * (((1 + g) ** years) - 1)) / g;
-
-        // let growths =ans -invest;
+        let aa = (r * ans);
+        let s = ((1 + r) ** 12);
+        let ss = ((s - 1) * (1 + r));
+        let s2 = aa / ss;
+        let S = s2.toFixed(0);
+        console.log(S); //ans = C  
 
 
 
 
-
-
-        $(`#goal-id-${id} #total-value`).val(fv.toFixed(0));
+        $(`#goal-id-${id} #total-value`).val(S);
         let plan_sip = 0;
         let plan_lumpsum = 0;
         document.querySelectorAll("#mothly_sip").forEach(el => {
@@ -546,7 +523,45 @@ if (!isset($_SESSION["goaluser"])) {
         $("#plan_l_sip").html(plan_lumpsum)
     }
 
+    // function topupsip() {
 
+    //     let fv = 100000;
+    //     let rate = 12;
+    //     let G = (10 / 100);
+    //     let G1 = G + 0.00001;
+    //     let n = 15;
+    //     let R = rate / 100;
+    //     let a = ((1 + R) ** (1 / 12) - 1);
+    //     let r1 = (a * 12);
+    //     let r = r1 / 12; // r declared 
+
+    //     if (R == G) {
+    //         c = fv * (R - G1);
+    //         z = ((1 + R) ** (n));
+    //         y = ((1 + G1) ** (n));
+    //         x = z - y;
+    //         X = c / x;
+    //         ans = X;
+
+    //     } else {
+    //         c = fv * (R - G);
+    //         z = ((1 + R) ** (n));
+    //         y = ((1 + G) ** (n));
+    //         x = z - y;
+    //         X = c / x;
+    //         ans = X;
+    //     }
+
+    //     let aa = (r * ans);
+    //     let s = ((1 + r) ** 12);
+    //     let ss = ((s - 1) * (1 + r));
+    //     let s2 = aa / ss;
+    //     let S = s2.toFixed(0);
+    //     console.log(S); //ans = C  
+
+
+
+    // }
 
     function cal_fv(pre, rates_per, n_per) {
         //fixed_asset_fv
@@ -593,37 +608,35 @@ if (!isset($_SESSION["goaluser"])) {
                         });
                         markup += `<tr > <div class="col-1 goal-img"><img src="../ai_form/images/${el["goal"]}.svg">
                             <span data-fv="${temp}">${(tamps)}</span></div>
-                            <th rowspan="2" class="th_style">${el["goal"]}</th ><th rowspan="2" class="th_style f-age">${el["goal_data"]["futureage"]}</th><th class="col-md-2" style="background-color: #bababa;text-align: center;">MONTHLY </th><th class="col-md-2" style="background-color: #bababa;text-align: center;">LUMPSUM</th><th class="col-md-2" style="background-color: #bababa;text-align: center;">MONTHLY </th><th class="col-md-2" style="background-color: #bababa;text-align: center;">LUMPSUM</th></tr><tr><td><i class="fa fa-rupee-sign"></i><input class="style_input" disabled type="text" value=" ${el["goal_data"]["sipvalue"]}" </td><td><i class="fa fa-rupee-sign"></i><input class="style_input" type="text"  value=" ${cal_lumpsum(temp, el["goal_data"]["futureage"])}" </td><td><i class="fa fa-rupee-sign"></i><input class="style_input" type="number" id="mothly_sip" oninput="top_up_sip('${el["id"]}')"></td><td><i class="fa fa-rupee-sign"></i><input class="style_input" type="number" id="lumpsum_sip" oninput="top_up_sip('${el["id"]}')"></td><td><input class="text" oninput="top_up_sip('${el["id"]}')" id="total-value" </td>
+                            <th rowspan="2" class="th_style">${el["goal"]}</th ><th rowspan="2" class="th_style f-age">${el["goal_data"]["futureage"]}</th><th class="col-md-2" style="background-color: #bababa;text-align: center;">MONTHLY </th><th class="col-md-2" style="background-color: #bababa;text-align: center;">LUMPSUM</th><th class="col-md-2" style="background-color: #bababa;text-align: center;">MONTHLY </th><th class="col-md-2" style="background-color: #bababa;text-align: center;">LUMPSUMe</th><th><p>Monthly SIP needs to be increased every year by: </p></th></tr><tr><td><i class="fa fa-rupee-sign"></i><input class="style_input" disabled type="text" value=" ${el["goal_data"]["sipvalue"]}" </td><td><i class="fa fa-rupee-sign"></i><input class="style_input" type="text"  value=" ${cal_lumpsum(temp, el["goal_data"]["futureage"])}" </td><td><i class="fa fa-rupee-sign"></i><input class="style_input" type="number" id="mothly_sip" oninput="top_up_sip('${el["id"]}')"></td><td><i class="fa fa-rupee-sign"></i><input class="style_input" type="number" id="lumpsum_sip" oninput="top_up_sip('${el["id"]}')"></td><td><input class="text" oninput="top_up_sip('${el["id"]}')" id="total-value" value="0"  </td>
                                 </tr>`
                         total_sip += +el["goal_data"]["sipvalue"].replaceAll(",", "")
                         total_lumpsum += temp
                     }
                     markup += "</table> </div>";
-                    // src="../ai_form/images/car.jpg"
-                    // src="../ai_form/images/vacation.jpg"
-                    // src="../ai_form/images/house.jpg"
-                    // if () markup += `<tr> ${el["goal_data"]["futureage"]}</td></tr>`
-                    // if(el["goal_data"]["inflation"])markup+=`<tr><td>inflation</td> <td> ${el["goal_data"]["inflation"]}</td></tr>`
-                    // if(el["goal_data"]["ansinputs"])markup+=`<tr><td>investment value</td> <td> ${el["goal_data"]["ansinputs"]}</td></tr>`
-                    // if(el["goal_data"]["sipvalue"])markup+=`<tr><td>sip value</td> <td> ${el["goal_data"]["sipvalue"]}</td></tr>`
-                });
+                  });
                 markup += `<table class="table mt-3 table-bordered " id="total_goal" style=" font-size:12px;width: 80%;position: relative;margin:auto;"><thead style="background-color:gray;"><tr><th style="font-size: 14px;text-align: center;">Monthly SIP Required</th><th style="font-size: 14px;text-align: center;">Lumsup SIP Required</th><th style="font-size: 14px;text-align: center;width:20%;"  >Monthly Plan SIP</th><th style="font-size: 14px;text-align: center;width:16%;">Monthly Plan Lumpsum</th></tr></thead><tbody><tr style="background-color:#f3f3f3;"><th class="col-2 " style="font-size: 14px; text-align: center;">${total_sip.toLocaleString()}</th><th class="col-2 " style="font-size: 14px;text-align: center;">${total_lumpsum.toLocaleString()}</th class="col-2 " style="font-size: 14px;text-align: center;"><th id="plan_m_sip"></th><th id="plan_l_sip"></th></tr></tbody></table>`
-
-
-
-
-                $(".goals_table").html(markup);
+                 $(".goals_table").html(markup);
             }
         });
 
-    })
+    });
 
 
-    function valuefetch() {
-        let mothly = document.getElementById("plan_m_sip").html;
-
-        document.getElementById("mothly-plan").innerHTML = mothly;
-    }
+    function fetch_data() {
+        $.ajax({
+            type: "POST",
+            url: "./UserData.php",
+            data : {get_user_fund : "all"},
+            dataType: "json",
+            success: function(response) {
+                console.log(response);
+               
+                }
+                
+            });
+        }
+        
 </script>
 </body>
 
