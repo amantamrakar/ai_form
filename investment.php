@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION["goaluser"])) {
+    header("location: ./index.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -341,7 +347,7 @@
 </body>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script src="./assets/bootstrap.min.js"></script>
+<script src="./assets/bootstrap.bundle.min.js"></script>
 <script>
     // function adddp() {
     //     const markup = `  <div type="text" id="myDropdown"> Your Investment's
