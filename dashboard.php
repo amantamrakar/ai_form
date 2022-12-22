@@ -246,7 +246,7 @@ if (mysqli_num_rows($result)) {
             padding: 10%;
         }
 
-        #g-path text.goal-text {}
+        /* #g-path text.goal-text { */
 
         .box-action img:hover {
             background-color: pink;
