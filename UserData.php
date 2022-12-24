@@ -3,38 +3,14 @@ session_start();
 require_once("./connect.php");
 
 if(isset($_POST["get_user_fund"])){
-    $query = "SELECT * FROM `user_fund` where user_email='{$_SESSION['goaluser']}'" ;
-    $query_run = mysqli_query($conn,$query);
-    if ($result->num_rows > 0) 
-    {
-        // OUTPUT DATA OF EACH ROW
-        while($row = $result->fetch_assoc())
-        {
-            echo "Roll No: " .
-                $row["investment_amt"]. " - investment: " .
-                $row["duration"]. " | Duration: " . 
-                $row["percent"]. " | Percent: " . 
-                $row["Age"]. "<br>";
-        }
-    } 
-    else {
-        echo "0 results";
-    }
+    $sql = "SELECT * FROM `user_fund` where user_email='{$_SESSION['goaluser']}'" ;
+    $result = mysqli_query($conn,$sql) or die("Query Failed");
+    $row = mysqli_fetch_assoc($result);
+    // while( $row = mysqli_fetch_array($result)){
+    //     echo $row['duration'] . " " . $row['investment_amt'] . " " . $row['percent']. "<br>";
+    // }
+    echo json_encode(array('statue' => true,'data' => $row));
 
-    // $result_array = [];
-    
-    // if (mysqli_num_rows($query_run) > 0) {
-    //     foreach($query_run as $row)
-    //     {
-    //         array_push($result_array , $row);
-    //     }
-    //     echo json_encode($result_array);
-    // }
-    // else
-    // {
-    //     echo $return = "No Old Data";
-    // }
-    echo json_encode($query_run->fetch_all(MYSQLI_ASSOC));
     }
 
 
@@ -65,10 +41,16 @@ if(isset($_POST["get_user_data"])){
 if(isset($_POST["add_user_fund"])){
     parse_str($_POST["add_user_fund"],$req);
     var_dump($req);
+    $sql = "SELECT fund_type FROM `user_fund` where user_email='{$_SESSION['goaluser']}'" ;
+    $result = mysqli_query($conn,$sql) or die("Query Failed");
+    $allfund = mysqli_fetch_all($result);
+    var_dump($allfund);
     $email = $_SESSION["goaluser"];
     for ($i=0; $i < count($req["fund_deposit"]) ; $i++) { 
        if (empty( $req['fund_deposit'][$i]) || empty( $req["duration"][$i]) || empty( $req["fund_amt"][$i]) || empty( $req["percent"][$i])){
       echo "Not Fill";
+    }elseif(in_array($allfund,$req["fund_deposit"])){
+        echo "for update";
     }
     else{
         $sql = "INSERT INTO `user_fund`(`user_email`,`fund_type`,`duration`,`investment_amt`,`percent`) VALUES ('$email','{$req['fund_deposit'][$i]}','{$req["duration"][$i]}','{$req["fund_amt"][$i]}','{$req["percent"][$i]}')";
@@ -76,7 +58,9 @@ if(isset($_POST["add_user_fund"])){
 
         echo $result; 
         echo mysqli_error($conn);
-    }        }
+    } 
+      
+     }
     echo count($req);
 }
 

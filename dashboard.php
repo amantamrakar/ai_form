@@ -142,7 +142,7 @@ if (mysqli_num_rows($result)) {
             min-width: 100%;
             background-image:url("./images/road.svg");
             background-size: 80%;
-            background-repeat-x: no-repeat;
+            background-repeat: no-repeat repeat;
             background-position: center;
         }
 
