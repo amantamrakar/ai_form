@@ -155,11 +155,10 @@ function set_goal(y, text) {
         <rect  x="${py}" y="${y-20}" style="fill:var(--${text.goal})" ry="6" height="${height}" width="${width}" class="g-box show_btn" data-bs-toggle="modal" data-bs-target="#show-gloal-data" data-gid="${text.id}"/>
         <rect x="${py}" y="${y-20}" ry="6" height="14" width="${width}" class="g-label"></rect>
         <image href="./images/${text.goal}_b.svg" x="${py+width-20}" y="${y-20}" height="14" width="14" />
-        <foreignObject x="${py-4}" y="${y-24}" class="box-action" height="50">
-
-        <div class="a-btn">
-        <img src="./images/pen-to-square-solid.svg" alt="" class="update_goal" data-bs-toggle="modal" data-bs-target="#show_update_goal" data-gid="${text.id}">
-        <img src="./images/xmark-solid.svg" alt="" class="delete_btn" data-gid="${text.id}" data-callback="deleteGoal">
+        <foreignObject x="${py-4}" y="${y+6}" class="box-action">
+            <div class="a-btn">
+            <img src="./images/pen-to-square-solid.svg" alt="" class="update_goal" data-bs-toggle="modal" data-bs-target="#show_update_goal" data-gid="${text.id}">
+            <img src="./images/xmark-solid.svg" alt="" class="delete_btn" data-gid="${text.id}" data-callback="deleteGoal">
         </div>
     </foreignObject>
 

@@ -144,6 +144,7 @@ if (mysqli_num_rows($result)) {
             background-size: 80%;
             background-repeat: no-repeat repeat;
             background-position: center;
+            animation: movebg 10s linear infinite forwards;
         }
 
         .goal-box {
@@ -207,7 +208,6 @@ if (mysqli_num_rows($result)) {
             font-family: sans-serif;
             fill: #ffffff;
             fill-opacity: 1;
-            stroke: none;
             stroke-width: 0.264583;
             stroke-opacity: 1
         }
@@ -222,17 +222,16 @@ if (mysqli_num_rows($result)) {
             color: #ffffff;
             padding: 2px 5px;
             background-color: #6868ff;
+            border-radius: 5px;
         }
 
         .box-action {
-            width: 20px;
+            width: 88px;
+            height: 50px;
         }
 
         .a-btn {
             display: flex;
-            flex-wrap: nowrap;
-            height: 100%;
-            flex-direction: column;
             justify-content: space-between;
         }
 
@@ -246,11 +245,17 @@ if (mysqli_num_rows($result)) {
             border-radius: 25px;
             padding: 3px;
         }
-
-        /* #g-path text.goal-text { */
-
         .box-action img:hover {
             background-color: pink;
+        }
+
+        @keyframes movebg{
+            0%{
+                background-position-y:1px;
+            }
+            100%{
+                background-position-y:384px;
+            }
         }
     </style>
 </head>
