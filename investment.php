@@ -46,7 +46,6 @@ if (!isset($_SESSION["goaluser"])) {
 
         .input_style {
             border: none;
-            /* box-sizing: border-box; */
             border-bottom: 2px solid rgb(189, 194, 194);
             width: 20%;
             text-align: center;
@@ -248,49 +247,49 @@ if (!isset($_SESSION["goaluser"])) {
                 <div class="modal-body">
                     <!-- <form action="" method="POST" id="fund_form"> -->
                     <div class="row" class="fund_data">
-                            <div class="form-group">
-                                <label for="" class="col-2">Fixed Deposit</label>
-                                <input type="hidden" name="fund_deposit[]" value="Fixed Deposit">
-                                <input type="text" class="col-3 input_style pre_value" id="pre_value"  name="fund_amt[]" placeholder="₹ Enter Value">
-                                <input type="text" class="col-3 input_style dur_per" id="dur_per" placeholder="Duration (No. of Year)" name="duration[]" >
-                                <input type="text" class="col-3 input_style rate_per" id="rate_per" placeholder="Intreset %" name="percent[]">
-                                <input type="text" class="fd_fv_value">
-                            </div>
-                            <div class="form-group">
-                                <label for="" class="col-2">Recurring Deposit</label>
-                                <input type="hidden" name="fund_deposit[]" value="Recurring Deposit">
-                                <input type="text" class="col-3 input_style pre_value" value="" id="pre_value" placeholder="₹ Enter Value" name="fund_amt[]">
-                                <input type="text" class="col-3 input_style dur_per" value="" id="dur_per" placeholder="Duration (No. of Year)" name="duration[]">
-                                <input type="text" class="col-3 input_style rate_per" id="rate_per" value="" placeholder="Intreset %" name="percent[]">
-                                <input type="text" class="fd_fv_value">
-                            </div>
-                            <div class="form-group">
-                                <label for="" class="col-2">Mutual Fund</label>
-                                <input type="hidden" name="fund_deposit[]" value="mutual fund">
-                                <input type="text" class="col-3 input_style pre_value" value="" placeholder="₹ Enter Value" name="fund_amt[]">
-                                <input type="text" class="col-3 input_style dur_per" value="" placeholder="Duration (No. of Year)" name="duration[]">
-                                <input type="text" class="col-3 input_style rate_per" value="" placeholder="Intreset %" name="percent[]">
-                                <input type="text" class="fd_fv_value">
-                            </div>
-                            <div class="form-group">
-                                <label for="" class="col-2">Equity</label>
-                                <input type="hidden" name="fund_deposit[]" value="Equity">
-                                <input type="text" class="col-3 input_style pre_value" value="" placeholder="₹ Enter Value" name="fund_amt[]">
-                                <input type="text" class="col-3 input_style dur_pre" value="" placeholder="Duration (No. of Year)" name="duration[]">
-                                <input type="text" class="col-3 input_style rate_per" value="" placeholder="Intreset %" name="percent[]">
-                                <input type="text" class="fd_fv_value">
-                            </div>
-                            <div class="form-group">
-                                <label for="" class="col-2" c>Gold</label>
-                                <input type="hidden" name="fund_deposit[]" value="Gold">
-                                <input type="text" class="col-3 input_style pre_value" value="" placeholder="₹ Enter Value" name="fund_amt[]">
-                                <input type="text" class="col-3 input_style dur_pre" value="" placeholder="Duration (No. of Year)" name="duration[]">
-                                <input type="text" class="col-3 input_style rate_per" value="" placeholder="Intreset %" name="percent[]">
-                                <input type="text" class="fd_fv_value">
-                            </div>
+                        <div class="form-group">
+                            <label for="" class="col-2">Fixed Deposit</label>
+                            <input type="hidden" name="fund_deposit[]" value="Fixed Deposit">
+                            <input type="text" class="col-3 input_style pre_value" id="pre_value" name="fund_amt[]" placeholder="₹ Enter Value">
+                            <input type="text" class="col-3 input_style dur_per" id="dur_per" placeholder="Duration (No. of Year)" name="duration[]">
+                            <input type="text" class="col-3 input_style rate_per" id="rate_per" placeholder="Intreset %" name="percent[]">
+                            <input type="text" class="fd_fv_value">
                         </div>
+                        <div class="form-group">
+                            <label for="" class="col-2">Recurring Deposit</label>
+                            <input type="hidden" name="fund_deposit[]" value="Recurring Deposit">
+                            <input type="text" class="col-3 input_style pre_value" value="" id="pre_value" placeholder="₹ Enter Value" name="fund_amt[]">
+                            <input type="text" class="col-3 input_style dur_per" value="" id="dur_per" placeholder="Duration (No. of Year)" name="duration[]">
+                            <input type="text" class="col-3 input_style rate_per" id="rate_per" value="" placeholder="Intreset %" name="percent[]">
+                            <input type="text" class="fd_fv_value">
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-2">Mutual Fund</label>
+                            <input type="hidden" name="fund_deposit[]" value="mutual fund">
+                            <input type="text" class="col-3 input_style pre_value" value="" placeholder="₹ Enter Value" name="fund_amt[]">
+                            <input type="text" class="col-3 input_style dur_per" value="" placeholder="Duration (No. of Year)" name="duration[]">
+                            <input type="text" class="col-3 input_style rate_per" value="" placeholder="Intreset %" name="percent[]">
+                            <input type="text" class="fd_fv_value">
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-2">Equity</label>
+                            <input type="hidden" name="fund_deposit[]" value="Equity">
+                            <input type="text" class="col-3 input_style pre_value" value="" placeholder="₹ Enter Value" name="fund_amt[]">
+                            <input type="text" class="col-3 input_style dur_pre" value="" placeholder="Duration (No. of Year)" name="duration[]">
+                            <input type="text" class="col-3 input_style rate_per" value="" placeholder="Intreset %" name="percent[]">
+                            <input type="text" class="fd_fv_value">
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-2" c>Gold</label>
+                            <input type="hidden" name="fund_deposit[]" value="Gold">
+                            <input type="text" class="col-3 input_style pre_value" value="" placeholder="₹ Enter Value" name="fund_amt[]">
+                            <input type="text" class="col-3 input_style dur_pre" value="" placeholder="Duration (No. of Year)" name="duration[]">
+                            <input type="text" class="col-3 input_style rate_per" value="" placeholder="Intreset %" name="percent[]">
+                            <input type="text" class="fd_fv_value">
+                        </div>
+                    </div>
 
-                        <!-- <button type="button" id="remove" onclick="removeel(this)">Remove</button> -->
+                    <!-- <button type="button" id="remove" onclick="removeel(this)">Remove</button> -->
 
                 </div>
                 <div class="modal-footer">
@@ -345,7 +344,6 @@ if (!isset($_SESSION["goaluser"])) {
     </div>
 
 </body>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="./assets/bootstrap.bundle.min.js"></script>
 <script>
@@ -409,20 +407,18 @@ if (!isset($_SESSION["goaluser"])) {
 
     }
 
-    $(function() {
-        $('form').bind('submit', function() {
-            $.ajax({
-                type: 'post',
-                url: './UserData.php',
-                data: {
-                    add_user_fund: $('form').serialize()
-                },
-                success: function() {
-                    // alert('form was submitted');
-                }
-            });
-            return false;
+    $('form').bind('submit', function() {
+        $.ajax({
+            type: 'post',
+            url: './UserData.php',
+            data: {
+                add_user_fund: $('form').serialize()
+            },
+            success: function() {
+                // alert('form was submitted');
+            }
         });
+        return false;
     });
 
     function cal_lumpsum(amount, year) {
@@ -614,9 +610,9 @@ if (!isset($_SESSION["goaluser"])) {
                         total_lumpsum += temp
                     }
                     markup += "</table> </div>";
-                  });
+                });
                 markup += `<table class="table mt-3 table-bordered " id="total_goal" style=" font-size:12px;width: 80%;position: relative;margin:auto;"><thead style="background-color:gray;"><tr><th style="font-size: 14px;text-align: center;">Monthly SIP Required</th><th style="font-size: 14px;text-align: center;">Lumsup SIP Required</th><th style="font-size: 14px;text-align: center;width:20%;"  >Monthly Plan SIP</th><th style="font-size: 14px;text-align: center;width:16%;">Monthly Plan Lumpsum</th></tr></thead><tbody><tr style="background-color:#f3f3f3;"><th class="col-2 " style="font-size: 14px; text-align: center;">${total_sip.toLocaleString()}</th><th class="col-2 " style="font-size: 14px;text-align: center;">${total_lumpsum.toLocaleString()}</th class="col-2 " style="font-size: 14px;text-align: center;"><th id="plan_m_sip"></th><th id="plan_l_sip"></th></tr></tbody></table>`
-                 $(".goals_table").html(markup);
+                $(".goals_table").html(markup);
             }
         });
 
@@ -627,16 +623,17 @@ if (!isset($_SESSION["goaluser"])) {
         $.ajax({
             type: "POST",
             url: "./UserData.php",
-            data : {get_user_fund : "all"},
+            data: {
+                get_user_fund: "all"
+            },
             dataType: "json",
             success: function(response) {
                 console.log(response);
-               
-                }
-                
-            });
-        }
-        
+
+            }
+
+        });
+    }
 </script>
 </body>
 
