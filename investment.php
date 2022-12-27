@@ -158,199 +158,170 @@ if (!isset($_SESSION["goaluser"])) {
     <?php include("./header.php"); ?>
     <div class="container-fluid mt-5 ">
 
-            <div class="accordion" id="accordionExample">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Accordion Item #1</button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                        data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <div class="panel-body">
-                                <?php
-                                $query = "SELECT * FROM `user_fund` where user_email='{$_SESSION['goaluser']}'";
-                                $result = $conn->query($query);
-                                if ($result->num_rows > 0) {
-                                    // $options = mysqli_fetch_all($result, MYSQLI_ASSOC);
-                                    // var_dump($options);
-                                    $options = mysqli_fetch_all($result, MYSQLI_ASSOC);  // $arr =....
-                                    $fundwise_data = array();
-                                    $fundwise_data["Fixed Deposit"] = array();
-                                    $fundwise_data["Recurring Deposit"] = array();
-                                    $fundwise_data["Mutual Fund"] = array();
-                                    $fundwise_data["Equity"] = array();
-                                    $fundwise_data["Gold"] = array();
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Accordion Item #1</button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <div class="panel-body">
+                            <?php
+                            $query = "SELECT * FROM `user_fund` where user_email='{$_SESSION['goaluser']}'";
+                            $result = $conn->query($query);
+                            if ($result->num_rows > 0) {
+                                // $options = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                                // var_dump($options);
+                                $options = mysqli_fetch_all($result, MYSQLI_ASSOC);  // $arr =....
+                                $fundwise_data = array();
+                                $fundwise_data["Fixed Deposit"] = array();
+                                $fundwise_data["Recurring Deposit"] = array();
+                                $fundwise_data["Mutual Fund"] = array();
+                                $fundwise_data["Equity"] = array();
+                                $fundwise_data["Gold"] = array();
 
-                                    foreach ($options as $key => $value) {
-                                        $fundwise_data[$value["fund_type"]] = $value;
-                                    }
+                                foreach ($options as $key => $value) {
+                                    $fundwise_data[$value["fund_type"]] = $value;
                                 }
+                            }
 
 
-                                ?>
-                                <div class="existingInvestments_block02 existingInvestments_block02_62752">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="form-group is-empty"><label class="control-label"
-                                                    for="gender">&nbsp;</label>
-                                                <!-- <select class="form-control select_investment" name="investmentClass"> -->
-                                                <select class="form-control select_investment" name="investmentClass"
-                                                    onchange="getOption()">
-                                                    <option>Select Course</option>
-                                                    <?php
-                                                    foreach ($options as $option) {
-                                                    ?>
+                            ?>
+                            <div class="existingInvestments_block02 existingInvestments_block02_62752">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group is-empty"><label class="control-label" for="gender">&nbsp;</label>
+                                            <!-- <select class="form-control select_investment" name="investmentClass"> -->
+                                            <select class="form-control select_investment" name="investmentClass" onchange="setFundAmt()">
+                                                <option>Select Course</option>
+                                                <?php
+                                                foreach ($options as $option) {
+                                                ?>
                                                     <option value="<?php echo $option['investment_amt'] ?>">
                                                         <?php echo $option['fund_type']; ?>
                                                     </option>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </select>
-                                                <!-- </select><span class="material-input"></span> -->
-                                            </div>
+                                                <?php
+                                                }
+                                                ?>
+                                            </select>
+                                            <!-- </select><span class="material-input"></span> -->
                                         </div>
+                                    </div>
 
-                                        <div class="col-md-3 allocation_lumsum_div  allocation_lumsum_62752">
-                                            <div class="form-group is-empty">
-                                                <div class="rupee-amount-text"><label class="control-label"
-                                                        for="email">Enter Lumpsum</label><i class="fa fa-inr"></i><input
-                                                        class="form-control mandatory inrFormat lumsumamtAllocatedAmount"
-                                                        value="" id="userLumsumamt_62752"
-                                                        name="lumsumamtAllocatedAmount" placeholder="" type="text"
-                                                        data-action="add"></div>
-                                                <p class="declare-help">Available Amount: <i class="fa fa-inr"></i>
-                                                    <span class="output"></span>
-                                                    <?php
-                                                    // foreach ($fundwise_data as $key => $value) {
-                                                    //     // var_dump($value);
-                                                    //     $markup = "<span class='sipAvailableAmt'>
-                                                    // <label for='' class='col-2'>$key</label>";
-                                                    //     if (count($value) > 0) {
-                                                    //         $markup .= "<input type='text' class='col-3 input_style pre_value' id='invetment_amt' value='{$value["investment_amt"]}' >
-                                                    //     </span>";
-                                                    //     }
-                                                    //     echo $markup;
-                                                    // }
-                                                    ?>
+                                    <div class="col-md-3 allocation_lumsum_div  allocation_lumsum_62752">
+                                        <div class="form-group is-empty">
+                                            <div class="rupee-amount-text"><label class="control-label" for="email">Enter Lumpsum</label><i class="fa fa-inr"></i><input class="form-control mandatory inrFormat lumsumamtAllocatedAmount" value="" id="userLumsumamt_62752" name="lumsumamtAllocatedAmount" placeholder="" type="text" data-action="add"></div>
+                                            <p class="declare-help">Available Amount: <i class="fa fa-inr"></i>
+                                                <span class="output"></span>
+                                                <?php
+                                                // foreach ($fundwise_data as $key => $value) {
+                                                //     // var_dump($value);
+                                                //     $markup = "<span class='sipAvailableAmt'>
+                                                // <label for='' class='col-2'>$key</label>";
+                                                //     if (count($value) > 0) {
+                                                //         $markup .= "<input type='text' class='col-3 input_style pre_value' id='invetment_amt' value='{$value["investment_amt"]}' >
+                                                //     </span>";
+                                                //     }
+                                                //     echo $markup;
+                                                // }
+                                                ?>
 
 
-                                                    <!-- </p><span class="material-input"></span> -->
-                                            </div>
+                                                <!-- </p><span class="material-input"></span> -->
                                         </div>
-
-                                        <script type="text/javascript">
-                                            function getOption() {
-                                                selectElement = document.querySelector('.select_investment');
-                                                output = selectElement.value;
-                                                document.querySelector('.output').textContent = output;
-                                            }
-                                        </script>
-
                                     </div>
-                                    <div class="col-md-3 allocation_encash_div allocation_encash_62752" "><div class="
-                                        form-group">
-                                        <div class="checkbox chkboxMargin"><label class="control-label"><input
-                                                    type="checkbox" id="encashCheckbox_62752" data-extinvestpk="20385"
-                                                    data-action="add" data-plangoalpk="62752" value="1"><span
-                                                    class="checkbox-material"><span class="check"></span></span> Encash
-                                                and Re-Invest</label></div>
-                                    </div>
+
+
                                 </div>
-                                <div class="existingInvestments_block01">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <p>Reinvest Lumpsum Amount:</p>
-                                            <h5 data-additionallumpsumapi="0"><i class="fa fa-inr"></i><span
-                                                    class="additionalLumpsum_62752">0</span></h5>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <p>Reinvest SIP Amount:</p>
-                                            <h5 data-additionalsipapi="0"><i class="fa fa-inr"></i><span
-                                                    class="additionalSip_62752">0</span></h5>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <p>Top-up Required:</p>
-                                            <h5><i class="fa fa-inr"></i><span class="topup_62752"
-                                                    data-changedtopupsip="672">672</span></h5>
-                                        </div>
-                                    </div>
+                                <div class="col-md-3 allocation_encash_div allocation_encash_62752" "><div class=" form-group">
+                                    <div class="checkbox chkboxMargin"><label class="control-label"><input type="checkbox" id="encashCheckbox_62752" data-extinvestpk="20385" data-action="add" data-plangoalpk="62752" value="1"><span class="checkbox-material"><span class="check"></span></span> Encash
+                                            and Re-Invest</label></div>
                                 </div>
                             </div>
-                            <div class="row allocation_apply_div allocation_apply_62752" "><div class=" col-md-12">
-                                <div class="declare-help text-center">
-                                    <button type="button" href="javascript:void(0)"
-                                        class="btn btn-raised btn-primary allocationApplybtn"
-                                        id="allocationApplybtn_62752" data-plngoalpk="62752">APPLY</button>
+                            <div class="existingInvestments_block01">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <p>Reinvest Lumpsum Amount:</p>
+                                        <h5 data-additionallumpsumapi="0"><i class="fa fa-inr"></i><span class="additionalLumpsum_62752">0</span></h5>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p>Reinvest SIP Amount:</p>
+                                        <h5 data-additionalsipapi="0"><i class="fa fa-inr"></i><span class="additionalSip_62752">0</span></h5>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p>Top-up Required:</p>
+                                        <h5><i class="fa fa-inr"></i><span class="topup_62752" data-changedtopupsip="672">672</span></h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="existingInvestments_block03 allocatedClasses_62752">
-                        <div class="row allocatedClassHeading allocatedClassCount_62752" style="display:none">
-                            <div class="col-md-3">
-                                <h4>Investment class</h4>
-                            </div>
-                            <div class="col-md-3">
-                                <h4>Lumpsum Amount</h4>
-                            </div>
-                            <div class="col-md-2">
-                                <h4>SIP Amount</h4>
-                            </div>
-                            <div class="col-md-2">
-                                <h4>Reinvest</h4>
-                            </div>
-                            <div class="col-md-2">
-                                <h4>Action</h4>
+                        <div class="row allocation_apply_div allocation_apply_62752" "><div class=" col-md-12">
+                            <div class="declare-help text-center">
+                                <button type="button" href="javascript:void(0)" class="btn btn-raised btn-primary allocationApplybtn" id="allocationApplybtn_62752" data-plngoalpk="62752">APPLY</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Accordion Item #2
-                </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <strong>This is the second item's accordion body.</strong> It is hidden by default, until the
-                    collapse plugin adds the appropriate classes that we use to style each element. These classes
-                    control the overall appearance, as well as the showing and hiding via CSS transitions. You can
-                    modify any of this with custom CSS or overriding our default variables. It's also worth noting that
-                    just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit
-                    overflow.
+                <div class="existingInvestments_block03 allocatedClasses_62752">
+                    <div class="row allocatedClassHeading allocatedClassCount_62752" style="display:none">
+                        <div class="col-md-3">
+                            <h4>Investment class</h4>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>Lumpsum Amount</h4>
+                        </div>
+                        <div class="col-md-2">
+                            <h4>SIP Amount</h4>
+                        </div>
+                        <div class="col-md-2">
+                            <h4>Reinvest</h4>
+                        </div>
+                        <div class="col-md-2">
+                            <h4>Action</h4>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    Accordion Item #3
-                </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
-                    collapse plugin adds the appropriate classes that we use to style each element. These classes
-                    control the overall appearance, as well as the showing and hiding via CSS transitions. You can
-                    modify any of this with custom CSS or overriding our default variables. It's also worth noting that
-                    just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit
-                    overflow.
-                </div>
+
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Accordion Item #2
+            </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the
+                collapse plugin adds the appropriate classes that we use to style each element. These classes
+                control the overall appearance, as well as the showing and hiding via CSS transitions. You can
+                modify any of this with custom CSS or overriding our default variables. It's also worth noting that
+                just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit
+                overflow.
             </div>
         </div>
+    </div>
+
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Accordion Item #3
+            </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
+                collapse plugin adds the appropriate classes that we use to style each element. These classes
+                control the overall appearance, as well as the showing and hiding via CSS transitions. You can
+                modify any of this with custom CSS or overriding our default variables. It's also worth noting that
+                just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit
+                overflow.
+            </div>
+        </div>
+    </div>
     </div>
 
 
@@ -377,8 +348,7 @@ if (!isset($_SESSION["goaluser"])) {
             <div class="modal-content">
                 <div class="modal-header" style="background-color: darkred;color: #fff;">
                     <h4 class="modal-title" style="font-size: 25px;font-family: auto;">Exsiting Asset</h4>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <?php
                 $sql = "SELECT * FROM `user_fund` where user_email='{$_SESSION['goaluser']}'";
@@ -449,8 +419,7 @@ if (!isset($_SESSION["goaluser"])) {
         </div>
     </div>
     <div class="declare-container hidden-sm hidden-xs">
-        <a type="button" class="btn1 btn-default1 declear_existing_investment" data-bs-toggle="modal"
-            data-bs-target="#myModal" value="add" id="moredrop_dowp" style="float:right" ;>
+        <a type="button" class="btn1 btn-default1 declear_existing_investment" data-bs-toggle="modal" data-bs-target="#myModal" value="add" id="moredrop_dowp" style="float:right" ;>
             <i class="fa fa-plus-circle fa-3x"></i>
             <p>DECLARE<br>EXISTING<br>ASSETS</p>
         </a>
@@ -461,8 +430,7 @@ if (!isset($_SESSION["goaluser"])) {
             <div class="modal-content">
                 <div class="modal-header" style="background-color: gray;color: #fff;">
                     <h4 class="modal-title" style="font-size: 25px;font-family: auto;">ALLOCATE EXISTING ASSETS</h4>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <!-- <form action="#" method="post"> -->
@@ -471,8 +439,7 @@ if (!isset($_SESSION["goaluser"])) {
                             <div class="topup_note">
                                 <p>You may allocate your existing assets to your goals below. <br> Your total Top-up SIP
                                     will be updated as you allocate the funds. Currently,</p>
-                                <h3>Total Top-up SIP Required:<br><i class="fa fa-inr"></i><span id="mothly-plan"
-                                        style="color:black;" class="totalTopUpSip" data-totaltopup=""></span></h3>
+                                <h3>Total Top-up SIP Required:<br><i class="fa fa-inr"></i><span id="mothly-plan" style="color:black;" class="totalTopUpSip" data-totaltopup=""></span></h3>
                             </div>
                         </div>
                     </div>
@@ -498,46 +465,94 @@ if (!isset($_SESSION["goaluser"])) {
     function showAllocation(d) {
         console.log(d)
         let markup = `<div class="accordion" id="accordionExample">`;
-        const allFinds=fetch_data();
+        const allFinds = fetch_data();
         console.log(allFinds);
-        d.forEach(el=>{
-            const amt= +el["goal_data"]["ansinputs"].replaceAll(",", "");
-                 const pAmt=amt.toLocaleString("en-IN", {
-                            style: "currency",
-                            currency: "INR",
-                            maximumFractionDigits: 0
-                        });
-            markup+= `<div class="accordion-item ">
+        let fundMarkup = "";
+        allFinds.forEach(fd => {
+            fundMarkup += `<option data-id="${fd.id}" value="${fd.fund_type}" data-amt="${fd.investment_amt - fd.allocate_amount}">${fd.fund_type}</option>`
+        })
+        d.forEach(el => {
+            const amt = +el["goal_data"]["ansinputs"].replaceAll(",", "");
+            const pAmt = amt.toLocaleString("en-IN", {
+                style: "currency",
+                currency: "INR",
+                maximumFractionDigits: 0
+            });
+            markup += `<div class="accordion-item ">
                     <h2 class="accordion-header" id="heading">
                     <button class="accordion-button collapsed text-capitalize" type="button" data-bs-toggle="collapse" style="color:var(--${el["goal"]})" data-bs-target="#collapse${el["id"]}" aria-expanded="false" aria-controls="collapse${el["id"]}">${el["goal"]} - ${pAmt}</button>
                     </h2>
                     <div id="collapse${el["id"]}" class="accordion-collapse collapse" aria-labelledby="heading" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
+                    <form class="saveAllocation" id="s-allocation-${el["id"]}">
+                    <input type='hidden' name='goal' value='${el["id"]}'>
+                    <input type='hidden' id="allocate-aFund-${el["id"]}"  name='fund' value=''>
                     <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="form-group is-empty"><label class="control-label" for="gender">&nbsp;</label>
-                                                <select class="form-control select_investment" name="investmentClass" onchange="getOption()">
-                                                    <option>Select Course</option>
-                                                </select>
-                                            </div>
-                                        </div>
+                      <div class="col-md-4">
+                          <div class="form-group is-empty"><label class="control-label" for="gender">&nbsp;</label>
+                            <select class="form-control select_investment" name="investmentClass" id="aFund-${el["id"]}" onchange="setFundAmt(this)">
+                                  <option>Select Course</option>
+                                  ${fundMarkup}
+                              </select>
+                          </div>
+                      </div>
 
-                                        <div class="col-md-3 allocation_lumsum_div  allocation_lumsum_62752">
-                                            <div class="form-group is-empty">
-                                                <div class="rupee-amount-text"><label class="control-label" for="email">Enter Lumpsum</label><i class="fa fa-inr"></i><input class="form-control mandatory inrFormat lumsumamtAllocatedAmount" value="" id="userLumsumamt_62752" name="lumsumamtAllocatedAmount" placeholder="" type="text" data-action="add"></div>
-                                                <p class="declare-help">Available Amount: <i class="fa fa-inr"></i>
-                                                    <span class="output"></span>
-                                                    
-                                            </p></div>
-                                        </div>
-
-                                    </div>
+                      <div class="col-md-4 allocation_lumsum_div  allocation_lumsum">
+                          <div class="form-group is-empty">
+                              <div class="rupee-amount-text"><label class="control-label" for="email">Enter Lumpsum</label><i class="fa fa-inr"></i><input class="form-control mandatory inrFormat lumpsumAmtAllocated" value="0" id="addLump-${el.id}" data-inputId="${el.id}" oninput="allocateFund(this)" name="lumpsumAmtAllocated" placeholder="Enter Amount To Allocate" type="number" data-action="add"></div>
+                              <p class="declare-help">Available Amount: <i class="fa fa-inr"></i>
+                                  <span class="output" data-aFund="aFund-${el["id"]}" ></span></p></div>
+                      </div></div>
+                                    <div class="text-center"><button type="button" onclick="saveAllocation(this)" data-form="s-allocation-${el["id"]}" class="btn btn-info col-md-4">Apply</button></div>
+                                    </form>
                     </div></div></div>`
         });
-        markup+=`</div>`;
+        markup += `</div>`;
         document.getElementById("investment_list").innerHTML += markup;
     }
-    $(document).on("click", "#cust_btn", function () {
+    // $(".saveAllocation").bind("submit",function(e){
+    //     e.preventDefault();
+    //     console.log($(this));
+    // })
+    function saveAllocation(e){
+        console.log(e.dataset["form"]);
+        const fEl=$(`form#${e.dataset["form"]}`);
+        // fEl.find(".lumpsumAmtAllocated").val();
+        const fdata=fEl.serialize();
+        $.ajax({
+            type: "post",
+            url: "./UserData.php",
+            data: {"allocationFund":fdata},
+            dataType: "json",
+            success: function (response) {
+                
+            }
+        });
+    }
+    function setFundAmt(e) {
+        const setFund=document.querySelector(`.output[data-aFund='${e.id}']`)
+        // console.dir($(`#${e.id} option:selected`));
+        const setOp=$(`#${e.id} option:selected`)[0];
+        const amt=setOp.dataset["amt"];
+        $(`#allocate-${e["id"]}`).val(setOp.dataset["id"])
+        setFund.textContent = amt;
+        setFund.dataset["amt"] = amt;
+        setFund.dataset["fid"]=setOp.dataset["id"] //?allocation to get control of all option 
+    }
+    function allocateFund(e){
+        const availFund=$(`.output[data-aFund='aFund-${e.dataset["inputid"]}']`)
+        const allocateFund= e.value;
+        let showAmt= +availFund[0].dataset["amt"] - allocateFund;
+        if(showAmt < 0){
+            alert("do you to want to add full amount")
+            showAmt=0;
+            e.value=availFund[0].dataset["amt"]
+        }
+        availFund.html(showAmt)
+        console.log(`.saveAllocation option[data-id='${availFund.data("fid")}']`);
+        $(`.saveAllocation option[data-id='${availFund.data("fid")}']`).attr("data-amt",showAmt);
+    }
+    $(document).on("click", "#cust_btn", function() {
 
         $("#myModal1").modal("toggle");
 
@@ -549,14 +564,14 @@ if (!isset($_SESSION["goaluser"])) {
 
     }
 
-    $('form#fund-table').bind('submit', function () {
+    $('form#fund-table').bind('submit', function() {
         $.ajax({
             type: 'post',
             url: './UserData.php',
             data: {
                 add_user_fund: $('form').serialize()
             },
-            success: function () {
+            success: function() {
                 // alert('form was submitted');
                 // fetchval()
             }
@@ -673,7 +688,7 @@ if (!isset($_SESSION["goaluser"])) {
 
     }
 
-    $(document).on('input', " .pre_value, .dur_per , .rate_per", function () {
+    $(document).on('input', " .pre_value, .dur_per , .rate_per", function() {
         // console.log($(this).parent().find(".fd_fv_value"));
         let a = +$(this).parent().find(".pre_value").val()
         let d = +$(this).parent().find(".dur_per").val()
@@ -682,7 +697,7 @@ if (!isset($_SESSION["goaluser"])) {
         $(this).parent().find(".fd_fv_value").val(ans);
     })
 
-    $("document").ready(function () {
+    $("document").ready(function() {
         $.ajax({
             method: "post",
             url: "./UserData.php",
@@ -691,7 +706,7 @@ if (!isset($_SESSION["goaluser"])) {
                 get_user_data: "all"
             },
             dataType: "json",
-            success: function (data) {
+            success: function(data) {
                 // console.log(data);
                 let markup = '';
                 let total_sip = 0;
@@ -744,12 +759,12 @@ if (!isset($_SESSION["goaluser"])) {
                 get_user_fund: "all"
             },
             dataType: "json",
-            async:false,
-            success: function (response) {
+            async: false,
+            success: function(response) {
                 $("#pre_value").val(response['data']['investment_amt']);
                 $("#dur_per").val(response['data']['duration']);
                 $("#rate_per").val(response['data']['percent']);
-                data= response
+                data = response.data
             }
         });
         return data;

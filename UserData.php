@@ -5,11 +5,11 @@ require_once("./connect.php");
 if (isset($_POST["get_user_fund"])) {
     $sql = "SELECT * FROM `user_fund` where user_email='{$_SESSION['goaluser']}'";
     $result = mysqli_query($conn, $sql) or die("Query Failed");
-    $row = mysqli_fetch_assoc($result);
+    $data = mysqli_fetch_all($result,MYSQLI_ASSOC);
     // while( $row = mysqli_fetch_array($result)){
     //     echo $row['duration'] . " " . $row['investment_amt'] . " " . $row['percent']. "<br>";
     // }
-    echo json_encode(array('statue' => true, 'data' => $row));
+    echo json_encode(array('statue' => true, 'data' => $data));
 }
 
 
@@ -67,4 +67,35 @@ if (isset($_POST["add_user_fund"])) {
         }
     }
     // echo count($req);
+}
+if(isset($_POST["allocationFund"])){
+    parse_str($_POST["allocationFund"],$req);
+    print_r($req);
+
+
+    $sf=mysqli_prepare($conn,"SELECT allocate_amount,allocate_goals,investment_amt FROM `user_fund` where user_email='{$_SESSION['goaluser']}' && `id`=?");
+    $sf->bind_param("s",$req["fund"]);
+    $sf->execute();
+    $sf_data=mysqli_fetch_assoc($sf->get_result());
+    var_dump($sf_data);
+    $req["lumpsumAmtAllocated"]= +$sf_data["allocate_amount"] + +$req["lumpsumAmtAllocated"];
+    if($req["lumpsumAmtAllocated"]>$sf_data["investment_amt"]){
+        die("lumpsumAmtAllocated greater than investment amt");
+    }
+    
+    // $req["lumpsumAmtAllocated"]=$sf_data["allocate_amount"];
+    $all_allocations=json_decode($sf_data["allocate_goals"],true);
+    if(isset($all_allocations[$req["goal"]])){
+        $all_allocations[$req["goal"]]["amt"]=$req["lumpsumAmtAllocated"];
+    }else{
+        $allocate_goal=array();
+        $allocate_goal["amt"]=$req["lumpsumAmtAllocated"];
+        $all_allocations[$req["goal"]]=$allocate_goal;
+    }
+    $sql="UPDATE `user_fund` SET `allocate_amount`= ? ,`allocate_goals`= ? WHERE user_email='{$_SESSION['goaluser']}' && `id`=?";
+    $smt=mysqli_prepare($conn,$sql);
+    $all_json=json_encode($all_allocations);
+    $smt->bind_param("sss",$req["lumpsumAmtAllocated"],$all_json,$req["fund"]);
+    $smt->execute();
+    echo mysqli_error($conn);
 }
