@@ -211,7 +211,7 @@ if (!isset($_SESSION["goaluser"])) {
                                                     <?php
                                                     foreach ($options as $option) {
                                                     ?>
-                                                        <option value="<?php echo $option['investment_amt']?>"><?php echo $option['fund_type']; ?> </option>
+                                                        <option value="<?php echo $option['investment_amt'] ?>"><?php echo $option['fund_type']; ?> </option>
                                                     <?php
                                                     }
                                                     ?>
@@ -224,7 +224,7 @@ if (!isset($_SESSION["goaluser"])) {
                                             <div class="form-group is-empty">
                                                 <div class="rupee-amount-text"><label class="control-label" for="email">Enter Lumpsum</label><i class="fa fa-inr"></i><input class="form-control mandatory inrFormat lumsumamtAllocatedAmount" value="" id="userLumsumamt_62752" name="lumsumamtAllocatedAmount" placeholder="" type="text" data-action="add"></div>
                                                 <p class="declare-help">Available Amount: <i class="fa fa-inr"></i>
-                                                <span class="output"></span>
+                                                    <span class="output"></span>
                                                     <?php
                                                     // foreach ($fundwise_data as $key => $value) {
                                                     //     // var_dump($value);
@@ -239,7 +239,7 @@ if (!isset($_SESSION["goaluser"])) {
                                                     ?>
 
 
-                                                <!-- </p><span class="material-input"></span> -->
+                                                    <!-- </p><span class="material-input"></span> -->
                                             </div>
                                         </div>
 
@@ -338,7 +338,7 @@ if (!isset($_SESSION["goaluser"])) {
 
     <div class="mt-5 mb-4" style="text-align:center;">
         <a class="btn btn-primary" href="dashboard.php">Previous</a>
-        <button type="button" class="btn btn-success" id="btn_web" style="width:14%;" onclick="topupsip()">View Recommandation</button>
+       <a href="question.php"> <button type="button" class="btn btn-success" id="btn_web" style="width:14%;"> View Recommandation</button></a>
     </div>
 
 
@@ -377,18 +377,23 @@ if (!isset($_SESSION["goaluser"])) {
                 ?>
                 <form id="fund-table" action="">
                     <div class="modal-body">
-                        <div class="row" class="fund_data">
+                        <div class="row" class="fund_data" id='list_fund'>
                             <?php
                             foreach ($fundwise_data as $key => $value) {
-                                $markup = "<div class='form-group'>
-                            <label for='' class='col-2'>$key</label>";
+                                // $markup += '<div><label class="col-2">Add Asset</label></div>';
+
+                                $markup = " 
+                                <div class='form-group' >
+                                    <label for='' class='col-2'>$key</label>
+                             ";
                                 if (count($value) > 0) {
                                     $markup .= "<input type='hidden' name='fund_deposit[]' value='$key'>
                                 <input type='text' class='col-3 input_style pre_value' id='invetment_amt' value='{$value["investment_amt"]}'  placeholder='₹ Enter Value' name='fund_amt[]' >
                                 <input type='text' class='col-3 input_style dur_per' value='{$value["duration"]}'  placeholder='Duration (No. of Year)' name='duration[]'>
                                 <input type='text' class='col-3 input_style rate_per' value='{$value["percent"]}' placeholder='Intreset %' name='percent[]'>
                                 <input type='text' class='fd_fv_value d-none'>
-                                </div>";
+                                </div>
+                               ";
                                 } else {
                                     $markup .= "<input type='hidden' name='fund_deposit[]' value='$key'>
                                 <input type='text' class='col-3 input_style pre_value' value=''  placeholder='₹ Enter Value' name='fund_amt[]' >
@@ -397,13 +402,17 @@ if (!isset($_SESSION["goaluser"])) {
                                 <input type='text' class='fd_fv_value d-none'>
                                 </div>";
                                 }
+
                                 echo $markup;
                             }
                             ?>
+                            <!-- // $markup .= '<div><label class="col-2">Add Asset</label></div>'; -->
                         </div>
+                        <!-- <div class="foot" ></div> -->
                     </div>
                     <div class="modal-footer">
                         <!-- <button class="btn btn-primary" onclick="fetch_data()"> Show Value</button> -->
+                        <button class="btn btn-primary" onclick="add_fund()"> Show Value </button>
                         <button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#myModal1">Save and
                             Contine</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
@@ -692,24 +701,34 @@ if (!isset($_SESSION["goaluser"])) {
 
     });
 
+    function add_fund() {
+        markup = `<div class="form-group"><input type='text' name='fund_deposit[]' class='input_style'>
+                <input type='text' class='col-3 input_style pre_value' value=''  placeholder='₹ Enter Value' name='fund_amt[]' >
+                <input type='text' class='col-3 input_style dur_per' value=''  placeholder='Duration (No. of Year)' name='duration[]'>
+                <input type='text' class='col-3 input_style rate_per' value='' placeholder='Intreset %' name='percent[]'>
+                <input type='text' class='fd_fv_value d-none'></div>`
+        $("#list_fund").append(markup);
 
-    function fetch_data() {
-        $.ajax({
-            method: "POST",
-            url: "./UserData.php",
-            data: {
-                get_user_fund: "all"
-            },
-            dataType: "json",
-            success: function(response) {
-                console.log(response, (response['data']['investment_amt']));
-                $("#pre_value").val(response['data']['investment_amt']);
-                $("#dur_per").val(response['data']['duration']);
-                $("#rate_per").val(response['data']['percent']);
-            }
+    };
 
-        });
-    }
+
+    // function fetch_data() {
+    //     $.ajax({
+    //         method: "POST",
+    //         url: "./UserData.php",
+    //         data: {
+    //             get_user_fund: "all"
+    //         },
+    //         dataType: "json",
+    //         success: function(response) {
+    //             console.log(response, (response['data']['investment_amt']));
+    //             $("#pre_value").val(response['data']['investment_amt']);
+    //             $("#dur_per").val(response['data']['duration']);
+    //             $("#rate_per").val(response['data']['percent']);
+    //         }
+
+    //     });
+    // }
 </script>
 </body>
 
