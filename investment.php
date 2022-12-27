@@ -13,7 +13,6 @@ if (!isset($_SESSION["goaluser"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="./assets/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/style.css">
     <title>Investment</title>
@@ -135,14 +134,6 @@ if (!isset($_SESSION["goaluser"])) {
 
 
 
-        .accordionItem {
-            float: left;
-            display: block;
-            width: 100%;
-            box-sizing: border-box;
-            font-family: 'Open-sans', Arial, sans-serif;
-        }
-
         .tipDiv {
             float: left;
             text-align: center;
@@ -166,21 +157,20 @@ if (!isset($_SESSION["goaluser"])) {
 <body>
     <?php include("./header.php"); ?>
     <div class="container-fluid mt-5 ">
-        <div class="card">
 
             <div class="accordion" id="accordionExample">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Accordion Item #1
-
-                        </button>
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Accordion Item #1</button>
                     </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <div class="panel-body">
                                 <?php
-                                $query = "SELECT * FROM `user_fund`  where user_email='{$_SESSION['goaluser']}'";
+                                $query = "SELECT * FROM `user_fund` where user_email='{$_SESSION['goaluser']}'";
                                 $result = $conn->query($query);
                                 if ($result->num_rows > 0) {
                                     // $options = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -203,14 +193,18 @@ if (!isset($_SESSION["goaluser"])) {
                                 <div class="existingInvestments_block02 existingInvestments_block02_62752">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <div class="form-group is-empty"><label class="control-label" for="gender">&nbsp;</label>
+                                            <div class="form-group is-empty"><label class="control-label"
+                                                    for="gender">&nbsp;</label>
                                                 <!-- <select class="form-control select_investment" name="investmentClass"> -->
-                                                <select class="form-control select_investment" name="investmentClass" onchange="getOption()">
+                                                <select class="form-control select_investment" name="investmentClass"
+                                                    onchange="getOption()">
                                                     <option>Select Course</option>
                                                     <?php
                                                     foreach ($options as $option) {
                                                     ?>
-                                                        <option value="<?php echo $option['investment_amt']?>"><?php echo $option['fund_type']; ?> </option>
+                                                    <option value="<?php echo $option['investment_amt'] ?>">
+                                                        <?php echo $option['fund_type']; ?>
+                                                    </option>
                                                     <?php
                                                     }
                                                     ?>
@@ -221,9 +215,14 @@ if (!isset($_SESSION["goaluser"])) {
 
                                         <div class="col-md-3 allocation_lumsum_div  allocation_lumsum_62752">
                                             <div class="form-group is-empty">
-                                                <div class="rupee-amount-text"><label class="control-label" for="email">Enter Lumpsum</label><i class="fa fa-inr"></i><input class="form-control mandatory inrFormat lumsumamtAllocatedAmount" value="" id="userLumsumamt_62752" name="lumsumamtAllocatedAmount" placeholder="" type="text" data-action="add"></div>
+                                                <div class="rupee-amount-text"><label class="control-label"
+                                                        for="email">Enter Lumpsum</label><i class="fa fa-inr"></i><input
+                                                        class="form-control mandatory inrFormat lumsumamtAllocatedAmount"
+                                                        value="" id="userLumsumamt_62752"
+                                                        name="lumsumamtAllocatedAmount" placeholder="" type="text"
+                                                        data-action="add"></div>
                                                 <p class="declare-help">Available Amount: <i class="fa fa-inr"></i>
-                                                <span class="output"></span>
+                                                    <span class="output"></span>
                                                     <?php
                                                     // foreach ($fundwise_data as $key => $value) {
                                                     //     // var_dump($value);
@@ -238,7 +237,7 @@ if (!isset($_SESSION["goaluser"])) {
                                                     ?>
 
 
-                                                <!-- </p><span class="material-input"></span> -->
+                                                    <!-- </p><span class="material-input"></span> -->
                                             </div>
                                         </div>
 
@@ -251,32 +250,44 @@ if (!isset($_SESSION["goaluser"])) {
                                         </script>
 
                                     </div>
-                                    <div class="col-md-3 allocation_encash_div allocation_encash_62752" "><div class=" form-group">
-                                        <div class="checkbox chkboxMargin"><label class="control-label"><input type="checkbox" id="encashCheckbox_62752" data-extinvestpk="20385" data-action="add" data-plangoalpk="62752" value="1"><span class="checkbox-material"><span class="check"></span></span> Encash and Re-Invest</label></div>
+                                    <div class="col-md-3 allocation_encash_div allocation_encash_62752" "><div class="
+                                        form-group">
+                                        <div class="checkbox chkboxMargin"><label class="control-label"><input
+                                                    type="checkbox" id="encashCheckbox_62752" data-extinvestpk="20385"
+                                                    data-action="add" data-plangoalpk="62752" value="1"><span
+                                                    class="checkbox-material"><span class="check"></span></span> Encash
+                                                and Re-Invest</label></div>
                                     </div>
                                 </div>
                                 <div class="existingInvestments_block01">
                                     <div class="row">
                                         <div class="col-md-3">
                                             <p>Reinvest Lumpsum Amount:</p>
-                                            <h5 data-additionallumpsumapi="0"><i class="fa fa-inr"></i><span class="additionalLumpsum_62752">0</span></h5>
+                                            <h5 data-additionallumpsumapi="0"><i class="fa fa-inr"></i><span
+                                                    class="additionalLumpsum_62752">0</span></h5>
                                         </div>
                                         <div class="col-md-3">
                                             <p>Reinvest SIP Amount:</p>
-                                            <h5 data-additionalsipapi="0"><i class="fa fa-inr"></i><span class="additionalSip_62752">0</span></h5>
+                                            <h5 data-additionalsipapi="0"><i class="fa fa-inr"></i><span
+                                                    class="additionalSip_62752">0</span></h5>
                                         </div>
                                         <div class="col-md-3">
                                             <p>Top-up Required:</p>
-                                            <h5><i class="fa fa-inr"></i><span class="topup_62752" data-changedtopupsip="672">672</span></h5>
+                                            <h5><i class="fa fa-inr"></i><span class="topup_62752"
+                                                    data-changedtopupsip="672">672</span></h5>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row allocation_apply_div allocation_apply_62752" "><div class=" col-md-12">
-                                <div class="declare-help  text-center"><button type="button" href="javascript:void(0)" class="btn btn-raised btn-primary allocationApplybtn" id="allocationApplybtn_62752" data-plngoalpk="62752">APPLY</button></div>
+                                <div class="declare-help text-center">
+                                    <button type="button" href="javascript:void(0)"
+                                        class="btn btn-raised btn-primary allocationApplybtn"
+                                        id="allocationApplybtn_62752" data-plngoalpk="62752">APPLY</button>
+                                </div>
                             </div>
                         </div>
-                    </div><input type="hidden" class="" value="0">
+                    </div>
                     <div class="existingInvestments_block03 allocatedClasses_62752">
                         <div class="row allocatedClassHeading allocatedClassCount_62752" style="display:none">
                             <div class="col-md-3">
@@ -298,34 +309,48 @@ if (!isset($_SESSION["goaluser"])) {
                     </div>
                 </div>
             </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Accordion Item #2
-                    </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                    </div>
+
+
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Accordion Item #2
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <strong>This is the second item's accordion body.</strong> It is hidden by default, until the
+                    collapse plugin adds the appropriate classes that we use to style each element. These classes
+                    control the overall appearance, as well as the showing and hiding via CSS transitions. You can
+                    modify any of this with custom CSS or overriding our default variables. It's also worth noting that
+                    just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit
+                    overflow.
                 </div>
             </div>
         </div>
+
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                     Accordion Item #3
                 </button>
             </h2>
-            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                    <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
+                    collapse plugin adds the appropriate classes that we use to style each element. These classes
+                    control the overall appearance, as well as the showing and hiding via CSS transitions. You can
+                    modify any of this with custom CSS or overriding our default variables. It's also worth noting that
+                    just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit
+                    overflow.
                 </div>
             </div>
         </div>
-
-
-    </div>
     </div>
 
 
@@ -337,14 +362,14 @@ if (!isset($_SESSION["goaluser"])) {
 
     <div class="mt-5 mb-4" style="text-align:center;">
         <a class="btn btn-primary" href="dashboard.php">Previous</a>
-        <button type="button" class="btn btn-success" id="btn_web" style="width:14%;" onclick="topupsip()">View Recommandation</button>
+        <button type="button" class="btn btn-success" id="btn_web" style="width:14%;" onclick="topupsip()">View
+            Recommandation</button>
     </div>
 
 
 
 
 
-    </div>
     </div>
 
     <div class="modal fade" id="myModal" role="dialog">
@@ -352,7 +377,8 @@ if (!isset($_SESSION["goaluser"])) {
             <div class="modal-content">
                 <div class="modal-header" style="background-color: darkred;color: #fff;">
                     <h4 class="modal-title" style="font-size: 25px;font-family: auto;">Exsiting Asset</h4>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <?php
                 $sql = "SELECT * FROM `user_fund` where user_email='{$_SESSION['goaluser']}'";
@@ -403,7 +429,8 @@ if (!isset($_SESSION["goaluser"])) {
                     </div>
                     <div class="modal-footer">
                         <!-- <button class="btn btn-primary" onclick="fetch_data()"> Show Value</button> -->
-                        <button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#myModal1">Save and
+                        <button class="btn btn-primary" type="submit" data-bs-toggle="modal"
+                            data-bs-target="#myModal1">Save and
                             Contine</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                     </div>
@@ -414,7 +441,8 @@ if (!isset($_SESSION["goaluser"])) {
         </div>
     </div>
     <div class="declare-container hidden-sm hidden-xs">
-        <a type="button" class="btn1 btn-default1 declear_existing_investment" data-bs-toggle="modal" data-bs-target="#myModal" value="add" id="moredrop_dowp" style="float:right" ;>
+        <a type="button" class="btn1 btn-default1 declear_existing_investment" data-bs-toggle="modal"
+            data-bs-target="#myModal" value="add" id="moredrop_dowp" style="float:right" ;>
             <i class="fa fa-plus-circle fa-3x"></i>
             <p>DECLARE<br>EXISTING<br>ASSETS</p>
         </a>
@@ -425,15 +453,18 @@ if (!isset($_SESSION["goaluser"])) {
             <div class="modal-content">
                 <div class="modal-header" style="background-color: gray;color: #fff;">
                     <h4 class="modal-title" style="font-size: 25px;font-family: auto;">ALLOCATE EXISTING ASSETS</h4>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <!-- <form action="#" method="post"> -->
                     <div class="row">
                         <div class="col-md-12" style="text-align:center;">
                             <div class="topup_note">
-                                <p>You may allocate your existing assets to your goals below. <br> Your total Top-up SIP will be updated as you allocate the funds. Currently,</p>
-                                <h3>Total Top-up SIP Required:<br><i class="fa fa-inr"></i><span id="mothly-plan" style="color:black;" class="totalTopUpSip" data-totaltopup=""></span></h3>
+                                <p>You may allocate your existing assets to your goals below. <br> Your total Top-up SIP
+                                    will be updated as you allocate the funds. Currently,</p>
+                                <h3>Total Top-up SIP Required:<br><i class="fa fa-inr"></i><span id="mothly-plan"
+                                        style="color:black;" class="totalTopUpSip" data-totaltopup=""></span></h3>
                             </div>
                         </div>
                     </div>
@@ -456,55 +487,49 @@ if (!isset($_SESSION["goaluser"])) {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="./assets/bootstrap.bundle.min.js"></script>
 <script>
-    function fetchval() {
+    function showAllocation(d) {
+        console.log(d)
+        let markup = `<div class="accordion" id="accordionExample">`;
+        const allFinds=fetch_data();
+        console.log(allFinds);
+        d.forEach(el=>{
+            const amt= +el["goal_data"]["ansinputs"].replaceAll(",", "");
+                 const pAmt=amt.toLocaleString("en-IN", {
+                            style: "currency",
+                            currency: "INR",
+                            maximumFractionDigits: 0
+                        });
+            markup+= `<div class="accordion-item ">
+                    <h2 class="accordion-header" id="heading">
+                    <button class="accordion-button collapsed text-capitalize" type="button" data-bs-toggle="collapse" style="color:var(--${el["goal"]})" data-bs-target="#collapse${el["id"]}" aria-expanded="false" aria-controls="collapse${el["id"]}">${el["goal"]} - ${pAmt}</button>
+                    </h2>
+                    <div id="collapse${el["id"]}" class="accordion-collapse collapse" aria-labelledby="heading" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group is-empty"><label class="control-label" for="gender">&nbsp;</label>
+                                                <select class="form-control select_investment" name="investmentClass" onchange="getOption()">
+                                                    <option>Select Course</option>
+                                                </select>
+                                            </div>
+                                        </div>
 
-        const markup = `<div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Accordion Item #1
-                   
-                </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Accordion Item #2
-                </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    Accordion Item #3
-                </button>
-                </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.</div>
-                </div>
-            </div>
-            </div>`
+                                        <div class="col-md-3 allocation_lumsum_div  allocation_lumsum_62752">
+                                            <div class="form-group is-empty">
+                                                <div class="rupee-amount-text"><label class="control-label" for="email">Enter Lumpsum</label><i class="fa fa-inr"></i><input class="form-control mandatory inrFormat lumsumamtAllocatedAmount" value="" id="userLumsumamt_62752" name="lumsumamtAllocatedAmount" placeholder="" type="text" data-action="add"></div>
+                                                <p class="declare-help">Available Amount: <i class="fa fa-inr"></i>
+                                                    <span class="output"></span>
+                                                    
+                                            </p></div>
+                                        </div>
 
+                                    </div>
+                    </div></div></div>`
+        });
+        markup+=`</div>`;
         document.getElementById("investment_list").innerHTML += markup;
     }
-
-    // var instment = document.getElementById("invetment_amt").value;
-
-    // document.getElementById("investment").innerHTML = instment;
-
-    $(document).on("click", "#cust_btn", function() {
+    $(document).on("click", "#cust_btn", function () {
 
         $("#myModal1").modal("toggle");
 
@@ -516,14 +541,14 @@ if (!isset($_SESSION["goaluser"])) {
 
     }
 
-    $('form#fund-table').bind('submit', function() {
+    $('form#fund-table').bind('submit', function () {
         $.ajax({
             type: 'post',
             url: './UserData.php',
             data: {
                 add_user_fund: $('form').serialize()
             },
-            success: function() {
+            success: function () {
                 // alert('form was submitted');
                 // fetchval()
             }
@@ -640,7 +665,7 @@ if (!isset($_SESSION["goaluser"])) {
 
     }
 
-    $(document).on('input', " .pre_value, .dur_per , .rate_per", function() {
+    $(document).on('input', " .pre_value, .dur_per , .rate_per", function () {
         // console.log($(this).parent().find(".fd_fv_value"));
         let a = +$(this).parent().find(".pre_value").val()
         let d = +$(this).parent().find(".dur_per").val()
@@ -649,7 +674,7 @@ if (!isset($_SESSION["goaluser"])) {
         $(this).parent().find(".fd_fv_value").val(ans);
     })
 
-    $("document").ready(function() {
+    $("document").ready(function () {
         $.ajax({
             method: "post",
             url: "./UserData.php",
@@ -658,7 +683,7 @@ if (!isset($_SESSION["goaluser"])) {
                 get_user_data: "all"
             },
             dataType: "json",
-            success: function(data) {
+            success: function (data) {
                 // console.log(data);
                 let markup = '';
                 let total_sip = 0;
@@ -685,6 +710,7 @@ if (!isset($_SESSION["goaluser"])) {
                 });
                 markup += `<table class="table mt-3 table-bordered " id="total_goal" style=" font-size:12px;width: 80%;position: relative;margin:auto;"><thead style="background-color:gray;"><tr><th style="font-size: 14px;text-align: center;">Monthly SIP Required</th><th style="font-size: 14px;text-align: center;">Lumsup SIP Required</th><th style="font-size: 14px;text-align: center;width:20%;"  >Monthly Plan SIP</th><th style="font-size: 14px;text-align: center;width:16%;">Monthly Plan Lumpsum</th></tr></thead><tbody><tr style="background-color:#f3f3f3;"><th class="col-2 " style="font-size: 14px; text-align: center;">${total_sip.toLocaleString()}</th><th class="col-2 " style="font-size: 14px;text-align: center;">${total_lumpsum.toLocaleString()}</th class="col-2 " style="font-size: 14px;text-align: center;"><th id="plan_m_sip" style="text-align: center;"></th><th style="text-align: center;" id="plan_l_sip"></th></tr></tbody></table>`
                 $(".goals_table").html(markup);
+                showAllocation(data)
             }
         });
 
@@ -692,6 +718,7 @@ if (!isset($_SESSION["goaluser"])) {
 
 
     function fetch_data() {
+        let data
         $.ajax({
             method: "POST",
             url: "./UserData.php",
@@ -699,14 +726,15 @@ if (!isset($_SESSION["goaluser"])) {
                 get_user_fund: "all"
             },
             dataType: "json",
-            success: function(response) {
-                console.log(response, (response['data']['investment_amt']));
+            async:false,
+            success: function (response) {
                 $("#pre_value").val(response['data']['investment_amt']);
                 $("#dur_per").val(response['data']['duration']);
                 $("#rate_per").val(response['data']['percent']);
+                data= response
             }
-
         });
+        return data;
     }
 </script>
 </body>
