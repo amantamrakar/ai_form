@@ -68,6 +68,7 @@ if (isset($_POST["add_user_fund"])) {
     }
     // echo count($req);
 }
+
 if(isset($_POST["allocationFund"])){
     parse_str($_POST["allocationFund"],$req);
     print_r($req);
@@ -98,4 +99,5 @@ if(isset($_POST["allocationFund"])){
     $smt->bind_param("sss",$req["lumpsumAmtAllocated"],$all_json,$req["fund"]);
     $smt->execute();
     echo mysqli_error($conn);
+    
 }
