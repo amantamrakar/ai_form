@@ -121,7 +121,7 @@ if (isset($_POST['key'])) {
       $markup = '   <div class="container">
       <div class="card mt-3">
         <div class="card-body">
-          <form class="row">
+          <form class="row" id="education_form">
 
             <ins><h2 style="text-align:center;">Education Detail</h2></ins>
               
@@ -203,7 +203,7 @@ if (isset($_POST['key'])) {
       <div class="container">
         <div class="card">
           <div class="card-body">
-              <form class = "row">
+              <form class = "row" id="vacation_form">
                 <input type="hidden" name="id" value="' . $id . '"> 
                 <ins><h2 style="text-align:center;">My Vacation Planning</h2></ins>
 
@@ -252,7 +252,7 @@ if (isset($_POST['key'])) {
       <div class="container">
         <div class="card">
               <div class="card-body">
-                  <form class = "row">
+                  <form class = "row" id="marriage_form">
                     <input type="hidden" name="id" value="' . $id . '">  
                     <ins><h2 style="text-align:center;">My Dream Marriage</h2></ins>
 

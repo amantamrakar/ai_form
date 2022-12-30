@@ -5,10 +5,14 @@ require_once("./connect.php");
 if (isset($_POST["get_user_fund"])) {
     $sql = "SELECT * FROM `user_fund` where user_email='{$_SESSION['goaluser']}'";
     $result = mysqli_query($conn, $sql) or die("Query Failed");
-    $data = mysqli_fetch_all($result,MYSQLI_ASSOC);
+    $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
     // while( $row = mysqli_fetch_array($result)){
     //     echo $row['duration'] . " " . $row['investment_amt'] . " " . $row['percent']. "<br>";
     // }
+    $data = array_map(function ($e) {
+        $e["allocate_goals"] = json_decode($e["allocate_goals"], true);
+        return $e;
+    }, $data);
     echo json_encode(array('statue' => true, 'data' => $data));
 }
 
@@ -68,36 +72,39 @@ if (isset($_POST["add_user_fund"])) {
     }
     // echo count($req);
 }
-
-if(isset($_POST["allocationFund"])){
-    parse_str($_POST["allocationFund"],$req);
-    print_r($req);
-
-
-    $sf=mysqli_prepare($conn,"SELECT allocate_amount,allocate_goals,investment_amt FROM `user_fund` where user_email='{$_SESSION['goaluser']}' && `id`=?");
-    $sf->bind_param("s",$req["fund"]);
+if (isset($_POST["allocationFund"])) {
+    parse_str($_POST["allocationFund"], $req);
+    $sf = mysqli_prepare($conn, "SELECT allocate_amount,allocate_goals,investment_amt FROM `user_fund` where user_email='{$_SESSION['goaluser']}' && `id`=?");
+    $sf->bind_param("s", $req["fund"]);
     $sf->execute();
-    $sf_data=mysqli_fetch_assoc($sf->get_result());
-    var_dump($sf_data);
-    $req["lumpsumAmtAllocated"]= +$sf_data["allocate_amount"] + +$req["lumpsumAmtAllocated"];
-    if($req["lumpsumAmtAllocated"]>$sf_data["investment_amt"]){
-        die("lumpsumAmtAllocated greater than investment amt");
-    }
-    
+    $sf_data = mysqli_fetch_assoc($sf->get_result());
     // $req["lumpsumAmtAllocated"]=$sf_data["allocate_amount"];
-    $all_allocations=json_decode($sf_data["allocate_goals"],true);
-    if(isset($all_allocations[$req["goal"]])){
-        $all_allocations[$req["goal"]]["amt"]=$req["lumpsumAmtAllocated"];
-    }else{
-        $allocate_goal=array();
-        $allocate_goal["amt"]=$req["lumpsumAmtAllocated"];
-        $all_allocations[$req["goal"]]=$allocate_goal;
+    $all_allocations = json_decode($sf_data["allocate_goals"], true);
+    if (isset($all_allocations[$req["goal"]])) {
+        $sf_data["allocate_amount"] = +$sf_data["allocate_amount"] - +$all_allocations[$req["goal"]]["amt"];
+        $all_allocations[$req["goal"]]["amt"] = $req["lumpsumAmtAllocated"];
+        if($req["lumpsumAmtAllocated"] == 0){
+            unset($all_allocations[$req["goal"]]);
+        }
+    } else {
+        $allocate_goal = array();
+        $allocate_goal["amt"] = $req["lumpsumAmtAllocated"];
+        $all_allocations[$req["goal"]] = $allocate_goal;
     }
-    $sql="UPDATE `user_fund` SET `allocate_amount`= ? ,`allocate_goals`= ? WHERE user_email='{$_SESSION['goaluser']}' && `id`=?";
-    $smt=mysqli_prepare($conn,$sql);
-    $all_json=json_encode($all_allocations);
-    $smt->bind_param("sss",$req["lumpsumAmtAllocated"],$all_json,$req["fund"]);
+    $req["totalAllocated"] = +$sf_data["allocate_amount"] + +$req["lumpsumAmtAllocated"];
+    if ($req["totalAllocated"] > $sf_data["investment_amt"]) {
+        die(json_encode(array("status" => true, "message" => "lump sum Amount Allocated greater than investment amount")));
+    }
+    $sql = "UPDATE user_fund SET allocate_amount= ? ,allocate_goals= ? WHERE user_email='{$_SESSION['goaluser']}' && `id`=?";
+    $smt = mysqli_prepare($conn, $sql);
+    $all_json = json_encode($all_allocations);
+    $smt->bind_param("sss", $req["totalAllocated"], $all_json, $req["fund"]);
     $smt->execute();
-    echo mysqli_error($conn);
-    
+
+    //?save plan sip&lump
+    $upa=mysqli_prepare($conn,"UPDATE user_goal SET plan_sip=?, plan_lumpsum=? WHERE email='{$_SESSION['goaluser']}' && `id`=?");
+    $upa->bind_param("sss",$req["planSip"],$req["planLamp"],$req["goal"]);
+    $upa->execute();
+
+    echo json_encode(array("status" => true, "message" => "Allocation Successful"));
 }
