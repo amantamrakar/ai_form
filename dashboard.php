@@ -833,7 +833,6 @@ if (mysqli_num_rows($result)) {
             </foreignObject>
             <g id="goals">
                 <path d="M 26,26 V 500" id="h-line" />
-
             </g>
         </svg>
     </div>

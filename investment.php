@@ -168,8 +168,8 @@ if (!isset($_SESSION["goaluser"])) {
 
     <div class="mt-5 mb-4" style="text-align:center;">
         <a class="btn btn-primary" href="dashboard.php">Previous</a>
-        <button type="button" class="btn btn-success" id="btn_web" style="width:14%;" onclick="topupsip()">View
-            Recommandation</button>
+        <button type="button" class="btn btn-success" id="btn_web" style="width:14%;" onclick="topupsip()"><a class="text-light" href="./question.php">   View
+            Recommandation</a></button>
     </div>
 
 

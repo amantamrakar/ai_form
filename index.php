@@ -896,11 +896,11 @@ session_start();
 
     function retirementcal() {
       let retpresent = document.getElementById("presentret").value; //Pa
-      let retretire = document.getElementById("retireret").value; //Ra
+      let retretire = document.getElementById("retireret").value; //Ra   // retirement age 
       let lifeexp = document.getElementById("lifeexp").value; //Le
       let inflatioret = document.getElementById("inflaret").value; //I
       let Ex = document.getElementById("monthlyret").value; //Ex
-      let rateretire = document.getElementById("retrate").value;
+      let rateretire = document.getElementById("retrate").value;  // rate of return
       IsEmpty()
       let Np = retretire - retpresent; //Np
       let r2 = (12 / (100 * 12));
