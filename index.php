@@ -1292,9 +1292,10 @@ session_start();
     })
 
     function gotolog(e) {
+      console.log(e)
       if (g_id == "others") {
         if (e == "auth") {
-          $(".btnidprfl")[0].click();
+          $(".btnidprfl").removeAttr("disabled")[0].click();
         } else {
           $(".next")[0].click();
 

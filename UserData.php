@@ -32,7 +32,10 @@ if (isset($_POST["get_user_data"])) {
             $data[$key]["goal_data"]["futureage"] = $data[$key]["goal_data"]["futureyear"];
         }
         if ($data[$key]["goal"] == "retirement") {
-            $data[$key]["goal_data"]["futureage"] = $data[$key]["goal_data"]["lifeexp"] - $data[$key]["goal_data"]["retirementage"];
+            $data[$key]["goal_data"]["futureage"] = $data[$key]["goal_data"]["retirementage"] - $data[$key]["goal_data"]["currentage"];
+        }
+        if ($data[$key]["goal"] == "marriage") {
+            $data[$key]["goal_data"]["futureage"] = $data[$key]["goal_data"]["futureage"] - $data[$key]["goal_data"]["currentagechild"];
         }
     }
     echo mysqli_error($conn);
@@ -50,22 +53,18 @@ if (isset($_POST["add_user_fund"])) {
     $in_funds = array_map(function ($e) {
         return $e[0];
     }, $allfund);
-    var_dump($in_funds);
     $email = $_SESSION["goaluser"];
     for ($i = 0; $i < count($req["fund_deposit"]); $i++) {
         if (empty($req['fund_deposit'][$i]) || empty($req["duration"][$i]) || empty($req["fund_amt"][$i]) || empty($req["percent"][$i])) {
             echo "Not Fill";
         } elseif (in_array($req["fund_deposit"][$i], $in_funds)) {
             $sql = "UPDATE `user_fund` SET `duration` = '{$req['duration'][$i]}',`investment_amt` ='{$req['fund_amt'][$i]}',`percent` = '{$req['percent'][$i]}'  WHERE user_email ='{$_SESSION['goaluser']}' && `fund_type` = '{$req['fund_deposit'][$i]}'";
-            echo "for update";
             $result =  mysqli_query($conn, $sql);
-
             echo $result;
             echo mysqli_error($conn);
         } else {
             $sql = "INSERT INTO `user_fund`(`user_email`,`fund_type`,`duration`,`investment_amt`,`percent`) VALUES ('$email','{$req['fund_deposit'][$i]}','{$req["duration"][$i]}','{$req["fund_amt"][$i]}','{$req["percent"][$i]}')";
             $result =  mysqli_query($conn, $sql);
-
             echo $result;
             echo mysqli_error($conn);
         }
@@ -81,8 +80,8 @@ if (isset($_POST["allocationFund"])) {
     // $req["lumpsumAmtAllocated"]=$sf_data["allocate_amount"];
     $all_allocations = json_decode($sf_data["allocate_goals"], true);
     if (isset($all_allocations[$req["goal"]])) {
-        $sf_data["allocate_amount"] = +$sf_data["allocate_amount"] - +$all_allocations[$req["goal"]]["amt"];
-        $all_allocations[$req["goal"]]["amt"] = $req["lumpsumAmtAllocated"];
+        // $sf_data["allocate_amount"] = +$sf_data["allocate_amount"] - +$all_allocations[$req["goal"]]["amt"];
+        $all_allocations[$req["goal"]]["amt"] = $req["lumpsumAmtAllocated"] + +$all_allocations[$req["goal"]]["amt"];
         if($req["lumpsumAmtAllocated"] == 0){
             unset($all_allocations[$req["goal"]]);
         }

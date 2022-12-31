@@ -48,7 +48,6 @@ if (!isset($_SESSION["goaluser"])) {
         .input_style {
             border: none;
             border-bottom: 2px solid rgb(189, 194, 194);
-            width: 20%;
             text-align: center;
         }
 
@@ -157,27 +156,14 @@ if (!isset($_SESSION["goaluser"])) {
 <body>
     <?php include("./header.php"); ?>
     <div class="container-fluid mt-5 ">
-
-
-
-
-
     <div class="goals_table">
-
     </div>
-
     <div class="mt-5 mb-4" style="text-align:center;">
         <a class="btn btn-primary" href="dashboard.php">Previous</a>
         <button type="button" class="btn btn-success" id="btn_web" style="width:14%;" onclick="topupsip()">View
             Recommandation</button>
     </div>
-
-
-
-
-
     </div>
-
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog  modal-lg ">
             <div class="modal-content">
@@ -207,42 +193,38 @@ if (!isset($_SESSION["goaluser"])) {
                 ?>
                 <form id="fund-table" action="">
                     <div class="modal-body">
-                        <div class="row" class="fund_data" id='list_fund'>
+                        <table>
+                        <thead class='text-center'><tr><th class='text-center'>Funds Type</th> <th class='text-center'>Invested Amount</th> <th class='text-center'>Duration</th><th class='text-center'>Interest</th></tr></thead>
+                        <tbody class='' id='list_fund'>
+                        <!-- <div class="row" class="fund_data" id='list_fund'> -->
                             <?php
-                            foreach ($fundwise_data as $key => $value) {
-                                // $markup += '<div><label class="col-2">Add Asset</label></div>';
+                            foreach ($fundwise_data as $key => $value){
 
-                                $markup = " 
-                                <div class='form-group' >
-                                    <label for='' class='col-2'>$key</label>
-                             ";
+                                $markup = "<tr><td><label for='' class=''>$key</label></td>";
                                 if (count($value) > 0) {
-                                    $markup .= "<input type='hidden' name='fund_deposit[]' value='$key'>
-                                <input type='text' class='col-3 input_style pre_value' id='invetment_amt' value='{$value["investment_amt"]}'  placeholder='₹ Enter Value' name='fund_amt[]' >
-                                <input type='text' class='col-3 input_style dur_per' value='{$value["duration"]}'  placeholder='Duration (No. of Year)' name='duration[]'>
-                                <input type='text' class='col-3 input_style rate_per' value='{$value["percent"]}' placeholder='Intreset %' name='percent[]'>
-                                <input type='text' class='fd_fv_value d-none'>
-                                </div>
-                               ";
-                                } else {
-                                    $markup .= "<input type='hidden' name='fund_deposit[]' value='$key'>
-                                <input type='text' class='col-3 input_style pre_value' value=''  placeholder='₹ Enter Value' name='fund_amt[]' >
-                                <input type='text' class='col-3 input_style dur_per' value=''  placeholder='Duration (No. of Year)' name='duration[]'>
-                                <input type='text' class='col-3 input_style rate_per' value='' placeholder='Intreset %' name='percent[]'>
-                                <input type='text' class='fd_fv_value d-none'>
-                                </div>";
+                                    $markup .= "<td><input type='hidden' name='fund_deposit[]' value='$key'>
+                                    <input type='text' class=' input_style pre_value' id='invetment_amt' value='{$value["investment_amt"]}'  placeholder='₹ Enter Value' name='fund_amt[]' ></td>
+                                    <td><input type='text' class=' input_style dur_per' value='{$value["duration"]}'  placeholder='Duration (No. of Year)' name='duration[]'></td>
+                                    <td><input type='text' class=' input_style rate_per' value='{$value["percent"]}' placeholder='Intreset %' name='percent[]'></td></tr>";
+                            } else {
+                                    $markup .= "<td><input type='hidden' name='fund_deposit[]' value='$key'>
+                                    <input type='text' class=' input_style pre_value' value=''  placeholder='₹ Enter Value' name='fund_amt[]' ></td>
+                                    <td><input type='text' class=' input_style dur_per' value=''  placeholder='Duration (No. of Year)' name='duration[]'></td>
+                                    <td><input type='text' class=' input_style rate_per' value='' placeholder='Intreset %' name='percent[]'></td></tr>";
                                 }
 
                                 echo $markup;
                             }
                             ?>
+                            </tbody>
+                        </table>
+                        <button class="btn btn-primary" onclick="add_fund()"> Add Funds</button>
                             <!-- // $markup .= '<div><label class="col-2">Add Asset</label></div>'; -->
-                        </div>
                         <!-- <div class="foot" ></div> -->
                     </div>
                     <div class="modal-footer">
                         <!-- <button class="btn btn-primary" onclick="fetch_data()"> Show Value</button> -->
-                        <button class="btn btn-primary" onclick="add_fund()"> Show Value </button>
+                        
                         <button class="btn btn-primary" type="submit" data-bs-toggle="modal" id="showAllgoal" data-bs-target="#fundAllocate" >Save and Continue</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                     </div>
@@ -298,7 +280,6 @@ if (!isset($_SESSION["goaluser"])) {
 <script>
     let showGid=null;
     function showAllocation(d) {
-        console.log(d)
         let markup = `<div class="accordion" id="accordionExample">`;
         const allFinds = fetch_data();
         console.log(allFinds);
@@ -306,19 +287,23 @@ if (!isset($_SESSION["goaluser"])) {
         let allocation = "";
         let allocatedFund ={}
         allFinds.forEach(fd => {
-            fundMarkup += `<option data-id="${fd.id}" value="${fd.fund_type}" data-amt="${fd.investment_amt - fd.allocate_amount}">${fd.fund_type}</option>`
+            const alAmount=fd.investment_amt - fd.allocate_amount;
+            if(alAmount>0){
+                fundMarkup += `<option data-id="${fd.id}" value="${fd.fund_type}" data-amt="${alAmount}">${fd.fund_type}</option>`
+            }
                 for (const k in fd.allocate_goals) {
+                    // fvOfFund=
+                    // <button><i class="fa-solid fa-pen-to-square"></i></button>
                     if(allocatedFund[k]){
-                        allocatedFund[k]["markup"]+=`<tr><td>${fd.fund_type}</td><td>${fd.allocate_goals[k]["amt"]}</td><td><button><i class="fa-solid fa-pen-to-square"></i></button><button><i class="fa-solid fa-trash-can"></i></button></td></tr>`;
+                        allocatedFund[k]["markup"]+=`<tr data-interest="${fd["percent"]}" data-famt="${fd.allocate_goals[k]["amt"]}"><td>${fd.fund_type}</td><td>${fd.allocate_goals[k]["amt"]}</td><td><button type="button" onclick="deleteAllocation(this)" data-fid="${fd.id}"><i class="fa-solid fa-trash-can"></i></button></td></tr>`;
                         allocatedFund[k]["total"] += +fd.allocate_goals[k]["amt"]
                     }else{
                         allocatedFund[k]={};
-                        allocatedFund[k]["markup"]=`<tr><td>${fd.fund_type}</td><td>${fd.allocate_goals[k]["amt"]}</td><td><button><i class="fa-solid fa-pen-to-square"></i></button><button><i class="fa-solid fa-trash-can"></i></button></td></tr>`;
+                        allocatedFund[k]["markup"]=`<tr data-interest="${fd["percent"]}" data-famt="${fd.allocate_goals[k]["amt"]}"><td>${fd.fund_type}</td><td>${fd.allocate_goals[k]["amt"]}</td><td><button type="button" onclick="deleteAllocation(this)" data-fid="${fd.id}"><i class="fa-solid fa-trash-can"></i></button></td></tr>`;
                         allocatedFund[k]["total"]= +fd.allocate_goals[k]["amt"];
                     }
                 }
         });
-        console.log(allocatedFund);
         d.forEach(el => {
            
             const amt = +el["goal_data"]["ansinputs"].replaceAll(",", "");
@@ -357,29 +342,26 @@ if (!isset($_SESSION["goaluser"])) {
                       <div class="col-md-4">
                           <div class="form-group is-empty"><label class="control-label" for="gender">&nbsp;</label>
                             <select class="form-control select_investment" name="investmentClass" id="aFund-${el["id"]}" onchange="setFundAmt(this)">
-                                  <option>Select Course</option>
+                                  <option>Select Fund</option>
                                   ${fundMarkup}
                               </select>
                           </div>
                       </div>
-
                       <div class="col-md-4 allocation_lumsum_div  allocation_lumsum">
                           <div class="form-group is-empty">
                               <div class="rupee-amount-text"><label class="control-label" for="email">Enter Lumpsum</label><i class="fa fa-inr"></i><input class="form-control mandatory inrFormat lumpsumAmtAllocated" value="0" id="addLump-${el.id}" data-inputId="${el.id}" oninput="allocateFund(this)" name="lumpsumAmtAllocated" placeholder="Enter Amount To Allocate" type="number" data-action="add"></div>
                               <p class="declare-help">Available Amount: <i class="fa fa-inr"></i>
                                   <span class="output" data-aFund="aFund-${el["id"]}" ></span></p></div>
-                      </div></div>
-                      
-                                    <div class="text-center"><button type="button" onclick="saveAllocation(this)" data-form="s-allocation-${el["id"]}" class="btn btn-info col-md-4">Apply</button></div>
-                                    </form>`;
+                      </div></div><div class="text-center"><button type="button" onclick="saveAllocation(this)" data-form="s-allocation-${el["id"]}" class="btn btn-info col-md-4">Apply</button></div>
+                                   `;
                                     if(allocatedFund[el["id"]]){
-                                        markup +=`<table class="text-capitalize my-2"><thead><tr>
+                                        markup +=`<table class="text-capitalize my-2" data-allogid="${el["id"]}"><thead><tr>
                                         <th>fund type</th>
                                         <th>lump sam amount</th>
                                         <th>action</th>
                                         </tr></thead>${allocatedFund[el["id"]].markup}</table>`
                                     }
-                    markup +=`</div></div></div>`
+                    markup +=` </form></div></div></div>`
         });
         markup += `</div>`;
         $("#investment_list").html(markup);
@@ -390,12 +372,30 @@ if (!isset($_SESSION["goaluser"])) {
         $(`.accordion-item#a-item-${showGid}`).show()
         $(`.accordion-item#a-item-${showGid} button.collapsed`)[0]?.click()
     }
-    
+    function deleteAllocation(e){
+        const fdata=$(`button[data-fid='${e.dataset.fid}']`).parents("form");
+        let data=fdata.serialize().replace("fund=",`fund=${e.dataset.fid}`);
+        console.log(data);
+        $.ajax({
+            type: "post",
+            url: "./UserData.php",
+            data: {"allocationFund":data},
+            dataType: "json",
+            success: function (res) {
+                if(res["status"]){
+                    alert(res.message);
+                    setGoalData();
+                  
+                }else{
+                    alert(res.message)
+                }
+            }
+        });
+    }
+
     function saveAllocation(e){
-        console.log(e);
         const fEl=$(`form#${e.dataset["form"]}`);
-        // fEl.find(".lumpsumAmtAllocated").val();
-        const fdata=fEl.serialize();
+        fdata=fEl.serialize();
         $.ajax({
             type: "post",
             url: "./UserData.php",
@@ -457,6 +457,7 @@ if (!isset($_SESSION["goaluser"])) {
         return false;
     });
     $("#showAllgoal").click(function(){
+        $(".totalTopUpSip").html($(`#plan_m_sip`).html())
         $(".accordion-item").show()
     })
     function cal_lumpsum(amount, year) {
@@ -508,10 +509,22 @@ if (!isset($_SESSION["goaluser"])) {
         sip = ans;
         lumpsum = answer;
         total_planinv = (sip + lumpsum);
-        asset = +$(`.getAllFund-${id}`).html();
-        total_asset = (total_planinv + (asset?asset:0));
+        // let asset = +$(`.getAllFund-${id}`).html();
+        let asset = 0;
+        const fsEl=$(`#a-item-${id} tr[data-interest]`);
+        console.log(fsEl);
+        if(fsEl.length>0){
+            fsEl.each(el=>{
+                let itr= +fsEl[el].dataset.interest;
+                let famt= +fsEl[el].dataset.famt;
+                asset += cal_fv(famt,years,itr)
+                console.log( "fv", cal_fv(famt,years,itr));
+            })
+        }
+        console.log("total fv", asset);
+        total_asset = (total_planinv + asset);
         fv = $(`#goal-id-${id}`).closest("div").find("span").attr("data-fv") - total_asset;
-        console.log( fv,total_asset);
+        // console.log( fv,total_asset);
 
         // let fv = 100000;
         // let rate  = 12 ;
@@ -566,7 +579,7 @@ if (!isset($_SESSION["goaluser"])) {
 
         })
 
-        $("#mothly-plan").html(plan_sip);
+        // $("#mothly-plan").html(plan_sip);
         $("#plan_l_sip").html(plan_lumpsum)
     }
     function cal_fv(pre, rates_per, n_per) {
@@ -574,7 +587,7 @@ if (!isset($_SESSION["goaluser"])) {
         let Rs_per = (rates_per / 100);
         let r_per = (1 + Rs_per) ** n_per;
         let ans_per = pre * r_per;
-        let ans = ans_per.toLocaleString(0);
+        let ans = Math.round(ans_per);
         return ans;
 
     }
@@ -642,19 +655,22 @@ if (!isset($_SESSION["goaluser"])) {
         });
     }
     function shoeExistingFund(e){
+        console.log(e);
         $(".accordion-item").hide()
-        $(`.accordion-item#a-item-${e.dataset.target}`).show()
+        $(`.accordion-item#a-item-${e.dataset.target}`).show();
+        $(".totalTopUpSip").html($(`#goal-id-${e.dataset.target} #total-value`).val())
         showGid=e.dataset.target;
         const bt=$(`.accordion-item button[data-bs-target='#collapse${e.dataset.target}'].collapsed`);
         bt[0]?.click();
 
     }
     function add_fund() {
-        markup = `<div class="form-group"><input type='text' name='fund_deposit[]' class='input_style'>
-                <input type='text' class='col-3 input_style pre_value' value=''  placeholder='₹ Enter Value' name='fund_amt[]' >
-                <input type='text' class='col-3 input_style dur_per' value=''  placeholder='Duration (No. of Year)' name='duration[]'>
-                <input type='text' class='col-3 input_style rate_per' value='' placeholder='Interest %' name='percent[]'>
-                <input type='text' class='fd_fv_value d-none'></div>`
+        markup = `<tr>
+        <td><input type='text' name='fund_deposit[]' class='input_style' placeholder="Fund Type"></td>
+        <td> <input type='text' class='input_style pre_value' value=''  placeholder='₹ Enter Value' name='fund_amt[]' ></td>
+        <td><input type='text' class='input_style dur_per' value=''  placeholder='Duration (No. of Year)' name='duration[]'></td>
+        <td><input type='text' class='input_style rate_per' value='' placeholder='Interest %' name='percent[]'></td>
+        </tr>`
         $("#list_fund").append(markup);
 
     };
