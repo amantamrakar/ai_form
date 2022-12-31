@@ -356,8 +356,6 @@ session_start();
     .inputss:focus {
       border: 2px solid black;
     }
-
-    
   </style>
 
   <title>Swaraj FinPro AI Form</title>
@@ -386,8 +384,8 @@ session_start();
     // }
     ?>
 
-  
-    
+
+
 
     <div class="progress">
       <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
@@ -711,7 +709,7 @@ session_start();
       document.getElementById("set8").innerHTML = m.toLocaleString(0);
       document.getElementById("set8house").value = anshouse.toLocaleString(0);
       document.getElementById("house-year").innerHTML = timehorizon;
-
+      houseother
       var data = $("#regiration_form").serialize();
       //  console.log(data);
 
@@ -898,11 +896,11 @@ session_start();
 
     function retirementcal() {
       let retpresent = document.getElementById("presentret").value; //Pa
-      let retretire = document.getElementById("retireret").value; //Ra
+      let retretire = document.getElementById("retireret").value; //Ra   // retirement age 
       let lifeexp = document.getElementById("lifeexp").value; //Le
       let inflatioret = document.getElementById("inflaret").value; //I
       let Ex = document.getElementById("monthlyret").value; //Ex
-      let rateretire = document.getElementById("retrate").value;
+      let rateretire = document.getElementById("retrate").value;  // rate of return
       IsEmpty()
       let Np = retretire - retpresent; //Np
       let r2 = (12 / (100 * 12));
