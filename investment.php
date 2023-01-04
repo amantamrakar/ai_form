@@ -16,13 +16,12 @@ if (!isset($_SESSION["goaluser"])) {
     <link rel="stylesheet" href="./assets/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/style.css">
     <title>Investment</title>
-
     <style>
         .card-header {
             background-color: lightgray;
         }
 
-        table {
+       table {
             font-family: arial, sans-serif;
             border-collapse: collapse;
             width: 100%;
@@ -33,13 +32,13 @@ if (!isset($_SESSION["goaluser"])) {
             text-align: left;
             background-color: #fff;
             padding: 8px;
-        }
+        } 
 
         th {
             background-color: #dddddd;
             padding: 8px;
             text-align: left;
-        }
+        } 
 
         .li_style {
             list-style-type: none;
@@ -54,13 +53,6 @@ if (!isset($_SESSION["goaluser"])) {
         .input_style:focus {
             outline: none;
         }
-
-        @media (min-width: 576px) {
-            .modal-dialog {
-                max-width: 950px;
-            }
-        }
-
         .style_input {
             border: none;
             border-bottom: 1px solid black;
@@ -74,29 +66,6 @@ if (!isset($_SESSION["goaluser"])) {
             outline: none;
         }
 
-        .goals_table table thead tr th {
-            border: 3px solid #ffffff;
-            border-radius: 10px;
-            padding: 10px;
-        }
-
-        #total_goal thead tr th {
-            border: 3px solid #ffffff;
-
-        }
-
-        .goals_table table tbody tr th {
-            border: 2px solid #fff;
-            border-radius: 12px;
-        }
-
-        .th_style {
-            vertical-align: middle;
-            text-align: center;
-            font-size: 19px;
-            text-transform: capitalize;
-        }
-
         .declare-container {
             position: fixed;
             right: 27px;
@@ -106,20 +75,9 @@ if (!isset($_SESSION["goaluser"])) {
             z-index: 5;
         }
 
-        .declare-container p {
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .goal-box {
-            position: relative;
-            display: flex;
-            flex-wrap: nowrap;
-            align-items: center;
-        }
-
         .goal-img {
             text-align: center;
+            align-self: center;
         }
 
         .goal-img span {
@@ -130,15 +88,30 @@ if (!isset($_SESSION["goaluser"])) {
             width: 70px;
         }
 
-
-
+        .g-table {
+            text-align:center;
+            background: #eff5ff;
+            border-radius: 10px;
+            padding: 2px;
+        }
+        .g-table .sub-heading{
+            justify-content: center;
+        }
+        .g-table .sub-heading p{
+            background-color:#bababa;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            padding: 10px;
+            font-weight: 500;
+        }
 
         .tipDiv {
-            float: left;
-            text-align: center;
             background-color: #00beff;
             color: white;
-            padding: 0px 4px;
+            padding: 1px 10px;
+            border-radius: 5px;
+            display: inline;
+            margin-left: 5%;
         }
 
         h5 {
@@ -147,20 +120,89 @@ if (!isset($_SESSION["goaluser"])) {
 
         .tipText {
             font-size: 14px;
-            margin-top: 7px;
-            margin-left: 10%;
         }
+        .g-head{
+            color:#fff;
+            font-size: 14px;
+            font-weight: bold;
+            border: 2px solid #ffffff;
+            border-radius: 10px;
+            padding: 10px;
+            margin:0;
+           
+        }
+        .g-table .col-span{
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            display: inline-block;
+        }
+        .resp_table td.g-head {
+            background-color:#e1e1e1;
+            color:#111111;
+        }
+        @media (min-width: 576px) {
+            .modal-dialog {
+                max-width: 950px;
+            }
+        }
+        
+    @media screen and (max-width: 600px) {
+  .resp_table {
+    border: 0;
+  }
+
+  .resp_table caption {
+    font-size: 1.3em;
+  }
+  
+  .resp_table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  .resp_table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  .resp_table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  
+  .resp_table td::before {
+   
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .resp_table td:last-child {
+    border-bottom: 0;
+  }
+}
     </style>
 </head>
 
 <body>
     <?php include("./header.php"); ?>
-    <div class="container-fluid mt-5 ">
+    <div class="container-fluid mt-2">
     <div class="goals_table">
     </div>
     <div class="mt-5 mb-4" style="text-align:center;">
         <a class="btn btn-primary" href="dashboard.php">Previous</a>
-        <button type="button" class="btn btn-success" id="btn_web" style="width:14%;" onclick="topupsip()"><a class="text-light" href="./question.php">   View
+        <button type="button" class="btn btn-success" id="btn_web"  onclick="topupsip()"><a class="text-light" href="./question.php">   View
             Recommandation</a></button>
     </div>
     </div>
@@ -193,24 +235,24 @@ if (!isset($_SESSION["goaluser"])) {
                 ?>
                 <form id="fund-table" action="">
                     <div class="modal-body">
-                        <table>
-                        <thead class='text-center'><tr><th class='text-center'>Funds Type</th> <th class='text-center'>Invested Amount</th> <th class='text-center'>Duration</th><th class='text-center'>Interest</th></tr></thead>
-                        <tbody class='' id='list_fund'>
+                        <table class="resp_table">
+                        <thead class='text-center'><tr><th class='text-center' scope='col' data-label='Funds Type'>Funds Type</th> <th class='text-center' scope='col' data-label='Invested Amount'>Invested Amount</th> <th class='text-center' scope='col' data-label='Duration'>Duration</th><th class='text-center' scope='col' data-label='Interest'>Interest</th></tr></thead>
+                        <tbody  id='list_fund'>
                         <!-- <div class="row" class="fund_data" id='list_fund'> -->
                             <?php
                             foreach ($fundwise_data as $key => $value){
 
-                                $markup = "<tr><td><label for='' class=''>$key</label></td>";
+                                $markup = "<tr><td scope='row' data-label='Assets Type' ><label for='' class=''>$key</label></td>";
                                 if (count($value) > 0) {
-                                    $markup .= "<td><input type='hidden' name='fund_deposit[]' value='$key'>
+                                    $markup .= "<td data-label='Invested Amount'><input type='hidden' name='fund_deposit[]' value='$key'>
                                     <input type='text' class=' input_style pre_value' id='invetment_amt' value='{$value["investment_amt"]}'  placeholder='₹ Enter Value' name='fund_amt[]' ></td>
-                                    <td><input type='text' class=' input_style dur_per' value='{$value["duration"]}'  placeholder='Duration (No. of Year)' name='duration[]'></td>
-                                    <td><input type='text' class=' input_style rate_per' value='{$value["percent"]}' placeholder='Intreset %' name='percent[]'></td></tr>";
-                            } else {
-                                    $markup .= "<td><input type='hidden' name='fund_deposit[]' value='$key'>
+                                    <td data-label='Duration'><input type='text' class=' input_style dur_per' value='{$value["duration"]}'  placeholder='Duration (No. of Year)' name='duration[]'></td>
+                                    <td data-label='Interest'><input type='text' class=' input_style rate_per' value='{$value["percent"]}' placeholder='Intreset %' name='percent[]'></td></tr>";
+                                } else {
+                                    $markup .= "<td data-label='Invested Amount'><input type='hidden' name='fund_deposit[]' value='$key'>
                                     <input type='text' class=' input_style pre_value' value=''  placeholder='₹ Enter Value' name='fund_amt[]' ></td>
-                                    <td><input type='text' class=' input_style dur_per' value=''  placeholder='Duration (No. of Year)' name='duration[]'></td>
-                                    <td><input type='text' class=' input_style rate_per' value='' placeholder='Intreset %' name='percent[]'></td></tr>";
+                                    <td data-label='Duration'><input type='text' class=' input_style dur_per' value=''  placeholder='Duration (No. of Year)' name='duration[]'></td>
+                                    <td data-label='Interest'><input type='text' class=' input_style rate_per' value='' placeholder='Intreset %' name='percent[]'></td></tr>";
                                 }
 
                                 echo $markup;
@@ -368,10 +410,19 @@ if (!isset($_SESSION["goaluser"])) {
         d.forEach(el=>{
             top_up_sip(el["id"]);
         });
-        $(".accordion-item").hide()
-        $(`.accordion-item#a-item-${showGid}`).show()
-        $(`.accordion-item#a-item-${showGid} button.collapsed`)[0]?.click()
+        if(showGid !== "all"){
+            $(".accordion-item").hide()
+            $(`.accordion-item#a-item-${showGid}`).show()
+            $(`.accordion-item#a-item-${showGid} button.collapsed`)[0]?.click();
+        }
+        $(".style_input").on("click",function(e){
+            if($(this).val() == 0)$(this).val("")
+        });
     }
+    $("#showAllgoal").click(function(){
+        $(".totalTopUpSip").html($(`#top-up-req`).html())
+        $(".accordion-item").show()
+    });
     function deleteAllocation(e){
         const fdata=$(`button[data-fid='${e.dataset.fid}']`).parents("form");
         let data=fdata.serialize().replace("fund=",`fund=${e.dataset.fid}`);
@@ -432,7 +483,6 @@ if (!isset($_SESSION["goaluser"])) {
             e.value=availFund[0].dataset["amt"]
         }
         availFund.html(showAmt)
-        console.log(`.saveAllocation option[data-id='${availFund.data("fid")}']`);
         $(`.saveAllocation option[data-id='${availFund.data("fid")}']`).attr("data-amt",showAmt);
     }
     $(document).on("click", "#cust_btn", function() {
@@ -442,24 +492,24 @@ if (!isset($_SESSION["goaluser"])) {
         console.dir(value.parentElement.remove());
     }
     $('form#fund-table').bind('submit', function() {
+        const fdata=$('form').serialize()
         $.ajax({
             type: 'post',
             url: './UserData.php',
             data: {
-                add_user_fund: $('form').serialize()
+                add_user_fund: fdata
             },
             success: function() {
                 // alert('form was submitted');
                 // fetchval()
-                // setGoalData()
+                showGid="all";
+                setGoalData()
             }
         });
         return false;
     });
-    $("#showAllgoal").click(function(){
-        $(".totalTopUpSip").html($(`#plan_m_sip`).html())
-        $(".accordion-item").show()
-    })
+    
+   
     function cal_lumpsum(amount, year) {
         let fv = amount
         let a = ((1 + (12 / 100)) ** year);
@@ -491,7 +541,6 @@ if (!isset($_SESSION["goaluser"])) {
         let f = d * e;
         let ans = f / Rss;
         $(`#goal-id-${id} #sip-answer`).val(ans.toFixed(0));
-        // console.log(ans);
 
 
         // fv_of_lumpsum
@@ -512,22 +561,15 @@ if (!isset($_SESSION["goaluser"])) {
         // let asset = +$(`.getAllFund-${id}`).html();
         let asset = 0;
         const fsEl=$(`#a-item-${id} tr[data-interest]`);
-        console.log(fsEl);
         if(fsEl.length>0){
             fsEl.each(el=>{
                 let itr= +fsEl[el].dataset.interest;
                 let famt= +fsEl[el].dataset.famt;
                 asset += cal_fv(famt,years,itr)
-                console.log( "fv", cal_fv(famt,years,itr));
             })
         }
-        console.log("total fv", asset);
         total_asset = (total_planinv + asset);
         fv = $(`#goal-id-${id}`).closest("div").find("span").attr("data-fv") - total_asset;
-        // console.log( fv,total_asset);
-
-        // let fv = 100000;
-        // let rate  = 12 ;
         let G = (10 / 100);
         let G1 = G + 0.00001;
         // let n = 15 ;
@@ -558,29 +600,26 @@ if (!isset($_SESSION["goaluser"])) {
         let ss = ((s - 1) * (1 + r));
         let s2 = aa / ss;
         let S = s2.toFixed(0);
-        console.log(S); //ans = C  
-
-
-
-
         $(`#goal-id-${id} #total-value`).val(S);
         $(`.topup[data-gid="${id}"]`).html(S)
         $(`#plan-lamp-${id}`).val(pv)
         $(`#plan-sip-${id}`).val(P)
         let plan_sip = 0;
         let plan_lumpsum = 0;
+        let tTopSip = 0;
         document.querySelectorAll("#mothly_sip").forEach(el => {
             plan_sip += +el.value
-
         })
         $("#plan_m_sip").html(plan_sip)
         document.querySelectorAll("#lumpsum_sip").forEach(el => {
             plan_lumpsum += +el.value
 
         })
-
-        // $("#mothly-plan").html(plan_sip);
         $("#plan_l_sip").html(plan_lumpsum)
+        document.querySelectorAll("#total-value").forEach(el => {
+            tTopSip += +el.value
+        })
+        $("#top-up-req").html(tTopSip)
     }
     function cal_fv(pre, rates_per, n_per) {
         //fixed_asset_fv
@@ -614,13 +653,12 @@ if (!isset($_SESSION["goaluser"])) {
             },
             dataType: "json",
             success: function(data) {
-                // console.log(data);
+                console.log("goal",data);
                 let markup = '';
                 let total_sip = 0;
                 let total_lumpsum = 0;
                 data.forEach(el => {
-                    markup += `<div class="goal-box"> <table class="table mt-3 table-responsive " style=" font-size:12px;width: 85%;position: relative;" id='goal-id-${el["id"]}'><thead><tr class="' ${el["goal"]} '"><th style="width:10%;color:white;font-size: 14px;text-align: center;">Goal Name</th><th  style="color:white;font-size: 14px;text-align: center;width:8%;">Tenure</th>  <th colspan="2" style="width:30%;color:white;font-size: 14px;text-align: center;">AMOUNT REQUIRED</th> <th colspan="2" style="width:40%;color:white;font-size: 14px;text-align: center;">PLAN THE AMOUNT YOU CAN INVEST</th><th colspan="2" style="width:40%;color:white;font-size: 14px;text-align: center;">Top UP SIP Required</th></tr> </thead>   `;
-
+                    
                     if (el["goal"] || el["goal_data"]["futureage"] || (el["goal_data"]["ansinputs"]) || (el["goal_data"]["sipvalue"]) || el["goal_data"]["inflation"]) {
                         let temp = +el["goal_data"]["ansinputs"].replaceAll(",", "")
                         let tamps = temp.toLocaleString("en-IN", {
@@ -638,24 +676,89 @@ if (!isset($_SESSION["goaluser"])) {
                             currency: "INR",
                             maximumFractionDigits: 0
                         });
-                        markup += `<tr > <div class="col-1 goal-img"><img src="../ai_form/images/${el["goal"]}.svg">
-                            <span data-fv="${temp}">${(tamps)}</span></div>
-                            <th rowspan="2" class="th_style">${el["goal"]}</th ><th rowspan="2" class="th_style f-age">${el["goal_data"]["futureage"]}</th><th class="col-md-2" style="background-color: #bababa;text-align: center;vertical-align: middle;">MONTHLY </th><th class="col-md-2" style="background-color: #bababa;text-align: center;vertical-align: middle;">LUMPSUM</th><th class="col-md-2" style="background-color: #bababa;text-align: center;vertical-align: middle;">MONTHLY </th><th class="col-md-2" style="background-color: #bababa;text-align: center;vertical-align: middle;">LUMPSUM</th><th><p style="height:6px;animation-delay: 1ms;" class="w3-center w3-animate-left">Monthly SIP needs to be increased every year by: </p></th></tr><tr><td><i class="fa fa-rupee-sign"></i><input class="style_input" disabled type="text" value=" ${sipAmtS}" </td><td><i class="fa fa-rupee-sign"></i><input class="style_input" type="text" disabled value=" ${lump}" </td><td><i class="fa fa-rupee-sign"></i><input class="style_input" type="number" id="mothly_sip" value="${ +el["plan_sip"] + 0}"  oninput="top_up_sip('${el["id"]}')"></td><td><i class="fa fa-rupee-sign"></i><input class="style_input" value="${ +el["plan_lumpsum"] + 0}" type="number" id="lumpsum_sip" oninput="top_up_sip('${el["id"]}')"></td><td><input class="text" readonly id="total-value" value="0"  /></td>
-                            </tr>
-                            <tr class="tip_62739 hidden-xs hidden-sm"><td colspan="5" class="tipContainer"><div class="col-md-1 tipDiv" style="float: left;"><h5>TIP</h5></div><div class="tipText"><p>If you have already made any other investments, you can allocate them to your goal using <a href="#a-item-${el["id"]}" data-bs-toggle="modal" data-bs-target="#fundAllocate" onclick="shoeExistingFund(this)" data-target="${el["id"]}" class="btn1 btn-default1 existing_investment">Existing Assets. </a></p></div></td></tr>`
+                    markup += `<div class="row mt-3 g-table mx-2 mx-xm-4 " id='goal-id-${el["id"]}'>
+                    <div class="col-4 col-lg-1 col-sm-4  goal-img"><img src="./images/${el["goal"]}.svg"> <span data-fv="${temp}">${(tamps)}</span> </div>
+                    <div class="col-4 col-lg-1 col-sm-4  p-0 m-0 text-capitalize"><p class="g-head ${el["goal"]} ">Goal Name</p><spam class="col-span">${el["goal"]}</spam></div>
+                    <div class="col-4 col-lg-1 col-sm-4  p-0 m-0"><p class="g-head ${el["goal"]}">Tenure</p> <span class="col-span f-age">${el["goal_data"]["futureage"]}</span></div>  
+                    <div class="col-lg-3 col-md-6 col-sm-12 p-0 m-0"><p class="g-head ${el["goal"]}">AMOUNT REQUIRED</p><div class="d-flex sub-heading"><span><p>MONTHLY </p><i class="fa fa-rupee-sign"></i><input class="style_input" disabled type="text" value=" ${sipAmtS}" /></span><span><p>LUMPSUM </p><i class="fa fa-rupee-sign"></i><input class="style_input" type="text" disabled value=" ${lump}" /></span></span></div></div> 
+                    <div class="col-lg-3 col-md-6 col-sm-12 p-0 m-0"><p class="g-head ${el["goal"]}">PLAN THE AMOUNT YOU CAN INVEST</p><div class="d-flex sub-heading"><span><p>MONTHLY </p><i class="fa fa-rupee-sign"></i><input class="style_input" type="number" id="mothly_sip" value="${ +el["plan_sip"] + 0}"  oninput="top_up_sip('${el["id"]}')"></span><span><p >LUMPSUM </p><i class="fa fa-rupee-sign"></i><input class="style_input" value="${ +el["plan_lumpsum"] + 0}" type="number" id="lumpsum_sip" oninput="top_up_sip('${el["id"]}')"></span></span></div></div>
+                    <div class="col-lg-2 col-md-12 col-sm-12 p-0 m-0"><p class="g-head ${el["goal"]}">Top UP SIP Required</p><span><p>Monthly SIP needs to be increased every year by:</p></span><input class="text" readonly id="total-value" value="0"  /></div>
+                    <div class="col-12 my-2 text-start"><span class="tipDiv">TIP</span><span class="tipText">If you have already made any other investments, you can allocate them to your goal using <a href="#a-item-${el["id"]}" data-bs-toggle="modal" data-bs-target="#fundAllocate" onclick="shoeExistingFund(this)" data-target="${el["id"]}" class="btn1 btn-default1 existing_investment">Existing Assets. </a></span></div>`;
+
                         total_sip += +el["goal_data"]["sipvalue"].replaceAll(",", "")
                         total_lumpsum += temp;
                     }
-                    markup += "</table> </div>";
+                    markup += "</div>";
                 });
-                markup += `<table class="table mt-3 table-bordered " id="total_goal" style=" font-size:12px;width: 80%;position: relative;margin:auto;"><thead style="background-color:gray;"><tr><th style="font-size: 14px;text-align: center;">Monthly SIP Required</th><th style="font-size: 14px;text-align: center;">Lumsup SIP Required</th><th style="font-size: 14px;text-align: center;width:20%;"  >Monthly Plan SIP</th><th style="font-size: 14px;text-align: center;width:16%;">Monthly Plan Lumpsum</th></tr></thead><tbody><tr style="background-color:#f3f3f3;"><th class="col-2 " style="font-size: 14px; text-align: center;">${total_sip.toLocaleString()}</th><th class="col-2 " style="font-size: 14px;text-align: center;">${total_lumpsum.toLocaleString()}</th class="col-2 " style="font-size: 14px;text-align: center;"><th id="plan_m_sip" style="text-align: center;"></th><th style="text-align: center;" id="plan_l_sip"></th></tr></tbody></table>`
+                markup += `<table class="resp_table mt-3 text-center" id="total_goal" style="font-size:12px;width:80%;position:relative;margin:auto;"><thead ><tr>
+                <th class="g-head" style="background-color:#707070;" scope="col" data-label="Monthly SIP Required">Monthly SIP Required</th>
+                <th class="g-head" style="background-color:#707070;" scope="col" data-label="Lumpsum SIP Required">Lumpsum SIP Required</th>
+                <th class="g-head" style="background-color:#707070;" scope="col" data-label="Monthly Plan SIP">Monthly Plan SIP</th>
+                <th class="g-head" style="background-color:#707070;" scope="col" data-label="Monthly Plan Lumpsum">Monthly Plan Lumpsum</th>
+                <th class="g-head" style="background-color:#707070;" scope="col" data-label="Total Top Up SIP">Total Top Up SIP</th></tr></thead>
+                <tbody><tr>
+                <td class="g-head"  scope="row" data-label="Monthly SIP Required">${total_sip.toLocaleString("en-IN",{ maximumFractionDigits: 0})}</td>
+                <td class="g-head" data-label="Lumpsum SIP Required">${total_lumpsum.toLocaleString("en-IN",{ maximumFractionDigits: 0})}</td>
+                <td class="g-head" id="plan_m_sip" data-label="Monthly Plan Lumpsum"></td>
+                <td class="g-head" id="plan_l_sip" data-label="Monthly Plan Lumpsum"></td>
+                <td class="g-head" id="top-up-req" data-label="Total Top Up SIP"></td>
+                </tr></tbody></table>`
                 $(".goals_table").html(markup);
                 showAllocation(data)
             }
         });
     }
+    // function setGoalData2(){
+    //     $.ajax({
+    //         method: "post",
+    //         url: "./UserData.php",
+    //         data: {
+    //             // id: update_note
+    //             get_user_data: "all"
+    //         },
+    //         dataType: "json",
+    //         success: function(data) {
+    //             // console.log(data);
+    //             let markup = '';
+    //             let total_sip = 0;
+    //             let total_lumpsum = 0;
+    //             data.forEach(el => {
+    //                 markup += `<div class="goal-box table-responsive"> <table class="table mt-3" style=" font-size:12px;width: 85%;position: relative;" id='goal-id-${el["id"]}'><thead><tr class="${el["goal"]} "><th style="width:10%;color:white;font-size: 14px;text-align: center;">Goal Name</th><th  style="color:white;font-size: 14px;text-align: center;width:8%;">Tenure</th>  <th colspan="2" style="width:30%;color:white;font-size: 14px;text-align: center;">AMOUNT REQUIRED</th> <th colspan="2" style="width:40%;color:white;font-size: 14px;text-align: center;">PLAN THE AMOUNT YOU CAN INVEST</th><th colspan="2" style="width:40%;color:white;font-size: 14px;text-align: center;">Top UP SIP Required</th></tr> </thead>   `;
+
+    //                 if (el["goal"] || el["goal_data"]["futureage"] || (el["goal_data"]["ansinputs"]) || (el["goal_data"]["sipvalue"]) || el["goal_data"]["inflation"]) {
+    //                     let temp = +el["goal_data"]["ansinputs"].replaceAll(",", "")
+    //                     let tamps = temp.toLocaleString("en-IN", {
+    //                         style: "currency",
+    //                         currency: "INR",
+    //                         maximumFractionDigits: 0
+    //                     });
+    //                     let lump= +cal_lumpsum(temp, el["goal_data"]["futureage"])
+    //                     lump=lump.toLocaleString("en-IN", {
+    //                         currency: "INR",
+    //                         maximumFractionDigits: 0
+    //                     });
+    //                     const sipAmt= +el["goal_data"]["sipvalue"].replaceAll(",", "");
+    //                     sipAmtS =sipAmt.toLocaleString("en-IN", {
+    //                         currency: "INR",
+    //                         maximumFractionDigits: 0
+    //                     });
+    //                     markup += `<tr > <div class="col-1 goal-img"><img src="./images/${el["goal"]}.svg">
+    //                         <span data-fv="${temp}">${(tamps)}</span></div>
+    //                         <th rowspan="2" class="th_style">${el["goal"]}</th ><th rowspan="2" class="th_style f-age">${el["goal_data"]["futureage"]}</th><th class="col-md-2" style="background-color: #bababa;text-align: center;vertical-align: middle;">MONTHLY </th><th class="col-md-2" style="background-color: #bababa;text-align: center;vertical-align: middle;">LUMPSUM</th><th class="col-md-2" style="background-color: #bababa;text-align: center;vertical-align: middle;">MONTHLY </th><th class="col-md-2" style="background-color: #bababa;text-align: center;vertical-align: middle;">LUMPSUM</th><th><p style="height:6px;animation-delay: 1ms;" class="w3-center w3-animate-left">Monthly SIP needs to be increased every year by: </p></th></tr><tr><td><i class="fa fa-rupee-sign"></i><input class="style_input" disabled type="text" value=" ${sipAmtS}" </td><td><i class="fa fa-rupee-sign"></i><input class="style_input" type="text" disabled value=" ${lump}" </td><td><i class="fa fa-rupee-sign"></i><input class="style_input" type="number" id="mothly_sip" value="${ +el["plan_sip"] + 0}"  oninput="top_up_sip('${el["id"]}')"></td><td><i class="fa fa-rupee-sign"></i><input class="style_input" value="${ +el["plan_lumpsum"] + 0}" type="number" id="lumpsum_sip" oninput="top_up_sip('${el["id"]}')"></td><td><input class="text" readonly id="total-value" value="0"  /></td>
+    //                         </tr>
+    //                         <tr class="tip_62739 hidden-xs hidden-sm"><td colspan="5" class="tipContainer"><div class="col-md-1 tipDiv" style="float: left;"><h5>TIP</h5></div><div class="tipText"><p>If you have already made any other investments, you can allocate them to your goal using <a href="#a-item-${el["id"]}" data-bs-toggle="modal" data-bs-target="#fundAllocate" onclick="shoeExistingFund(this)" data-target="${el["id"]}" class="btn1 btn-default1 existing_investment">Existing Assets. </a></p></div></td></tr>`
+    //                     total_sip += +el["goal_data"]["sipvalue"].replaceAll(",", "")
+    //                     total_lumpsum += temp;
+    //                 }
+    //                 markup += "</table> </div>";
+    //             });
+    //             markup += `<table class="table mt-3 table-bordered " id="total_goal" style=" font-size:12px;width: 80%;position: relative;margin:auto;"><thead style="background-color:gray;"><tr><th style="font-size: 14px;text-align: center;">Monthly SIP Required</th><th style="font-size: 14px;text-align: center;">Lumsup SIP Required</th><th style="font-size: 14px;text-align: center;width:20%;"  >Monthly Plan SIP</th><th style="font-size: 14px;text-align: center;width:16%;">Monthly Plan Lumpsum</th><th style="font-size: 14px;text-align: center;width:16%;">Total Top Up SIP</th></tr></thead><tbody><tr style="background-color:#f3f3f3;"><th class="col-2 " style="font-size: 14px; text-align: center;">${total_sip.toLocaleString()}</th><th class="col-2 " style="font-size: 14px;text-align: center;">${total_lumpsum.toLocaleString()}</th class="col-2 " style="font-size: 14px;text-align: center;"><th id="plan_m_sip" style="text-align: center;"></th><th style="text-align: center;" id="plan_l_sip"></th><th style="text-align: center;" id="top-up-req"></th></tr></tbody></table>`
+    //             $(".goals_table").html(markup);
+    //             showAllocation(data)
+    //         }
+    //     });
+    // }
     function shoeExistingFund(e){
-        console.log(e);
         $(".accordion-item").hide()
         $(`.accordion-item#a-item-${e.dataset.target}`).show();
         $(".totalTopUpSip").html($(`#goal-id-${e.dataset.target} #total-value`).val())
@@ -666,10 +769,10 @@ if (!isset($_SESSION["goaluser"])) {
     }
     function add_fund() {
         markup = `<tr>
-        <td><input type='text' name='fund_deposit[]' class='input_style' placeholder="Fund Type"></td>
-        <td> <input type='text' class='input_style pre_value' value=''  placeholder='₹ Enter Value' name='fund_amt[]' ></td>
-        <td><input type='text' class='input_style dur_per' value=''  placeholder='Duration (No. of Year)' name='duration[]'></td>
-        <td><input type='text' class='input_style rate_per' value='' placeholder='Interest %' name='percent[]'></td>
+        <td data-label='Assets Type'><input type='text' name='fund_deposit[]' class='input_style' placeholder="Assets Type"></td>
+        <td data-label='Invested Amount'> <input type='text' class='input_style pre_value' value=''  placeholder='₹ Enter Value' name='fund_amt[]' ></td>
+        <td data-label='Duration'><input type='text' class='input_style dur_per' value=''  placeholder='Duration (No. of Year)' name='duration[]'></td>
+        <td data-label='Interest'><input type='text' class='input_style rate_per' value='' placeholder='Interest %' name='percent[]'></td>
         </tr>`
         $("#list_fund").append(markup);
 

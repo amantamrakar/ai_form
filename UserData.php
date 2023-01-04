@@ -19,7 +19,7 @@ if (isset($_POST["get_user_fund"])) {
 
 if (isset($_POST["get_user_data"])) {
     // echo "select * from user_goal where email={$_SESSION['goaluser']}";
-    $res = mysqli_query($conn, "select * from user_goal where email='{$_SESSION['goaluser']}'");
+    $res = mysqli_query($conn, "select `email`,`goal`,`goal_data`,`id`,`plan_lumpsum`,`plan_sip` from user_goal where email='{$_SESSION['goaluser']}'");
     $data = $res->fetch_all(MYSQLI_ASSOC);
     foreach ($data as $key => $d) {
         $a = json_decode($d["goal_data"], true);

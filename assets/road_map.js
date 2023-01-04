@@ -165,7 +165,7 @@ function set_goal(y, text) {
     <text class="goal-text">
     <tspan class="road-year" x="${mid + (35*ls)}" y="${y+3}" >${text.year}</tspan>
         <tspan x="${py+20}" style="fill:var(--${text.goal})" y="${y-10}" >${text.goal}</tspan>
-        <tspan x="${py+20}" y="${y+8}" style="font-size:6px;">${(+allRes[text.id].goal_data.ansinputs.replace(/,/g,'')).toLocaleString("en-IN", {style:"currency", currency:"INR"})}</tspan>
+        <tspan x="${py+20}" y="${y+8}" style="font-size:6px;">${(+allRes[text.id].goal_data.ansinputs.replace(/,/g,'')).toLocaleString("en-IN", {style:"currency", currency:"INR",maximumFractionDigits: 0})}</tspan>
         </text>
         </g>`;
     goal.insertAdjacentHTML("beforeend",c_m)
