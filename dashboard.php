@@ -16,10 +16,13 @@ $data = array();
 if (!isset($_SESSION["goal"])) {
     $_SESSION["goal"] = "pass"; //?to pass all the letter or notation
 }
-$sql = "SELECT * FROM `user_goal` WHERE `email`='{$_SESSION["goaluser"]}' AND `goal`='{$_SESSION["goal"]}' ORDER BY `id`  DESC";
+$sql = "SELECT `email`,`goal`,`goal_data`,`id`,`plan_lumpsum`,`plan_sip` FROM `user_goal` WHERE `email`='{$_SESSION["goaluser"]}' AND `goal`='{$_SESSION["goal"]}' ORDER BY `id`  DESC";
 // echo $sql;
-$resgister_sql = "SELECT `full_name` FROM `registered_user` WHERE `email`='{$_SESSION["goaluser"]}'";
-$register_result = mysqli_query($conn, $resgister_sql);
+$resgister_sql = "SELECT `full_name` FROM `client_register` WHERE email=?";
+$reg = mysqli_prepare($user_con, $resgister_sql);
+$reg->bind_param("s",$_SESSION["goaluser"]);
+$reg->execute();
+$register_result=$reg->get_result();
 if (mysqli_num_rows($register_result) > 0) {
     $row = mysqli_fetch_assoc($register_result);
     $user_name = $row['full_name'];
@@ -144,7 +147,7 @@ if (mysqli_num_rows($result)) {
             background-size: 80%;
             background-repeat: no-repeat repeat;
             background-position: center;
-            animation: movebg 10s linear infinite forwards;
+            animation: movebg 15s linear infinite forwards;
         }
 
         .goal-box {
@@ -736,7 +739,7 @@ if (mysqli_num_rows($result)) {
                     </thead>
                     <tbody style="font-size:13.5px;">
                         <?php
-                        $select = "SELECT * FROM `user_goal` WHERE `email` = '{$_SESSION['goaluser']}'";
+                        $select = "SELECT `email`,`goal`,`goal_data`,`id`,`plan_lumpsum`,`plan_sip` FROM `user_goal` WHERE `email` = '{$_SESSION['goaluser']}'";
                         // echo $select;
                         $select_result = mysqli_query($conn, $select);
                         if (mysqli_num_rows($select_result) > 0) {

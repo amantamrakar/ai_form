@@ -1,10 +1,4 @@
-<?php
-// session_start();
-// if (!isset($_SESSION["goaluser"])) {
-//     header("location: ./index.php");
-// }
-
-?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 

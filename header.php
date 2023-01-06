@@ -13,19 +13,22 @@
 </style>
 <nav class="navbar navbar-expand-sm " style="justify-content: space-between;background-color:#fff;border-radius:0px 0px 10px 10px;">
         <img src="images\swalogo.png" style="height: 44px;" alt="">
-        <ul class="navbar-nav mx-2">
-            <li class="nav-item">
+        <ul class="navbar-nav mx-2 align-items-baseline">
+           
                 <?php
             if (isset($_SESSION["goaluser"])) {
-                echo '<a class="btn btn-outline-primary a_style" href="dashboard.php">Dashboard</a>';
+                echo "<li class='nav-item mx-2'><span class='text-capitalize' style=' padding-right:10px;'>{$_SESSION["user_full_name"]}</span></li>";
+                echo ' <li class="nav-item"><a class="btn btn-outline-primary a_style" href="dashboard.php">Dashboard</a> </li>';
+                
             }else{
-                echo '<a class="btn btn-outline-primary" data-bs-target="#staticBackdrop" data-bs-toggle="modal" type="button">LogIn</a>';
+                echo ' <li class="nav-item"><a class="btn btn-outline-primary" data-bs-target="#staticBackdrop" data-bs-toggle="modal" type="button">LogIn</a> </li>';
             }
             ?>
-            </li>
+           
             <?php
                     if (isset($_SESSION["goaluser"])) {
                         ?>
+            
             <li class="nav-item mx-2">
                 <a class="btn btn-outline-primary a_style" href="index.php">New Goal</a>
             </li>
@@ -36,6 +39,7 @@
                 </svg>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-lg-end">
+                   
                     <li class="dropdown-item">
                     <a class="nav-link text-primary" href="dashboard.php">Dashboard</a>
                     </li>
@@ -50,3 +54,5 @@
             ?>
         </ul>
     </nav>
+    
+    

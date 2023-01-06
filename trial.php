@@ -40,8 +40,11 @@ if ($_POST["f_type"] == "register") {
         $_SESSION['data'] = $target;
     }
 
-    $datasaved = "SELECT * FROM `registered_user` WHERE email = '$email' or phone_no='$mobile'";
-    $run = mysqli_query($conn, $datasaved);
+    $datasaved = "SELECT * FROM `client_register` WHERE email=?  or phone_no=?";
+    $smt = mysqli_prepare($user_con, $datasaved);
+    $smt->bind_param("ss",$email,$mobile);
+    $smt->execute();
+    $run=$smt->get_result();
     if (mysqli_num_rows($run) > 0) {
         $data = mysqli_fetch_array($run);
         $res["status"] = false;
@@ -50,12 +53,13 @@ if ($_POST["f_type"] == "register") {
         echo json_encode($res);
     } else {
 
-        $reguser = "INSERT INTO `registered_user`(`full_name`, `email`, `pws`, `phone_no`,`status`)
-                VALUES ('$name','$email','$pwd','$mobile','active')";
+        $reguser = "INSERT INTO `client_register`(`full_name`, `email`, `pws`, `phone_no`)
+                VALUES (?,?,?,?)";
 
-        $run = mysqli_query($conn, $reguser);
-        // $data = mysqli_fetch_array($run);
-        // echo mysqli_error($conn);
+        $reg = mysqli_prepare($user_con, $reguser);
+        $reg->bind_param("ssss",$name,$email,$pwd,$mobile);
+        
+        $run=$reg->execute();
         if ($run) {
             $_SESSION['goaluser'] = $email;
             $sql = "INSERT INTO `user_goal`( `email`, `goal`, `goal_data`) VALUES ('$email','$goal','$sgoal')";
@@ -63,7 +67,7 @@ if ($_POST["f_type"] == "register") {
             $res["status"] = true;
             echo json_encode($res);
         } else {
-            $res["status"] = true;
+            $res["status"] = false;
             $res["message"] = "invalid data";
             echo json_encode($res);
         }
@@ -77,12 +81,13 @@ if ($_POST["f_type"] == "register") {
 if ($_POST["f_type"] == "login") {
     $email = $_POST["email"];
     $pass = $_POST["l_pass"];
-    
-
-    $sql = "SELECT * from `registered_user` WHERE email = '$email'";
+    $sql = "SELECT * from `client_register` WHERE email = ?";
     // echo $sql;
-    $result =  mysqli_query($conn, $sql);
-    $data = $result->fetch_assoc();
+    $smt =  mysqli_prepare($user_con, $sql);
+    $smt->bind_param("s",$email);
+    $smt->execute();
+    $result=$smt->get_result();
+    $data =  mysqli_fetch_assoc($result);
     // var_dump($data);
     if ($data != null) {
         if (password_verify($pass, $data["pws"])) {
@@ -129,7 +134,7 @@ if ($_POST["f_type"] == "login") {
 
 // if (isset($_POST["auth-sign-in"])) {
 //     $req = $_POST["auth-sign-in"];
-//     // $sql = "UPDATE `registered_user` SET `user_status` = 'yes' ,`last_login`='$date',`device`='$device' WHERE `registered_user`.`email` = '{$_SESSION["user"]}'";
+//     // $sql = "UPDATE `client_register` SET `user_status` = 'yes' ,`last_login`='$date',`device`='$device' WHERE `client_register`.`email` = '{$_SESSION["user"]}'";
 //     // $result = mysqli_query($conn, $sql);
 //     if (filter_var($req["email"], FILTER_VALIDATE_EMAIL) == false) {
 //         http_response_code(401);
@@ -137,7 +142,7 @@ if ($_POST["f_type"] == "login") {
 //     }
 //     $pass = $req["p=assword"];
 //     unset($req["password"]);
-//     $data = get_data_by_ref("registered_user", "email,pws,full_name", $req);
+//     $data = get_data_by_ref("client_register", "email,pws,full_name", $req);
 //     // my_DD($data);
 //     if (isset($data["error"])) {
 //         http_response_code(401);
