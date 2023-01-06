@@ -579,7 +579,7 @@ if (!isset($_SESSION["goaluser"])) {
 
     }
 
-    $(document).on('input', " .pre_value, .dur_per , .rate_per", function() {
+    $(document).on('input', ".pre_value, .dur_per , .rate_per", function() {
         // console.log($(this).parent().find(".fd_fv_value"));
         let a = +$(this).parent().find(".pre_value").val()
         let d = +$(this).parent().find(".dur_per").val()

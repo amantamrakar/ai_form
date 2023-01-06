@@ -1325,6 +1325,7 @@ session_start();
         success: function(data) {
           if (data.status) {
             window.location.href = "./dashboard.php"
+            // console.log(l_pass);
           } else {
             // $(".message").html(data.message)
             alert(data.message)
