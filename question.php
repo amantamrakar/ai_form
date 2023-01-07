@@ -22,7 +22,6 @@
         }
 
         .container-fluid {
-
             color: white;
         }
 
@@ -539,7 +538,8 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="#myModal1" onclick="hideModal()">Continue</button>
+                            <p>CLick Next To View Recommandation </p>               
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="#myModal1" onclick="hideModal()">Next</button>
                         </div>
 
                     </div>
