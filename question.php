@@ -569,7 +569,7 @@
     let current = 1;
 
     function bootstrapTabControl() {
-        var i, items = $('.nav-link'),
+        var i, items = $('#myTab .nav-link'),
             pane = $('.tab-pane');
         $('.nexttab').on('click', function() {
             for (i = 0; i < items.length; i++) {
