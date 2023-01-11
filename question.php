@@ -135,6 +135,42 @@
             background-color: #ffffff;
             color: #313f80;
         } */
+        .next_btn
+        { 
+        background-color: #1c87c9;
+        /* -webkit-border-radius: 60px; */
+        border-radius: 5px;
+        border: none;
+        color: #eeeeee;
+        /* cursor: pointer; */
+        display: inline-block;
+        font-family: sans-serif;
+        /* font-size: 20px; */
+        padding: 5px 15px;
+        /* text-align: center;
+        text-decoration: none; */
+      }
+      @keyframes glowing {
+        0% {
+          background-color: #1c87c9;
+          box-shadow: 0 0 5px #1c87c9;
+          /* color:black; */
+        }
+        50% {
+          background-color: #13586a;
+          box-shadow: 0 0 20px #13586a;
+          color :#ffffff;
+        }
+        100% {
+          background-color: #1c87c9;
+          box-shadow: 0 0 5px #1c87c9;
+          /* color:black; */
+        }
+      }
+      .next_btn {
+        animation: glowing 1300ms infinite;
+      }
+        
     </style>
 </head>
 
@@ -531,15 +567,15 @@
                                     </div>
                                     <div class="col-6 col-sm-5" style="border:1px solid black;border-radius: 33px; padding: 17px;">
                                         <p>As per Your Question Analysis Your Risk Apetite is</p>
-                                        <p style="font-size: 25px; font-style: italic; font-family: system-ui;font-weight: 600;"><span id="portfolio">Modrate</span></p>
+                                        <p style="font-size: 25px; font-style: italic; font-family: system-ui;font-weight: 600;"><span id="portfolio"></span></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="modal-footer">
-                            <p>CLick Next To View Recommandation </p>               
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="#myModal1" onclick="hideModal()">Next</button>
+                            <p style="color: black; font-size: 17px; font-style: italic;">Click Next To View Recommandation </p>               
+                            <a href="suggest_scm.php"><button type="button" class="btn btn-primary next_btn" data-bs-dismiss="#myModal1" onclick="hideModal()" >Next</button></a>
                         </div>
 
                     </div>
@@ -639,6 +675,7 @@ function hideModal(){
             success: function(data) {
                 // console.log(data);
                 // alert(data);
+                $('#portfolio').html(data)
                 $("#myModal1").modal({backdrop: 'static', keyboard: false}).show(); 
                 // data-bs-toggle="modal" data-bs-target="#myModal1" data-backdrop="static" data-keyboard="false"
             }
@@ -678,133 +715,6 @@ function hideModal(){
         var risk_cap = +$("#Capacitys").html();
         var risk_will = +$("#Willingnesss").html();
 
-        if (risk_cap >= 0 && risk_cap <= 10 && risk_will >= 0 && risk_will <= 99) {
-            alert("Portfolio No:- 1");
-            $("#portfolio").text("Conservative")
-        } else if (risk_cap >= 11 && risk_cap <= 20) {
-            if (risk_will >= 0 && risk_will <= 80) {
-                alert("portfolio no:- 2");
-                $("#portfolio").text("Conservative");
-            } else if (risk_will >= 81 && risk_will <= 100) {
-                alert("portfolio no:-3");
-                $("#portfolio").text("Conservative");
-            }
-        } else if (risk_cap >= 21 && risk_cap <= 30) {
-            if (risk_will >= 0 && risk_will <= 50) {
-                alert("portfolio no:-3");
-                $("#portfolio").text("Conservative");
-            } else if (risk_will >= 51 && risk_will <= 90) {
-                alert("portfolio no:- 4");
-                $("#portflio").text("Modrate");
-            } else if (risk_will >= 91 && risk_will <= 100) {
-                alert("portfolio no:-5");
-                $("#portflio").text("Modrate");
-            }
-        } else if (risk_cap >= 31 && risk_cap <= 40) {
-            if (risk_will >= 0 && risk_will <= 10) {
-                alert("portfolio no:- 3");
-                $("#portfolio").text("Conservative");
-            } else if (risk_will >= 11 && risk_will <= 60) {
-                alert("portfolio no:- 4");
-                $("#portfolio").text("Conservative");
-            } else if (risk_will >= 61 && risk_will <= 100) {
-                alert("portfolio ni:-5");
-                $("#portflio").text("Modrate");
-            }
-        } else if (risk_cap >= 41 && risk_cap <= 80) {
-            if (risk_will >= 0 && risk_will <= 40) {
-                alert("portfolio no :- 4");
-                $("#portfolio").text("Conservative");
-            } else if (risk_will >= 41 && risk_will <= 80) {
-                alert("portfolio no:- 5");
-                $("#portflio").text("Modrate");
-            } else if (risk_will >= 81 && risk_will <= 100) {
-                alert("portfolio no:- 6");
-                $("#portflio").text("Modrate");
-            }
-        } else if (risk_cap >= 51 && risk_cap <= 60) {
-            if (risk_will >= 0 && risk_will <= 40) {
-                alert("portfolio no:-5");
-                $("#portflio").text("Modrate");
-            } else if (risk_will >= 41 && risk_will <= 80) {
-                alert("portfolio no :- 6");
-                $("#portflio").text("Modrate");
-            } else if (risk_will >= 81 && risk_will <= 100) {
-                alert("portfolio no:- 7");
-                $("#portflio").text("Modrate");
-            }
-        } else if (risk_cap >= 61 && risk_cap <= 70) {
-            if (risk_will >= 0 && risk_will <= 20) {
-                alert("portfolio no :-5");
-                $("#portflio").text("Modrate");
-            } else if (risk_will >= 21 && risk_will <= 50) {
-                alert("portfolio no :-6");
-                $("#portflio").text("Modrate");
-            } else if (risk_will >= 51 && risk_will <= 70) {
-                alert("portfolio no:- 7");
-                $("#portflio").text("Modrate");
-            } else if (risk_will >= 71 && risk_will <= 90) {
-                alert("portfolio no:- 8");
-                $("#portflio").text("Modrate");
-            } else if (risk_will >= 91 && risk_will <= 100) {
-                alert("portfolio no :-9");
-                $("#portfolio").text("Aggressive");
-            }
-        } else if (risk_cap >= 71 && risk_cap <= 80) {
-            if (risk_will >= 0 && risk_will <= 30) {
-                alert("posrtfolio no:- 6");
-                $("#portflio").text("Modrate");
-            } else if (risk_will >= 31 && risk_will <= 60) {
-                alert("portfolio no :-7");
-                $("#portflio").text("Modrate");
-            } else if (risk_will >= 61 && risk_will <= 70) {
-                alert("postfolio no:- 8");
-                $("#portflio").text("Modrate");
-            } else if (risk_will >= 71 && risk_will <= 80) {
-                alert("portfolio no :-9");
-                $("#portfolio").text("Aggressive");
-            } else if (risk_will >= 81 && risk_will <= 100) {
-                alert("portfolio no :- 10");
-                $("#portfolio").text("Aggressive");
-            }
-        } else if (risk_cap >= 81 && risk_cap <= 90) {
-            if (risk_will >= 0 && risk_will <= 20) {
-                alert("portfolio no:- 7");
-                $("#portflio").text("Modrate");
-            } else if (risk_will >= 21 && risk_will <= 50) {
-                alert("portfolio no:- 8");
-                $("#portflio").text("Modrate");
-            } else if (risk_will >= 51 && risk_will <= 60) {
-                alert("portfolio no:- 9");
-                $("#portfolio").text("Aggressive");
-            } else if (risk_will >= 61 && risk_will <= 80) {
-                alert("portfolio no :-10");
-                $("#portfolio").text("Aggressive");
-            } else if (risk_will >= 81 && risk_will <= 90) {
-                alert("portfolio no:-11");
-                $("#portfolio").text("Aggressive");
-            } else if (risk_will >= 91 && risk_will <= 100) {
-                alert("portfolio no:- 12");
-                $("#portfolio").text("Aggressive");
-            }
-        } else if (risk_cap >= 91 && risk_cap <= 100) {
-            if (risk_will >= 0 && risk_will <= 20) {
-                alert("portfolio no:- 8");
-                $("#portflio").text("Modrate");
-            } else if (risk_will >= 21 && risk_will <= 50) {
-                alert("portfolio no :- 9");
-                $("#portfolio").text("Aggressive");
-            } else if (risk_will >= 51 && risk_will <= 60) {
-                alert("portfolio no :- 10");
-                $("#portfolio").text("Aggressive");
-            } else if (risk_will >= 61 && risk_will <= 80) {
-                alert("portfolio no :- 11");
-                $("#portfolio").text("Aggressive");
-            } else if (risk_will >= 81 && risk_will <= 100) {
-                alert("portfolio no :- 12");
-                $("#portfolio").text("Aggressive");
-            }
-        }
 
     }
 
