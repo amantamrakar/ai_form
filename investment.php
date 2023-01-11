@@ -202,8 +202,8 @@ if (!isset($_SESSION["goaluser"])) {
     </div>
     <div class="mt-5 mb-4" style="text-align:center;">
         <a class="btn btn-primary" href="dashboard.php">Previous</a>
-        <button type="button" class="btn btn-success" id="btn_web"  onclick="topupsip()"><a class="text-light" href="./question.php">   View
-            Recommandation</a></button>
+        <button type="button" class="btn btn-success" id="btn_web"  onclick="topupsip()">
+        <a class="text-light" href="./question.php">View Recommendation</a></button>
     </div>
     </div>
     <div class="modal fade" id="myModal" role="dialog">
@@ -316,7 +316,6 @@ if (!isset($_SESSION["goaluser"])) {
         </div>
     </div>
 
-</body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="./assets/bootstrap.bundle.min.js"></script>
 <script>
@@ -443,7 +442,6 @@ if (!isset($_SESSION["goaluser"])) {
             }
         });
     }
-
     function saveAllocation(e){
         const fEl=$(`form#${e.dataset["form"]}`);
         fdata=fEl.serialize();
@@ -508,8 +506,6 @@ if (!isset($_SESSION["goaluser"])) {
         });
         return false;
     });
-    
-   
     function cal_lumpsum(amount, year) {
         let fv = amount
         let a = ((1 + (12 / 100)) ** year);
@@ -517,7 +513,6 @@ if (!isset($_SESSION["goaluser"])) {
         let c = b.toFixed(0);
         return c
     }
-
     function get_rate(N) {
       let rate = 12 / 100;
       if (N <= 3 && N > 1) {
@@ -630,7 +625,6 @@ if (!isset($_SESSION["goaluser"])) {
         return ans;
 
     }
-
     $(document).on('input', ".pre_value, .dur_per , .rate_per", function() {
         // console.log($(this).parent().find(".fd_fv_value"));
         let a = +$(this).parent().find(".pre_value").val()
@@ -639,7 +633,6 @@ if (!isset($_SESSION["goaluser"])) {
         let ans = cal_fv(a, d, r);
         $(this).parent().find(".fd_fv_value").val(ans);
     })
-
     $("document").ready(function() {
         setGoalData()
     });
