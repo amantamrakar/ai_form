@@ -76,14 +76,17 @@ if (isset($_POST["allocationFund"])) {
     $sf = mysqli_prepare($conn, "SELECT allocate_amount,allocate_goals,investment_amt FROM `user_fund` where user_email='{$_SESSION['goaluser']}' && `id`=?");
     $sf->bind_param("s", $req["fund"]);
     $sf->execute();
+    $show_message=array("status" => true, "message" => "Allocation Successful");
     $sf_data = mysqli_fetch_assoc($sf->get_result());
     // $req["lumpsumAmtAllocated"]=$sf_data["allocate_amount"];
     $all_allocations = json_decode($sf_data["allocate_goals"], true);
     if (isset($all_allocations[$req["goal"]])) {
         // $sf_data["allocate_amount"] = +$sf_data["allocate_amount"] - +$all_allocations[$req["goal"]]["amt"];
         $all_allocations[$req["goal"]]["amt"] = $req["lumpsumAmtAllocated"] + +$all_allocations[$req["goal"]]["amt"];
-        if($req["lumpsumAmtAllocated"] == 0){
+        if($req["lumpsumAmtAllocated"] == 0){ //delete allocation
+            $req["lumpsumAmtAllocated"]= -$all_allocations[$req["goal"]]["amt"];
             unset($all_allocations[$req["goal"]]);
+            $show_message["message"]="Allocation Deleted";
         }
     } else {
         $allocate_goal = array();
@@ -93,6 +96,8 @@ if (isset($_POST["allocationFund"])) {
     $req["totalAllocated"] = +$sf_data["allocate_amount"] + +$req["lumpsumAmtAllocated"];
     if ($req["totalAllocated"] > $sf_data["investment_amt"]) {
         die(json_encode(array("status" => true, "message" => "lump sum Amount Allocated greater than investment amount")));
+    }else if($req["totalAllocated"] < 0){
+        die(json_encode(array("status" => true, "message" => "invalid Allocation")));
     }
     $sql = "UPDATE user_fund SET allocate_amount= ? ,allocate_goals= ? WHERE user_email='{$_SESSION['goaluser']}' && `id`=?";
     $smt = mysqli_prepare($conn, $sql);
@@ -105,5 +110,14 @@ if (isset($_POST["allocationFund"])) {
     $upa->bind_param("sss",$req["planSip"],$req["planLamp"],$req["goal"]);
     $upa->execute();
 
-    echo json_encode(array("status" => true, "message" => "Allocation Successful"));
+    echo json_encode($show_message);
+}
+if(isset($_POST["save_all_plan"])){
+    $data=$_POST["save_all_plan"];
+    $upa=mysqli_prepare($conn,"UPDATE user_goal SET plan_sip=?, plan_lumpsum=? WHERE email='{$_SESSION['goaluser']}' && `id`=?");
+    foreach($data as $key=>$d){
+        $upa->bind_param("sss",$d["sip"],$d["lup"],$key);
+        $upa->execute();
+    }
+    echo json_encode(array("status" => true));
 }

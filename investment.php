@@ -202,8 +202,11 @@ if (!isset($_SESSION["goaluser"])) {
     </div>
     <div class="mt-5 mb-4" style="text-align:center;">
         <a class="btn btn-primary" href="dashboard.php">Previous</a>
-        <button type="button" class="btn btn-success" id="btn_web"  onclick="topupsip()">
-        <a class="text-light" href="./question.php">View Recommendation</a></button>
+        <button type="button" class="btn btn-success" id="topUpSave">
+        <!-- <a class="text-light text-decoration-none" href="./question.php"> -->
+            View Recommendation
+        <!-- </a> -->
+    </button>
     </div>
     </div>
     <div class="modal fade" id="myModal" role="dialog">
@@ -277,7 +280,7 @@ if (!isset($_SESSION["goaluser"])) {
         </div>
     </div>
     <div class="declare-container hidden-sm hidden-xs">
-        <a type="button" class="btn1 btn-default1 declear_existing_investment" data-bs-toggle="modal" data-bs-target="#myModal" value="add" id="moredrop_dowp" style="float:right" ;>
+        <a type="button" class="btn1 btn-default1 declear_existing_investment" data-bs-toggle="modal" data-bs-target="#myModal" value="add" id="moredrop_dowp" style="float:right">
             <i class="fa fa-plus-circle fa-3x"></i>
             <p>DECLARE<br>EXISTING<br>ASSETS</p>
         </a>
@@ -310,6 +313,7 @@ if (!isset($_SESSION["goaluser"])) {
                     <!-- </form> -->
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Allocate More Fund</button>
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -320,6 +324,28 @@ if (!isset($_SESSION["goaluser"])) {
 <script src="./assets/bootstrap.bundle.min.js"></script>
 <script>
     let showGid=null;
+    $("#topUpSave").click(function(e){
+        $(this).attr("disabled",true);
+const data={};
+$("input#mothly_sip").each((i,el)=>{
+    data[el.dataset.sgid]={"sip":el.value};
+    data[el.dataset.sgid]["lup"]=$(`input#lumpsum_sip[data-lgid="${el.dataset.sgid}"]`).val()
+});
+        $.ajax({
+            type: "post",
+            url: "./UserData.php",
+            data: {"save_all_plan":data},
+            dataType: "json",
+            success: function (res) {
+                $("#topUpSave").attr("disabled",false);
+                if(res["status"]){
+                   window.location.href="./question.php";
+                }else{
+                   alert("Invalid Data");
+                }
+            }
+        });
+    });
     function showAllocation(d) {
         let markup = `<div class="accordion" id="accordionExample">`;
         const allFinds = fetch_data();
@@ -443,6 +469,7 @@ if (!isset($_SESSION["goaluser"])) {
         });
     }
     function saveAllocation(e){
+        e.setAttribute("disabled",true);
         const fEl=$(`form#${e.dataset["form"]}`);
         fdata=fEl.serialize();
         $.ajax({
@@ -451,6 +478,7 @@ if (!isset($_SESSION["goaluser"])) {
             data: {"allocationFund":fdata},
             dataType: "json",
             success: function (res) {
+                e.setAttribute("disabled",false);
                 if(res["status"]){
                     alert(res.message);
                     setGoalData();
@@ -486,9 +514,6 @@ if (!isset($_SESSION["goaluser"])) {
     $(document).on("click", "#cust_btn", function() {
         $("#fundAllocate").modal("toggle");
     })
-    function removeel(value) {
-        console.dir(value.parentElement.remove());
-    }
     $('form#fund-table').bind('submit', function() {
         const fdata=$('form').serialize()
         $.ajax({
@@ -674,7 +699,7 @@ if (!isset($_SESSION["goaluser"])) {
                     <div class="col-4 col-lg-1 col-sm-4  p-0 m-0 text-capitalize"><p class="g-head ${el["goal"]} ">Goal Name</p><spam class="col-span">${el["goal"]}</spam></div>
                     <div class="col-4 col-lg-1 col-sm-4  p-0 m-0"><p class="g-head ${el["goal"]}">Tenure</p> <span class="col-span f-age">${el["goal_data"]["futureage"]}</span></div>  
                     <div class="col-lg-3 col-md-6 col-sm-12 p-0 m-0"><p class="g-head ${el["goal"]}">AMOUNT REQUIRED</p><div class="d-flex sub-heading"><span><p>MONTHLY </p><i class="fa fa-rupee-sign"></i><input class="style_input" disabled type="text" value=" ${sipAmtS}" /></span><span><p>LUMPSUM </p><i class="fa fa-rupee-sign"></i><input class="style_input" type="text" disabled value=" ${lump}" /></span></span></div></div> 
-                    <div class="col-lg-3 col-md-6 col-sm-12 p-0 m-0"><p class="g-head ${el["goal"]}">PLAN THE AMOUNT YOU CAN INVEST</p><div class="d-flex sub-heading"><span><p>MONTHLY </p><i class="fa fa-rupee-sign"></i><input class="style_input" type="number" id="mothly_sip" value="${ +el["plan_sip"] + 0}"  oninput="top_up_sip('${el["id"]}')"></span><span><p >LUMPSUM </p><i class="fa fa-rupee-sign"></i><input class="style_input" value="${ +el["plan_lumpsum"] + 0}" type="number" id="lumpsum_sip" oninput="top_up_sip('${el["id"]}')"></span></span></div></div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 p-0 m-0"><p class="g-head ${el["goal"]}">PLAN THE AMOUNT YOU CAN INVEST</p><div class="d-flex sub-heading"><span><p>MONTHLY </p><i class="fa fa-rupee-sign"></i><input class="style_input" type="number" id="mothly_sip" value="${ +el["plan_sip"] + 0}" data-sgid='${el["id"]}' oninput="top_up_sip('${el["id"]}')"></span><span><p >LUMPSUM </p><i class="fa fa-rupee-sign"></i><input class="style_input" value="${ +el["plan_lumpsum"] + 0}" type="number" id="lumpsum_sip" oninput="top_up_sip('${el["id"]}')" data-lgid='${el["id"]}'></span></div></div>
                     <div class="col-lg-2 col-md-12 col-sm-12 p-0 m-0"><p class="g-head ${el["goal"]}">Top UP SIP Required</p><span><p>Monthly SIP needs to be increased every year by:</p></span><input class="text" readonly id="total-value" value="0"  /></div>
                     <div class="col-12 my-2 text-start"><span class="tipDiv">TIP</span><span class="tipText">If you have already made any other investments, you can allocate them to your goal using <a href="#a-item-${el["id"]}" data-bs-toggle="modal" data-bs-target="#fundAllocate" onclick="shoeExistingFund(this)" data-target="${el["id"]}" class="btn1 btn-default1 existing_investment">Existing Assets. </a></span></div>`;
 
