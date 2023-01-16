@@ -32,3 +32,11 @@ background-color:  var(--marriage);
 {
     background-color: var(--house);
 }
+.invalid-message {
+    position: absolute;
+    background-color: white;
+    color: red;
+    border: 1px dashed red;
+    border-radius: 8px;
+    z-index: 4;
+}
