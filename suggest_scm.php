@@ -65,20 +65,27 @@ if (!isset($_SESSION["goaluser"])) {
 }
 
     .div_head {
-        background-color: #434343;
         color: #fff;
-        padding: 10px;
-        border: 1px solid #c4c4c4;
-        text-align: center;
+    padding: 13px;
+    font-size: 18px;
+    background-color: #01987a;
+    border: 1px solid #c4c4c4;
+    text-align: center;
+    font-weight: 500;
+    font-family: math;
+    border-radius: 11px;
+    text-decoration: underline;
     }
 
     .div_body {
-        background-color: antiquewhite;
         padding: 6px;
-        border: 1px solid #c4c4c4;
-        font-size: 19px;
-        font-weight: 600;
-        text-align: center;
+    border: 1px solid #c4c4c4;
+    font-size: 19px;
+    background-color: #fff;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 11px;
+    color: black;
     }
 
     .dropdown {
@@ -86,29 +93,24 @@ if (!isset($_SESSION["goaluser"])) {
         display: inline-block;
     }
 
-    .dropdown-content {
-        display: none;
-      
-    }
+   
 
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
-
-    .btn_style {
+    /* .btn_style {
         padding: 5px 32px;
-        border-radius: 15px;
-        background-color: #434343;
-        color: #fff;
-        font-family: cursive;
-    }
-    .btn_style:hover{
+    border-radius: 15px;
+    background-color: #198754;
+    color: #fff;
+    font-weight: 500;
+    border: none;
+    } */
+    /* .btn_style:hover{
         background-color: #1b1956;
         color: #fff;
-    }
+    } */
     .btn_style:focus{
-        background-color: #fff;
-        color: #1b1956;
+        background-color: aliceblue;
+    color: black;
+    border: 1px solid;
     }
 </style>
 
@@ -151,9 +153,9 @@ if (!isset($_SESSION["goaluser"])) {
                                     <input type='text' id='schemeS{$row['id']}' class='op w-75' style='color:black;text-align: center; font-size: 16px;' value='P2P Fund'><br>";
                 if ($get_ut["user_type"] == "Conservative") {
                     echo "<div class='dropdown'><br>
-                    <button type='button' class='btn btn-primary mb-2' data-bs-toggle='collapse' data-bs-target='#demo'>See Another Products</button><br>                
+                    <button type='button' class='btn btn-primary mb-2' data-bs-toggle='collapse' data-bs-target='#demo-{$row['id']}'>See Another Products</button><br>                
                            <div class='dropdown-content'>
-                            <select  class='w-75 s1' id='demo' onchange='checkPrice(this)' data-sid='schemeS{$row['id']}'>
+                            <select  class='w-75 s1 collapse' id='demo-{$row['id']}' onchange='checkPrice(this)' data-sid='schemeS{$row['id']}'>
                                 <option value='Debt Fund 1'>Debt Fund 1</option>
                                 <option value='Debt Fund 2'>Debt Fund 2</option>
                                 <option value='Debt Fund 3'>Debt Fund 3</option>
@@ -164,10 +166,10 @@ if (!isset($_SESSION["goaluser"])) {
                                 if($row['plan_sip'] >= 2000){
             
                                     $suggest_amt = $row['plan_sip'] / 2 ;
-                                  echo   "<input type='number' class='op w-75 value='$suggest_amt'</span>";      
-                                  echo   "<input type='number' class='op w-75 value='$suggest_amt'</span>";      
+                                  echo   "<input type='number' name='suggest_sip' oninput='total_amt()' class='op w-75 value='$suggest_amt'</span>";      
+                                  echo   "<input type='number' name='suggest_sip' oninput='total_amt()' class='op w-75 value='$suggest_amt'</span>";      
                                 } else{
-                                    echo   "<input type='number' class='op w-75' value='{$row['plan_sip']}'</span>";      
+                                    echo   "<input type='number' name='suggest_sip' oninput='total_amt()' class='op w-75' value='{$row['plan_sip']}'</span>";      
             
                                 }       
                        echo "</div></div>
@@ -177,9 +179,9 @@ if (!isset($_SESSION["goaluser"])) {
                        <span class='col-6'><p>Scheme Name</p>
                            <input type='text' id='schemeL{$row['id']}' class='op1 w-75' style='color:black;text-align: center; font-size: 16px;' value='Multi Asset'><br>
                                <div class='dropdown'><br>
-                               <button type='button' class='btn btn-primary mb-2' data-bs-toggle='collapse' data-bs-target='#DEMO1'>See Another Products</button><br>
+                               <button type='button' class='btn btn-primary mb-2' data-bs-toggle='collapse' data-bs-target='#DEMO1-{$row['id']}'>See Another Products</button><br>
                                        <div class='dropdown-content'>
-                                           <select  class='w-75 s2' id='DEMO1' onchange='checkPrice(this)' data-sid='schemeL{$row['id']}'>
+                                           <select  class='w-75 s2 collapse' id='DEMO1-{$row['id']}' onchange='checkPrice(this)' data-sid='schemeL{$row['id']}'>
                                            <option value='P2P Fund 1'>P2P Fund 1</option>
                                            <option value='P2P Fund 2'>P2P Fund 2</option>
                                            <option value='Debt Fund'>Debt Fund</option>
@@ -191,18 +193,18 @@ if (!isset($_SESSION["goaluser"])) {
                            if($row['plan_lumpsum'] >= 10000){
 
                                $suggest_amt = $row['plan_lumpsum'] / 2 ;
-                             echo   "<input type='number' class='op w-75' value='$suggest_amt'</span>";      
-                             echo   "<input type='number' class='op w-75' value='$suggest_amt'</span>";      
+                             echo   "<input type='number' name='suggest_lump' oninput='total_amt()' class='op w-75' value='$suggest_amt'</span>";      
+                             echo   "<input type='number' name='suggest_lump' oninput='total_amt()' class='op w-75' value='$suggest_amt'</span>";      
                            } else{
-                               echo   "<input type='number' class='op w-75' value='{$row['plan_lumpsum']}'</span>";      
+                               echo   "<input type='number' name='suggest_lump' oninput='total_amt()' class='op w-75' value='{$row['plan_lumpsum']}'</span>";      
 
                            }
                    echo "</div></div></div>";
                 } else if ($get_ut["user_type"] == "Modrate") {
                     echo "<div class='dropdown'><br>
-                    <button type='button' class='btn btn-primary mb-2' data-bs-toggle='collapse' data-bs-target='#demo'>See Another Products</button><br>
+                    <button type='button' class='btn btn-primary mb-2' data-bs-toggle='collapse' data-bs-target='#demo-{$row['id']}'>See Another Products</button><br>
                         <div class='dropdown-content'>
-                            <select  class='w-75 s1' id='demo' onchange='checkPrice(this)' data-sid='schemeS{$row['id']}'>
+                            <select  class='w-75 s1 collapse' id='demo-{$row['id']}' onchange='checkPrice(this)' data-sid='schemeS{$row['id']}'>
                                 <option value='P2P Fund'>P2P Fund</option>
                                 <option value='Hybrid Fund'>Hybrid Fund</option>
                             </select>
@@ -210,14 +212,14 @@ if (!isset($_SESSION["goaluser"])) {
                         </div>  
                     </span> <span class='col-6' style='border-left: 1px solid #999393;'><p>Amount</p>"; 
                     if($row['plan_sip'] >= 2000){
-
+            
                         $suggest_amt = $row['plan_sip'] / 2 ;
-                      echo   "<input type='number' class='op w-75 value='$suggest_amt'</span>";      
-                      echo   "<input type='number' class='op w-75 value='$suggest_amt'</span>";      
+                      echo   "<input type='number' name='suggest_sip' oninput='total_amt()' class='op w-75 value='$suggest_amt'</span>";      
+                      echo   "<input type='number' name='suggest_sip' oninput='total_amt()' class='op w-75 value='$suggest_amt'</span>";      
                     } else{
-                        echo   "<input type='number' class='op w-75' value='{$row['plan_sip']}'</span>";      
+                        echo   "<input type='number' name='suggest_sip' oninput='total_amt()' class='op w-75' value='{$row['plan_sip']}'</span>";      
 
-                    }     
+                    }  
                         echo "</div></div>
                         <div class='col-lg-5 col-md-6 col-sm-12 p-0 m-0 t_boarder' colspan='2'>
                             <p class='t_boarder'>Plan LUMPSUM Amount {$row['plan_lumpsum']}</p>
@@ -225,9 +227,9 @@ if (!isset($_SESSION["goaluser"])) {
                             <span class='col-6'><p>Scheme Name</p>
                                 <input type='text' id='schemeL{$row['id']}' class='op1 w-75' style='color:black;text-align: center; font-size: 16px;' value='Multi Asset'><br>
                                     <div class='dropdown'><br>
-                                    <button type='button' class='btn btn-primary mb-2' data-bs-toggle='collapse' data-bs-target='#DEMO1'>See Another Products</button><br>
+                                    <button type='button' class='btn btn-primary mb-2' data-bs-toggle='collapse' data-bs-target='#DEMO1-{$row['id']}'>See Another Products</button><br>
                                             <div class='dropdown-content'>
-                                                <select  class='w-75 s2' id='DEMO1' onchange='checkPrice(this)' data-sid='schemeL{$row['id']}'>
+                                                <select  class='w-75 s2 collapse' id='DEMO1-{$row['id']}' onchange='checkPrice(this)' data-sid='schemeL{$row['id']}'>
                                                     <option value='P2P Fund'>P2P</option>
                                                     <option value='Hybrid Fund'>Hybrid Fund</option>
                                                     <option value='Multi Asset Fund'>Multi Asset Fund</option>
@@ -241,18 +243,18 @@ if (!isset($_SESSION["goaluser"])) {
                                 if($row['plan_lumpsum'] >= 10000){
 
                                     $suggest_amt = $row['plan_lumpsum'] / 2 ;
-                                  echo   "<input type='number' class='op w-75' value='$suggest_amt'</span>";      
-                                  echo   "<input type='number' class='op w-75' value='$suggest_amt'</span>";      
+                                  echo   "<input type='number' name='suggest_lump' oninput='total_amt()' class='op w-75' value='$suggest_amt'</span>";      
+                                  echo   "<input type='number' name='suggest_lump' oninput='total_amt()' class='op w-75' value='$suggest_amt'</span>";      
                                 } else{
-                                    echo   "<input type='number' class='op w-75' value='{$row['plan_lumpsum']}'</span>";      
-    
+                                    echo   "<input type='number' name='suggest_lump' oninput='total_amt()' class='op w-75' value='{$row['plan_lumpsum']}'</span>";      
+     
                                 }
                         echo "</div></div></div>";
                 } else if ($get_ut["user_type"] == "Aggressive") {
                     echo "<div class='dropdown'><br>
-                                <button type='button' class='btn btn-primary mb-2' data-bs-toggle='collapse' data-bs-target='#demo'>See Another Products</button><br>
+                                <button type='button' class='btn btn-primary mb-2' data-bs-toggle='collapse' data-bs-target='#demo-{$row['id']}'>See Another Products</button><br>
                                 <div class='dropdown-content'>
-                                        <select  class='w-75 s1 collapse' id='demo'  onchange='checkPrice(this)' data-sid='schemeS{$row['id']}' style='font-size:15px;'><br>
+                                        <select  class='w-75 s1 collapse' id='demo-{$row['id']}'  onchange='checkPrice(this)' data-sid='schemeS{$row['id']}' style='font-size:15px;'><br>
                                         <option value='Equity Fund'>Equity Fund</option>
                                         <option value='Large Cap'>Large Cap</option>
                                         <option value='Mid Cap'>Mid Cap</option>
@@ -267,11 +269,11 @@ if (!isset($_SESSION["goaluser"])) {
                             if($row['plan_sip'] >= 2000){
 
                                 $suggest_amt = $row['plan_sip'] / 2 ;
-                              echo   "<input type='number' class='op w-75 value='$suggest_amt'</span>";      
-                              echo   "<input type='number' class='op w-75 value='$suggest_amt'</span>";      
+                              echo   "<input type='number' name='suggest_sip' oninput='total_amt()' class='op w-75' value='$suggest_amt'</span>";      
+                              echo   "<input type='number' name='suggest_sip' oninput='total_amt()' class='op w-75' value='$suggest_amt'</span>";      
                             } else{
-                                echo   "<input type='number' class='op w-75' value='{$row['plan_sip']}'</span>";      
-
+                                echo   "<input type='number' name='suggest_sip' oninput='total_amt()' class='op w-75' value='{$row['plan_sip']}'</span>";      
+ 
                             }
 
 
@@ -282,9 +284,9 @@ if (!isset($_SESSION["goaluser"])) {
                             <span class='col-6'><p>Scheme Name</p>
                                 <input type='text' id='schemeL{$row['id']}' class='op1 w-75' style='color:black;text-align: center; font-size: 16px;' value='Equity Fund'><br>
                                     <div class='dropdown'><br>
-                                    <button type='button' class='btn btn-primary mb-2' data-bs-toggle='collapse' data-bs-target='#DEMO1'>See Another Products</button><br>
+                                    <button type='button' class='btn btn-primary mb-2' data-bs-toggle='collapse' data-bs-target='#DEMO1-{$row['id']}'>See Another Products</button><br>
                                     <div class='dropdown-content'>
-                                                <select  class='w-75 s2 collapse' id='DEMO1' onchange='checkPrice(this)' data-sid='schemeL{$row['id']}' >
+                                                <select  class='w-75 s2 collapse' id='DEMO1-{$row['id']}' onchange='checkPrice(this)' data-sid='schemeL{$row['id']}' >
                                                     <option value='Equity Fund'>Equity Fund</option>
                                                     <option value='Large Cap'>Large Cap</option>
                                                     <option value='Mid Cap'>Mid Cap</option>
@@ -299,11 +301,11 @@ if (!isset($_SESSION["goaluser"])) {
                                             if($row['plan_lumpsum'] >= 10000){
 
                                                 $suggest_amt = $row['plan_lumpsum'] / 2 ;
-                                              echo   "<input type='number' class='op w-75' value='$suggest_amt'</span>";      
-                                              echo   "<input type='number' class='op w-75' value='$suggest_amt'</span>";      
+                                              echo   "<input type='number' name='suggest_lump' oninput='total_amt()' class='op w-75' value='$suggest_amt'</span>";      
+                                              echo   "<input type='number' name='suggest_lump' oninput='total_amt()' class='op w-75' value='$suggest_amt'</span>";      
                                             } else{
-                                                echo   "<input type='number' class='op w-75' value='{$row['plan_lumpsum']}'</span>";      
-                
+                                                echo   "<input type='number' name='suggest_lump' oninput='total_amt()' class='op w-75' value='{$row['plan_lumpsum']}'</span>";      
+                 
                                             }
                 
                            echo  "</div></div></div> ";
@@ -311,12 +313,15 @@ if (!isset($_SESSION["goaluser"])) {
             }
         }
         echo "<div class='row mt-5 mx-5'>
-        <div class='col-6 div_head'>SIP AMOUNT TO INVEST</div>
-        <div class='col-6 div_head'>LUMPSUM AMOUNT TO INVEST</div>
-        <div class='col-6 div_body'><span>$total_sip</span></div>
-        <div class='col-6 div_body'><span>$total_lump</span></div>
+        <div class='col-6 div_head'>SIP AMOUNT TO INVEST<br>
+        <div class='div_body' id='total_sip'>$total_sip</div></div>
+
+        <div class='col-6 div_head'>LUMPSUM AMOUNT TO INVEST<br>
+        <div class='div_body' id='total_lump'>$total_lump</div></div><br>
+       
+       
         </div><br><br>
-        <div style='text-align: center;'><a href='investment.php'><button class='btn_style' >BACK</button></a>&nbsp;&nbsp;<button class='btn_style'>PROCEED</button></div>";
+        <div style='text-align: center;'><a href='investment.php'><button class='btn  btn-primary'>BACK</button></a>&nbsp;&nbsp;<button class='btn btn-success btn_style'>PROCEED</button></div>";
         ?>
 
 
@@ -335,6 +340,26 @@ if (!isset($_SESSION["goaluser"])) {
         // $(`input#${e.dataset.sid}`).val(e.value);
 
     }
+    function total_amt(){
+
+            var sip_value = 0;
+            var lump_value= 0;
+
+        $('input[name="suggest_sip"]').each(function() {
+            sip_value += +this.value;
+            console.log(sip_value);
+        });
+        document.getElementById('total_sip').innerHTML = sip_value;
+
+        $('input[name="suggest_lump"]').each(function() {
+            lump_value += +this.value;
+            console.log(lump_value);
+        });
+        document.getElementById('total_lump').innerHTML = lump_value;
+        
+        var sip = document.getElementById('')
+    };
+    
 </script>
 
 </html>
