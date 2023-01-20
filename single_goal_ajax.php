@@ -544,8 +544,7 @@ if (isset($_POST['update_other'])) {
   $inflation = mysqli_real_escape_string($conn, $other_data['other_inflation']);
   $value = mysqli_real_escape_string($conn, $other_data['other_value']);
   $sip = mysqli_real_escape_string($conn, $other_data['other_sip']);
-
-  $sql = "UPDATE `user_goal` SET `goal_data` = '{\"goalname\":\"ar\",\"futureage\":\"$year\",\"currentcost\":\"$current\",\"inflation\":\"$inflation\",\"$value\":\"10576438\",\"sipvalue\":\"$sip\",\"0\":\"1234\",\"username\":\"cvzf\",\"email\":\"admin123@gmail.com\",\"mobile\":\"8762384587\"}' WHERE `user_goal`.`id` = $id";
+  $sql = "UPDATE `user_goal` SET `goal_data` = '{\"goalname\":\"ar\",\"futureage\":\"$year\",\"currentcost\":\"$current\",\"inflation\":\"$inflation\",\"ansinputs\":\"$value\",\"sipvalue\":\"$sip\",\"0\":\"1234\",\"username\":\"cvzf\",\"email\":\"admin123@gmail.com\",\"mobile\":\"8762384587\"}' WHERE `user_goal`.`id` = $id";
   $result = mysqli_query($conn, $sql);
   if ($result) {
     echo json_encode(array("status" => true, "message" => "updated successfully"));

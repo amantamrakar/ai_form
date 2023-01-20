@@ -717,6 +717,7 @@ if (!isset($_SESSION["goaluser"])) {
                     let markup = '';
                     let total_sip = 0;
                     let total_lumpsum = 0;
+                    data.sort((a,b)=>a["goal_data"]["futureage"]-b["goal_data"]["futureage"])
                     data.forEach(el => {
 
                         if (el["goal"] || el["goal_data"]["futureage"] || (el["goal_data"]["ansinputs"]) || (el["goal_data"]["sipvalue"]) || el["goal_data"]["inflation"]) {
@@ -740,8 +741,8 @@ if (!isset($_SESSION["goaluser"])) {
                     <div class="col-4 col-lg-1 col-sm-4  goal-img"><img src="./images/${el["goal"]}.svg"> <span data-fv="${temp}">${(tamps)}</span> </div>
                     <div class="col-4 col-lg-1 col-sm-4  p-0 m-0 text-capitalize"><p class="g-head ${el["goal"]} ">Goal Name</p><spam class="col-span">${el["goal"]}</spam></div>
                     <div class="col-4 col-lg-1 col-sm-4  p-0 m-0"><p class="g-head ${el["goal"]}">Tenure</p> <span class="col-span f-age">${el["goal_data"]["futureage"]}</span></div>  
-                    <div class="col-lg-3 col-md-6 col-sm-12 p-0 m-0"><p class="g-head ${el["goal"]}">AMOUNT REQUIRED</p><div class="d-flex sub-heading"><span><p>MONTHLY </p><i class="fa fa-rupee-sign"></i><input class="style_input" disabled type="text" value=" ${sipAmtS}" /></span><span><p>LUMPSUM </p><i class="fa fa-rupee-sign"></i><input class="style_input" type="text" disabled value=" ${lump}" /></span></span></div></div> 
-                    <div class="col-lg-3 col-md-6 col-sm-12 p-0 m-0"><p class="g-head ${el["goal"]}">PLAN THE AMOUNT YOU CAN INVEST</p><div class="d-flex sub-heading"><span class="position-relative"><p>MONTHLY </p><i class="fa fa-rupee-sign"></i>
+                    <div class="col-lg-3 col-md-6 col-sm-12 p-0 m-0"><p class="g-head ${el["goal"]}">Amount Require</p><div class="d-flex sub-heading"><span><p>MONTHLY </p><i class="fa fa-rupee-sign"></i><input class="style_input" disabled type="text" value=" ${sipAmtS}" /></span><span><p>LUMPSUM </p><i class="fa fa-rupee-sign"></i><input class="style_input" type="text" disabled value=" ${lump}" /></span></span></div></div> 
+                    <div class="col-lg-3 col-md-6 col-sm-12 p-0 m-0"><p class="g-head ${el["goal"]}">Plan The Amount You Can Invest</p><div class="d-flex sub-heading"><span class="position-relative"><p>MONTHLY </p><i class="fa fa-rupee-sign"></i>
                     <input class="style_input check_val" type="number" id="mothly_sip" min="1000" value="${ +el["plan_sip"] }" data-sgid='${el["id"]}' placeholder="0" oninput="top_up_sip('${el["id"]}')"></span><span class="position-relative"><p >LUMPSUM </p><i class="fa fa-rupee-sign"></i>
                     <input class="style_input check_val" min="5000" value="${ +el["plan_lumpsum"] }" type="number" id="lumpsum_sip" oninput="top_up_sip('${el["id"]}')" placeholder="0" data-lgid='${el["id"]}'></span></div></div>
                     <div class="col-lg-2 col-md-12 col-sm-12 p-0 m-0"><p class="g-head ${el["goal"]}">Top UP SIP Required</p><span><p>Monthly SIP needs to be increased every year by:</p></span><input class="text" readonly id="total-value" value="0"  /></div>
