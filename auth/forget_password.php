@@ -3,6 +3,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 session_start();
 $_SESSION["m_status"]=false;
+// $_SESSION['message'] = "Invalid Email";
 // $_SESSION["user"]="test@gmail.com";
 // $_SESSION["name"]="test";
 if (isset($_SESSION["user"])) {
@@ -114,32 +115,47 @@ if (isset($_POST["forget-password"])) {
     <meta id="theme-check" name="theme-color" content="#FFFFFF">
     <link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png">
 </head>
+<style>
+      .container {
+        max-width: 430px;
+    margin: 5vh auto 0 auto;
+    padding: 30px;
+    box-shadow: 0px 0px 29px 8px rgb(153 153 153);
+    }
 
+</style>
 <body class="theme-light">
 
     <div id="page">
         <!-- <div class="mes  -->
         <!-- Your Page Content Goes Here-->
-        <div class="page-content pb-0 mb-0">
+        <!-- <div class="page-content pb-0 mb-0">
             <div class="card card-style m-0 bg-transparent shadow-0 bg-10 rounded-0" data-card-height="cover">
                 <div class="card-center">
                     <div class="card card-style">
-                        <div class="content">
+                        <div class="content"> -->
+                            <div class="head text-center mt-2"><img src="../images/swalogo.png" alt="" style="width:20%;"></div>
                             <form id="forget-password" method="post">
-                                <h1 class="text-center font-800 font-25 mb-2">Forget Password</h1>
+                                <div class="container">
+                                <div class="col-12 col-lg-12 col-md-6 col-sm-12">
+                                <div class='col-12' style="display:flex;justify-content:center;">
+                                <img src="../images/confused_Kid.png" alt="" style="width:36%">
+                                </div>
+                                <h4 class="text-center font-800 font-25 ">Forget password?</h4>
+                                <p class="text-center " style="font-size:11px;">Enter your email address to retrieve your password</p>
                                 <!-- <p class="text-center font-13 mt-n2 mb-3">Create your Account</p> -->
-                                <div class="form-custom form-label form-icon mb-3">
-                                    <i class="bi bi-at font-16"></i>
-                                    <input type="email" class="form-control rounded-xs" id="email" placeholder="Email Address" name="p_email" required>
-                                    <label for="email" class="color-theme">Email Address</label>
-                                    <span>(required)</span>
+                                <div class="form-custom form-label form-icon mb-3" style="display: flex; justify-content: center;">
+                                    <input type="email" class="form-control w-75" id="email" placeholder="Email Address" name="p_email" required>
+                                    <!-- <label for="email" class="color-theme">Email Address</label>
+                                    <span>(required)</span> -->
                                 </div>
                                 <?php
 
                                     if(isset($_SESSION["message"])){
                                        if($_SESSION["m_status"]){
-                                        echo ' <div class="alert alert-dismissible color-green rounded-s fade show" role="alert">
-                                        <strong>Info</strong> - '.$_SESSION["message"].'
+                                        echo ' <div class="alert alert-dismissible rounded-s fade show" role="alert" style="color: #ff0c0c;
+                                        text-align: center;">
+                                        <strong>Error</strong> - '.$_SESSION["message"].'
                                         <button type="button" class="btn-close opacity-40 font-11 pt-3 mt-1" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>';
                                        }else{
@@ -152,14 +168,16 @@ if (isset($_POST["forget-password"])) {
                                         unset($_SESSION["m_status"]);
                                     }
                                 ?>
-                                <button type="submit" class='btn rounded-sm btn-primary' id="forget-password" name="forget-password">Forget Password</button>
-                
+                                <div class="text-center">
+                                <button type="submit" class='btn rounded-sm mb-4 btn-primary' id="forget-password" name="forget-password">Forget Password</button>
+                                </div></div>
                             </form>
                         </div>
-                    </div>
+                    <!-- </div>
                 </div>
             </div>
         </div>
+    </div> -->
     </div>
     <script src="../assets/bootstrap.min.js"></script>
 </body>
