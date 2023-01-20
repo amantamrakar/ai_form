@@ -451,7 +451,7 @@ session_start();
               </div>
               <div class="form-group m-2">
                 <button type="submit" id="pop-log-in" class="btn btn-primary">Log In</button>
-                <a href="./auth/forget_password.php" class="ForgetPwd">Forget Password?</a>
+                <!-- <a href="./auth/forget_password.php" class="ForgetPwd">Forget Password?</a> -->
               </div>
             </form>
 

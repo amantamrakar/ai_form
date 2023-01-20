@@ -1,4 +1,12 @@
-<?php session_start(); ?>
+<?php session_start(); 
+require_once("./connect.php");
+$res=mysqli_query($conn,"SELECT * FROM `user_type` WHERE `user_email`='{$_SESSION['goaluser']}'");
+// var_dump($res);
+if(mysqli_num_rows($res)>0){
+   header("location: ./suggest_scm.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
