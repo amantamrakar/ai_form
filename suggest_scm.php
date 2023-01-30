@@ -232,7 +232,7 @@ if (!isset($_SESSION["goaluser"])) {
        
        
         </div><br><br>
-        <div style='text-align: center;'><a href='investment.php'><button class='btn btn-primary'>BACK</button></a>&nbsp;&nbsp;<button class='btn btn-success btn_style'>PROCEED</button></div>";
+        <div style='text-align: center;'><a href='investment.php'><button class='btn btn-primary'>BACK</button></a>&nbsp;&nbsp;<a href='investorkyc.php'><button class='btn btn-success btn_style'>PROCEED</button></a></div>";
         ?>
 
     </div>
