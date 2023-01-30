@@ -1,45 +1,45 @@
 <?php
-// session_start();
-// $_SESSION['message'] = "my error message";
-// if(isset($_GET["key"]) && isset($_GET["token"])){
-//     require_once("../modules/connect.php");
-//     if(filter_var($_GET["key"], FILTER_VALIDATE_EMAIL) == false){
-//         $_SESSION["message"]="invalid email";
-//         die();
-//     }
-//     $g_email = mysqli_real_escape_string($user_con,$_GET["key"]);
-//     $g_token = mysqli_real_escape_string($user_con,$_GET["token"]);
-//     $sql = "SELECT `token`,`email` FROM `client_register` WHERE email = '$g_email'";
-//     $res = mysqli_query($user_con, $sql);
-//     $count = mysqli_num_rows($res);
-//     if ($count == 1) {
-//         $res = mysqli_fetch_assoc($res);
-//         // my_DD($res);
-//         $email = $res["email"];
-//         $token=$res["token"];
-//         if($token !== $g_token){
-//             header("Location: sign_up.php");
-//             die("check token");
-//         }
-//         if(isset($_POST["change-password"])){
-//             if($_POST["p_password"]!==$_POST["re_password"]){
-//                 $_SESSION["message"]="password and re-password not match";
-//             }else{
-//                 $pws=password_hash($_POST["p_password"],PASSWORD_DEFAULT);
-//                 $update = mysqli_query($user_con, "UPDATE client_register set  token='changed',pws='".$pws."' WHERE email='" . $email . "'");
-//                 if($update){
-//                     $_SESSION["message"]="your password is changed <a href='./sign_in.php'>go to</a>";
-//                 }
-//             }
-//         }   
-//     }else{
-//         header("Location: sign_up.php");
-//         die("check count");
-//         }
-// }else{
-//     header("Location: sign_up.php");
-//     die("check valid");
-// }
+session_start();
+$_SESSION['message'] = "my error message";
+if(isset($_GET["key"]) && isset($_GET["token"])){
+    require_once("../connect.php");
+    if(filter_var($_GET["key"], FILTER_VALIDATE_EMAIL) == false){
+        $_SESSION["message"]="invalid email";
+        die();
+    }
+    $g_email = mysqli_real_escape_string($user_con,$_GET["key"]);
+    $g_token = mysqli_real_escape_string($user_con,$_GET["token"]);
+    $sql = "SELECT `token`,`email` FROM `client_register` WHERE email = '$g_email'";
+    $res = mysqli_query($user_con, $sql);
+    $count = mysqli_num_rows($res);
+    if ($count == 1) {
+        $res = mysqli_fetch_assoc($res);
+        // my_DD($res);
+        $email = $res["email"];
+        $token=$res["token"];
+        if($token !== $g_token){
+            header("Location: ../index.php");
+            die("check token");
+        }
+        if(isset($_POST["change-password"])){
+            if($_POST["p_password"]!==$_POST["re_password"]){
+                $_SESSION["message"]="password and re-password not match";
+            }else{
+                $pws=password_hash($_POST["p_password"],PASSWORD_DEFAULT);
+                $update = mysqli_query($user_con, "UPDATE client_register set  token='changed',pws='".$pws."' WHERE email='" . $email . "'");
+                if($update){
+                    $_SESSION["message"]="your password is changed <a href='./sign_in.php'>go to</a>";
+                }
+            }
+        }   
+    }else{
+        header("Location: ../index.php");
+        die("check count");
+        }
+}else{
+    header("Location: ../index.php");
+    die("check valid");
+}
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
