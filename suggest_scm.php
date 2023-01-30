@@ -153,16 +153,10 @@ if (!isset($_SESSION["goaluser"])) {
                     //     echo   "<input type='number' name='suggest_sip' oninput='total_amt()' class='op w-75 my-1' value='{$suggest_amt}' >";
                     // } else {
                     // }
-                    echo   "<input type='number' name='suggest_sip' oninput='total_amt()' data-type='sip' data-amt='{$amt}' class='form-control m-auto op w-75 my-1' value='{$amt}'>";
+                    echo   "<input type='number' name='suggest_sip[]' oninput='total_amt()' data-type='sip' data-amt='{$amt}' class='form-control m-auto op w-75 my-1' value='{$amt}'>";
                 }else{
-                    // if ($amt >= 10000) {
 
-                    //     $suggest_amt = $amt / 2;
-                    //     echo   "<input type='number' name='suggest_lump' oninput='total_amt()' class='op w-75 my-1' value='$suggest_amt'</span>";
-                    //     echo   "<input type='number' name='suggest_lump' oninput='total_amt()' class='op w-75 my-1' value='$suggest_amt'</span>";
-                    // } else {
-                    // }
-                    echo   "<input type='number' name='suggest_lump' oninput='total_amt()' data-type='lump' data-amt='{$amt}' class='form-control m-auto op w-75 my-1' value='{$amt}'>";
+                    echo   "<input type='number' name='suggest_lump[]' oninput='total_amt()' data-type='lump' data-amt='{$amt}' class='form-control m-auto op w-75 my-1' value='{$amt}'>";
                 }
                 return $markup;
             }
@@ -181,26 +175,43 @@ if (!isset($_SESSION["goaluser"])) {
             $total_sip = 0;
             $total_lump = 0;
             while ($row = mysqli_fetch_array($result)) {
-
+                $goal_data  = json_decode($row["goal_data"], true);
+                // var_dump($goal_data);
+                    $futureage=0;
+                    if ($row["goal"] == "education") {
+                        $futureage = $goal_data["futureages"] - $goal_data["age"];
+                    }
+                    if ($row["goal"] == "vacation" || $row["goal"] == "car" ) {
+                        $futureage = $goal_data["futureyear"];
+                    }
+                    if ($row["goal"] == "retirement") {
+                        $futureage = $goal_data["retirementage"] - $goal_data["currentage"];
+                    }
+                    if ($row["goal"] == "marriage") {
+                        $futureage = $goal_data["futureage"] - $goal_data["currentagechild"];
+                    }
+                    if ($row["goal"] == "house"){
+                        $futureage =$goal_data["futureage"];
+                    }
                 $total_sip += $row['plan_sip'];
                 $total_lump += $row['plan_lumpsum'];
                 if ($row['plan_sip'] == 0 &&  $row['plan_lumpsum'] == 0) {
                     continue;
                 }
-                $goal_data=json_decode($row["goal_data"],true);
                 $amt=$goal_data["ansinputs"];
-                echo "<div class='row mt-3 g-table mx-2 mx-xm-4' style='background-color:var(--{$row["goal"]})' data-gid='{$row['id']}'>
-                                <div class='col-lg-1 col-sm-12 text-capitalize  t_boarder' style='padding:10px;'>                              
+                echo "<div class='row rounded mt-3 g-table mx-2 mx-xm-4' style='background-color:var(--{$row["goal"]})' data-gid='{$row['id']}'>
+                                <div class='col-lg-1 col-sm-12  text-capitalize  t_boarder' style='padding:10px;'>                              
                                     <p >Goal</p>
                                     <span>{$row['goal']}</span><br>
                                     <img src='./images/{$row["goal"]}.svg' style='width: 70px;margin-top: 10px;'>
                                     <span class='show-r-amt'>{$amt}</span>
+                                    <p >$futureage years</p>
                                     </div>
-                                <div class='col-lg-5 col-md-6 col-sm-12 p-0 m-0'>
+                                <div class=' col-lg-5 col-md-6 col-sm-12 p-0 m-0'>
                                     <p class='t_boarder'>Plan SIP Amount {$row['plan_sip']}</p> 
-                                    <div class='d-flex t_head t_boarder'>
-                                    <span class='col-6 '><p>Scheme Name</p>
-                                        <select  class='form-control m-auto w-75 s1 my-1' id='demos-{$row['id']}' onchange='checkPrice(this)' data-sid='schemeS{$row['id']}'>";
+                                    <div class='rounded d-flex t_head t_boarder'>
+                                    <span class='col-6 '><p>Scheme Type</p>
+                                        <select  class='form-control m-auto w-75 s1 my-1' id='demos-{$row['id']}' onchange='checkPrice(this)' data-sid='schemeS{$row['id']}' name='s-{$row['id']}[]'>";
                                         echo generate_option($get_ut["user_type"],"sip");
                                         echo " </select>
                                     </span>
@@ -209,11 +220,11 @@ if (!isset($_SESSION["goaluser"])) {
                     
                     echo "<button type='button' id='ss-{$row['id']}' class='btn btn-success splitAmt' data-sel='demos-{$row['id']}' data-atype='sip'>Split Amount</button></span>
                     </div></div>
-                    <div class='col-lg-5 col-md-6 col-sm-12 p-0 m-0 t_boarder'>
+                    <div class=' col-lg-5 col-md-6 col-sm-12 p-0 m-0 t_boarder'>
                        <p class='t_boarder'>Plan LUMPSUM Amount {$row['plan_lumpsum']}</p>
-                       <div class='d-flex t_head'>
-                       <span class='col-6'><p>Scheme Name</p>
-                                           <select  class='form-control m-auto w-75 s2 my-1' id='demol-{$row['id']}' onchange='checkPrice(this)' data-sid='schemeL{$row['id']}'>";
+                       <div class='rounded d-flex t_head'>
+                       <span class='col-6'><p>Scheme Type</p>
+                                           <select  class='form-control m-auto w-75 s2 my-1' id='demol-{$row['id']}' onchange='checkPrice(this)' data-sid='schemeL{$row['id']}' name='id='l-{$row['id']}[]'>";
                                          echo  generate_option($get_ut["user_type"],"lump");
                                       echo "</select>
                            </span>
@@ -249,9 +260,9 @@ if (!isset($_SESSION["goaluser"])) {
     $(".show-r-amt").each(function(i,el){
         console.log(el);
         temp= +el.innerHTML.replaceAll(",", "")
-        el.innerHTML=temp.toLocaleString("en-IN",{ maximumFractionDigits: 0});
+        el.innerHTML=temp.toLocaleString("en-IN",{style: 'currency', currency: 'INR', maximumFractionDigits: 0});
 
-        el.toLocaleString("en-IN",{ maximumFractionDigits: 0});
+        // el.toLocaleString("en-IN",{ maximumFractionDigits: 0});
     });
     $(".splitAmt").click(function(e){
         const allIn=$(e.target).siblings("input")
@@ -260,18 +271,24 @@ if (!isset($_SESSION["goaluser"])) {
         //     el.value = el.dataset.amt/(allIn.length +1);
         // })
         // console.log(inp);
-        let amt=Math.floor(inp.val()/2);
-        if(amt < 1000 && e.target.dataset.atype=="sip"){
+        const b=5;
+        let amt1=Math.round(inp.val()*(2/b));
+        let amt2=Math.round(inp.val()*(3/b));
+        let rem=amt2%1000;
+        let amt=amt1+rem;
+        if(amt <= 2000 && e.target.dataset.atype=="sip"){
             return;
-        }else if(amt < 5000 && e.target.dataset.atype=="lump"){
+        }else if(amt <= 5000 && e.target.dataset.atype=="lump"){
             return;
         }
         inp.val(amt);
         const markup=inp.clone()[0];
-        markup.value = Math.round(amt);
+        markup.value = Math.round(amt2-rem);
         const mat=$(`select#${e.target.dataset.sel}`).last().clone();
-        mat.attr("id",e.target.dataset.sel+"-"+allIn.length);
+        // mat.attr("name",e.target.dataset.sel+'[]');
         markup.id=e.target.dataset.sel+"-"+allIn.length
+        // markup.name=e.target.dataset.sel+"amt[]"
+        console.log(mat);
         $(`select#${e.target.dataset.sel}`).last().after(mat);
         $(e.target).before(markup)
     })

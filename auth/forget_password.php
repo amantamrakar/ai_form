@@ -10,7 +10,7 @@ if (isset($_SESSION["user"])) {
     header("Location: ./index.php");
 }
 if (isset($_POST["forget-password"])) {
-    require_once("../modules/connect.php");
+    require_once("../connect.php");
     if(filter_var($_POST["p_email"], FILTER_VALIDATE_EMAIL) == false){
         $_SESSION["message"]="invalid email";
     }else{
@@ -40,11 +40,12 @@ if (isset($_POST["forget-password"])) {
             // $update = mysqli_query($user_con,"UPDATE client_register set  password='" . $password . "', reset_link_token='" . $token . "' ,exp_date='" . $expDate . "' WHERE email='" . $emailId . "'");
             $update = mysqli_query($user_con, "UPDATE client_register set  token='" . $token . "' WHERE email='" . $emailId . "'");
             if($_SERVER["SERVER_NAME"] === "swarajfinpro.com"){
-                $path="https://swarajfinpro.com/application/";
+                $path="https://swarajfinpro.com/goaltracker/";
               }else{
-                $path="http://localhost/main_app/";
+                $path="http://localhost/testaiform/ai_form/";
               }
-            $link = "<a href='{$path}auth/change_password.php?key=" . $emailId . "&token=" . $token . "'>Click To Reset password</a>";
+              $link="{$path}auth/change_password.php?key=" . $emailId . "&token=" . $token;
+            $tag = "<a href='$link'>Click To Reset password</a>";
             // $link = "<a href='{$path}auth/change_password.php?key=" . $emailId . "&token=" . $token . "'>Click To Reset password</a>";
             // require ;
     
@@ -84,7 +85,7 @@ if (isset($_POST["forget-password"])) {
             $mail->AddAddress($emailId, "Swaraj Finpro");
             $mail->Subject =  'Reset Password';
             $mail->IsHTML(true);
-            $mail->Body = 'Click On This Link to Reset Password ' . $link . '';
+            $mail->Body = 'Click On This Link to Reset Password ' . $tag . ' </br><br> <a href="'.$link.'">'.$link.'</a> ';
             if ($mail->Send()) {
                 $_SESSION["m_status"]=true;
                 $_SESSION["message"]="Check Your Email and Click on the link sent to your email";
@@ -153,13 +154,13 @@ if (isset($_POST["forget-password"])) {
 
                                     if(isset($_SESSION["message"])){
                                        if($_SESSION["m_status"]){
-                                        echo ' <div class="alert alert-dismissible rounded-s fade show" role="alert" style="color: #ff0c0c;
+                                        echo ' <div class="alert alert-dismissible rounded-s fade show" role="alert" style="color: #009d00;
                                         text-align: center;">
                                         <strong>Error</strong> - '.$_SESSION["message"].'
                                         <button type="button" class="btn-close opacity-40 font-11 pt-3 mt-1" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>';
                                        }else{
-                                           echo ' <div class="alert alert-dismissible color-red-dark rounded-s fade show" role="alert">
+                                           echo ' <div class="alert alert-dismissible color-red-dark rounded-s fade show" style="color: #ff0c0c role="alert">
                                            <strong>Info</strong> - '.$_SESSION["message"].'
                                            <button type="button" class="btn-close opacity-20 font-11 pt-3 mt-1" data-bs-dismiss="alert" aria-label="Close"></button>
                                        </div>';

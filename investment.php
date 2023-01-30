@@ -701,7 +701,8 @@ if (!isset($_SESSION["goaluser"])) {
             $(this).parent().find(".fd_fv_value").val(ans);
         })
         $("document").ready(function() {
-            setGoalData()
+            setGoalData();
+            
         });
 
         function setGoalData() {
@@ -768,6 +769,7 @@ if (!isset($_SESSION["goaluser"])) {
                 </tr></tbody></table>`
                     $(".goals_table").html(markup);
                     $("input.check_val").on("focusin", check_val);
+                    $("input.check_val").on("focusout", check_val);
                     showAllocation(data)
                 }
             });
@@ -823,15 +825,18 @@ if (!isset($_SESSION["goaluser"])) {
         //     });
         // }
         function check_val(el){
-            let valid=true
+            let valid=true;
+            console.log(el.target.value);
             if (!el.target.validity.valid && el.target.value != 0) {
                     valid = false;
                     el.target.insertAdjacentHTML("afterend", `<div class="invalid-message">value should be 0 or greater than and equal to ${el.target.min}</div>`)
                 }else if(el.target.value % 100){
                     valid = false;
                     el.target.insertAdjacentHTML("afterend", `<div class="invalid-message">value should be in multiples of 100</div>`)
+                }else{
+                    $(this).siblings(".invalid-message").addClass("d-none");
+
                 }
-            $(this).siblings(".invalid-message").addClass("d-none");
             return valid;
         }
         function shoeExistingFund(e) {
