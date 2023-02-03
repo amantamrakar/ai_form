@@ -15,8 +15,6 @@ if (isset($_POST["get_user_fund"])) {
     }, $data);
     echo json_encode(array('statue' => true, 'data' => $data));
 }
-
-
 if (isset($_POST["get_user_data"])) {
     // echo "select * from user_goal where email={$_SESSION['goaluser']}";
     $res = mysqli_query($conn, "select `email`,`goal`,`goal_data`,`id`,`plan_lumpsum`,`plan_sip` from user_goal where email='{$_SESSION['goaluser']}'");
@@ -41,8 +39,6 @@ if (isset($_POST["get_user_data"])) {
     echo mysqli_error($conn);
     echo json_encode($data);
 }
-
-
 if (isset($_POST["add_user_fund"])) {
     parse_str($_POST["add_user_fund"], $req);
     // var_dump($req);
@@ -120,4 +116,28 @@ if(isset($_POST["save_all_plan"])){
         $upa->execute();
     }
     echo json_encode(array("status" => true));
+}
+if(isset($_POST["suggest_scheme"])){
+    $ss=$_POST["suggest_scheme"];
+    $sc="";
+    foreach($ss as $k=>$s){
+        if($k>=1)$sc.=" or ";
+        $sc.="FIND_IN_SET('$s', suggest_years)";
+    }
+    $sql="SELECT scheme_type as st,id,scheme_names,suggest_years from `suggest_scheme` where ". $sc;
+    // echo $sql;
+    $schemes=mysqli_query($conn,$sql)->fetch_all(MYSQLI_ASSOC);
+    foreach($schemes as $k=>$s){
+         $sn=json_decode($s["scheme_names"],true);
+         if(count($sn['sip'])==0){
+             $schemes[$k]["sip_s"]="";
+         }else{
+             $schemes[$k]["sip_s"]=$sn['sip'][rand(0,count($sn['sip'])-1)];
+         }
+         $schemes[$k]["lump_s"]=$sn['lump'][rand(0,count($sn['lump'])-1)];
+         $schemes[$k]["sugg"]=array_values(array_intersect(explode(",",$s["suggest_years"]),$ss));
+         unset($schemes[$k]["scheme_names"]);
+         unset($schemes[$k]["suggest_years"]);
+    }
+    echo json_encode($schemes);
 }

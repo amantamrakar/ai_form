@@ -45,6 +45,7 @@ if (!isset($_SESSION["goaluser"])) {
         border: 1px solid #000000;
         font-size: 19px;
         font-family: auto;
+        height: 75%;
     }
 
 
@@ -77,6 +78,7 @@ if (!isset($_SESSION["goaluser"])) {
         font-family: math;
         border-radius: 11px;
         text-decoration: underline;
+        
     }
 
     .div_body {
@@ -114,35 +116,52 @@ if (!isset($_SESSION["goaluser"])) {
         color: black;
         border: 1px solid;
     }
+    .scheme-name{
+        font-size: 12px;
+        margin-bottom: 5px;
+        display:block;
+    }
 </style>
 
 <body>
     <?php
     require_once('header.php');
     ?>
-    <div class="container-fluid" style="padding: 35px;">
+    <div class="container-fluid">
         <p class="head">Here are our Recommendations. Please confirm and proceed to invest</p>
 
         <?php
-        
-        $sugg_scheme=array();
-        $sugg_scheme["Conservative"]=array(
-            "sip"=>["s1","s2","s3","s4"],
-            "lump"=>['Equity Fund','Large Cap','Mid Cap','Flexi Cap','Stocks','Unit Linked Insurance Plan','P2P Combo']);
-        $sugg_scheme["Modrate"]=array(
-            "sip"=>["s4","s5","s6"],
-            "lump"=>['Equity Fund','Large Cap','Mid Cap','Flexi Cap','Stocks','Unit Linked Insurance Plan','P2P Combo']);
-        $sugg_scheme["Aggressive"]=array(
-            "sip"=>["s7","s8","s9"],
-            "lump"=>['Equity Fund','Large Cap','Mid Cap','Flexi Cap','Stocks','Unit Linked Insurance Plan','P2P Combo']);
-            function generate_option($user_type,$invest_type){
-                $ss=$GLOBALS["sugg_scheme"][$user_type][$invest_type];
-                $markup="<option >choose scheme</option>";
-                foreach($ss as $s){
-                    $markup .="<option value='{$s}'>{$s}</option>";
-                }
-                    return $markup;
-            }
+        // function getScheme(){
+
+        // }
+        // $sugg_scheme=array();
+
+        // $sugg_scheme["Conservative"]=array(
+        //     "sip"=>["s1","s2","s3","s4"],
+        //     "lump"=>['Equity Fund','Large Cap','Mid Cap','Flexi Cap','Stocks','Unit Linked Insurance Plan','P2P Combo']);
+        // $sugg_scheme["Moderate"]=array(
+        //     "sip"=>["s4","s5","s6"],
+        //     "lump"=>['Equity Fund','Large Cap','Mid Cap','Flexi Cap','Stocks','Unit Linked Insurance Plan','P2P Combo']);
+        // $sugg_scheme["Aggressive"]=array(
+        //     "sip"=>["s7","s8","s9"],
+        //     "lump"=>['Equity Fund','Large Cap','Mid Cap','Flexi Cap','Stocks','Unit Linked Insurance Plan','P2P Combo']);
+            
+           
+
+        //     function generate_option($user_type,$invest_type){
+        //         $ss=$GLOBALS["sugg_scheme"][$user_type][$invest_type];
+        //         // var_dump($GLOBALS['schemes']);
+        //         // $st=$GLOBALS['schemes'];
+        //         $markup="<option >choose scheme</option>";
+        //         foreach($ss as $s){
+        //             // $ss=json_decode($s['scheme_names'],true);
+        //             // var_dump($s);
+        //             // if(count($ss[$invest_type])>0){
+        //             // }
+        //             $markup .="<option value='{$s}'>{$s}</option>";
+        //         }
+        //             return $markup;
+        //     }
             function handle_amt($invest_type,$amt){
                 $markup="";
                 if($invest_type=="sip"){
@@ -166,17 +185,13 @@ if (!isset($_SESSION["goaluser"])) {
         $result = mysqli_query($conn, $sql);
         // var_dump($get_ut);
 
-        ?>
-        <!-- <table border="2">
-            <thead> -->
-        <?php
-
         if (mysqli_num_rows($result) > 0) {
             $total_sip = 0;
             $total_lump = 0;
             while ($row = mysqli_fetch_array($result)) {
+              
                 $goal_data  = json_decode($row["goal_data"], true);
-                // var_dump($goal_data);
+                // var_dump($row['plan_sip']);
                     $futureage=0;
                     if ($row["goal"] == "education") {
                         $futureage = $goal_data["futureages"] - $goal_data["age"];
@@ -193,8 +208,10 @@ if (!isset($_SESSION["goaluser"])) {
                     if ($row["goal"] == "house"){
                         $futureage =$goal_data["futureage"];
                     }
-                $total_sip += $row['plan_sip'];
-                $total_lump += $row['plan_lumpsum'];
+                    // $sql="SELECT * FROM `suggest_scheme` WHERE FIND_IN_SET('$futureage', suggest_years)";
+                    // $schemes=mysqli_query($conn,$sql)->fetch_all(MYSQLI_ASSOC);
+                $total_sip += (int)$row['plan_sip'];
+                $total_lump += (int)$row['plan_lumpsum'];
                 if ($row['plan_sip'] == 0 &&  $row['plan_lumpsum'] == 0) {
                     continue;
                 }
@@ -205,33 +222,36 @@ if (!isset($_SESSION["goaluser"])) {
                                     <span>{$row['goal']}</span><br>
                                     <img src='./images/{$row["goal"]}.svg' style='width: 70px;margin-top: 10px;'>
                                     <span class='show-r-amt'>{$amt}</span>
-                                    <p >$futureage years</p>
+                                    <p ><span class='years'>$futureage</span> years</p>
                                     </div>
-                                <div class=' col-lg-5 col-md-6 col-sm-12 p-0 m-0'>
+                                <div class=' col-lg-5 col-md-6 col-sm-12 py-0 m-0'>
                                     <p class='t_boarder'>Plan SIP Amount {$row['plan_sip']}</p> 
                                     <div class='rounded d-flex t_head t_boarder'>
                                     <span class='col-6 '><p>Scheme Type</p>
-                                        <select  class='form-control m-auto w-75 s1 my-1' id='demos-{$row['id']}' onchange='checkPrice(this)' data-sid='schemeS{$row['id']}' name='s-{$row['id']}[]'>";
-                                        echo generate_option($get_ut["user_type"],"sip");
+                                        <select  class='form-control m-auto w-75 s1 my-1 text-capitalize' id='demos-{$row['id']}' onchange='checkPrice(this)' data-year='$futureage' data-type='sip' data-sid='schemeS{$row['id']}' name='s-{$row['id']}[]'>";
+                                        // echo generate_option($get_ut["user_type"],"sip");
+                                        
                                         echo " </select>
                                     </span>
                                         <span class='col-6' style='border-left: 1px solid #999393;'><p>Amount</p> ";
-                                        echo handle_amt("sip",$row['plan_sip']);
-                    
-                    echo "<button type='button' id='ss-{$row['id']}' class='btn btn-success splitAmt' data-sel='demos-{$row['id']}' data-atype='sip'>Split Amount</button></span>
+                                        echo handle_amt("sip",$row['plan_sip'] + 0);
+                                        echo "<button type='button' id='ss-{$row['id']}' class='btn btn-success splitAmt d-none' data-sel='demos-{$row['id']}' data-atype='sip'>Split Amount</button></span>";
+
+                    echo "</span>
                     </div></div>
                     <div class=' col-lg-5 col-md-6 col-sm-12 p-0 m-0 t_boarder'>
                        <p class='t_boarder'>Plan LUMPSUM Amount {$row['plan_lumpsum']}</p>
                        <div class='rounded d-flex t_head'>
                        <span class='col-6'><p>Scheme Type</p>
-                                           <select  class='form-control m-auto w-75 s2 my-1' id='demol-{$row['id']}' onchange='checkPrice(this)' data-sid='schemeL{$row['id']}' name='id='l-{$row['id']}[]'>";
-                                         echo  generate_option($get_ut["user_type"],"lump");
+                                           <select  class='form-control m-auto w-75 s2 my-1 text-capitalize' id='demol-{$row['id']}' onchange='checkPrice(this)' data-year='$futureage' data-type='lump' data-sid='schemeL{$row['id']}' name='id='l-{$row['id']}[]'>";
+                                        //  echo  generate_option($get_ut["user_type"],"lump");
                                       echo "</select>
                            </span>
                            <span class='col-6' style='border-left: 1px solid #999393;'><p>Amount</p>";
-                           echo handle_amt("lump",$row['plan_lumpsum']);
+                           echo handle_amt("lump",$row['plan_lumpsum'] + 0);
+                           echo "<button type='button' id='sl-{$row['id']}' class='btn btn-success splitAmt d-none' data-atype='lump' data-sel='demol-{$row['id']}'>Split Amount</button></span></div></div></div>";
 
-                    echo "<button type='button' id='sl-{$row['id']}' class='btn btn-success splitAmt' data-atype='lump' data-sel='demol-{$row['id']}'>Split Amount</button></span></div></div></div>";
+                    // echo "</span></div></div></div>";
                 } 
             }
         echo "<div class='row mt-5 mx-5'>
@@ -254,10 +274,43 @@ if (!isset($_SESSION["goaluser"])) {
 <script src="./assets/bootstrap.bundle.min.js"></script>
 <script>
     function checkPrice(e) {
-        document.querySelector(`input#${e.dataset.sid}`).value = e.value;
+        // document.querySelector(`input#${e.dataset.sid}`).value = e.value;
         // $(`input#${e.dataset.sid}`).val(e.value);
-
+        // console.dir(e.nextSibling.);
     }
+    $(document).ready(function () {
+        const y=[]
+        $(".years").each((i,e)=>{
+        y.push(e.innerHTML);
+        })
+        $.ajax({
+            type: "post",
+            url: "./userData.php",
+            data: {"suggest_scheme":y},
+            dataType: "json",
+            success: function (res) {
+
+                res.forEach(el => {
+                    el["sugg"].forEach(ss=>{
+                        if(el.sip_s !=""){
+                            $(`select[data-year="${ss}"][data-type="sip"]`).append(`<option data-ss=${el["sip_s"]}>${el.st}</option>`);
+                        }
+                        if(el.lump_s !=""){
+                            $(`select[data-year="${ss}"][data-type="lump"]`).append(`<option data-ss=${el["lump_s"]}>${el.st}</option>`);
+                        }
+                    })
+                });
+                $(".splitAmt").trigger("click")
+                $(".splitAmt").trigger("click")
+                $("select").each((i,el)=>{
+                    console.log(el);
+                   let ss= $(el).find("option:selected").attr("data-ss")
+                // el.insertAdjacentHTML("afterend",`<span class="scheme-name">Scheme Name : ${ss}</span>`)
+                })
+            }
+        });
+        $("select")
+    });
     $(".show-r-amt").each(function(i,el){
         console.log(el);
         temp= +el.innerHTML.replaceAll(",", "")
@@ -277,7 +330,7 @@ if (!isset($_SESSION["goaluser"])) {
         let amt2=Math.round(inp.val()*(3/b));
         let rem=amt2%1000;
         let amt=amt1+rem;
-        if(amt <= 2000 && e.target.dataset.atype=="sip"){
+        if(amt < 2000 && e.target.dataset.atype=="sip"){
             return;
         }else if(amt <= 5000 && e.target.dataset.atype=="lump"){
             return;
@@ -287,9 +340,13 @@ if (!isset($_SESSION["goaluser"])) {
         markup.value = Math.round(amt2-rem);
         const mat=$(`select#${e.target.dataset.sel}`).last().clone();
         // mat.attr("name",e.target.dataset.sel+'[]');
+        // console.log(mat.children().length,allIn.length);
+        if(mat.children().length > allIn.length ){
+            mat.children()[allIn.length].selected=true;
+        }
+
         markup.id=e.target.dataset.sel+"-"+allIn.length
         // markup.name=e.target.dataset.sel+"amt[]"
-        console.log(mat);
         $(`select#${e.target.dataset.sel}`).last().after(mat);
         $(e.target).before(markup)
     })
@@ -310,7 +367,7 @@ if (!isset($_SESSION["goaluser"])) {
         });
         document.getElementById('total_lump').innerHTML = lump_value;
 
-        var sip = document.getElementById('')
+        // var sip = document.getElementById('')
     };
 </script>
 
