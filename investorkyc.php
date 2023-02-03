@@ -13,6 +13,7 @@ if (!isset($_SESSION["goaluser"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <title>Investor KYC</title>
 </head>
 <style>
@@ -159,6 +160,18 @@ if (!isset($_SESSION["goaluser"])) {
         box-shadow: none;
 
     }
+
+    select.borbottom {
+        /* border: 1px solid #ccc; */
+        background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%2326749a'><polygon points='0,0 100,0 50,50'/></svg>") no-repeat;
+        /* background-color: #ccc; */
+    }
+
+    select.borbottom {
+        background-size: 16px;
+        background-position: calc(100% - 20px) 17px;
+        background-repeat: no-repeat;
+    }
 </style>
 
 <body>
@@ -198,6 +211,7 @@ if (!isset($_SESSION["goaluser"])) {
                             } else {
                                 echo "No Record Found";
                             }
+                            
                             ?>
                             <div class="row">
                                 <label for="" class="que_col" style="padding:16px;">Name (as in PAN)</label>
@@ -236,6 +250,7 @@ if (!isset($_SESSION["goaluser"])) {
                                     <div class="form-group">
                                         <label for="" class="que_col">Gender</label><br>
                                         <select class="borbottom m-auto form-control mt-2 mb-2 w-100 my-1" id="gender" name="gender" onfocusout="destroyline(this)" onfocus="createline(this)">
+                                            <option>Select</option>
                                             <option>Male</option>
                                             <option>Female</option>
                                             <option>Other</option>
@@ -246,8 +261,9 @@ if (!isset($_SESSION["goaluser"])) {
                                 <div class="col-12  col-md-3">
                                     <div class="form-group">
                                         <label for="" class="que_col">Marital Status</label><br>
-                                        <select class="borbottom form-control m-auto w-100 my-1" id="mar_status" name="martial_status" onfocusout="destroyline(this)" onfocus="createline(this)">
-                                            <option>Single</option>
+                                        <select class="borbottom form-control m-auto w-100 my-1" id="mar_status" name="martial_status" onfocusout="destroyline(this)" onfocus="createline(this)"> <i class="fa-solid fa-arrow-down" style="color:red;font-size:18px;"></i>
+                                            <option>Select</option>
+                                            <option>Single </option>
                                             <option>Married</option>
                                             <option>Separated</option>
                                             <option>Widowed</option>
@@ -295,7 +311,7 @@ if (!isset($_SESSION["goaluser"])) {
                                 <div class="col-12 col-md-3">
                                     <div class="form-group">
                                         <label for="" class="que_col">City</label>
-                                        <input class="borbottom form-control my-1" id="city" name="city" onfocusout="destroyline(this)" onfocus="createline(this)" readonly><br><br>
+                                        <input class="borbottom form-control my-1" id="city" name="city" onfocusout="destroyline(this)" onfocus="createline(this)" readonly>
 
                                         <!-- <select class="borbottom mt-2 form-control mb-4  my-1" id="city" name="city" onfocusout="destroyline(this)" onfocus="createline(this)">
                                             <option>Select</option>
@@ -328,48 +344,57 @@ if (!isset($_SESSION["goaluser"])) {
                         <div class="form-group">
                             <h4>Bank Account Details</h4>
                             <div class="row mt-4 mb-2">
+                                <div class="col-12  col-md-3">
+                                    <div class="form-group">
+                                        <label for="" class="que_col">IFSC</label><br>
+                                        <input type="text" class="ifsc borbottom form-control mt-2 w-100" id="ifsc" name="ifci_num" placeholder="IFSC Number" onfocusout="destroyline(this)" onfocus="createline(this)" required>
+                                        <span class="underline" data-id='ifsc'></span>
+                                    </div>
+                                </div>
                                 <div class="col-12 mb-2 col-md-3">
                                     <div class="form-group">
-                                        <label for="" class="que_col">Bank Name</label><br>
-                                        <select class="borbottom m-auto form-control mb-2 w-100 my-1" id="bank_name" name="bank_name" onfocusout="destroyline(this)" onfocus="createline(this)" required>
+                                        <label for="" class="que_col">Bank Name</label>
+                                        <input type="text" class="borbottom m-auto form-control w-100 my-1" id="bank_name" name="bank_name" onfocusout="destroyline(this)" onfocus="createline(this)" required>
+                                        <!-- <select class="borbottom m-auto form-control mb-2 w-100 my-1" id="bank_name" name="bank_name" onfocusout="destroyline(this)" onfocus="createline(this)" required>
                                             <option></option>
                                             <option>Indusind Bank</option>
                                             <option>Bank of Maharashtra</option>
                                             <option>Bank of India</option>
                                             <option>Bank of Baroda</option>
                                             <option>ICICI</option>
-                                        </select>
+                                        </select> -->
                                         <span class="underline" data-id='bank_name'></span>
                                     </div>
                                 </div>
                                 <div class="col-12 mb-2 col-md-3">
                                     <div class="form-group">
                                         <label for="" class="que_col">City</label><br>
-                                        <select class="borbottom form-control m-auto mt2 w-100 my-1" id="bank_city" name="bank_city" onfocusout="destroyline(this)" onfocus="createline(this)">
+                                        <input type="text" class="borbottom form-control m-auto mt2 w-100 my-1" id="bank_city" name="bank_city" onfocusout="destroyline(this)" onfocus="createline(this)">
+                                        <!-- <select class="borbottom form-control m-auto mt2 w-100 my-1" id="bank_city" name="bank_city" onfocusout="destroyline(this)" onfocus="createline(this)">
                                             <option>Select City</option>
                                             <option>Jabalpur</option>
                                             <option>Nagpur</option>
                                             <option>Jaipur</option>
                                             <option>Indore</option>
                                             <option>Bangalore</option>
-                                        </select>
+                                        </select> -->
                                         <span class="underline" data-id='bank_city'></span>
                                     </div>
                                 </div>
                                 <div class="col-12 mb-2 col-md-3">
                                     <div class="form-group">
-                                        <label for="" class="que_col">Branch</label><br>
-                                        <input type="text" class="borbottom form-control mt-2 w-100" id="bank_branch" name="branch_name" placeholder="Branch Name" onfocusout="destroyline(this)" onfocus="createline(this)" required>
+                                        <label for="" class="que_col">Branch Address</label><br>
+                                        <input type="text" class="borbottom form-control mt-2 w-100" id="bank_branch" name="branch_name" placeholder="Branch Address" onfocusout="destroyline(this)" onfocus="createline(this)" required>
                                         <span class="underline" data-id='bank_branch'></span>
                                     </div>
                                 </div>
                                 <div class="col-12 mb-2 col-md-3 mb-3">
                                     <div class="form-group">
-                                        <label for="" class="que_col">Account Type</label><br>
-                                        <select class="borbottom form-control m-auto mt-2 w-75 my-1" id="acc_type" name="account_type" onfocusout="destroyline(this)" onfocus="createline(this)" required>
-                                            <option>Select</option>
-                                            <option>Current</option>
+                                        <label for="" class="que_col">Account Type</label>
+                                        <select class="borbottom form-control mt-2 w-100 " id="acc_type" name="account_type" onfocusout="destroyline(this)" onfocus="createline(this)" required>
+                                            <!-- <option>Select</option> -->
                                             <option>Saving</option>
+                                            <option>Current</option>
                                         </select>
                                         <span class="underline" data-id='acc_type'></span>
                                     </div>
@@ -381,13 +406,7 @@ if (!isset($_SESSION["goaluser"])) {
                                         <span class="underline" data-id='acc_num'></span>
                                     </div>
                                 </div>
-                                <div class="col-12  col-md-3">
-                                    <div class="form-group">
-                                        <label for="" class="que_col">IFSC</label><br>
-                                        <input type="text" class="ifsc borbottom form-control mt-2 w-100" id="bank_ifci" name="ifci_num" placeholder="IFSC Number" onfocusout="destroyline(this)" onfocus="createline(this)" required>
-                                        <span class="underline" data-id='bank_ifsc'></span>
-                                    </div>
-                                </div>
+
                             </div><br>
                         </div>
                         <div class="form-group">
@@ -433,7 +452,7 @@ if (!isset($_SESSION["goaluser"])) {
                                     <div class="form-group">
                                         <label for="" class="que_col mb-2">Gross annual income</label>
                                         <select class="borbottom m-auto w-75 form-control my-1" id="GAI" name="annual_income" onfocusout="destroyline(this)" onfocus="createline(this)">
-                                            <option value="">Select</option>
+                                            <option value="">Select</option> <i class="fa-solid fa-arrow-down"></i>
                                             <option value="237">Below 1 Lac</option>
                                             <option value="238">1 Lac to 2.5 Lac</option>
                                             <option value="239">2.5 Lac to 5 Lac</option>
@@ -493,6 +512,7 @@ if (!isset($_SESSION["goaluser"])) {
                                                 <span class="underline" data-id='mother_Lname'></span>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                                 <!-- <div class="form-group mt-4">
@@ -578,13 +598,28 @@ if (!isset($_SESSION["goaluser"])) {
             });
     })
 
-    $(".ifsc").change(function() {
+    // $(".ifsc").change(function() {
+
+    // });
+
+    $("#ifsc").change(function(e) {
+        const data = $(this).val();
+        if (data != "") {
+            fetch(`https://ifsc.razorpay.com/${data}`)
+                .then((res) => res.json())
+                .then((d) => {
+                    $("#bank_name").val(d["BANK"]);
+                    $("#bank_city").val(d["CITY"]);
+                    $("#bank_branch").val(d["ADDRESS"]);
+                    // console.log(d);
+                });
+        }
         var inputvalues = $(this).val();
         var reg = /[A-Z|a-z]{4}[0][a-zA-Z0-9]{6}$/;
         if (inputvalues.match(reg)) {
             return true;
         } else {
-            $(".ifsc").val("");
+            $("#ifsc").val("");
             alert("You entered invalid IFSC code");
             //document.getElementById("txtifsc").focus();    
             return false;

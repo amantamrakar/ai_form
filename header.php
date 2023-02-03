@@ -16,15 +16,16 @@
 <nav class="navbar navbar-expand-sm" style="justify-content: space-between;background-color:#fff;border-radius:0px 0px 10px 10px;">
     <img src="images\swalogo.png" style="height: 44px;" alt="">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+        <span class="navbar-toggler-icon"></span>
+    </button>
     <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
     <ul class="navbar-nav mx-2  justify-content-end collapse navbar-collapse" id="navbarSupportedContent">
 
         <?php
         if (isset($_SESSION["goaluser"])) {
             echo "<li class='nav-item mx-2 my-2 my-sm-0'><span class='text-capitalize' style=' padding-right:10px;'>{$_SESSION["user_full_name"]}</span></li>";
-            echo ' <li class="nav-item my-2 my-sm-0"><a class="btn btn-outline-primary a_style" href="dashboard.php">Dashboard</a> </li>';
+            echo '<li class="nav-item mx-2 my-2 my-sm-0"><a class="btn btn-outline-primary a_style" href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</a> </li>';
+            echo ' <li class="nav-item mx-2 my-2 my-sm-0"><a class="btn btn-outline-primary a_style" href="dashboard.php">Dashboard</a> </li>';
         } else {
             echo ' <li class="nav-item my-2 my-sm-0"><a class="btn btn-outline-primary" data-bs-target="#staticBackdrop" data-bs-toggle="modal" type="button">LogIn</a> </li>';
         }
@@ -35,7 +36,7 @@
         ?>
 
             <li class="nav-item mx-2 my-2 my-sm-0">
-                <a class="btn btn-outline-primary a_style" href="index.php">New Goal</a>
+                <a class="btn btn-outline-primary a_style" href="index.php">Add New Goal</a>
             </li>
             <li class="nav-item dropdown mx-2 my-2 my-sm-0">
                 <button class="btn dropdown-toggle user-btn" href="#" id="navbardrop" data-bs-toggle="dropdown" style="width: 80px;" aria-expanded="false">
@@ -48,6 +49,9 @@
                     <li class="dropdown-item">
                         <a class="nav-link text-primary" href="dashboard.php">Dashboard</a>
                     </li>
+                    <li class="dropdown-item">
+                        <a class="nav-link text-primary" href="myprofile.php">Profile</a>
+                    </li>
                     <!-- <a class="dropdown-item" href="#">Setting</a> -->
                     <li class="dropdown-item">
                         <a class="nav-link text-primary" href="logout.php">Logout</a>
@@ -59,4 +63,4 @@
         ?>
     </ul>
     <!-- </div> -->
-</nav> 
+</nav>

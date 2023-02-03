@@ -29,7 +29,7 @@ if (isset($_POST['details'])) {
     $bank_details = json_encode($bank_details);
     $address = json_encode($address);
     $additional_details = json_encode($additional_details);
-    $sql = "INSERT INTO `client_details` (`pan`,`name`,`email`,`mobile`,`bank_details`,`address`,`pin_code`,`city`,`martial_status`,`dob`,`additional_details`) VALUES ('{$req['pan_num']}','{$req['f_name']}','{$req["email"]}','{$req['mob_no']}','$bank_details','$address','{$req['pin_code']}','{$req['city']}','{$req['martial_status']}','{$req['dob']}','$additional_details') ";
+    $sql = "INSERT INTO `client_details` (`pan`,`gender`,`name`,`email`,`mobile`,`bank_details`,`address`,`pin_code`,`city`,`martial_status`,`dob`,`additional_details`) VALUES ('{$req['pan_num']}','{$req['gender']}','{$req['f_name']}','{$req["email"]}','{$req['mob_no']}','$bank_details','$address','{$req['pin_code']}','{$req['city']}','{$req['martial_status']}','{$req['dob']}','$additional_details') ";
     if (mysqli_query($conn, $sql)) {
         // echo "Sucess";        
         echo  json_encode(array("message" => "Success"));
@@ -38,31 +38,30 @@ if (isset($_POST['details'])) {
         echo "Not Inserted";
     }
 }
-
 if (isset($_POST['holder_detail'])) {
     parse_str($_POST['holder_detail'], $req);
     var_dump($req);
     $personal_detail = array(
-        "name" => $req['f_name'],
-        "dob" => $req['dob'],
-        "gender" => $req['gender'],
-        "martial_status" => $req['martial_status'],
-        "mob_no" => $req['mob_no'],
-        "email" => $req['email']
+        "name_joint" => $req['f_name_joint'],
+        "dob_joint" => $req['dob_joint'],
+        "gender_joint" => $req['gender_joint'],
+        "martial_status_joint" => $req['martial_status_joint'],
+        "mob_no_joint" => $req['mob_no_joint'],
+        "email_joint" => $req['email_joint']
     );
     $address_detail = array(
-        "address" => $req['home_address'],
-        "city" => $req['city'],
-        "state" => $req['state'],
-        "pin_code" => $req['pin_code']
+        "address_joint" => $req['home_address_joint'],
+        "city_joint" => $req['city_joint'],
+        "state_joint" => $req['state_joint'],
+        "pin_code_joint" => $req['pin_code_joint']
     );
     $additional_detail = array(
-        "birth_place" => $req['place_birth'],
-        "birth_country" => $req['birth_country'],
-        "occupation" => $req['occupation'],
-        "annual_income" => $req['annual_income'],
-        "father_name" => $req['father_name'],
-        "mother_name" => $req['mother_name']
+        "birth_place_joint" => $req['place_birth_joint'],
+        "birth_country_joint" => $req['birth_country_joint'],
+        "occupation_joint" => $req['occupation_joint'],
+        "annual_income_joint" => $req['annual_income_joint'],
+        "father_name_joint" => $req['father_name_joint'],
+        "mother_name_joint" => $req['mother_name_joint']
     );
     $personal_detail = json_encode($personal_detail);
     $address_detail = json_encode($address_detail);
@@ -76,28 +75,65 @@ if (isset($_POST['holder_detail'])) {
         echo "Not Inserted";
     }
 }
-if(isset($_POST['nominee_details'])){
+if (isset($_POST['mob_no'])) {
+    $mob_no =  $_POST['mob_no'];
+    $sql = "UPDATE `client_details` SET `mobile`='$mob_no'WHERE email = '{$_SESSION['goaluser']}' ";
+    if (mysqli_query($conn, $sql)) {
+        echo json_encode(array("statusCode" => 200));
+    } else {
+        echo json_encode(array("statusCode" => 201));
+    }
+    mysqli_close($conn);
+}
+if (isset($_POST['nominee_details'])) {
     parse_str($_POST['nominee_details'], $req);
     var_dump($req);
-    $nominee_details = array(
-        "name" => $req['nominee_first_name'],
-        "relation" => $req['nominee_relation'],
-        "DOB" => $req['nominee_DOB'],
-        "address" => $req['nominee_address'],
-        "city" => $req['nominee_city'],
-        "pin_code" => $req['nominee_pan'],
-        "email" => $req['nominee_email'],
-        "PAN" => $req['nominee_pan'],
-        "name2" => $req['nominee2_name'],
-        "email2" => $req['nominee2_email'],
-        "PAN2" => $req['nominee2_pan'],
-        "DOB2" => $req['nominee2_DOB'],
-        "address2" => $req['nominee2_address'],
-        "city2" => $req['nominee2_city'],
-        "pin_code2" => $req['nominee2_pin'],
-        "relation2" => $req['nominee2_relation']
+    $nominess = array();
+    $nominee_details1 = array(
+        "name_nominee" => $req['nominee_first_name'],
+        "relation_nominee" => $req['nominee_relation'],
+        "DOB_nominee" => $req['nominee_DOB'],
+        "address_nominee" => $req['nominee_address'],
+        "city_nominee" => $req['nominee_city'],
+        "pin_code_nominee" => $req['nominee_pan'],
+        "percent_nominee" => $req['nominee_per'],
+        "email_nominee" => $req['nominee_email'],
+        "PAN_nominee" => $req['nominee_pan']
     );
-    $nominee_details = json_encode($nominee_details);
+    $nominess[] = $nominee_details1;
+    if (isset($req['nominee2_name'], $req['nominee2_email'], $req['nominee2_pan'], $req['nominee2_DOB'], $req['nominee2_per'], $req['nominee2_address'], $req['nominee2_city'], $req['nominee2_pin'], $req['nominee2_relation'])) {
+
+        $nominee_details2 = array(
+            "name_nominee" => $req['nominee2_name'],
+            "email_nominee" => $req['nominee2_email'],
+            "PAN_nominee" => $req['nominee2_pan'],
+            "DOB_nominee" => $req['nominee2_DOB'],
+            "percent_nominee" => $req['nominee2_per'],
+            "address_nominee" => $req['nominee2_address'],
+            "city_nominee" => $req['nominee2_city'],
+            "pin_code_nominee" => $req['nominee2_pin'],
+            "relation_nominee" => $req['nominee2_relation']
+        );
+        $nominess[] = $nominee_details2;
+    }
+
+    if (isset($req['nominee3_name'], $req['nominee3_email'], $req['nominee3_pan'], $req['nominee3_DOB'], $req['nominee3_per'], $req['nominee3_address'], $req['nominee3_city'], $req['nominee3_pin'], $req['nominee3_relation'])) {
+
+        $nominee_details3 = array(
+            "name_nominee" => $req['nominee3_name'],
+            "email_nominee" => $req['nominee3_email'],
+            "PAN_nominee" => $req['nominee3_pan'],
+            "DOB_nominee" => $req['nominee3_DOB'],
+            "percent_nominee" => $req['nominee3_per'],
+            "address_nominee" => $req['nominee3_address'],
+            "city_nominee" => $req['nominee3_city'],
+            "pin_code_nominee" => $req['nominee3_pin'],
+            "relation_nominee" => $req['nominee3_relation']
+        );
+        $nominess[] = $nominee_details3;
+    }
+
+    $nominee_details = json_encode($nominess);
     $sql = "UPDATE `client_details` SET `nominee_details`='[$nominee_details]' WHERE email = '{$_SESSION['goaluser']}' ";
     // $sql = "UPDATE into `client_details` SET `nominee_details` = {'$nominee_details'} WHERE email ='{$_SESSION['goaluser']}' ";
     if (mysqli_query($conn, $sql)) {
@@ -107,6 +143,9 @@ if(isset($_POST['nominee_details'])){
         echo mysqli_error($conn);
         echo "Not Inserted";
     }
+}
+if(isset($_POST['MyProfile'])){
+
 }
 if (isset($_POST["get_user_fund"])) {
     $sql = "SELECT * FROM `user_fund` where user_email='{$_SESSION['goaluser']}'";

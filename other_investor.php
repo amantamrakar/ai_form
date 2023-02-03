@@ -82,6 +82,18 @@ if (!isset($_SESSION["goaluser"])) {
     label {
         font-weight: 600;
     }
+
+    select.borbottom {
+        /* border: 1px solid #ccc; */
+        background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%2326749a'><polygon points='0,0 100,0 50,50'/></svg>") no-repeat;
+        /* background-color: #ccc; */
+    }
+
+    select.borbottom {
+        background-size: 16px;
+        background-position: calc(100% - 20px) 17px;
+        background-repeat: no-repeat;
+    }
 </style>
 
 <body>
@@ -97,7 +109,7 @@ if (!isset($_SESSION["goaluser"])) {
                     <div class="mb-4 text-center">Do you want to add a Joint investor OR Nominee?</div>
                     <div style="text-align:center;">
                         <button class="btn btn-primary" id="jointer" data-bs-dismiss="modal">Joint Holder</button>
-                        <button class="btn btn-primary" id="nominee" data-bs-dismiss="modal">Nominee</button>
+                        <button class="btn btn-primary nominee" data-bs-dismiss="modal">Nominee</button>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -133,21 +145,21 @@ if (!isset($_SESSION["goaluser"])) {
                             <div class="col-12 col-md-3">
                                 <div class="form-group">
                                     <label for="">&nbsp;</label><br>
-                                    <input type="text" class="borbottom form-control rounded-xs" name="f_name" style="border: none;border-bottom: 1px solid #b7b7b7;" id="f_name" placeholder="First Name" onfocusout="destroyline(this)" onfocus="createline(this)" required>
+                                    <input type="text" class="borbottom form-control rounded-xs" name="f_name_joint" style="border: none;border-bottom: 1px solid #b7b7b7;" id="f_name" placeholder="First Name" onfocusout="destroyline(this)" onfocus="createline(this)" required>
                                     <span class="underline" data-id='f_name'></span>
                                 </div>
                             </div>
                             <div class="col-12 col-md-3">
                                 <div class="form-group">
                                     <label for="">&nbsp;</label><br>
-                                    <input type="text" class="borbottom form-control rounded-xs" id="m_name" name="m_name" placeholder="Middle Name" onfocusout="destroyline(this)" onfocus="createline(this)">
+                                    <input type="text" class="borbottom form-control rounded-xs" id="m_name" name="m_name_joint" placeholder="Middle Name" onfocusout="destroyline(this)" onfocus="createline(this)">
                                     <span class="underline" data-id='m_name'></span>
                                 </div>
                             </div>
                             <div class="col-12  col-md-3">
                                 <div class="form-group">
                                     <label for="">&nbsp;</label><br>
-                                    <input type="text" class="borbottom form-control rounded-xs" id="l_name" name="l_name" placeholder="Last Name" onfocusout="destroyline(this)" onfocus="createline(this)" required>
+                                    <input type="text" class="borbottom form-control rounded-xs" id="l_name" name="l_name_joint" placeholder="Last Name" onfocusout="destroyline(this)" onfocus="createline(this)" required>
                                     <span class="underline" data-id='l_name'></span>
                                 </div>
                             </div>
@@ -157,14 +169,14 @@ if (!isset($_SESSION["goaluser"])) {
                             <div class="col-12 col-md-3">
                                 <div class="form-group">
                                     <label for="" class="que_col">Date of Birth</label><br>
-                                    <input type="text" class="borbottom form-control mb-2 mt-2 w-100" name="dob" id="dob" placeholder="Date" onfocusout="destroyline(this)" onfocus="createline(this)" required>
+                                    <input type="text" class="borbottom form-control mb-2 mt-2 w-100" name="dob_joint" id="dob" placeholder="Date" onfocusout="destroyline(this)" onfocus="createline(this)" required>
                                     <span class="underline" data-id='dob'></span>
                                 </div>
                             </div>
                             <div class="col-12 mb-2 col-md-3">
                                 <div class="form-group">
                                     <label for="" class="que_col">Gender</label><br>
-                                    <select class="borbottom m-auto form-control mt-2 mb-2 w-100 my-1" id="gender" name="gender" onfocusout="destroyline(this)" onfocus="createline(this)" required>
+                                    <select class="borbottom m-auto form-control mt-2 mb-2 w-100 my-1" id="gender" name="gender_joint" onfocusout="destroyline(this)" onfocus="createline(this)" required>
                                         <option></option>
                                         <option>Male</option>
                                         <option>Female</option>
@@ -176,7 +188,7 @@ if (!isset($_SESSION["goaluser"])) {
                             <div class="col-12  col-md-3">
                                 <div class="form-group">
                                     <label for="" class="que_col">Marital Status</label><br>
-                                    <select class="borbottom form-control m-auto w-100 my-1" id="mar_status" name="martial_status" onfocusout="destroyline(this)" onfocus="createline(this)" required>
+                                    <select class="borbottom form-control m-auto w-100 my-1" id="mar_status" name="martial_status_joint" onfocusout="destroyline(this)" onfocus="createline(this)" required>
                                         <option></option>
                                         <option>Single</option>
                                         <option>Married</option>
@@ -192,14 +204,14 @@ if (!isset($_SESSION["goaluser"])) {
                             <div class="col-12 mb-2 col-md-3">
                                 <div class="form-group">
                                     <label for="" class="que_col">Mobile Number</label>
-                                    <input type="text" class="borbottom form-control mt-2 mb-2 w-100" name="mob_no" id="mob_num" placeholder="Mobile number" onfocusout="destroyline(this)" onfocus="createline(this)" required>
+                                    <input type="text" class="borbottom form-control mt-2 mb-2 w-100" name="mob_no_joint" id="mob_num" placeholder="Mobile number" onfocusout="destroyline(this)" onfocus="createline(this)" required>
                                     <span class="underline" data-id='mob_num'></span>
                                 </div>
                             </div>
                             <div class="col-12 col-md-3">
                                 <div class="form-group">
                                     <label for="" class="que_col">Email</label>
-                                    <input type="text" class="borbottom mt-2 form-control w-100" name="email" id="email" placeholder="Enter Email" onfocusout="destroyline(this)" onfocus="createline(this)" required>
+                                    <input type="text" class="borbottom mt-2 form-control w-100" name="email_joint" id="email" placeholder="Enter Email" onfocusout="destroyline(this)" onfocus="createline(this)" required>
                                     <span class="underline" data-id='email'></span>
                                 </div>
                             </div>
@@ -209,48 +221,52 @@ if (!isset($_SESSION["goaluser"])) {
                     <div class="form-group">
                         <h4>Address Details</h4>
                         <div class="row mt-4">
-                            <div class="col-12 mb-2 col-md-6">
+                            <div class="col-12 mb-4 col-md-6">
                                 <div class="form-group">
                                     <label for="" class="que_col">Contact Address</label>
-                                    <input type="text" class="borbottom form-control mt-2 mb-2 w-100" id="contact" name="home_address" placeholder="Flat/Building/Street Name" onfocusout="destroyline(this)" onfocus="createline(this)" required>
+                                    <input type="text" class="borbottom form-control mt-2 w-100" id="contact" name="home_address_joint" placeholder="Flat/Building/Street Name" onfocusout="destroyline(this)" onfocus="createline(this)" required>
                                     <span class="underline" data-id='contact'></span>
                                 </div>
                             </div>
                             <div class="col-12 col-md-3">
                                 <div class="form-group">
+                                    <label for="" class="que_col">Postal Code</label>
+                                    <input type="text" class="borbottom form-control mt-2 " name="pin_code_joint" id="pincode" placeholder="pincode" onfocusout="destroyline(this)" onfocus="createline(this)">
+                                    <span class="underline" data-id='pincode'></span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3"></div>
+                            <div class="col-12 col-md-3">
+                                <div class="form-group">
                                     <label for="" class="que_col">City</label>
-                                    <select class="borbottom mt-2 form-control mb-4  my-1" id="city" name="city" onfocusout="destroyline(this)" onfocus="createline(this)" required>
+                                    <input class="borbottom form-control my-1" id="city" name="city_joint" onfocusout="destroyline(this)" onfocus="createline(this)" readonly>
+                                    <!-- <select class="borbottom mt-2 form-control mb-4  my-1" id="city" name="city" onfocusout="destroyline(this)" onfocus="createline(this)" required>
                                         <option>Select</option>
                                         <option>Indore</option>
                                         <option>Jabalpur</option>
                                         <option>Udaipur</option>
                                         <option>Pune</option>
-                                    </select>
+                                    </select> -->
                                     <span class="underline" data-id='city'></span>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-3"></div>
+
                             <div class="col-12 mb-2 col-md-3">
                                 <div class="form-group">
                                     <label for="" class="que_col">State</label>
-                                    <select class="borbottom mt-2 form-control  my-1" id="state" name="state" onfocusout="destroyline(this)" onfocus="createline(this)" required>
+                                    <input class="borbottom form-control  my-1" id="state" name="state_joint" onfocusout="destroyline(this)" onfocus="createline(this)" readonly>
+                                    <!-- <select class="borbottom mt-2 form-control  my-1" id="state" name="state" onfocusout="destroyline(this)" onfocus="createline(this)" required>
                                         <option>Select</option>
                                         <option>Assam</option>
                                         <option>Bihar</option>
                                         <option>Madhya Pradesh</option>
                                         <option>Maharashtra</option>
-                                    </select>
+                                    </select> -->
                                     <span class="underline" data-id='state'></span>
                                 </div>
                             </div>
 
-                            <div class="col-12 col-md-3">
-                                <div class="form-group">
-                                    <label for="" class="que_col">Postal Code</label>
-                                    <input type="text" class="borbottom form-control mt-2 mb-5 " name="pin_code" id="pincode" placeholder="pincode" onfocusout="destroyline(this)" onfocus="createline(this)">
-                                    <span class="underline" data-id='pincode'></span>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <!-- additional detail -->
@@ -260,14 +276,14 @@ if (!isset($_SESSION["goaluser"])) {
                             <div class="col-12  col-md-3">
                                 <div class="form-group">
                                     <label for="" class="que_col mb-2">Place of Birth</label>
-                                    <input type="text" class="borbottom form-control w-100" name="place_birth" id="birth_place" placeholder="Birth Place" onfocusout="destroyline(this)" onfocus="createline(this)" required>
+                                    <input type="text" class="borbottom form-control w-100" name="place_birth_joint" id="birth_place" placeholder="Birth Place" onfocusout="destroyline(this)" onfocus="createline(this)" required>
                                     <span class="underline" data-id='birth_place'></span>
                                 </div>
                             </div>
                             <div class="col-12 col-md-3">
                                 <div class="form-group">
                                     <label for="" class="que_col mb-2">Country of Birth</label>
-                                    <select class="borbottom form-control m-auto w-100 my-1" name="birth_country" id="birth_con" onfocusout="destroyline(this)" onfocus="createline(this)" required>
+                                    <select class="borbottom form-control m-auto w-100 my-1" name="birth_country_joint" id="birth_con" onfocusout="destroyline(this)" onfocus="createline(this)" required>
                                         <option>India</option>
                                         <option>Pakistan</option>
                                         <option>Nepal</option>
@@ -279,7 +295,7 @@ if (!isset($_SESSION["goaluser"])) {
                             <div class="col-12 col-md-3">
                                 <div class="form-group">
                                     <label for="" class="que_col mb-2">Occupation</label>
-                                    <select class="borbottom form-control m-auto w-100 my-1" id="occupation" name="occupation" onfocusout="destroyline(this)" onfocus="createline(this)" required>
+                                    <select class="borbottom form-control m-auto w-100 my-1" id="occupation" name="occupation_joint" onfocusout="destroyline(this)" onfocus="createline(this)" required>
                                         <option value="">Select</option>
                                         <option value="230">Agriculture</option>
                                         <option value="225">Business</option>
@@ -296,7 +312,7 @@ if (!isset($_SESSION["goaluser"])) {
                             <div class="col-12 mb-3 col-md-3">
                                 <div class="form-group">
                                     <label for="" class="que_col mb-2">Gross annual income</label>
-                                    <select class="borbottom m-auto w-75 form-control my-1" id="GAI" name="annual_income" onfocusout="destroyline(this)" onfocus="createline(this)">
+                                    <select class="borbottom form-control my-1" id="GAI" name="annual_income_joint" onfocusout="destroyline(this)" onfocus="createline(this)">
                                         <option value="">Select</option>
                                         <option value="237">Below 1 Lac</option>
                                         <option value="238">1 to 5 Lac</option>
@@ -315,7 +331,7 @@ if (!isset($_SESSION["goaluser"])) {
                                     <div class="col-12 col-md-3">
                                         <div class="form-group">
                                             <label for="">&nbsp;</label><br>
-                                            <input type="text" class="borbottom form-control w-100" name="father_name" id="father_name" placeholder="First Name" onfocusout="destroyline(this)" onfocus="createline(this)" required>
+                                            <input type="text" class="borbottom form-control w-100" name="father_name_joint" id="father_name" placeholder="First Name" onfocusout="destroyline(this)" onfocus="createline(this)" required>
                                             <span class="underline" data-id='father_name'></span>
                                         </div>
                                     </div>
@@ -337,7 +353,7 @@ if (!isset($_SESSION["goaluser"])) {
                                     <div class="col-12 col-md-3">
                                         <div class="form-group">
                                             <label for="">&nbsp;</label><br>
-                                            <input type="text" class="borbottom form-control w-100" name="mother_name" id="mother_name" placeholder="First Name" onfocusout="destroyline(this)" onfocus="createline(this)" required>
+                                            <input type="text" class="borbottom form-control w-100" name="mother_name_joint" id="mother_name" placeholder="First Name" onfocusout="destroyline(this)" onfocus="createline(this)" required>
                                             <span class="underline" data-id='mother_name'></span>
                                         </div>
                                     </div>
@@ -361,6 +377,8 @@ if (!isset($_SESSION["goaluser"])) {
                     </div>
 
                     <div class="text-center">
+                        <a href="investorkyc.php"><button type="button" class="btn btn-primary ">Back</button></a>
+                        <button type="text" class="btn btn-success nominee">Add Nominee</button>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
@@ -405,10 +423,17 @@ if (!isset($_SESSION["goaluser"])) {
                                                     <span class="material-input"></span>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-md-1">
+                                                <div class="form-group is-empty">
+                                                    <label class="control-label mb-1" for="name">%</label>
+                                                    <input class="form-control" name="nominee_per" placeholder="%" type="text">
+                                                    <span class="material-input"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
                                                 <div class="form-group is-empty">
                                                     <label class="control-label mb-1" for="pan">Date of Birth </label>
-                                                    <input data-inputmask="'alias': 'date'" type="text" class="form-control" name="nominee_DOB" placeholder="dd/mm/yyyy">
+                                                    <input type="text" class="form-control" name="nominee_DOB" placeholder="dd/mm/yyyy">
                                                     <input type="hidden" name="minor1" id="minor1">
                                                     <span class="material-input"></span>
                                                 </div>
@@ -464,9 +489,8 @@ if (!isset($_SESSION["goaluser"])) {
                                                     <span class="material-input"></span>
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
-                                       
 
                                         <div class="d-none" id="sec_nominee">
                                             <div class="kyc-title">
@@ -494,10 +518,17 @@ if (!isset($_SESSION["goaluser"])) {
                                                         <span class="material-input"></span>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
+                                                <div class="col-md-1">
+                                                    <div class="form-group is-empty">
+                                                        <label class="control-label mb-1" for="name">%</label>
+                                                        <input class="form-control" name="nominee2_per" placeholder="%" type="text">
+                                                        <span class="material-input"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
                                                     <div class="form-group is-empty">
                                                         <label class="control-label mb-1" for="pan">Date of Birth </label>
-                                                        <input data-inputmask="'alias': 'date'" type="text" class="form-control" name="nominee2_DOB" placeholder="dd/mm/yyyy">
+                                                        <input type="text" class="form-control" name="nominee2_DOB" placeholder="dd/mm/yyyy">
                                                         <input type="hidden" name="minor1" id="minor1">
                                                         <span class="material-input"></span>
                                                     </div>
@@ -556,25 +587,118 @@ if (!isset($_SESSION["goaluser"])) {
                                             </div>
                                         </div>
 
-                                    
-                                    
-                                </div>
-                                <div class="row mt-2">
-                                            <div class="col-md-12">
-                                                <div class="pull-right" id="addnominee" style="display: flex;justify-content: end;cursor: pointer;">
-                                                    <a class="add_nominee" style="text-decoration: underline;"><i class="fa fa-plus-circle"></i>Add Nominee</a>
+                                        <div class="d-none" id="third_nominee">
+                                            <div class="kyc-title">
+                                                <div class="head mt-5">Nominee 3</div>
+                                            </div>
+                                            <div class="row" style="text-align: center;display: flex;justify-content: center;padding:15px;">
+                                                <div class="col-md-3">
+                                                    <div class="form-group is-empty">
+                                                        <label class="control-label mb-1" for="name">Full Name</label>
+                                                        <input class="form-control mb-3" data-nominee="1" name="nominee3_name" placeholder="Name" type="text">
+                                                        <span class="material-input"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group is-empty">
+                                                        <label class="control-label mb-1" for="name">Email</label>
+                                                        <input class="form-control" name="nominee3_email" placeholder="abc@gmail.com" type="text">
+                                                        <span class="material-input"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group is-empty">
+                                                        <label class="control-label mb-1" for="name">PAN</label>
+                                                        <input class="form-control" name="nominee3_pan" placeholder="e.g. AAAPM1234X" type="text">
+                                                        <span class="material-input"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="form-group is-empty">
+                                                        <label class="control-label mb-1" for="name">%</label>
+                                                        <input class="form-control" name="nominee3_per" placeholder="%" type="text">
+                                                        <span class="material-input"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group is-empty">
+                                                        <label class="control-label mb-1" for="pan">Date of Birth </label>
+                                                        <input type="text" class="form-control" name="nominee3_DOB" placeholder="dd/mm/yyyy">
+                                                        <input type="hidden" name="minor1" id="minor1">
+                                                        <span class="material-input"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group is-empty">
+                                                        <label class="control-label mb-1" for="name">Address</label>
+                                                        <input class="form-control" placeholder="" type="text" name="nominee3_address">
+                                                        <span class="material-input"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group is-empty">
+                                                        <label class="control-label mb-1">City</label>
+                                                        <!-- <input class="form-control" placeholder="" type="text"> -->
+                                                        <select class="borbottom mt-2 form-control my-1" id="city" name="nominee3_city" onfocusout="destroyline(this)" onfocus="createline(this)">
+                                                            <option>Select</option>
+                                                            <option>Indore</option>
+                                                            <option>Jabalpur</option>
+                                                            <option>Udaipur</option>
+                                                            <option>Pune</option>
+                                                        </select>
+                                                        <span class="material-input"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group is-empty">
+                                                        <label class="control-label mb-1">Pincode</label>
+                                                        <input class="form-control" placeholder="pin_code" type="text" name="nominee3_pin">
+                                                        <span class="material-input"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="form-group is-empty">
+                                                        <label class="control-label mb-1">Relationship with Investor</label>
+                                                        <select class="form-control" name="nominee3_relation">
+                                                            <option value="">Select</option>
+                                                            <option value="Father">Father</option>
+                                                            <option value="Mother">Mother</option>
+                                                            <option value="Spouse">Spouse</option>
+                                                            <option value="Son">Son</option>
+                                                            <option value="Daughter">Daughter</option>
+                                                            <option value="Brother">Brother</option>
+                                                            <option value="Sister">Sister</option>
+                                                            <option value="Aunt">Aunt</option>
+                                                            <option value="Uncle">Uncle</option>
+                                                            <option value="Niece">Niece</option>
+                                                            <option value="Nephew">Nephew</option>
+                                                            <option value="Grand Father">Grand Father</option>
+                                                            <option value="Grand Mother">Grand Mother</option>
+                                                            <option value="Others">Others</option>
+                                                        </select>
+                                                        <span class="material-input"></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                <div class="row mt-4">
-                                        <div class="col-md-12">
-                                            <div class="text-center">
-                                                <button type="button" class="btn btn-danger">CANCEL</button>
-                                                <button type="submit" class="btn btn-primary">Save</button>
-                                            </div>
+
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-12">
+                                        <div class="pull-right" id="addnominee" style="display: flex;justify-content: end;cursor: pointer;">
+                                            <a class="add_nominee" style="text-decoration: underline;"><i class="fa fa-plus-circle"></i>Add Nominee</a>
                                         </div>
                                     </div>
-                                    </form>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-md-12">
+                                        <div class="text-center">
+                                            <button type="button" class="btn btn-danger">CANCEL</button>
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                </form>
 
                                 <div class="clearfix">&nbsp;</div>
                                 <div class="row">
@@ -592,14 +716,7 @@ if (!isset($_SESSION["goaluser"])) {
                                 </div>
 
                             </div>
-                            <!-- <div class="row1">
-		<button class="btn btn-default btn-blank-white-xs btn-lg nominee-no pull-right" type="button" id="nominee-no">CANCEL</button>
-	            </div> -->
                         </div>
-                        <!-- <script>
-                            var maxNomLimit = "3";
-                        </script> -->
-
                     </div>
                 </div>
             </div>
@@ -615,12 +732,36 @@ if (!isset($_SESSION["goaluser"])) {
         $('.joint_page').removeClass('d-none');
         $('.nominee_page').addClass('d-none');
     });
-    $("#nominee").click(function() {
+
+    $("#pincode").on("input", function(e) {
+        if ($(this).val() > 5) {
+            $("#pincode").trigger("change");
+        }
+    });
+    $("#pincode").change(function(e) {
+        const data = $(this).val();
+        fetch(`https://api.postalpincode.in/pincode/${data}`)
+            .then((res) => res.json())
+            .then((d) => {
+                if (d[0]["Status"] === "Success") {
+                    $("#city").val(d[0]["PostOffice"][0]["District"]);
+                    $("#state").val(d[0]["PostOffice"][0]["State"]);
+                    // $("#f-submit").attr("disabled", false);
+                    $("#btn-2").removeAttr("disabled");
+                } else {
+                    $("#city").val("");
+                    $("#state").val("");
+                    //  $("#f-submit").attr("disabled", true);
+                }
+            });
+    })
+    $(".nominee").click(function() {
         $('.nominee_page').removeClass('d-none');
         $('.joint_page').addClass('d-none');
     });
-    $("#addnominee").click(function (){
+    $("#addnominee").click(function() {
         $('#sec_nominee').removeClass('d-none');
+        $('#third_nominee').removeClass('d-none');
     })
     $("#joint_h_detail").submit(function(e) {
         e.preventDefault();
