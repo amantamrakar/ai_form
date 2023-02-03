@@ -167,18 +167,18 @@ if (!isset($_SESSION["goaluser"])) {
                 if($invest_type=="sip"){
                     // if ($amt >= 2000) {
 
-                    //     $suggest_amt = $amt/ 2;
-                    //     echo   "<input type='number' name='suggest_sip' oninput='total_amt()' class='op w-75 my-1' value='{$suggest_amt}' >";
-                    //     echo   "<input type='number' name='suggest_sip' oninput='total_amt()' class='op w-75 my-1' value='{$suggest_amt}' >";
-                    // } else {
-                    // }
-                    echo   "<input type='number' name='suggest_sip[]' oninput='total_amt()' data-type='sip' data-amt='{$amt}' class='form-control m-auto op w-75 my-1' value='{$amt}'>";
-                }else{
+                //     $suggest_amt = $amt/ 2;
+                //     echo   "<input type='number' name='suggest_sip' oninput='total_amt()' class='op w-75 my-1' value='{$suggest_amt}' >";
+                //     echo   "<input type='number' name='suggest_sip' oninput='total_amt()' class='op w-75 my-1' value='{$suggest_amt}' >";
+                // } else {
+                // }
+                echo   "<input type='number' name='suggest_sip[]' oninput='total_amt()' data-type='sip' data-amt='{$amt}' class='form-control m-auto op w-75 my-1' value='{$amt}'>";
+            } else {
 
-                    echo   "<input type='number' name='suggest_lump[]' oninput='total_amt()' data-type='lump' data-amt='{$amt}' class='form-control m-auto op w-75 my-1' value='{$amt}'>";
-                }
-                return $markup;
+                echo   "<input type='number' name='suggest_lump[]' oninput='total_amt()' data-type='lump' data-amt='{$amt}' class='form-control m-auto op w-75 my-1' value='{$amt}'>";
             }
+            return $markup;
+        }
         $sql = "SELECT * FROM `user_goal` where email='{$_SESSION['goaluser']}'";
         $get_ut = mysqli_fetch_assoc(mysqli_query($conn, "SELECT `user_type` from `user_type` where user_email='{$_SESSION['goaluser']}'"));
         echo mysqli_error($conn);
@@ -215,7 +215,7 @@ if (!isset($_SESSION["goaluser"])) {
                 if ($row['plan_sip'] == 0 &&  $row['plan_lumpsum'] == 0) {
                     continue;
                 }
-                $amt=$goal_data["ansinputs"];
+                $amt = $goal_data["ansinputs"];
                 echo "<div class='row rounded mt-3 g-table mx-2 mx-xm-4' style='background-color:var(--{$row["goal"]})' data-gid='{$row['id']}'>
                                 <div class='col-lg-1 col-sm-12  text-capitalize  t_boarder' style='padding:10px;'>                              
                                     <p >Goal</p>
@@ -234,10 +234,10 @@ if (!isset($_SESSION["goaluser"])) {
                                         echo " </select>
                                     </span>
                                         <span class='col-6' style='border-left: 1px solid #999393;'><p>Amount</p> ";
-                                        echo handle_amt("sip",$row['plan_sip'] + 0);
-                                        echo "<button type='button' id='ss-{$row['id']}' class='btn btn-success splitAmt d-none' data-sel='demos-{$row['id']}' data-atype='sip'>Split Amount</button></span>";
+                echo handle_amt("sip", $row['plan_sip']);
 
-                    echo "</span>
+                echo "<button type='button' id='ss-{$row['id']}' class='btn btn-success splitAmt' data-sel='demos-{$row['id']}' data-atype='sip'>Split Amount</button></span>
+>>>>>>> 3484605656b83b658a2acd70aa436b3fddf3d1dd
                     </div></div>
                     <div class=' col-lg-5 col-md-6 col-sm-12 p-0 m-0 t_boarder'>
                        <p class='t_boarder'>Plan LUMPSUM Amount {$row['plan_lumpsum']}</p>
@@ -263,8 +263,7 @@ if (!isset($_SESSION["goaluser"])) {
        
        
         </div><br><br>
-        <div style='text-align: center;'><a href='investment.php'><button class='btn btn-primary'>BACK</button></a>&nbsp;&nbsp;
-        <button class='btn btn-success btn_style'>PROCEED</button></div>";
+        <div style='text-align: center;'><a href='investment.php'><button class='btn btn-primary'>BACK</button></a>&nbsp;&nbsp;<a href='investorkyc.php'><button class='btn btn-success btn_style'>PROCEED</button></a></div>";
         ?>
 
     </div>
@@ -313,14 +312,18 @@ if (!isset($_SESSION["goaluser"])) {
     });
     $(".show-r-amt").each(function(i,el){
         console.log(el);
-        temp= +el.innerHTML.replaceAll(",", "")
-        el.innerHTML=temp.toLocaleString("en-IN",{style: 'currency', currency: 'INR', maximumFractionDigits: 0});
+        temp = +el.innerHTML.replaceAll(",", "")
+        el.innerHTML = temp.toLocaleString("en-IN", {
+            style: 'currency',
+            currency: 'INR',
+            maximumFractionDigits: 0
+        });
 
         // el.toLocaleString("en-IN",{ maximumFractionDigits: 0});
     });
-    $(".splitAmt").click(function(e){
-        const allIn=$(e.target).siblings("input")
-        const inp=allIn.last();
+    $(".splitAmt").click(function(e) {
+        const allIn = $(e.target).siblings("input")
+        const inp = allIn.last();
         // allIn.each((i,el)=>{
         //     el.value = el.dataset.amt/(allIn.length +1);
         // })
@@ -332,13 +335,13 @@ if (!isset($_SESSION["goaluser"])) {
         let amt=amt1+rem;
         if(amt < 2000 && e.target.dataset.atype=="sip"){
             return;
-        }else if(amt <= 5000 && e.target.dataset.atype=="lump"){
+        } else if (amt <= 5000 && e.target.dataset.atype == "lump") {
             return;
         }
         inp.val(amt);
-        const markup=inp.clone()[0];
-        markup.value = Math.round(amt2-rem);
-        const mat=$(`select#${e.target.dataset.sel}`).last().clone();
+        const markup = inp.clone()[0];
+        markup.value = Math.round(amt2 - rem);
+        const mat = $(`select#${e.target.dataset.sel}`).last().clone();
         // mat.attr("name",e.target.dataset.sel+'[]');
         // console.log(mat.children().length,allIn.length);
         if(mat.children().length > allIn.length ){
@@ -350,6 +353,7 @@ if (!isset($_SESSION["goaluser"])) {
         $(`select#${e.target.dataset.sel}`).last().after(mat);
         $(e.target).before(markup)
     })
+
     function total_amt() {
 
         var sip_value = 0;

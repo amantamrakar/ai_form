@@ -1,9 +1,12 @@
-<?php session_start(); 
+<?php session_start();
 require_once("./connect.php");
-$res=mysqli_query($conn,"SELECT * FROM `user_type` WHERE `user_email`='{$_SESSION['goaluser']}'");
+if (!isset($_SESSION["goaluser"])) {
+    header("location: ./index.php");
+}
+$res = mysqli_query($conn, "SELECT * FROM `user_type` WHERE `user_email`='{$_SESSION['goaluser']}'");
 // var_dump($res);
-if(mysqli_num_rows($res)>0){
-   header("location: ./suggest_scm.php");
+if (mysqli_num_rows($res) > 0) {
+    header("location: ./suggest_scm.php");
 }
 ?>
 
@@ -143,42 +146,55 @@ if(mysqli_num_rows($res)>0){
             background-color: #ffffff;
             color: #313f80;
         } */
-        .next_btn
-        { 
-        background-color: #1c87c9;
-        /* -webkit-border-radius: 60px; */
-        border-radius: 5px;
-        border: none;
-        color: #eeeeee;
-        /* cursor: pointer; */
-        display: inline-block;
-        font-family: sans-serif;
-        /* font-size: 20px; */
-        padding: 5px 15px;
-        /* text-align: center;
+        .next_btn {
+            background-color: #1c87c9;
+            /* -webkit-border-radius: 60px; */
+            border-radius: 5px;
+            border: none;
+            color: #eeeeee;
+            /* cursor: pointer; */
+            display: inline-block;
+            font-family: sans-serif;
+            /* font-size: 20px; */
+            padding: 5px 15px;
+            /* text-align: center;
         text-decoration: none; */
-      }
-      @keyframes glowing {
-        0% {
-          background-color: #1c87c9;
-          box-shadow: 0 0 5px #1c87c9;
-          /* color:black; */
         }
-        50% {
-          background-color: #13586a;
-          box-shadow: 0 0 20px #13586a;
-          color :#ffffff;
+
+        @keyframes glowing {
+            0% {
+                background-color: #1c87c9;
+                box-shadow: 0 0 5px #1c87c9;
+                /* color:black; */
+            }
+
+            50% {
+                background-color: #13586a;
+                box-shadow: 0 0 20px #13586a;
+                color: #ffffff;
+            }
+
+            100% {
+                background-color: #1c87c9;
+                box-shadow: 0 0 5px #1c87c9;
+                /* color:black; */
+            }
         }
-        100% {
-          background-color: #1c87c9;
-          box-shadow: 0 0 5px #1c87c9;
-          /* color:black; */
+
+        .next_btn {
+            animation: glowing 1300ms infinite;
         }
-      }
-      .next_btn {
-        animation: glowing 1300ms infinite;
-      }
-        
+
+        .loader {
+            /* position: fixed; */
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('http://i.imgur.com/KUJoe.gif') 50% 50% no-repeat rgb(249, 249, 249);
+            position: fixed;
+        }
     </style>
 </head>
 
@@ -582,8 +598,8 @@ if(mysqli_num_rows($res)>0){
                         </div>
 
                         <div class="modal-footer">
-                            <p style="color: black; font-size: 17px; font-style: italic;">Click Next To View Recommandation </p>               
-                            <a href="suggest_scm.php"><button type="button" class="btn btn-primary next_btn" data-bs-dismiss="#myModal1" onclick="hideModal()" >Next</button></a>
+                            <p style="color: black; font-size: 17px; font-style: italic;">Click Next To View Recommandation </p>
+                            <a href="suggest_scm.php"><button type="button" class="btn btn-primary next_btn" data-bs-dismiss="#myModal1" onclick="hideModal()">Next</button></a>
                         </div>
 
                     </div>
@@ -598,7 +614,7 @@ if(mysqli_num_rows($res)>0){
             <!-- <p id="portfolio"></p> -->
             <button type="button" class="btn btn-light prevtab">Previous</button>
             <button type="button" data-nid="a1" class="btn btn-light nexttab">Next</button>
-            <button type="submit" class="btn btn-light d-none" id="type_sub" onclick="displayRadioValue();" >Submit</button>
+            <button type="submit" class="btn btn-light d-none" id="type_sub" onclick="displayRadioValue();">Submit</button>
         </div>
     </div>
 
@@ -648,22 +664,25 @@ if(mysqli_num_rows($res)>0){
     }
     bootstrapTabControl();
 
-function hideModal(){
-    $("#myModal1").modal({backdrop: 'static', keyboard: false}).hide(); 
-}
-
+    function hideModal() {
+        $("#myModal1").modal({
+            backdrop: 'static',
+            keyboard: false
+        }).hide();
+    }
 
     $(".nexttab").on('click', function() {
         current++;
         checkVal();
-        if(current == 10){
+        if (current == 10) {
             $(this).addClass('d-none');
             $("#type_sub").removeClass('d-none');
-        } 
+        }
     });
 
     $(window).on('load', function() {
         $(".nexttab").attr("disabled", true);
+
         $('#myModal').modal('show');
         checkVal();
     });
@@ -684,7 +703,10 @@ function hideModal(){
                 // console.log(data);
                 // alert(data);
                 $('#portfolio').html(data)
-                $("#myModal1").modal({backdrop: 'static', keyboard: false}).show(); 
+                $("#myModal1").modal({
+                    backdrop: 'static',
+                    keyboard: false
+                }).show();
                 // data-bs-toggle="modal" data-bs-target="#myModal1" data-backdrop="static" data-keyboard="false"
             }
 

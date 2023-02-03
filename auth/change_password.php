@@ -120,13 +120,13 @@ if(isset($_GET["key"]) && isset($_GET["token"])){
                         <h4 class="text-center font-800 font-25 mb-5">Enter New Password</h4>
                         <div class="form-custom form-label form-icon mb-3" style="position:relative;">
                             <label for="password" class="color-theme mb-2">Password</label>
-                            <input type="password" style="border: none;border-bottom: 1px solid #b7b7b7;" class="form-control rounded-xs" id="password" placeholder="Password" name="p_password" onfocusout="jao(this)" onfocus="aao(this)" required>
+                            <input type="password" style="border: none;border-bottom: 1px solid #b7b7b7;" class="form-control rounded-xs" id="password" placeholder="Password" name="p_password" onfocusout="destroyline(this)" onfocus="createline(this)" required>
                             <span class="underline" data-id='password'></span>
                         </div>
                         <div class="form-custom form-label form-icon mb-3" style="position:relative;">
                             <label for="password" class="color-theme mb-2">Confirm password</label>
                             <!-- <i class="bi bi-at font-16"></i> -->
-                            <input type="password" style="border: none;border-bottom: 1px solid #b7b7b7;" class="form-control rounded-xs" id="rpassword" placeholder="confirm-password " name="re_password" onfocusout="jao(this)" onfocus="aao(this)" required>
+                            <input type="password" style="border: none;border-bottom: 1px solid #b7b7b7;" class="form-control rounded-xs" id="rpassword" placeholder="confirm-password " name="re_password" onfocusout="destroyline(this)" onfocus="createline(this)" required>
                             <span class="underline" data-id='rpassword'></span>
                         </div>
                         <!-- <input type="hidden" name="key" value="<?= $_GET["key"] ?>">
@@ -158,11 +158,11 @@ if(isset($_GET["key"]) && isset($_GET["token"])){
     <!-- <script src="../assets/bootstrap.min.js"></script> -->
     <!-- <script src="../scripts/custom.js"></script> -->
     <script>
-        function aao(e) {
+        function createline(e) {
             document.querySelector(`.underline[data-id="${e.id}"]`).style.transform = 'scaleX(1)';
         }
 
-        function jao(e) {
+        function destroyline(e) {
             document.querySelector(`.underline[data-id="${e.id}"]`).style.transform = 'scaleX(0)';
             // console.log(helllo);
             // var id = e.id

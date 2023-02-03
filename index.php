@@ -588,7 +588,6 @@ session_start();
 
     }
 
-
     $("#pincode").on("input", function(e) {
       if ($(this).val() > 5) {
         $("#pincode").trigger("change");

@@ -52,6 +52,7 @@
                     </div>
                     <a href="#" class="flip-btn" data-flip='log-in-containers'>Account already registered !</a>
                 </div>
+                
             </div>
         </div>
     </div>

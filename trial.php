@@ -14,6 +14,7 @@ if (isset($_SESSION["goaluser"])) {
     }
     $res["status"] = true;
     die(json_encode($res));
+    
 }
 
 if (!isset($_POST["f_type"])) {
